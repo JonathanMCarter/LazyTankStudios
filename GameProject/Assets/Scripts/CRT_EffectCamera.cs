@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectCamera : MonoBehaviour
+public class CRT_EffectCamera : MonoBehaviour
 {
     public Material EffectMaterial;
     public bool IsCRTShaderOn=true;
