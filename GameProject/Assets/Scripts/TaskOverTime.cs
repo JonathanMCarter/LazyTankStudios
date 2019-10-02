@@ -20,6 +20,8 @@ namespace AI
             mb.StartCoroutine(coroutine);
         }
 
+        public void Stop() => mb.StopCoroutine(coroutine);
+
         private IEnumerator Execute(float time, InterpolateDel task, CallbackDel callback)
         {
             progress = 0f;

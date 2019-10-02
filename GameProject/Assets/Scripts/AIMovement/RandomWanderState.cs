@@ -9,20 +9,23 @@ namespace AI
         private int xRange;
         private int yRange;
 
-        public RandomWanderState(AIMovement owner) : base(owner) => this.owner = owner;
-
-        public override void StateEnter()
+        public RandomWanderState(AIMovement owner) : base(owner)
         {
+            this.owner = owner;
             rootPos = owner.RootPos;
             xRange = owner.XRange;
             yRange = owner.YRange;
-            owner.MoveAccess(GetDestination());
+        }
+
+        public override void StateEnter()
+        {
+            owner.RandomWander(GetDestination());
         }
 
         public override void Execute()
         {
             if (owner.IsReadyToMove)
-                owner.MoveAccess(GetDestination());
+                owner.RandomWander(GetDestination());
 
         }
 

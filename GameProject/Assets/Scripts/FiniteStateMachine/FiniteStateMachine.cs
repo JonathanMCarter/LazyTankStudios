@@ -22,7 +22,7 @@ namespace AI
 
             _currentState = newState;
 
-            _currentState?.StateExit();
+            _currentState?.StateEnter();
         }
     }
 
