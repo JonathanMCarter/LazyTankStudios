@@ -9,33 +9,27 @@ namespace AI
         private int xRange;
         private int yRange;
 
-        public RandomWanderState(AIMovement owner) : base(owner)
-        {
-            this.owner = owner;
-        }
+        public RandomWanderState(AIMovement owner) : base(owner) => this.owner = owner;
 
         public override void StateEnter()
         {
             rootPos = owner.RootPos;
             xRange = owner.XRange;
             yRange = owner.YRange;
+            owner.MoveAccess(GetDestination());
         }
 
         public override void Execute()
         {
-            if (!owner.IsMoving && owner.IsIdle)
+            if (owner.IsReadyToMove)
                 owner.MoveAccess(GetDestination());
+
         }
 
         public override void StateExit()
         {
         }
 
-        private Vector2 GetDestination()
-        {
-            Vector2 v = new Vector2(rootPos.x + Random.Range(-xRange / 2, xRange / 2 + 1), rootPos.y + Random.Range(-yRange / 2, yRange / 2 + 1));
-            Debug.Log(v);
-            return v;
-        }
+        private Vector2 GetDestination() => new Vector2(Random.Range(rootPos.x - xRange / 2, rootPos.y + yRange / 2), Random.Range(rootPos.y - yRange / 2, rootPos.y + yRange / 2));
     } 
 }

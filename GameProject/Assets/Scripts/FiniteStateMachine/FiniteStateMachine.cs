@@ -9,6 +9,7 @@ namespace AI
 
         public FiniteStateMachine(MonoBehaviour owner, State initState)
         {
+            _owner = owner;
             _currentState = initState;
             _currentState.StateEnter();
         }
