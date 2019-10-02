@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 //attach this to a GameObject and add a BoxCollider2D with the IsTrigger option checked 
-public class LayerTrigger : MonoBehaviour
+public class SpriteLayerTrigger : MonoBehaviour
 {
     int m_OriginalSortingLayer=10;
 

@@ -5,24 +5,31 @@ using UnityEngine;
 public class CRT_EffectCamera : MonoBehaviour
 {
     public Material EffectMaterial;
-    public bool IsCRTShaderOn=true;
-    public float ScanlineCount=1000.0f;
-    public float ScanlineIntesity=0.05f;
-    public float VignetteStrenght=0.3f;
-    public float ScanlineSpeed=10.0f;
+    public bool m_CRTShaderOn=true;
+    public float scanlineCount=1000.0f;
+    public float scanlineIntesity=1f;
+    public float vignetteStrenght=0.3f;
+    private float time;
+    public float scanlineSpeed=10.0f;
+    public float noiseSize=5;
+    public float noiseAmount=1f;
+    public float interlaceStrength=5;
 
 void Start()
 {
-    //if the values are required to change during runtime paste the lines below at the beginning of OnRenderImage()
-    EffectMaterial.SetFloat("scanlineCount",ScanlineCount);
-    EffectMaterial.SetFloat("scanlineIntensity",ScanlineIntesity);
-    EffectMaterial.SetFloat("scanlineSpeed",ScanlineSpeed);
-    EffectMaterial.SetFloat("vignetteStrenght",VignetteStrenght);
+    
 }
 void OnRenderImage(RenderTexture src,RenderTexture dst)
     {
+        EffectMaterial.SetFloat("scanlineCount",scanlineCount);
+    EffectMaterial.SetFloat("scanlineIntensity",scanlineIntesity);
+    EffectMaterial.SetFloat("scanlineSpeed",scanlineSpeed);
+    EffectMaterial.SetFloat("vignetteStrenght",vignetteStrenght);
+    EffectMaterial.SetFloat("noiseSize",noiseSize);
+    EffectMaterial.SetFloat("noiseAmount",noiseAmount);
+    EffectMaterial.SetFloat("interlaceStrenght",interlaceStrength);
         EffectMaterial.SetFloat("time",Time.fixedTime);
-        if(IsCRTShaderOn)Graphics.Blit(src,dst,EffectMaterial);
+        if(m_CRTShaderOn)Graphics.Blit(src,dst,EffectMaterial);
         else Graphics.Blit(src,dst);
     }
 }
