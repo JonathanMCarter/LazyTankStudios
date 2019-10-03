@@ -156,15 +156,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c993c7224863b8344965915bca94d883, type: 3}
+  m_Script: {fileID: 11500000, guid: 35a7b84020cbbca45a210f018a1b3268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EffectMaterial: {fileID: 2100000, guid: 83eef62ba00914e449ff2470a433db0a, type: 2}
-  IsCRTShaderOn: 1
-  ScanlineCount: 1000
-  ScanlineIntesity: 0.05
-  VignetteStrenght: 0.3
-  ScanlineSpeed: 10
+  m_CRTShaderOn: 1
+  scanlineCount: 500
+  scanlineBrightness: 1
+  vignetteStrenght: 0.3
+  scanlineSpeed: -10
+  noiseSize: 5
+  noiseAmount: 1
+  flickerEffectStrenght: 5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
