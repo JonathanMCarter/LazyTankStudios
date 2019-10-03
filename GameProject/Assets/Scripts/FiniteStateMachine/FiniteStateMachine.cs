@@ -5,24 +5,25 @@ namespace AI
     public class FiniteStateMachine
     {
         private MonoBehaviour _owner;
-        private State _currentState;
+
+        public State _CurrentState { get; private set; }
 
         public FiniteStateMachine(MonoBehaviour owner, State initState)
         {
             _owner = owner;
-            _currentState = initState;
-            _currentState.StateEnter();
+            _CurrentState = initState;
+            _CurrentState.StateEnter();
         }
 
-        public void ExecuteCurrentState() => _currentState?.Execute();
+        public void ExecuteCurrentState() => _CurrentState?.Execute();
 
         public void ChangeState(State newState)
         {
-            _currentState?.StateExit();
+            _CurrentState?.StateExit();
 
-            _currentState = newState;
+            _CurrentState = newState;
 
-            _currentState?.StateEnter();
+            _CurrentState?.StateEnter();
         }
     }
 

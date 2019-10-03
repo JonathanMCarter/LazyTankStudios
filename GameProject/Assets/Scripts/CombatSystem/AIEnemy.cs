@@ -3,9 +3,29 @@ using UnityEngine;
 
 namespace AI
 {
-    public class AICombatSystem : MonoBehaviour
+    public class AIEnemy : MonoBehaviour
     {
         [SerializeField] private List<Ability> abilities;
+
+        //shouldnt be here later
+        private Combat combat;
+        private bool inCombat = false;
+
+        public int HP { get; set; } = 100;
+
+        public void InitCombat()
+        {
+            List<AIEnemy> team1 = new List<AIEnemy>() { this };
+            combat = new Combat(this, team1, team1);
+            combat.StartCombat();
+        }
+
+        // Combat Test Functions
+        public void Attack(AIEnemy target)
+        {
+            abilities[0].Use(target);
+            Debug.Log($"Attacked enemy. He has now {target.HP} HP");
+        }
 
         public void UseRandomAbility()
         {
@@ -23,7 +43,7 @@ namespace AI
             {
                 if (r > threshold && r < threshold + abilities[i + 1].chance)
                 {
-                    abilities[i].Use();
+                    //abilities[i].Use();
                     return;
                 }
 
@@ -31,7 +51,7 @@ namespace AI
             }
 
             //If the others weren't use
-            abilities[abilities.Count - 1].Use();
+            //abilities[abilities.Count - 1].Use();
         }
 
         //Summs up all Chances of the abilitiy set. Returns true when 100%

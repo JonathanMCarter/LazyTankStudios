@@ -8,7 +8,7 @@ namespace AI
         public string Name;
         public float chance = 0;
 
-        public virtual void Use()
+        public virtual void Use(AIEnemy target)
         {
             Debug.Log($"{Name} used");
         }
@@ -23,7 +23,7 @@ namespace AI
     {
         public int stunTime = 1;
 
-        public override void Use()
+        public override void Use(AIEnemy target)
         {
             Debug.Log($"Using {Name}");
         }
@@ -40,6 +40,11 @@ namespace AI
     public class Attack : Ability
     {
         public int amount;
+
+        public override void Use(AIEnemy target)
+        {
+            target.HP -= amount;
+        }
     }
 
     [CreateAssetMenu(fileName = "Heal", menuName = "Abilities/Heal")]

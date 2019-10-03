@@ -3,19 +3,25 @@ using UnityEditor;
 
 namespace AI
 {
-    [CustomEditor(typeof(AICombatSystem))]
-    public class AICombatSystemEditor : Editor
+    [CustomEditor(typeof(AIEnemy))]
+    public class AIEnemyEditor : Editor
     {
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
-            AICombatSystem ai = (AICombatSystem)target;
-
+            AIEnemy ai = (AIEnemy)target;
+            
             if (GUILayout.Button("Use Ability"))
             {
                 ai.UseRandomAbility();
             }
+
+            if (GUILayout.Button("Start Combat"))
+            {
+                ai.InitCombat();
+            }
+
         }
     }
 }
