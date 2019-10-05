@@ -2,17 +2,22 @@
 {
     Properties
     {
-        _MainTex("Sprite", 2D) = "white" {}
-        _Palette("Palette", 2D) = "white" {}
+		[HideInInspector]_MainTex("Sprite", 2D) = "white" {}
+        //_Palette("Palette", 2D) = "white" {}
 
 
-        _TexCol1("Colour 1", Color) = (0,0,0,1)
-        _TexCol2("Colour 2", Color) = (0,0,0,1)
-        _TexCol3("Colour 3", Color) = (0,0,0,1)
+		[HideInInspector]_TexCol1("Colour 1", Color) = (0,0,0,1)
+		[HideInInspector]_TexCol2("Colour 2", Color) = (0,0,0,1)
+	    [HideInInspector]_TexCol3("Colour 3", Color) = (0,0,0,1)
 
 		[MaterialToggle] _UseTrans("4th Colour is Transparent?", float) = 0
 
-		_TexCol4("Colour 4", Color) = (0,0,0,1)
+		[HideInInspector]_TexCol4("Colour 4", Color) = (0,0,0,1)
+
+		[HideInInspector]_PalCol1("Palette 1", Color) = (0,0,0,1)
+		[HideInInspector]_PalCol2("Palette 2", Color) = (0,0,0,1)
+		[HideInInspector]_PalCol3("Palette 3", Color) = (0,0,0,1)
+		[HideInInspector]_PalCol4("Palette 4", Color) = (0,0,0,1)
     }
     SubShader
     {
@@ -41,6 +46,10 @@
 			UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol2)
 			UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol3)
 			UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol4)
+			UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol1)
+			UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol2)
+			UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol3)
+			UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol4)
 			UNITY_DEFINE_INSTANCED_PROP(float, _UseTrans)
 		UNITY_INSTANCING_BUFFER_END(Props)
 
@@ -91,15 +100,22 @@
 			//half4 Pal3 = tex2D(UNITY_ACCESS_INSTANCED_PROP(Props, _Palette), float2(0, 0));
 			//half4 Pal4 = tex2D(UNITY_ACCESS_INSTANCED_PROP(Props, _Palette), float2(1, 0));
 
-			half4 Pal1 = tex2D(_Palette, float2(0, 1));
-			half4 Pal2 = tex2D(_Palette, float2(1, 1));
-			half4 Pal3 = tex2D(_Palette, float2(0, 0));
-			half4 Pal4 = tex2D(_Palette, float2(1, 0));
+			//half4 Pal1 = tex2D(_Palette, float2(0, 1));
+			//half4 Pal2 = tex2D(_Palette, float2(1, 1));
+			//half4 Pal3 = tex2D(_Palette, float2(0, 0));
+			//half4 Pal4 = tex2D(_Palette, float2(1, 0));
+
+
 
 			float4 _TestCol1 = UNITY_ACCESS_INSTANCED_PROP(Props, _TexCol1);
 			float4 _TestCol2 = UNITY_ACCESS_INSTANCED_PROP(Props, _TexCol2);
 			float4 _TestCol3 = UNITY_ACCESS_INSTANCED_PROP(Props, _TexCol3);
 			float4 _TestCol4 = UNITY_ACCESS_INSTANCED_PROP(Props, _TexCol4);
+
+			float4 Pal1 = UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol1);
+			float4 Pal2 = UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol2);
+			float4 Pal3 = UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol3);
+			float4 Pal4 = UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol4);
 
 			if 
 			(
@@ -109,7 +125,10 @@
 				c.a >= _TestCol1.a - 0.001 && c.a <= _TestCol1.a + 0.001
 			)
 			{
-				return Pal1;
+				if (!Pal1 == 0, 0, 0, 1)
+				{
+					return Pal1;
+				}
             }
 
 			if 
@@ -120,7 +139,10 @@
 				c.a >= _TestCol2.a - 0.001 && c.a <= _TestCol2.a + 0.001
 			)
 			{
-				return Pal2;
+				if (!Pal2 == 0, 0, 0, 1)
+				{
+					return Pal2;
+				}
 			}
 
 			if 
@@ -131,7 +153,10 @@
 				c.a >= _TestCol3.a - 0.001 && c.a <= _TestCol3.a + 0.001
 			)
 			{
-				return Pal3;
+				if (!Pal3 == 0, 0, 0, 1)
+				{
+					return Pal3;
+				}
 			}
 
 			if 
@@ -149,8 +174,11 @@
 				}
 				else
 				{
-					// If there is no transparency on this sprite then the 4th colour will be used instead
-					return Pal4;
+					if (!Pal1 == 0, 0, 0, 1)
+					{
+						// If there is no transparency on this sprite then the 4th colour will be used instead
+						return Pal4;
+					}
 				}
 			}
 
@@ -161,4 +189,6 @@
             ENDCG
         }
     }
+
+	CustomEditor "ShaderEditorGUI"
 }

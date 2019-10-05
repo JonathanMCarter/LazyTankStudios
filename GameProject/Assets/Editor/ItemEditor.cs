@@ -33,7 +33,7 @@ public class ItemEditor : EditorWindow
     private Vector2 ScrollPos;
 
     private readonly List<Item> Read = new List<Item>();
-
+    private Rect DeselectWindow;
 
 
     [MenuItem("Tools/Item Editor")]
@@ -43,10 +43,15 @@ public class ItemEditor : EditorWindow
     }
 
 
-
+    private void OnEnable()
+    {
+        ReadItems();
+    }
 
     private void OnGUI()
     {
+        DeselectWindow = new Rect(0, 0, position.width, position.height);
+
         ToolbarValue = GUILayout.Toolbar(ToolbarValue, new string[] { "Overview", "New Item", "Edit Item" }, GUILayout.MaxHeight(30));
 
 
@@ -68,8 +73,6 @@ public class ItemEditor : EditorWindow
                 }
 
                 ScrollPos = EditorGUILayout.BeginScrollView(ScrollPos, GUILayout.Width(position.width), GUILayout.ExpandHeight(true));
-
-
 
                 for (int i = 0; i < Read.Count; i++)
                 {
@@ -188,7 +191,14 @@ public class ItemEditor : EditorWindow
 
                 EditorGUILayout.LabelField("Edit an exsisting item");
 
-                ItemToEdit = (Item)EditorGUILayout.ObjectField(ItemToEdit, typeof(Item), false);
+                if (ItemToEdit.type != ITEM_TYPE.WEAPON)
+                {
+                    ItemToEdit = (Item)EditorGUILayout.ObjectField(ItemToEdit, typeof(Item), false);
+                }
+                else
+                {
+                    ItemToEdit = (ItemOneHanded)EditorGUILayout.ObjectField(ItemToEdit, typeof(ItemOneHanded), false);
+                }
 
                 if (ItemToEdit)
                 {
@@ -216,17 +226,38 @@ public class ItemEditor : EditorWindow
                     EditorGUILayout.EndHorizontal();
                 }
 
+
+                //if (ItemToEdit.type == ITEM_TYPE.WEAPON)
+                //{
+                //    EditorGUILayout.BeginHorizontal();
+                //    EditorGUILayout.LabelField("Min Damage: ", GUILayout.MaxWidth(75));
+                //    ItemToEdit.damageMin = EditorGUILayout.IntField(NewItemProps.ItemMinDamage, GUILayout.MaxWidth(position.width - 25));
+                //    GUILayout.FlexibleSpace();
+                //    EditorGUILayout.EndHorizontal();
+
+                //    EditorGUILayout.BeginHorizontal();
+                //    EditorGUILayout.LabelField("Max Damage: ", GUILayout.MaxWidth(75));
+                //    NewItemProps.ItemMaxDamage = EditorGUILayout.IntField(NewItemProps.ItemMaxDamage, GUILayout.MaxWidth(position.width - 25));
+                //    GUILayout.FlexibleSpace();
+                //    EditorGUILayout.EndHorizontal();
+                //}
+
                 break;
             default:
                 break;
+        }
+
+        // Makes it so you can deselect elements in the window by adding a button the size of the window that you can't see under everything
+        //make sure the following code is at the very end of OnGUI Function
+        if (GUI.Button(DeselectWindow, "", GUIStyle.none))
+        {
+            GUI.FocusControl(null);
         }
     }
 
 
     private List<Item> ReadItems()
     {
-
-
         // Makes a new lsit the size of the amount of objects in the path
         List<string> AllFiles = new List<string>(Directory.GetFiles(Application.dataPath + "/items"));
 
@@ -248,7 +279,7 @@ public class ItemEditor : EditorWindow
         }
         else
         {
-            // It Broken :(
+            // IF this happens, it broken :( ......... or there is nothing to read
         }
 
         return Read;
@@ -257,7 +288,6 @@ public class ItemEditor : EditorWindow
 
     private void CreateNewItem()
     {
-
         if (NewItemProps.ItemType != ITEM_TYPE.WEAPON)
         {
             Item asset = ScriptableObject.CreateInstance<Item>();
@@ -291,6 +321,7 @@ public class ItemEditor : EditorWindow
             EditorUtility.FocusProjectWindow();
         }
 
+        NewItemFileName = "";
         NewItemProps = new ItemProps();
     }
 }
