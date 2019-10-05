@@ -166,5 +166,6 @@ public class DialogueScript : MonoBehaviour
     {
         if (InputPressed) { InputPressed = false; }
         if (FileHasEnded) { FileHasEnded = false; }
+        DialStage = 0;
     }
 }
