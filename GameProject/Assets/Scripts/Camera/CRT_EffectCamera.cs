@@ -2,6 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * CRT Effect Script 
+ * 
+ *  Controls the effects of the CRT shader 
+ *
+ * Owner: Andreas Kraemer
+ * Last Edit : 1/10/19
+ * 
+ * Also Edited by : <Enter name here if you edit this script>
+ * Last Edit: <Date here if you edit this script>
+ * 
+ * */
+
 public class CRT_EffectCamera : MonoBehaviour
 {
     public Material EffectMaterial;

@@ -2,6 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Battle Transition Effect Script 
+ * 
+ *  Controls the speed and duration of the battle transition, call PlayEffect() to start the Transition
+ *
+ * Owner: Andreas Kraemer
+ * Last Edit : 5/10/19
+ * 
+ * Also Edited by : <Enter name here if you edit this script>
+ * Last Edit: <Date here if you edit this script>
+ * 
+ * */
+
 public class BattleTransitionEffectCamera : MonoBehaviour
 {
     public Material TransitionMaterial;
@@ -10,7 +23,7 @@ public class BattleTransitionEffectCamera : MonoBehaviour
     public float transitionSpeed=1f;
     public float transitionDuration=1f;
     public bool effectIsPlaying;
-    // Start is called before the first frame update
+
 
     void FixedUpdate()
     {
@@ -23,7 +36,8 @@ public class BattleTransitionEffectCamera : MonoBehaviour
     {
         if(TransitionMaterial!=null)Graphics.Blit(src,dst,TransitionMaterial);   
     }
-    //Call PlayEffect to start playing the entire effect with fade-out and fade-in
+
+    ///Call PlayEffect to start playing the entire effect with fade-out and fade-in
     void PlayEffect()
     {
         effectIsPlaying=true;

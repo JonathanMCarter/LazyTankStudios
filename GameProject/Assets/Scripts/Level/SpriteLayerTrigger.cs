@@ -1,18 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//attach this to a GameObject and add a BoxCollider2D with the IsTrigger option checked 
+
+/*
+ * Sprite Layer sort Script 
+ * 
+ *  this script is used to change the sprite sort order of anything that enters the attached trigger to be behind the current object for the 2.5D illusion
+ *
+ * Owner: Andreas Kraemer
+ * Last Edit : 1/10/19
+ * 
+ * Also Edited by : <Enter name here if you edit this script>
+ * Last Edit: <Date here if you edit this script>
+ * 
+ * */
+
 public class SpriteLayerTrigger : MonoBehaviour
 {
-    int m_OriginalSortingLayer=10;
+    int OriginalSortingLayer=10;
 
     void OnTriggerEnter2D(Collider2D otherCollider)
     {
-        m_OriginalSortingLayer=otherCollider.GetComponent<SpriteRenderer>().sortingOrder;
+        OriginalSortingLayer=otherCollider.GetComponent<SpriteRenderer>().sortingOrder;
         otherCollider.gameObject.GetComponent<SpriteRenderer>().sortingOrder=0;
     }
     void OnTriggerExit2D(Collider2D otherCollider)
     {
-        otherCollider.gameObject.GetComponent<SpriteRenderer>().sortingOrder=m_OriginalSortingLayer;
+        otherCollider.gameObject.GetComponent<SpriteRenderer>().sortingOrder=OriginalSortingLayer;
     }
 }
