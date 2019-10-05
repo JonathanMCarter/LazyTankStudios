@@ -78,8 +78,6 @@ public class DialogueEditorWindow : EditorWindow
                 // Displays the table for the number of lines added to the file
                 for (int i = 0; i < NumberOfLines; i++)
                 {
-                    Debug.Log("for loop running");
-
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField(i.ToString(), GUILayout.MaxWidth(30f));
                     NewNames[i] = EditorGUILayout.TextField(NewNames[i], GUILayout.MaxWidth(200f));
@@ -205,10 +203,10 @@ public class DialogueEditorWindow : EditorWindow
                         GUI.backgroundColor = Color.white;
                         EditorGUILayout.EndHorizontal();
                     }
+                    EditorGUILayout.EndScrollView();
                 }
                 else
                 { EditorGUILayout.LabelField("No Dialogue File Selected!"); }
-                EditorGUILayout.EndScrollView();
                 break;
             default:
                 break;

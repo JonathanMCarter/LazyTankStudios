@@ -11,7 +11,7 @@ public class Item : ScriptableObject
     [SerializeField]
     public string itemName;
     public string itemDescription;
-    public Image icon;
+    public Sprite icon;
     public ITEM_TYPE type;
     public int stackSize = 99;
 
