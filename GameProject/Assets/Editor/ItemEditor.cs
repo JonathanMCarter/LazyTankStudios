@@ -5,6 +5,22 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.IO;
 
+/*
+    You shouldn't be here.....
+    If something throws an error that stops you working then let me know...
+
+
+    Item Editor Window Script
+    -=-=-=-=-=-=-=-=-=-=-=-
+
+    Made by: Jonathan Carter
+    Last Edited By: Jonathan Carter
+    Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+
+    This script makes the entire item editor window found under "Tools/Item Editor" 
+    There aren't many comments here as editor script are a lot of lines just to make the windows look right
+
+*/
 
 public class ItemEditor : EditorWindow
 {
@@ -189,7 +205,7 @@ public class ItemEditor : EditorWindow
                 break;
             case 2:
 
-                EditorGUILayout.LabelField("Edit an exsisting item");
+                EditorGUILayout.LabelField("NOTE: You can't currently edit weapons damage stats here");
 
                 if (ItemToEdit.type != ITEM_TYPE.WEAPON)
                 {

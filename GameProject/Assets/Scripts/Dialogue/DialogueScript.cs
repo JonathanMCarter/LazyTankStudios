@@ -3,6 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+    You shouldn't be here.....
+    If something throws an error that stops you working then let me know...
+
+
+    Dialouge Script
+    -=-=-=-=-=-=-=-=-=-=-=-
+
+    Made by: Jonathan Carter
+    Last Edited By: Jonathan Carter
+    Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+
+    This script handles the dialouge manager, its not finished as I put it into the project as this was a summer project I didn't finish.
+    So, some things may not work...
+
+*/
+
 public enum Styles
 {
     Default,

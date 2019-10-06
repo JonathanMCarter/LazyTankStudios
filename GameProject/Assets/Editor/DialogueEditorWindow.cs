@@ -3,6 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/*
+    You shouldn't be here.....
+    If something throws an error that stops you working then let me know...
+
+
+    Dialouge Editor Window Script
+    -=-=-=-=-=-=-=-=-=-=-=-
+
+    Made by: Jonathan Carter
+    Last Edited By: Jonathan Carter
+    Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+
+    This script adds a new editor tab / window into the editor. This can be found under "Tools/Dialogue Editor" if it is not already open.
+    The entire script makes that window work, allowing you to make and edit dialogue files in a nicer way,
+
+
+    NOTE: This was made over summer for an asset store project that I've yet to finish, so it has branding as if I was to release it in the script, just ignore this stuff...
+
+*/
+
 public class DialogueEditorWindow : EditorWindow
 {
     public DialogueFile CurrentFile;
@@ -26,7 +46,7 @@ public class DialogueEditorWindow : EditorWindow
     //GUIStyle Style;
 
 
-    [MenuItem("Tools/DialogueEditor")]
+    [MenuItem("Tools/Dialogue Editor")]
     public static void ShowWindow()
     {
         GetWindow<DialogueEditorWindow>("Dialogue Editor");

@@ -1,4 +1,22 @@
-﻿Shader "Custom/ColourChanger"
+﻿/*
+	You shouldn't be here.....
+	If something throws an error that stops you working then let me know...
+
+
+	Colour Changer Shader
+	-=-=-=-=-=-=-=-=-=-=-=-
+
+	Made by: Jonathan Carter
+	Last Edited By: Jonathan Carter
+	Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+
+	This script makes the colour changing happen, note that there is no intellisense on this script which makes mistakes easy
+
+	DO NOT touch this at all, any minor typo's will break the shader!!!!
+
+*/
+
+Shader "Custom/ColourChanger"
 {
     Properties
     {

@@ -5,6 +5,25 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.IO;
 
+/*
+    You shouldn't be here.....
+    If something throws an error that stops you working then let me know...
+
+
+    Dialouge Editor Script
+    -=-=-=-=-=-=-=-=-=-=-=-
+
+    Made by: Jonathan Carter
+    Last Edited By: Jonathan Carter
+    Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+
+    This script alteres the inspector for the DialogueScript with a load of custom fields before the origional inspector is shown underneath
+
+
+    NOTE: This was made over summer for an asset store project that I've yet to finish, so it has branding as if I was to release it in the script, just ignore this stuff...
+
+*/
+
 [CustomEditor(typeof(DialogueScript))]
 public class DialogueEditor : Editor
 {
