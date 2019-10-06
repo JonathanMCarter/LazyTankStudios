@@ -8,10 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ColourChanger_MAT
-  m_Shader: {fileID: 4800000, guid: 98e70d86538241a408493661f2482d87, type: 3}
+  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -20,17 +20,17 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 72171ebc59c08ae4596a324ac3aa5fe8, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Palette:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _UseTrans: 0
     m_Colors:
+    - _PalCol1: {r: 0, g: 0, b: 0, a: 1}
+    - _PalCol2: {r: 0, g: 0, b: 0, a: 1}
+    - _PalCol3: {r: 0, g: 0, b: 0, a: 1}
+    - _PalCol4: {r: 0, g: 0, b: 0, a: 1}
     - _TexCol1: {r: 0, g: 0, b: 0, a: 1}
-    - _TexCol2: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
-    - _TexCol3: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
+    - _TexCol2: {r: 0, g: 0, b: 0, a: 1}
+    - _TexCol3: {r: 0, g: 0, b: 0, a: 1}
     - _TexCol4: {r: 0, g: 0, b: 0, a: 1}
