@@ -10,8 +10,9 @@ using UnityEngine;
  * Owner: Andreas Kraemer
  * Last Edit : 5/10/19
  * 
- * Also Edited by : <Enter name here if you edit this script>
- * Last Edit: <Date here if you edit this script>
+ * Also Edited by : Lewis Cleminson
+ * Last Edit: 07.10.19
+ * Reason: Change FixedUpdate to Update. Investigating black screen problems.
  * 
  * */
 
@@ -24,12 +25,21 @@ public class BattleTransitionEffectCamera : MonoBehaviour
     public float transitionDuration=1f;
     public bool effectIsPlaying;
 
-
-    void FixedUpdate()
+    private void Awake() //called before any Start Method. Will clear the Cutoff float in material to try and fix black screen issue. Added by LC
     {
-        //this is to continue playing the effect once PlayEffect has been called
-        if(effectIsPlaying)PlayEffect();
+        TransitionMaterial.SetFloat("_Cutoff", 0);
     }
+
+
+    private void Update()
+    {
+        if (effectIsPlaying) PlayEffect();
+    }
+    //void FixedUpdate() //This should be Update() not FixedUpdate(). Fixedupdate is when Unity updates the physics system and is not run at regular intervals despite the name. Update runs once per frame whenever stuff is drawn on screen.
+    //{
+    //    //this is to continue playing the effect once PlayEffect has been called
+    //    if(effectIsPlaying)PlayEffect();
+    //}
 
     // Update is called once per frame
     void OnRenderImage(RenderTexture src,RenderTexture dst)

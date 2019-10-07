@@ -11,8 +11,9 @@ using UnityEngine.Events;
  * Owner: Andreas Kraemer
  * Last Edit : 7/10/19
  * 
- * Also Edited by : <Enter name here if you edit this script>
- * Last Edit: <Date here if you edit this script>
+ * Also Edited by : Lewis Cleminson
+ * Last Edit: 07.10.19
+ * Reason: Disabled push script on boulder after it reaches trigger
  * 
  * */
 
@@ -27,6 +28,7 @@ public class TiggerPlate : MonoBehaviour
         {
             trigger.Invoke();
             otherCollider.GetComponent<Rigidbody2D>().velocity=Vector2.zero;
+            Destroy(otherCollider.GetComponent<PushObject>());//Added by LC
         }
     }
 }

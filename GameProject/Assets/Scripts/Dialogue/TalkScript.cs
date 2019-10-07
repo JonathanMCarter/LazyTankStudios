@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class TalkScript : MonoBehaviour
 {
+    /*
+ * Task Script
+ * 
+ *  <<Enter Description Here>>
+ *
+ * Owner: 
+ * Last Edit : 
+ * 
+ * Also Edited by : Lewis Cleminson
+ * Last Edit: 07.10.19
+ * Reason: Optimize finding object
+ * 
+ * */
+
     public GameObject panel;
     public DialogueFile dialogue;
     public PlayerMovement movement;
@@ -11,7 +25,8 @@ public class TalkScript : MonoBehaviour
 
     void Start()
     {
-        ds = GameObject.Find("DialogueHandler").GetComponent<DialogueScript>();
+        ds = FindObjectOfType<DialogueScript>(); //added by LC
+        //ds = GameObject.Find("DialogueHandler").GetComponent<DialogueScript>();
     }
 
     bool talking = false;
