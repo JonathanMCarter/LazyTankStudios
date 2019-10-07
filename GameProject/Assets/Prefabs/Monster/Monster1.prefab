@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1051832312661113199}
   - component: {fileID: 3792966730243787109}
   - component: {fileID: 6990008996101830507}
+  - component: {fileID: 4670794340747294524}
   m_Layer: 0
   m_Name: Monster1
   m_TagString: Untagged
@@ -93,16 +94,29 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0023695081, y: 0.00000023841858}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.08, y: 0.08}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.08, y: 0.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.08, y: 0.08}
+  m_Size: {x: 1.0041128, y: 1.0088521}
   m_EdgeRadius: 0
+--- !u!114 &4670794340747294524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2916212960077769848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e006a0217a4424a418c25170d7afe353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatMenu: {fileID: 0}

@@ -21,11 +21,14 @@ public class SpriteLayerTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D otherCollider)
     {
+        if(otherCollider.gameObject.tag=="Player"){
         OriginalSortingLayer=otherCollider.GetComponent<SpriteRenderer>().sortingOrder;
         otherCollider.gameObject.GetComponent<SpriteRenderer>().sortingOrder=0;
+        }
     }
     void OnTriggerExit2D(Collider2D otherCollider)
     {
+        if(otherCollider.gameObject.tag=="Player")
         otherCollider.gameObject.GetComponent<SpriteRenderer>().sortingOrder=OriginalSortingLayer;
     }
 }

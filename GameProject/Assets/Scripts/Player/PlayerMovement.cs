@@ -50,6 +50,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void PlayKickAnimation()
+    {
+        myAnim.Play("Hero_Kick",0);
+    }
+
     private void OnDisable()
     {
         myRigid.velocity = new Vector2(0, 0);

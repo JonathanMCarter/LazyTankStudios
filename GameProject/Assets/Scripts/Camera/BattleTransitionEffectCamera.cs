@@ -38,7 +38,7 @@ public class BattleTransitionEffectCamera : MonoBehaviour
     }
 
     ///Call PlayEffect to start playing the entire effect with fade-out and fade-in
-    void PlayEffect()
+    public void PlayEffect()
     {
         effectIsPlaying=true;
         if(transition>=transitionDuration)increase=false;
