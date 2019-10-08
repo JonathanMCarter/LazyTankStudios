@@ -20,21 +20,30 @@ public class TalkScript : MonoBehaviour
 
     public GameObject panel;
     public DialogueFile dialogue;
+    public DialogueFile questdialogue;
     public PlayerMovement movement;
     DialogueScript ds;
+    QuestScript qs;
 
     void Start()
     {
         ds = FindObjectOfType<DialogueScript>(); //added by LC
+        qs = FindObjectOfType<QuestScript>();
         //ds = GameObject.Find("DialogueHandler").GetComponent<DialogueScript>();
+        ds.ChangeFile(dialogue);
     }
 
     bool talking = false;
+    bool FileRead = false;
+
+
+
     public void talk()
     {
+        Debug.Log("Talk Called");
         panel.SetActive(true);
-        ds.ChangeFile(dialogue);
-       
+
+        //ds.Reset();
         talking = true;
         movement.enabled = !talking;
     }
@@ -47,6 +56,8 @@ public class TalkScript : MonoBehaviour
             talking = !ds.FileHasEnded;
             panel.SetActive(talking);
             movement.enabled = !talking;
+            FileRead = true;
+
         }
     }
 }
