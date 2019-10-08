@@ -8,17 +8,20 @@ public class InventoryItem : MonoBehaviour
     [SerializeField]
     private Item itemData;
 
-    string itemName;
+    public InvPOC Inv;
 
-    void Start()
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        this.itemName = itemData.itemName;
-        name = itemName;
-        transform.GetChild(0).GetComponent<Text>().text = itemName;
-    }
+        if ((collision.gameObject.name == "Hero"))
+        {
+            Debug.Log(collision.gameObject.name);
 
-    private void Update()
-    {
-        
+            if (Input.GetButton("Submit"))
+            {
+                Inv.Add(itemData);
+                Inv.ItemGO = gameObject;
+                gameObject.SetActive(false);
+            }
+        }
     }
 }

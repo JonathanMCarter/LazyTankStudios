@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
     You shouldn't be here.....
@@ -18,15 +19,68 @@ using UnityEngine;
 
 public class InvPOC : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public GameObject Inv;
+
+    public bool HasItem;
+
+    public Text ItemName;
+    public Text ItemType;
+    public Image Icon;
+    public Button Drop;
+
+    public GameObject ItemGO;
+
+    private void Update()
     {
-        
+        if (HasItem)
+        {
+            Drop.gameObject.SetActive(true);
+        }
+        else
+        {
+            if (Drop.gameObject.activeInHierarchy)
+            {
+                Drop.gameObject.SetActive(false);
+            }
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (!Inv.activeInHierarchy)
+            {
+                Inv.SetActive(true);
+            }
+            else
+            {
+                Inv.SetActive(false);
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Add(Item I)
     {
-        
+        ItemName.text = I.itemName;
+        ItemType.text = I.type.ToString();
+        Icon.sprite = I.icon;
+        HasItem = true;
+    }
+
+    public void Add(ItemOneHanded I)
+    {
+        ItemName.text = I.itemName;
+        ItemType.text = I.type.ToString();
+        Icon.sprite = I.icon;
+        HasItem = true;
+    }
+
+    public void DropItem()
+    {
+        ItemGO.transform.position = GameObject.Find("Hero").transform.position;
+        ItemGO.SetActive(true);
+        ItemName.text = "";
+        ItemType.text = "";
+        Icon.sprite = null;
+        HasItem = false;
     }
 }
