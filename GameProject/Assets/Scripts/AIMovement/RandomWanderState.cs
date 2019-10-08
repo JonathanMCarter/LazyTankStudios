@@ -33,6 +33,6 @@ namespace AI
         {
         }
 
-        private Vector2 GetDestination() => new Vector2(Random.Range(rootPos.x - xRange / 2, rootPos.y + yRange / 2), Random.Range(rootPos.y - yRange / 2, rootPos.y + yRange / 2));
+        private Vector2 GetDestination() => new Vector2(Random.Range(rootPos.x - xRange / 2, rootPos.x + xRange / 2), Random.Range(rootPos.y - yRange / 2, rootPos.y + yRange / 2));
     } 
 }

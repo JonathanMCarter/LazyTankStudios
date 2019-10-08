@@ -8,7 +8,6 @@ namespace AI
     {
         [SerializeField] private int xRange;
         [SerializeField] private int yRange;
-        [SerializeField] private Vector2 rootPos;
         [SerializeField] bool showGizmos;
         [SerializeField] float movementSpeed = 2f;
         [SerializeField] float maxIdleTime = 2f;
@@ -18,18 +17,20 @@ namespace AI
 
         private FiniteStateMachine fsm;
         private TaskOverTime tot;
+        private Vector2 rootPos;
 
         public Vector2 RootPos => rootPos;
         public int XRange => xRange;
         public int YRange => yRange;
+        public float MovementSpeed => movementSpeed;
 
         public bool IsMoving { get; private set; }
         public bool IsReadyToMove { get; private set; }
-        public float MovementSpeed => movementSpeed;
 
         // Start is called before the first frame update
         void Awake()
         {
+            rootPos = transform.position;
             GetComponent<CircleCollider2D>().radius = awarnessSize;
             tot = new TaskOverTime(this);
             IsReadyToMove = true;
@@ -47,7 +48,7 @@ namespace AI
             if (!showGizmos) return;
             Gizmos.color = Color.red;
 
-            Gizmos.DrawWireCube(rootPos, new Vector3(xRange, yRange));
+            Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, new Vector3(xRange, yRange));
 
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, awarnessSize *3); // Wtf? Why * 3?? Works.

@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
-  - {fileID: 11400000, guid: 0f70794a867b435428a563c5cf0e9ae6, type: 2}
+  - {fileID: 0}
 --- !u!4 &97666683
 Transform:
   m_ObjectHideFlags: 0
@@ -323,7 +323,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909116739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.99, y: 1.87, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -343,7 +343,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xRange: 6
   yRange: 6
-  rootPos: {x: 0, y: 0}
   showGizmos: 1
   movementSpeed: 2.5
   maxIdleTime: 3
