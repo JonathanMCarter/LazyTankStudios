@@ -1,0 +1,96 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace AI
+{
+    [RequireComponent(typeof(CircleCollider2D))]
+    public class AIMovement : MonoBehaviour
+    {
+        [SerializeField] private int xRange;
+        [SerializeField] private int yRange;
+        [SerializeField] bool showGizmos;
+        [SerializeField] float movementSpeed = 2f;
+        [SerializeField] float maxIdleTime = 2f;
+        [SerializeField] float awarnessSize = .75f;
+
+        [SerializeField] GameObject player;
+
+        private FiniteStateMachine fsm;
+        private TaskOverTime tot;
+        private Vector2 rootPos;
+
+        public Vector2 RootPos => rootPos;
+        public int XRange => xRange;
+        public int YRange => yRange;
+        public float MovementSpeed => movementSpeed;
+
+        public bool IsMoving { get; private set; }
+        public bool IsReadyToMove { get; private set; }
+
+        // Start is called before the first frame update
+        void Awake()
+        {
+            rootPos = transform.position;
+            CircleCollider2D c = GetComponent<CircleCollider2D>();
+            c.radius = awarnessSize;
+            c.isTrigger = true;
+            tot = new TaskOverTime(this);
+            IsReadyToMove = true;
+            fsm = new FiniteStateMachine(this, new RandomWanderState(this));
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            fsm.ExecuteCurrentState();
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (!showGizmos) return;
+            Gizmos.color = Color.red;
+
+            Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, new Vector3(xRange, yRange));
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, awarnessSize);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            tot.Stop();
+            if (collision.tag == "Player")
+            {
+                fsm.ChangeState(new ChasePlayerState(this, collision.gameObject));
+                player = collision.gameObject;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            //Cache States someday
+            fsm.ChangeState(new RandomWanderState(this));
+        }
+
+        public void RandomWander(Vector2 destination)
+        {
+            IsMoving = true;
+            IsReadyToMove = false;
+            Vector2 start = transform.position;
+            tot.Start((destination - start).magnitude / movementSpeed, (float progress) => transform.position = Vector2.Lerp(start, destination, progress), Idle);
+        }
+
+        public void ChasePlayer()
+        {
+            if ((player.transform.position - transform.position).magnitude > 0.5f)
+                transform.position += (player.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime;
+        }
+
+        private void Idle()
+        {
+            IsMoving = false;
+            tot.Start(Random.Range(0, maxIdleTime), (float f) => { }, () => { IsReadyToMove = true; });
+        }
+    }
+}
