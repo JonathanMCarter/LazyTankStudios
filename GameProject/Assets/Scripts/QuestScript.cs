@@ -20,7 +20,7 @@ using UnityEngine.UI;
 public class QuestScript : MonoBehaviour
 {
 
-    public Quest CurrentQuest;
+    public QuestItem CurrentQuest;
 
     public int Stage;
     public int QuestMaxStage = 10;
@@ -44,7 +44,6 @@ public class QuestScript : MonoBehaviour
         }
     }
 
-
     public void NextStage(GameObject Go)
     {
         if (Go != LastQG)
@@ -60,11 +59,4 @@ public class QuestScript : MonoBehaviour
             }
         }
     }
-}
-
-
-[CreateAssetMenu(fileName = "Quest File", menuName = "Carter Games/Quest File")]
-public class Quest : ScriptableObject
-{
-    public List<string> TaskText;
 }

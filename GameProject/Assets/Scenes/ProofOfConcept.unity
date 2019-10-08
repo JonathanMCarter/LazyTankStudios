@@ -9062,7 +9062,6 @@ GameObject:
   - component: {fileID: 285453487}
   - component: {fileID: 285453490}
   - component: {fileID: 285453489}
-  - component: {fileID: 285453488}
   m_Layer: 0
   m_Name: InteractionZone
   m_TagString: Untagged
@@ -9084,22 +9083,6 @@ Transform:
   m_Father: {fileID: 748032201}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &285453488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285453486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3f2379849ac24499c0102324d4ba53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 1722256153}
-  dialogue: {fileID: 11400000, guid: 8407461496a483d479395cfa91351d4f, type: 2}
-  questdialogue: {fileID: 11400000, guid: 7dc54d88e7429294cad392adafa00272, type: 2}
-  movement: {fileID: 1975089584}
 --- !u!114 &285453489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9115,17 +9098,6 @@ MonoBehaviour:
   interact:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 285453488}
-        m_MethodName: talk
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 2097599514}
         m_MethodName: StartQuest
         m_Mode: 1
@@ -9149,7 +9121,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -9163,7 +9135,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!1001 &289501792
 PrefabInstance:
@@ -21309,7 +21281,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -37854,7 +37826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -213.47, y: -335.6}
+  m_AnchoredPosition: {x: -175, y: -284}
   m_SizeDelta: {x: 827, y: 48.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1950486572
