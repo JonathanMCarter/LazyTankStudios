@@ -63,22 +63,7 @@ namespace AI
         private void OnTriggerExit2D(Collider2D other)
         {
             //Cache States someday
-            Debug.Log("Exit");
             fsm.ChangeState(new RandomWanderState(this));
-        }
-
-        public void RandomWander(Vector2 destination)
-        {
-            IsMoving = true;
-            IsReadyToMove = false;
-            Vector2 start = transform.position;
-            tot.Start((destination - start).magnitude / movementSpeed, (float progress) => transform.position = Vector2.Lerp(start, destination, progress), Idle);
-        }
-
-        public void ChasePlayer()
-        {
-            if ((player.transform.position - transform.position).magnitude > 0.5f)
-                transform.position += (player.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime;
         }
 
         private void Idle()

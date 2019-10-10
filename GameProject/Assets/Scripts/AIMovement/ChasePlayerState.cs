@@ -21,11 +21,17 @@ namespace AI
         public override void Execute()
         {
             //Only for testing, should call ChasePlayer Method in aimovment
-            ai.ChasePlayer();
+            ChasePlayer();
         }
 
         public override void StateExit()
         {
+        }
+
+        private void ChasePlayer()
+        {
+            if ((player.transform.position - ai.gameObject.transform.position).magnitude > 0.5f)
+                ai.gameObject.transform.position += (player.transform.position - ai.gameObject.transform.position).normalized * ai.MovementSpeed * Time.deltaTime;
         }
     }
 }
