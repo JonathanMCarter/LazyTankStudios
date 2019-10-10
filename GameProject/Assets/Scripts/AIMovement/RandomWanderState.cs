@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace AI
 {
@@ -8,6 +9,7 @@ namespace AI
         private Vector2 rootPos;
         private int xRange;
         private int yRange;
+        private bool IsReadyToMove;
 
         public RandomWanderState(AIMovement owner) : base(owner)
         {
@@ -15,17 +17,21 @@ namespace AI
             rootPos = owner.RootPos;
             xRange = owner.XRange;
             yRange = owner.YRange;
+            IsReadyToMove = false;
         }
 
         public override void StateEnter()
         {
-            owner.RandomWander(GetDestination());
+            owner.Move(GetDestination(), Idle);
         }
 
         public override void Execute()
         {
-            if (owner.IsReadyToMove)
-                owner.RandomWander(GetDestination());
+            if (IsReadyToMove)
+            {
+                IsReadyToMove = false;
+                owner.Move(GetDestination(), Idle);
+            }
 
         }
 
@@ -33,14 +39,18 @@ namespace AI
         {
         }
 
-        private void RandomWander(Vector2 destination)
+        public void Idle()
         {
-            IsMoving = true;
-            IsReadyToMove = false;
-            Vector2 start = transform.position;
-            tot.Start((destination - start).magnitude / movementSpeed, (float progress) => transform.position = Vector2.Lerp(start, destination, progress), Idle);
+            float idleTime = Random.Range(0.0f, owner.MaxIdleTime);
+            owner.StartCoroutine(Idle(idleTime));
+        }
+
+        private IEnumerator Idle(float time)
+        {
+            yield return new WaitForSeconds(time);
+            IsReadyToMove = true;
         }
 
         private Vector2 GetDestination() => new Vector2(Random.Range(rootPos.x - xRange / 2, rootPos.x + xRange / 2), Random.Range(rootPos.y - yRange / 2, rootPos.y + yRange / 2));
-    } 
+    }
 }

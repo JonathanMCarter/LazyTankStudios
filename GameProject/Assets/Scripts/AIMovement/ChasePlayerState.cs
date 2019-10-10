@@ -31,7 +31,7 @@ namespace AI
         private void ChasePlayer()
         {
             if ((player.transform.position - ai.gameObject.transform.position).magnitude > 0.5f)
-                ai.gameObject.transform.position += (player.transform.position - ai.gameObject.transform.position).normalized * ai.MovementSpeed * Time.deltaTime;
+                ai.Move(player.transform.position);
         }
     }
 }

@@ -24,8 +24,7 @@ namespace AI
         public int YRange => yRange;
         public float MovementSpeed => movementSpeed;
 
-        public bool IsMoving { get; private set; }
-        public bool IsReadyToMove { get; private set; }
+        public float MaxIdleTime { get => maxIdleTime; private set=>maxIdleTime = value; }
 
         // Start is called before the first frame update
         void Awake()
@@ -33,7 +32,6 @@ namespace AI
             rootPos = transform.position;
             GetComponent<CircleCollider2D>().radius = awarnessSize;
             tot = new TaskOverTime(this);
-            IsReadyToMove = true;
             fsm = new FiniteStateMachine(this, new RandomWanderState(this));
         }
 
@@ -65,11 +63,11 @@ namespace AI
             //Cache States someday
             fsm.ChangeState(new RandomWanderState(this));
         }
-
-        private void Idle()
+        
+        public void Move(Vector2 destination, CallbackDel reachedTarget =null)
         {
-            IsMoving = false;
-            tot.Start(Random.Range(0, maxIdleTime), (float f) => { }, () => { IsReadyToMove = true; });
+            Vector2 start = transform.position;
+            tot.Start((destination - start).magnitude / movementSpeed, (float progress) => transform.position = Vector2.Lerp(start, destination, progress), reachedTarget);
         }
     }
 }
