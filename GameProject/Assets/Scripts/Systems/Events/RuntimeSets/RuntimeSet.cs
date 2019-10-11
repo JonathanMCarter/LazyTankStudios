@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class RuntimeSet : MonoBehaviour
+public abstract class RuntimeSet<T> : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<T> Items = new List<T>();
 
-    // Update is called once per frame
-    void Update()
+    public void AddItem(T item)
     {
-        
+        if (!Items.Contains(item)) Items.Add(item);
+    }
+    public void RemoveItem(T item)
+    {
+        if (Items.Contains(item)) Items.Remove(item);
     }
 }
