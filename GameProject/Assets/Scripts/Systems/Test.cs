@@ -19,11 +19,11 @@ public class Test : MonoBehaviour
 
     public void Testo()
     {
-        Debug.Log("Test");
+        Debug.Log("Something happend");
     }
 
     public void Testo(KeyCode key)
     {
-        Debug.Log($"{key} pressed!");
+        Debug.Log($"I've heard that {key} was pressed!");
     }
 }
