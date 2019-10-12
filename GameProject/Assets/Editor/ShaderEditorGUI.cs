@@ -13,7 +13,10 @@ using UnityEditor;
 
     Made by: Jonathan Carter
     Last Edited By: Jonathan Carter
-    Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+    Date Edited Last: 12/10/19 - added labels for help users understand the tool
+
+    Edit History:
+    - 6/10/19 - To add this comment bit in (nothing else was changed)
 
     This script adds the colour fields to the material dropdown, so you can edit the colours without needing an image palette
 
@@ -23,27 +26,50 @@ using UnityEditor;
 
 public class ShaderEditorGUI : ShaderGUI
 {
+    private Material OldMat;
     public Material Mat;
-
 
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
+        if (Mat == null)
+        {
+            OldMat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
+        }
+
+        Mat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
+
+        EditorGUILayout.LabelField("Select the colours currently on the sprite that you want to change.", EditorStyles.boldLabel);
+
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Sprite Colours:", GUILayout.MaxWidth(100));
-        properties[1].colorValue = EditorGUILayout.ColorField(properties[1].colorValue);
-        properties[2].colorValue = EditorGUILayout.ColorField(properties[2].colorValue);
-        properties[3].colorValue = EditorGUILayout.ColorField(properties[3].colorValue);
-        properties[5].colorValue = EditorGUILayout.ColorField(properties[5].colorValue);
+        Mat.SetColor("_TexCol1", EditorGUILayout.ColorField(properties[1].colorValue));
+        Mat.SetColor("_TexCol2", EditorGUILayout.ColorField(properties[2].colorValue));
+        Mat.SetColor("_TexCol3", EditorGUILayout.ColorField(properties[3].colorValue));
+        Mat.SetColor("_TexCol4", EditorGUILayout.ColorField(properties[4].colorValue));
         EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.LabelField("Edit the colours currently selected to the new colour.", EditorStyles.boldLabel);
 
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Palette Colours:", GUILayout.MaxWidth(100));
-        properties[6].colorValue = EditorGUILayout.ColorField(properties[6].colorValue);
-        properties[7].colorValue = EditorGUILayout.ColorField(properties[7].colorValue);
-        properties[8].colorValue = EditorGUILayout.ColorField(properties[8].colorValue);
-        properties[9].colorValue = EditorGUILayout.ColorField(properties[9].colorValue);
+        Mat.SetColor("_PalCol1", EditorGUILayout.ColorField(properties[5].colorValue));
+        Mat.SetColor("_PalCol2", EditorGUILayout.ColorField(properties[6].colorValue));
+        Mat.SetColor("_PalCol3", EditorGUILayout.ColorField(properties[7].colorValue));
+        Mat.SetColor("_PalCol4", EditorGUILayout.ColorField(properties[8].colorValue));
         EditorGUILayout.EndHorizontal();
 
+
+
+        if (GUILayout.Button("Make Material Instance"))
+        {
+            Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial = new Material(Mat);
+        }
+
+        // This doesn't work yet
+        //if (GUILayout.Button("Reset Instance"))
+        //{
+        //    Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial = OldMat;
+        //}
 
         //if (GUILayout.Button("Make an instance"))
         //{
