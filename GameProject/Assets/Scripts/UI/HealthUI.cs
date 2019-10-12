@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Script for UI Hearts
+ * 
+ *  changes the hearts in the UI depending on how much health the player has
+ *
+ * Owner: Andreas Kraemer
+ * Last Edit : 12/10/19
+ * 
+ * Also Edited by : <Enter name here if you edit this script>
+ * Last Edit: <Date here if you edit this script>
+ * 
+ * */
+
+
 public class HealthUI : MonoBehaviour
 {
     public int currentHealth;
