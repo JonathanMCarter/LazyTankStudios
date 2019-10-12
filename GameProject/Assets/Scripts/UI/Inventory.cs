@@ -2,83 +2,101 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*
+ * Created by Toby Wishart
+ * Last edit: 11/10/19
+ * 
+ * Class to handle inventory
+ * Uses very simple method of storing the items as they are in fixed slots
+ */
 public class Inventory : MonoBehaviour
 {
-    private struct StoredItem {
-        public Item item;
-        public int quantity;
-        public void increaseQuantity(int quantity)
-        {
-            this.quantity += quantity;
-        }
+    bool[] items;
+    public int equipped = -1;
 
-        public StoredItem(Item item, int quantity)
+    int selected = 0;
+    public bool isOpen;
+    
+    //Add item to inventory with quantity, bool to remove as well can also use this to increase quantity
+    public void addItem(int id, int quantity, bool remove)
+    {
+        items[id] = !remove;
+        InvSlot slot = transform.GetChild(id).GetComponent<InvSlot>();
+        slot.hasItem = !remove;
+        slot.quantity = remove ? 0 : quantity;
+        slot.updateIcon();
+    }  
+
+    public bool hasItem(int id)
+    {
+        return items[id];
+    }
+
+    //Equip or unequip item as long as player has item
+    public void equipItem(int id, bool equip)
+    {
+        if (items[id])
         {
-            this.item = item;
-            this.quantity = quantity;
+            InvSlot slot = transform.GetChild(id).GetComponent<InvSlot>();
+            slot.equip(equip);
+            equipped = equip ? id : -1;
+            for (int i = 0; i < items.Length; i++) transform.GetChild(i).GetComponent<InvSlot>().equip(i == id && equip);
         }
     }
 
-    List<StoredItem> inventoryItems;
+    public bool isEquipped(int id)
+    {
+        return transform.GetChild(id).GetComponent<InvSlot>().equipped;
+    }
+
+    //Open/close inventory
+    public void open()
+    {
+        isOpen = !isOpen;
+    }
 
     void Start()
     {
-        inventoryItems = new List<StoredItem>();
+        items = new bool[transform.childCount];
     }
 
-    public Item getItemByIndex(int index)
+    private bool delayed = false;
+    void Update() 
     {
-        return inventoryItems[index].item;
-    }
-
-    //Add item to list, increases quantity if it already contains the item
-    public bool addItem(Item item, int quantity)
-    {
-        if (containsItem(item)) {
-            if (inventoryItems[getItemIndex(item)].quantity < item.stackSize)
-            {
-                inventoryItems[getItemIndex(item)].increaseQuantity(1);
-                return true;
-            } else
-            {
-                return false;
-            }
-        } else
+        GetComponent<CanvasGroup>().alpha = isOpen ? 1 : 0;
+        if (isOpen && !delayed)
         {
-            inventoryItems.Add(new StoredItem(item, quantity));
-            return true;
+            if (Input.GetButtonDown("Cancel"))
+            {
+                open();
+                StartCoroutine(delay());
+            }
+            if (Input.GetButtonDown("Submit"))
+            {
+                equipItem(selected, !isEquipped(selected));
+                StartCoroutine(delay());
+            }
+            if (Input.GetAxisRaw("Horizontal") == 1)
+            {
+                selected++;
+                if (selected == items.Length) selected = 0;
+                StartCoroutine(delay());
+            }
+            else if (Input.GetAxisRaw("Horizontal") == -1)
+            {
+                selected--;
+                if (selected == -1) selected = items.Length-1;
+                StartCoroutine(delay());
+            }
+            for (int i = 0; i < items.Length; i++)
+                transform.GetChild(i).GetComponent<InvSlot>().selected = i == selected; 
         }
     }
 
-    //Check if item is contained in list
-    public bool containsItem(Item item)
+    IEnumerator delay()
     {
-        bool contains = false;
-
-        inventoryItems.ForEach(si =>
-        {
-            if (!contains)
-                contains = si.item.Equals(item);
-        });
-        return contains;
-    }
-    
-    //Returns the index in the list for an item, returns -1 if invalid
-    public int getItemIndex(Item item)
-    {
-        if (containsItem(item))
-        {
-            for (int i = 0; i < inventoryItems.Count; i++)
-            {
-                if (inventoryItems[i].item.Equals(item)) return inventoryItems[i].quantity;
-            }
-        }
-        return -1;
-    }
-
-    void Update()
-    {
-        
+        delayed = true;
+        yield return new WaitForSeconds(0.1f);
+        delayed = false;
     }
 }

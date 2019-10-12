@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * Created by Toby Wishart
+ * Last edit: 12/10/19
+ */
 public class DialogueBoxManager : MonoBehaviour
 {
 
@@ -12,11 +16,12 @@ public class DialogueBoxManager : MonoBehaviour
     {
         panel = GetComponent<RectTransform>();
     }
-
     void OnEnable()
     {
+        //Check y position of player in relation to the camera
         if (Camera.main.transform.InverseTransformDirection(GameObject.FindGameObjectWithTag("Player").transform.position - Camera.main.transform.position).y < 0)
         {
+            //Place panel at the top of the screen
             if (panel.anchorMax.y != 1)
             {
                 panel.position = new Vector3(panel.position.x, -panel.position.y, panel.position.z);
@@ -25,6 +30,7 @@ public class DialogueBoxManager : MonoBehaviour
             }
         } else
         {
+            //Place panel at the bottom of the screen
             if (panel.anchorMax.y != 0)
             {
                 panel.anchorMin = new Vector2(panel.anchorMin.x, 0);

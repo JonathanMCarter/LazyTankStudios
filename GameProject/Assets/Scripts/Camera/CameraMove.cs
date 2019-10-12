@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * Created by Toby Wishart
+ * Last edit: 11/10/19
+ */
 public class CameraMove : MonoBehaviour
 {
 

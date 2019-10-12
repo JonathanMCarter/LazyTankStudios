@@ -12,9 +12,8 @@ using UnityEngine.UI;
     -=-=-=-=-=-=-=-=-=-=-=-
 
     Made by: Jonathan Carter
-    Last Edited By: Jonathan Carter
-    Date Edited Last: 8/10/19
-
+    Last Edited By: Toby Wishart
+    Date Edited Last: 12/10/19 Items have completely changed probably don't need this anymore though
 */
 
 public class InvPOC : MonoBehaviour
@@ -57,22 +56,14 @@ public class InvPOC : MonoBehaviour
             }
         }
     }
-
+    /*
     public void Add(Item I)
     {
         ItemName.text = I.itemName;
         ItemType.text = I.type.ToString();
         Icon.sprite = I.icon;
         HasItem = true;
-    }
-
-    public void Add(ItemOneHanded I)
-    {
-        ItemName.text = I.itemName;
-        ItemType.text = I.type.ToString();
-        Icon.sprite = I.icon;
-        HasItem = true;
-    }
+    }*/
 
     public void DropItem()
     {

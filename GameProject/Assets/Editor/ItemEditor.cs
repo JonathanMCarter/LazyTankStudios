@@ -14,8 +14,8 @@ using System.IO;
     -=-=-=-=-=-=-=-=-=-=-=-
 
     Made by: Jonathan Carter
-    Last Edited By: Jonathan Carter
-    Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+    Last Edited By: Toby Wishart
+    Date Edited Last: 11/10/19 - Items have completely changed, might not need this anymore
 
     This script makes the entire item editor window found under "Tools/Item Editor" 
     There aren't many comments here as editor script are a lot of lines just to make the windows look right
@@ -25,8 +25,8 @@ using System.IO;
 public class ItemEditor : EditorWindow
 {
 
-    public static Item Type;
-    public Item ItemToEdit;
+    //public static Item Type;
+    //public Item ItemToEdit;
     public int ToolbarValue;
 
     // Values to make a new item
@@ -37,7 +37,7 @@ public class ItemEditor : EditorWindow
         public string NewItemName;
         public string NewItemDesc;
         public Sprite NewItemSprite;
-        public ITEM_TYPE ItemType;
+        //public ITEM_TYPE ItemType;
         public int ItemStack;
         public int ItemMinDamage;
         public int ItemMaxDamage;
@@ -48,7 +48,7 @@ public class ItemEditor : EditorWindow
     // Values for editing exsisting items
     private Vector2 ScrollPos;
 
-    private readonly List<Item> Read = new List<Item>();
+    //private readonly List<Item> Read = new List<Item>();
     private Rect DeselectWindow;
 
 
@@ -61,7 +61,7 @@ public class ItemEditor : EditorWindow
 
     private void OnEnable()
     {
-        ReadItems();
+        //ReadItems();
     }
 
     private void OnGUI()
@@ -79,18 +79,18 @@ public class ItemEditor : EditorWindow
 
                 if (GUILayout.Button("Update Results"))
                 {
-                    ReadItems();
-                    Debug.Log(Read.Count);
+                    //ReadItems();
+                    //Debug.Log(Read.Count);
                 }
 
                 if (GUILayout.Button("Clear Results"))
                 {
-                    Read.Clear();
+                    //Read.Clear();
                 }
 
                 ScrollPos = EditorGUILayout.BeginScrollView(ScrollPos, GUILayout.Width(position.width), GUILayout.ExpandHeight(true));
 
-                for (int i = 0; i < Read.Count; i++)
+                /*for (int i = 0; i < Read.Count; i++)
                 {
                     //if ((i % 2) == 0)
                     //{
@@ -102,7 +102,7 @@ public class ItemEditor : EditorWindow
                     //}
                     
                     EditorGUILayout.BeginHorizontal();
-
+                    
                     if (Read[i].icon)
                     {
                         if (GUILayout.Button(Read[i].icon.texture, GUIStyle.none, GUILayout.Width(50), GUILayout.Height(50)))
@@ -115,13 +115,13 @@ public class ItemEditor : EditorWindow
 
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Item Name: ", EditorStyles.boldLabel, GUILayout.MaxWidth(80));
-                    EditorGUILayout.LabelField(Read[i].itemName);
+                    //EditorGUILayout.LabelField(Read[i].itemName);
                     GUILayout.FlexibleSpace();
                     EditorGUILayout.EndHorizontal();
 
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("Item Type: ", EditorStyles.boldLabel, GUILayout.MaxWidth(80));
-                    EditorGUILayout.LabelField(Read[i].type.ToString());
+                    //EditorGUILayout.LabelField(Read[i].type.ToString());
                     GUILayout.FlexibleSpace();
                     EditorGUILayout.EndHorizontal();
 
@@ -137,6 +137,7 @@ public class ItemEditor : EditorWindow
 
                     EditorGUILayout.Separator();
                 }
+                */
 
                 EditorGUILayout.EndScrollView();
 
@@ -174,10 +175,11 @@ public class ItemEditor : EditorWindow
 
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("Item Type: ", GUILayout.MaxWidth(75));
-                NewItemProps.ItemType = (ITEM_TYPE)EditorGUILayout.EnumPopup(NewItemProps.ItemType, GUILayout.MaxWidth(position.width - 25));
+                //NewItemProps.ItemType = (ITEM_TYPE)EditorGUILayout.EnumPopup(NewItemProps.ItemType, GUILayout.MaxWidth(position.width - 25));
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
 
+                /*
                 if (NewItemProps.ItemType == ITEM_TYPE.WEAPON)
                 {
                     EditorGUILayout.BeginHorizontal();
@@ -191,7 +193,7 @@ public class ItemEditor : EditorWindow
                     NewItemProps.ItemMaxDamage = EditorGUILayout.IntField(NewItemProps.ItemMaxDamage, GUILayout.MaxWidth(position.width - 25));
                     GUILayout.FlexibleSpace();
                     EditorGUILayout.EndHorizontal();
-                }
+                }*/
 
                 GUI.color = Color.green;
 
@@ -206,14 +208,14 @@ public class ItemEditor : EditorWindow
             case 2:
 
                 EditorGUILayout.LabelField("NOTE: You can't currently edit weapons damage stats here");
-
+                /*
                 if (ItemToEdit.type != ITEM_TYPE.WEAPON)
                 {
                     ItemToEdit = (Item)EditorGUILayout.ObjectField(ItemToEdit, typeof(Item), false);
                 }
                 else
                 {
-                    ItemToEdit = (ItemOneHanded)EditorGUILayout.ObjectField(ItemToEdit, typeof(ItemOneHanded), false);
+                    //Item one handed is gone ItemToEdit = (ItemOneHanded)EditorGUILayout.ObjectField(ItemToEdit, typeof(ItemOneHanded), false);
                 }
 
                 if (ItemToEdit)
@@ -241,7 +243,7 @@ public class ItemEditor : EditorWindow
                     GUILayout.FlexibleSpace();
                     EditorGUILayout.EndHorizontal();
                 }
-
+                */
 
                 //if (ItemToEdit.type == ITEM_TYPE.WEAPON)
                 //{
@@ -272,7 +274,7 @@ public class ItemEditor : EditorWindow
     }
 
 
-    private List<Item> ReadItems()
+    /*private List<Item> ReadItems()
     {
         // Makes a new lsit the size of the amount of objects in the path
         List<string> AllFiles = new List<string>(Directory.GetFiles(Application.dataPath + "/items"));
@@ -288,8 +290,8 @@ public class ItemEditor : EditorWindow
 
                 if (AssetDatabase.LoadAssetAtPath(Path, typeof(Item)))
                 {
-                    Source = (Item)AssetDatabase.LoadAssetAtPath(Path, typeof(Item));
-                    Read.Add(Source);
+                   // Source = (Item)AssetDatabase.LoadAssetAtPath(Path, typeof(Item));
+                    //Read.Add(Source);
                 }
             }
         }
@@ -299,11 +301,12 @@ public class ItemEditor : EditorWindow
         }
 
         return Read;
-    }
+    }*/
 
 
     private void CreateNewItem()
     {
+        /*
         if (NewItemProps.ItemType != ITEM_TYPE.WEAPON)
         {
             Item asset = ScriptableObject.CreateInstance<Item>();
@@ -319,8 +322,11 @@ public class ItemEditor : EditorWindow
             AssetDatabase.Refresh();
             EditorUtility.FocusProjectWindow();
         }
+        */
+        /* ItemOneHanded is gone
         else
         {
+           
             ItemOneHanded asset = ScriptableObject.CreateInstance<ItemOneHanded>();
 
             asset.itemName = NewItemProps.NewItemName;
@@ -336,7 +342,7 @@ public class ItemEditor : EditorWindow
             AssetDatabase.Refresh();
             EditorUtility.FocusProjectWindow();
         }
-
+        */
         NewItemFileName = "";
         NewItemProps = new ItemProps();
     }

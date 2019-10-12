@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Created by Toby Wishart
+ * Last edit: 11/10/19
+ */
 public class Boundaries : MonoBehaviour
 {
     private Transform p;
@@ -21,4 +25,5 @@ public class Boundaries : MonoBehaviour
         else
             transform.GetChild(0).gameObject.SetActive(false);
     }
+
 }

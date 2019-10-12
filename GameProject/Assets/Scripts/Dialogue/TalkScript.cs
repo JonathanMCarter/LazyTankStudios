@@ -9,8 +9,8 @@ public class TalkScript : MonoBehaviour
  * 
  *  <<Enter Description Here>>
  *
- * Owner: 
- * Last Edit : 
+ * Owner: Toby Wishart
+ * Last Edit : 12/10/19
  * 
  * Also Edited by : Lewis Cleminson
  * Last Edit: 07.10.19

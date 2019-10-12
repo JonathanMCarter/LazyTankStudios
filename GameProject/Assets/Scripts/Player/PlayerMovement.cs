@@ -7,7 +7,7 @@ using UnityEngine;
  * 
  * This script gets the input using the Unity Input manager for K/M and controller input, as well as touch data and outputs it using 3 public functions. This allows other scripts to access input data from across all platforms using one function.
  * 
- * Owner: 
+ * Owner: Toby Wishart (but really is Lewis')
  * Last Edit : 
  * 
  * Also Edited by : Lewis Cleminson
