@@ -51,5 +51,5 @@ namespace AI
     public class Heal : Ability
     {
         public int amount;
-    } 
+    }
 }

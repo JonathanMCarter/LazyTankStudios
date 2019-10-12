@@ -177,6 +177,8 @@ GameObject:
   - component: {fileID: 1501006607}
   - component: {fileID: 1501006608}
   - component: {fileID: 1501006606}
+  - component: {fileID: 1501006611}
+  - component: {fileID: 1501006610}
   m_Layer: 0
   m_Name: EventListener
   m_TagString: Untagged
@@ -193,16 +195,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1501006605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a755046d4bfa041a88201ea3c1823c, type: 3}
+  m_Script: {fileID: 11500000, guid: b07945eb6e1b1c0419f1589249d11cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameEvent: {fileID: 11400000, guid: fd7871e2e3c2f6d418fb1953a51bf093, type: 2}
-  EventResponse:
+  gameEvent: {fileID: 11400000, guid: c40c0908d97b1d74886827844a84e0e0, type: 2}
+  eventResponse:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1501006607}
         m_MethodName: Testo
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -211,7 +213,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityVoidEventResponse, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: UnityKeyEventResponse, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &1501006607
 MonoBehaviour:
@@ -238,16 +240,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1501006605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b07945eb6e1b1c0419f1589249d11cd5, type: 3}
+  m_Script: {fileID: 11500000, guid: 22a755046d4bfa041a88201ea3c1823c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameEvent: {fileID: 11400000, guid: c40c0908d97b1d74886827844a84e0e0, type: 2}
-  EventResponse:
+  gameEvent: {fileID: 11400000, guid: fd7871e2e3c2f6d418fb1953a51bf093, type: 2}
+  eventResponse:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1501006607}
         m_MethodName: Testo
-        m_Mode: 0
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -256,7 +258,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityKeyEventResponse, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    m_TypeName: UnityVoidEventResponse, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!4 &1501006609
 Transform:
@@ -272,6 +274,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1501006610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501006605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 227aac20e71ae4143835a40aab6440a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pairs:
+  - gameEvent: {fileID: 11400000, guid: fd7871e2e3c2f6d418fb1953a51bf093, type: 2}
+    eventResponse:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1501006607}
+          m_MethodName: Testo
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityVoidEventResponse, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  - gameEvent: {fileID: 0}
+    eventResponse:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityVoidEventResponse, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+--- !u!114 &1501006611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501006605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcedfad86aea81d4a9a1bb36e647eebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c40c0908d97b1d74886827844a84e0e0, type: 2}
+  eventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1501006607}
+        m_MethodName: Testo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityKeyEventResponse, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  key: 97
 --- !u!1 &1599186734
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SKeyEventListener : KeyEventListener
 {
@@ -8,6 +6,6 @@ public class SKeyEventListener : KeyEventListener
 
     public override void OnEventRaised(KeyCode key)
     {
-        if (this.key == key) EventResponse?.Invoke(key);
+        if (this.key == key) eventResponse?.Invoke(key);
     }
 }
