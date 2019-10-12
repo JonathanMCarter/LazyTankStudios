@@ -32,6 +32,9 @@ public class CRT_DropdownSwitch : MonoBehaviour
         dropdown=GetComponent<Dropdown>();
     }
 
+    ///<summary>
+    ///Used to switch the CRT_Preset variable of the camera for the one selected in the dropdown
+    ///</summary>
     public void SwitchPreset()
     {
         if(dropdown.value<presets.Length&&presets[dropdown.value]!=null)effectCamera.preset=presets[dropdown.value];
