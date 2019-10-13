@@ -13,7 +13,10 @@ using UnityEditor;
 
     Made by: Jonathan Carter
     Last Edited By: Jonathan Carter
-    Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+    Date Edited Last: 13/10/19 - Added buttons for events, these are only placeholder for now, but will do stuff once the option for events are implemented
+
+    Edit History:
+    - 6/10/19 - To add this comment bit in (nothing else was changed)
 
     This script adds a new editor tab / window into the editor. This can be found under "Tools/Dialogue Editor" if it is not already open.
     The entire script makes that window work, allowing you to make and edit dialogue files in a nicer way,
@@ -43,7 +46,6 @@ public class DialogueEditorWindow : EditorWindow
 
     public Rect DeselectWindow;
     Vector2 ScrollPos;
-    //GUIStyle Style;
 
 
     [MenuItem("Tools/Dialogue Editor Window", priority = 20)]
@@ -104,6 +106,14 @@ public class DialogueEditorWindow : EditorWindow
                     NewDialogue[i] = EditorGUILayout.TextField(NewDialogue[i]);
 
                     GUILayout.Space(10f);
+
+                    GUI.backgroundColor = Color.yellow;
+                    if (GUILayout.Button("~", GUILayout.Width(25)))
+                    {
+                        // this is where the event would be set, might make a enum to select a tye of event in the future...
+                        NewNames.Insert(i, "###");
+                        NewDialogue.Insert(i, "###");
+                    }
 
                     GUI.backgroundColor = Color.green;
                     if (GUILayout.Button("+", GUILayout.Width(25)))
