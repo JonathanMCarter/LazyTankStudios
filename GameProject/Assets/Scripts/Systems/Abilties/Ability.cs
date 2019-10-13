@@ -4,15 +4,51 @@ using UnityEngine;
 
 public abstract class Ability : ScriptableObject
 {
-    public string Name;
-
-    public abstract void Use();
+    public bool IsComplete { get; private set; } = true;
+    
+    public abstract void Use(object o);
 }
 
-public class Move : Ability
+public abstract class AbilityOverTime : Ability
 {
-    public override void Use(Entity entity)
+    public new bool IsComplete { get; private set; } = false;
+    public float ExpiryTime;
+    public override void Use(object o)
     {
-        throw new System.NotImplementedException();
+        Entity e = ((Entity)o);
+        e.StartCoroutine(ExpiryTimer());
+    }
+
+    private IEnumerator ExpiryTimer()
+    {
+        yield return new WaitForSeconds(ExpiryTime);
+        IsComplete = true;
+    }
+}
+
+public class AbilitySequence : Ability
+{
+    public Queue<Ability> abilities;
+    public override void Use(object o)
+    {
+    }
+
+    public bool Interrupt()
+    {
+        return true;
+    }
+    private IEnumerator StartSequence()
+    {
+        while(abilities.Count != 0)
+        {
+            Ability currentAbility = abilities.Dequeue();
+
+            while(!currentAbility.IsComplete)
+            {
+                currentAbility.Use(null);
+                yield return null;
+            }
+            yield return null;
+        }
     }
 }

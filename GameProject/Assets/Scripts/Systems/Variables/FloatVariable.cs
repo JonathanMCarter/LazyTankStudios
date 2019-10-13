@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class FloatReference
-{
-    [SerializeField]private bool UseConstant = true;
-    [SerializeField] private float ConstantValue;
-    [SerializeField] private FloatVariable Variable;
+public class FloatReference : RefrenceVariable<float>{}
 
-    public float Value
+public abstract class RefrenceVariable<T>
+{
+    [SerializeField] private bool UseConstant = true;
+    [SerializeField] private T ConstantValue;
+    [SerializeField] private Variable<T> Variable;
+
+    public T Value
     {
         get { return UseConstant ? ConstantValue : Variable.Value; }
     }
@@ -20,3 +22,4 @@ public class FloatVariable : ScriptableObject
 {
     public float Value;
 }
+

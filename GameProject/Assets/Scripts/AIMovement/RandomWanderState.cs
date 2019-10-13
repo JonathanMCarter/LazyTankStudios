@@ -10,6 +10,7 @@ namespace AI
         private int xRange;
         private int yRange;
         private bool IsReadyToMove;
+        private IEnumerator idle;
 
         public RandomWanderState(AIMovement owner) : base(owner)
         {
@@ -36,13 +37,14 @@ namespace AI
         }
 
         public override void StateExit()
-        {
+        { 
         }
 
         public void Idle()
         {
             float idleTime = Random.Range(0.0f, owner.MaxIdleTime);
-            owner.StartCoroutine(Idle(idleTime));
+            idle = Idle(idleTime);
+            owner.StartCoroutine(idle);
         }
 
         private IEnumerator Idle(float time)

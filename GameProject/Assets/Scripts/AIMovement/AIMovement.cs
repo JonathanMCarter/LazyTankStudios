@@ -61,11 +61,13 @@ namespace AI
         private void OnTriggerExit2D(Collider2D other)
         {
             //Cache States someday
+            tot.Stop();
             fsm.ChangeState(new RandomWanderState(this));
         }
         
         public void Move(Vector2 destination, CallbackDel reachedTarget =null)
         {
+            tot.Stop();
             Vector2 start = transform.position;
             tot.Start((destination - start).magnitude / movementSpeed, (float progress) => transform.position = Vector2.Lerp(start, destination, progress), reachedTarget);
         }
