@@ -2,6 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * AI Movement Script
+ * 
+ * 
+ * 
+ * Owner: ???
+ * Last Edit : 
+ * 
+ * Also Edited by : Tony Parsons
+ * Last Edit: 12.10.19
+ * Reason: Made it so enemy does the dying
+ * 
+ * */
+
 namespace AI
 {
     [RequireComponent(typeof(CircleCollider2D))]
@@ -16,6 +30,11 @@ namespace AI
 
         [SerializeField] GameObject player;
 
+        //Tony Edit
+        public SpriteRenderer[] Hearts;
+        private int Health = 2;
+        public BoxCollider2D HeroAttackThing;
+        //End of edit
         private FiniteStateMachine fsm;
         private TaskOverTime tot;
         private Vector2 rootPos;
@@ -64,6 +83,18 @@ namespace AI
             {
                 fsm.ChangeState(new ChasePlayerState(this, collision.gameObject));
                 player = collision.gameObject;
+                //Tony Edit
+                for (int i = 0; i < Health; ++i)
+                    Hearts[i].gameObject.SetActive(true);
+                //end of edit
+            }
+            //Tony Edit
+            if (collision == HeroAttackThing)
+            {
+                Hearts[Health - 1].gameObject.SetActive(false);
+                --Health;
+                if (Health <= 0)
+                    this.gameObject.SetActive(false);
             }
         }
 
@@ -71,6 +102,8 @@ namespace AI
         {
             //Cache States someday
             fsm.ChangeState(new RandomWanderState(this));
+            for (int i = 0; i < Health; ++i)
+                Hearts[i].gameObject.SetActive(false);
         }
 
         public void RandomWander(Vector2 destination)

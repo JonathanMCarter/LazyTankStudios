@@ -7,13 +7,12 @@ using UnityEngine;
  * 
  * This script gets the input using the Unity Input manager for K/M and controller input, as well as touch data and outputs it using 3 public functions. This allows other scripts to access input data from across all platforms using one function.
  * 
- * Owner: Toby Wishart (but really is Lewis')
+ * Owner: Toby Wishart (but really is Lewis') 
  * Last Edit : 
  * 
- * Also Edited by : Lewis Cleminson
- * Last Edit: 05.10.19
- * Reason: Update script to use the new Input Manager script to allow cross platform input.
- * Also each Update the script was getting 6 components which is not optimal. Changed it to get components once at start and call on them, which uses less processing.
+ * Also Edited by : Tony Parsons
+ * Last Edit: 13.10.19
+ * Reason: Combat
  * 
  * */
 
@@ -28,6 +27,14 @@ public class PlayerMovement : MonoBehaviour
     private Animator myAnim;
     private SpriteRenderer myRenderer;
     private InputManager IM;
+    //Tony Was Here
+    public SpriteRenderer[] Hearts;
+    private int health;
+    public BoxCollider2D attackHitBox;
+    private bool attacking;
+    public float AttackDuration;
+    private float countdown;
+    //end of Tony variables
 
     private void Start()
     {
@@ -35,30 +42,89 @@ public class PlayerMovement : MonoBehaviour
         myAnim = GetComponent<Animator>();
         myRenderer = GetComponent<SpriteRenderer>();
         IM = FindObjectOfType<InputManager>();
+        //Tony Was here
+        health = 3;
+        attackHitBox.gameObject.SetActive(false);
+        attacking = false;
+        //Tony Left Start
     }
 
     void Update()
     {
-       myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed;
-       myRenderer.flipX = (myRigid.velocity.x < 0);
-       myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
-       myAnim.SetFloat("SpeedY",IM.Y_Axis());
+        myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed;
+        myRenderer.flipX = (myRigid.velocity.x < 0);
+        myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
+        myAnim.SetFloat("SpeedY", IM.Y_Axis());
         if (IM.Button_Menu())
         {
             menu.SetActive(true);
             this.enabled = false;
         }
+        //Tony was Here
+        if (IM.Button_A())//attacking
+        {
+            PlayKickAnimation();
+            attackHitBox.gameObject.SetActive(true);
+            attacking = true;
+            countdown = AttackDuration;
+        }
+        if (attacking)
+        {
+            countdown -= Time.deltaTime;
+            if (countdown <= 0)
+            {
+                attackHitBox.gameObject.SetActive(false);
+                attacking = false;
+            }
+        }
+        //To here
     }
 
     public void PlayKickAnimation()
     {
-        myAnim.Play("Hero_Kick",0);
+        myAnim.Play("Hero_Kick", 0);
     }
 
     private void OnDisable()
     {
         myRigid.velocity = new Vector2(0, 0);
     }
+
+    //Tony Was Here too--------------------------------------
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.gameObject.tag == "Enemy")
+        {
+            for (int i = 0; i < health; ++i)
+            {
+                Hearts[i].gameObject.SetActive(true);
+            }
+        }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Hearts[health - 1].gameObject.SetActive(false);
+            --health;
+            if (health <= 0)
+                gameObject.SetActive(false);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Enemy")
+        {
+            Debug.Log("AI isn't my job");
+            for (int i = 0; i < health; ++i)
+                Hearts[i].gameObject.SetActive(false);
+        }
+    }
+    //Tony Has left-----------------------------------
 
     //End of update from LC
 
