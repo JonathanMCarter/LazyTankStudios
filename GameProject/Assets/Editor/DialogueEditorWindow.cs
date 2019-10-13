@@ -46,7 +46,7 @@ public class DialogueEditorWindow : EditorWindow
     //GUIStyle Style;
 
 
-    [MenuItem("Tools/Dialogue Editor")]
+    [MenuItem("Tools/Dialogue Editor", priority = 1)]
     public static void ShowWindow()
     {
         GetWindow<DialogueEditorWindow>("Dialogue Editor");
