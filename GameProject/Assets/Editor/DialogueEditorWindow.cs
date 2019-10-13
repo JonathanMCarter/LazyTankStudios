@@ -46,10 +46,10 @@ public class DialogueEditorWindow : EditorWindow
     //GUIStyle Style;
 
 
-    [MenuItem("Tools/Dialogue Editor", priority = 1)]
+    [MenuItem("Tools/Dialogue Editor Window", priority = 20)]
     public static void ShowWindow()
     {
-        GetWindow<DialogueEditorWindow>("Dialogue Editor");
+        GetWindow<DialogueEditorWindow>("Dialogue Editor Window");
     }
 
 
