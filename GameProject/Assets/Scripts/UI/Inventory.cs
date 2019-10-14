@@ -5,18 +5,30 @@ using UnityEngine;
 /*
  * Created by Toby Wishart
  * Last edit: 11/10/19
+ * Also edited: Gabriel Potamianos
+ * Last edit: 14/10/19
+ * 
+ * 
  * 
  * Class to handle inventory
  * Uses very simple method of storing the items as they are in fixed slots
+ * 
+ * Reason - Scales the inventory window into a smaller one while vendorMode active
+ *        - Bug fixed: Menu activates player movement when it is closed before inventory
+ *  
  */
 public class Inventory : MonoBehaviour
 {
+
     bool[] items;
     public int equipped = -1;
 
     int selected = 0;
     public bool isOpen;
-    
+
+    public bool vendorMode { get; set; } = false;
+
+
     //Add item to inventory with quantity, bool to remove as well can also use this to increase quantity
     public void addItem(int id, int quantity, bool remove)
     {
@@ -25,7 +37,7 @@ public class Inventory : MonoBehaviour
         slot.hasItem = !remove;
         slot.quantity = remove ? 0 : quantity;
         slot.updateIcon();
-    }  
+    }
 
     public bool hasItem(int id)
     {
@@ -61,11 +73,12 @@ public class Inventory : MonoBehaviour
     }
 
     private bool delayed = false;
-    void Update() 
+    void Update()
     {
         GetComponent<CanvasGroup>().alpha = isOpen ? 1 : 0;
         if (isOpen && !delayed)
         {
+
             if (Input.GetButtonDown("Cancel"))
             {
                 open();
@@ -85,11 +98,15 @@ public class Inventory : MonoBehaviour
             else if (Input.GetAxisRaw("Horizontal") == -1)
             {
                 selected--;
-                if (selected == -1) selected = items.Length-1;
+                if (selected == -1) selected = items.Length - 1;
                 StartCoroutine(delay());
             }
             for (int i = 0; i < items.Length; i++)
-                transform.GetChild(i).GetComponent<InvSlot>().selected = i == selected; 
+                transform.GetChild(i).GetComponent<InvSlot>().selected = i == selected;
+
+            // Locks player until the inventory is closed 
+            GameObject.Find("Hero").GetComponent<PlayerMovement>().enabled = !isOpen;
+
         }
     }
 
@@ -99,4 +116,14 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         delayed = false;
     }
+
+    //Changes position of the inventory panel while in vendor mode
+    public void ToogleVendorModeON(int value)
+    {
+
+        gameObject.transform.position = new Vector3(transform.position.x - value, transform.position.y, transform.position.z);
+    }
+
+
+
 }
