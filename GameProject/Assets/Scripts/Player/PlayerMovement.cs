@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private InputManager IM;
     //Tony Was Here
     public SpriteRenderer[] Hearts;
-    private int health;
+    public int health;
     public BoxCollider2D attackHitBox;
     private bool attacking;
     public float AttackDuration;
@@ -103,15 +103,17 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-
+    public void RemoveHeart()
+    {
+        Hearts[health - 1].gameObject.SetActive(false); 
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Hearts[health - 1].gameObject.SetActive(false);
+            RemoveHeart();
             --health;
-            if (health <= 0)
-                gameObject.SetActive(false);
+            if (health <= 0) gameObject.SetActive(false);             
         }
     }
 
