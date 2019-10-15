@@ -23,10 +23,13 @@ public class Inventory : MonoBehaviour
     bool[] items;
     public int equipped = -1;
 
-    int selected = 0;
+    int selected = -1;
     public bool isOpen;
+    public const int rows=3;
 
-    public bool vendorMode { get; set; } = false;
+
+    [HideInInspector]
+    public bool vendorMode;
 
 
     //Add item to inventory with quantity, bool to remove as well can also use this to increase quantity
@@ -65,16 +68,20 @@ public class Inventory : MonoBehaviour
     public void open()
     {
         isOpen = !isOpen;
+        selected = -1;
     }
 
     void Start()
     {
         items = new bool[transform.childCount];
+        vendorMode = gameObject.name.Equals("VendorInventory");
+        print(vendorMode);
     }
 
     private bool delayed = false;
     void Update()
     {
+
         GetComponent<CanvasGroup>().alpha = isOpen ? 1 : 0;
         if (isOpen && !delayed)
         {
@@ -84,21 +91,35 @@ public class Inventory : MonoBehaviour
                 open();
                 StartCoroutine(delay());
             }
-            if (Input.GetButtonDown("Submit"))
+            if (Input.GetButtonDown("Submit") && !vendorMode)
             {
                 equipItem(selected, !isEquipped(selected));
                 StartCoroutine(delay());
             }
-            if (Input.GetAxisRaw("Horizontal") == 1)
+            if (Input.GetAxisRaw("Horizontal") == 1 && !vendorMode)
             {
-                selected++;
-                if (selected == items.Length) selected = 0;
+                if (selected >= rows) selected -= rows;
+                else selected++;
                 StartCoroutine(delay());
             }
-            else if (Input.GetAxisRaw("Horizontal") == -1)
+            else if (Input.GetAxisRaw("Horizontal") == -1 && !vendorMode)
             {
-                selected--;
-                if (selected == -1) selected = items.Length - 1;
+                if (selected > 1+(selected/rows)) selected--;
+               // else selected--;
+                StartCoroutine(delay());
+            }
+
+
+            if (Input.GetAxisRaw("Vertical") == 1 && !vendorMode)
+            {
+                if (selected-items.Length/rows< 0) selected += items.Length - items.Length/rows;
+                else selected -= items.Length/rows;
+                StartCoroutine(delay());
+            }
+            else if (Input.GetAxisRaw("Vertical") == -1 && !vendorMode)
+            {
+                if (selected + items.Length/rows >= items.Length) selected -= items.Length - items.Length/rows;
+                else selected += items.Length/rows;
                 StartCoroutine(delay());
             }
             for (int i = 0; i < items.Length; i++)
@@ -113,7 +134,7 @@ public class Inventory : MonoBehaviour
     IEnumerator delay()
     {
         delayed = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         delayed = false;
     }
 

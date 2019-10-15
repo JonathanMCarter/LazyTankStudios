@@ -59,8 +59,11 @@ public class Vendor : MonoBehaviour
             GameObject.Find("DialogueHandler").GetComponent<DialogueScript>().ChangeFile(VendorSpeech);
 
             //Position the inventories
-            inventory.ToogleVendorModeON(PANEL_POSITION_VENDOR_ON);
-            VendorInventory.ToogleVendorModeON(-PANEL_POSITION_VENDOR_ON);
+            if(inventory.transform.localPosition.x>-PANEL_POSITION_VENDOR_ON)
+                inventory.ToogleVendorModeON(PANEL_POSITION_VENDOR_ON);
+            
+            if (VendorInventory.transform.localPosition.x < PANEL_POSITION_VENDOR_ON)
+                VendorInventory.ToogleVendorModeON(-PANEL_POSITION_VENDOR_ON);
 
         }
 

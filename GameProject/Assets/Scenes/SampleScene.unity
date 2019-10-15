@@ -10244,10 +10244,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hero
       objectReference: {fileID: 0}
-    - target: {fileID: 538079847, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da, type: 3}
-      propertyPath: menu
-      value: 
-      objectReference: {fileID: 1472469039}
     - target: {fileID: 9166002442120698620, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10302,6 +10298,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 538079847, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da, type: 3}
+      propertyPath: menu
+      value: 
+      objectReference: {fileID: 1472469039}
+    - target: {fileID: 538079847, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1504255640, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da, type: 3}
@@ -10767,16 +10775,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7196161479515245015, guid: 9e9f44b7c2ddfc0409cabdbb5a809f0c,
-        type: 3}
-      propertyPath: m_BlocksRaycasts
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7196161479515245015, guid: 9e9f44b7c2ddfc0409cabdbb5a809f0c,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7196161479515245008, guid: 9e9f44b7c2ddfc0409cabdbb5a809f0c,
         type: 3}
       propertyPath: m_Color.r
@@ -10791,6 +10789,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196161479515245015, guid: 9e9f44b7c2ddfc0409cabdbb5a809f0c,
+        type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196161479515245015, guid: 9e9f44b7c2ddfc0409cabdbb5a809f0c,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9f44b7c2ddfc0409cabdbb5a809f0c, type: 3}

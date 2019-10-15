@@ -19,7 +19,7 @@ public class InventoryItem : MonoBehaviour
     {
         if ((collision.gameObject.name == "Hero"))
         {
-            Debug.Log(collision.gameObject.name);
+           // Debug.Log(collision.gameObject.name);
 
             if (Input.GetButton("Submit"))
             {
