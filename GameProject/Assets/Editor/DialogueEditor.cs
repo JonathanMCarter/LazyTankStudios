@@ -15,7 +15,10 @@ using System.IO;
 
     Made by: Jonathan Carter
     Last Edited By: Jonathan Carter
-    Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+    Date Edited Last: 15/10/19 - Removed old bits of the editor script
+
+    Edit History:
+    - 6/10/19 - To add this comment bit in (nothing else was changed)
 
     This script alteres the inspector for the DialogueScript with a load of custom fields before the origional inspector is shown underneath
 
@@ -35,35 +38,38 @@ public class DialogueEditor : Editor
 	{
         var Script = target as DialogueScript;
 
-        EditorGUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        // Carter Games Logo
-        if (GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Logo"), GUIStyle.none, GUILayout.Width(50), GUILayout.Height(50)))
-        {
-            GUI.FocusControl(null);
-        }
-        GUILayout.FlexibleSpace();
-        EditorGUILayout.EndHorizontal();
+        //EditorGUILayout.BeginHorizontal();
+        //GUILayout.FlexibleSpace();
+        //// Carter Games Logo
+        //if (GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Logo"), GUIStyle.none, GUILayout.Width(50), GUILayout.Height(50)))
+        //{
+        //    GUI.FocusControl(null);
+        //}
+        //GUILayout.FlexibleSpace();
+        //EditorGUILayout.EndHorizontal();
 
 
-        EditorGUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        EditorGUILayout.LabelField("Dialogue Manager | V: 1.0");
-        GUILayout.FlexibleSpace();
-        EditorGUILayout.EndHorizontal();
+        //EditorGUILayout.BeginHorizontal();
+        //GUILayout.FlexibleSpace();
+        //EditorGUILayout.LabelField("Dialogue Manager | V: 1.0");
+        //GUILayout.FlexibleSpace();
+        //EditorGUILayout.EndHorizontal();
+
+        GUILayout.Space(20);
 
 		EditorGUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
 
-		if (GUILayout.Button("Open Editor"))
+		if (GUILayout.Button("Open File Editor"))
 		{
             DialogueEditorWindow.ShowWindow();
         }
 
-		if (GUILayout.Button("Documentation"))
-		{
-            //Application.OpenURL("");
-		}
+		//if (GUILayout.Button("Documentation"))
+		//{
+  //          //Application.OpenURL("");
+		//}
+
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
 
@@ -93,6 +99,8 @@ public class DialogueEditor : Editor
         Script.DisplayStyle = (Styles)EditorGUILayout.EnumPopup("Display Mode: ", Script.DisplayStyle);
         EditorGUILayout.EndHorizontal();
 
-        base.OnInspectorGUI();
+
+        // Base inspector - Disabled as this isn't used really.
+        //base.OnInspectorGUI();
 	}
 }
