@@ -30,8 +30,10 @@ namespace AI
 
         private void ChasePlayer()
         {
-            if ((player.transform.position - ai.gameObject.transform.position).magnitude > 0.5f)
-                ai.Move(player.transform.position);
+            //Debug.Log(player.transform.position);
+            //ai.Move(player.transform.position);
+            if((player.transform.position - ai.transform.position).magnitude > .5f)
+            ai.transform.position += (player.transform.position - ai.transform.position).normalized * Time.deltaTime * ai.MovementSpeed;
         }
     }
 }

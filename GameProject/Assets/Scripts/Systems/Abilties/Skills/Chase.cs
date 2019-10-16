@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Chase : Ability
 {
-    public TransformVariable owner;
     public TransformVariable target;
     public FloatVariable speed;
 
-    public override void Use(object o)
+    public override void Use(Entity owner)
     {
-        if ((owner.Value.position - target.Value.position).magnitude > 0.1f)
-            owner.Value.position += (target.Value.position - owner.Value.position).normalized * Time.deltaTime * speed.Value;
+        if (target == null) return;
+        if((target?.Value.position - owner.transform.position)?.magnitude > 0.5f)
+        owner.transform.position += (target.Value.position - owner.transform.position).normalized * Time.deltaTime * speed.Value;
     }
 }

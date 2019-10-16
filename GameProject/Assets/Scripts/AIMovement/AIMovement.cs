@@ -67,7 +67,6 @@ namespace AI
         
         public void Move(Vector2 destination, CallbackDel reachedTarget =null)
         {
-            tot.Stop();
             Vector2 start = transform.position;
             tot.Start((destination - start).magnitude / movementSpeed, (float progress) => transform.position = Vector2.Lerp(start, destination, progress), reachedTarget);
         }

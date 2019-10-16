@@ -5,13 +5,13 @@ using UnityEngine;
 [CreateAssetMenu]
 public class Flee : Ability
 {
-    public TransformVariable owner;
     public TransformVariable target;
     public FloatVariable speed;
 
-    public override void Use(object o)
+    public override void Use(Entity owner)
     {
-        if ((owner.Value.position - target.Value.position).magnitude < 10.0f)
-            owner.Value.position += (owner.Value.position - target.Value.position).normalized * Time.deltaTime * speed.Value;
+        if (target == null) return;
+        if ((owner.transform.position - target.Value.position).magnitude < 10.0f)
+            owner.transform.position += (owner.transform.position - target.Value.position).normalized * Time.deltaTime * speed.Value;
     }
 }

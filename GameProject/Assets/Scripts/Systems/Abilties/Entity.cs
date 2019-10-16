@@ -3,19 +3,25 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField] public List<Ability> abilities = new List<Ability>();
-    public Transform mTransform;
+    [SerializeField] public List<AbilitySet> abilities = new List<AbilitySet>();
+    public Ability a;
+    public Transform mTransform { get; private set; }
+    public AbilitySet abilitySet { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         mTransform = transform;
+        abilitySet = abilities?[0];
     }
+
+    
 
     private void Update()
     {
-        for (int i = abilities.Count - 1; i >= 0; i--)
+        if (Input.GetKeyDown(KeyCode.Space)) a?.Use(this);
+        for (int i = abilitySet.abilities.Count - 1; i >= 0; i--)
         {
-            abilities[i].Use(this);
+            abilitySet.abilities[i].Use(this);
         }
     }
 }

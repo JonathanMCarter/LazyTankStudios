@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 463939730}
   - component: {fileID: 463939729}
   m_Layer: 0
-  m_Name: Player (1)
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,9 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
-  - {fileID: 11400000, guid: 6aae3c0e7c65af64ba65f31276159ece, type: 2}
-  - {fileID: 11400000, guid: 96a7dbac668ba01498098d3ba2df7160, type: 2}
-  mTransform: {fileID: 0}
+  - {fileID: 11400000, guid: 64fc6b39d0967584d8c764134905c573, type: 2}
+  a: {fileID: 0}
 --- !u!212 &463939730
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -310,6 +309,7 @@ GameObject:
   - component: {fileID: 2146384671}
   - component: {fileID: 2146384670}
   - component: {fileID: 2146384672}
+  - component: {fileID: 2146384673}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -392,6 +392,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
-  - {fileID: 11400000, guid: 21d04d4300e1c554b9caadd7dd31348f, type: 2}
-  - {fileID: 11400000, guid: 3846f6d247630cc45be7ed2397014779, type: 2}
-  mTransform: {fileID: 0}
+  - {fileID: 11400000, guid: 528da39ea5ec8bd4f9f41e541e63fe96, type: 2}
+  a: {fileID: 11400000, guid: a5b1fca9d96a368478b41270859fa898, type: 2}
+--- !u!114 &2146384673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146384669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f76be33b926cb45b85be45ecaf6388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 11400000, guid: cabfe92983711d74a8143e91c5ee9dd3, type: 2}

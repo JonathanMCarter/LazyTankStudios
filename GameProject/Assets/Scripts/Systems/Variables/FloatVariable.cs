@@ -18,8 +18,5 @@ public abstract class RefrenceVariable<T>
 }
 
 [CreateAssetMenu(fileName = "Float Value", menuName = "Variables/Float")]
-public class FloatVariable : ScriptableObject
-{
-    public float Value;
-}
+public class FloatVariable : Variable<float>{}
 

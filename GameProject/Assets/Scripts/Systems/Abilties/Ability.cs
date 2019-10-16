@@ -6,16 +6,15 @@ public abstract class Ability : ScriptableObject
 {
     public bool IsComplete { get; private set; } = true;
     
-    public abstract void Use(object o);
+    public abstract void Use(Entity o);
 }
 
 public abstract class AbilityOverTime : Ability
 {
     public new bool IsComplete { get; private set; } = false;
     public float ExpiryTime;
-    public override void Use(object o)
+    public override void Use(Entity e)
     {
-        Entity e = ((Entity)o);
         e.StartCoroutine(ExpiryTimer());
     }
 
@@ -29,7 +28,7 @@ public abstract class AbilityOverTime : Ability
 public class AbilitySequence : Ability
 {
     public Queue<Ability> abilities;
-    public override void Use(object o)
+    public override void Use(Entity o)
     {
     }
 

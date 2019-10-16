@@ -1,15 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu]
-public class AssignTransformVariable : Ability
+public class AssignTransformVariable : MonoBehaviour
 {
     public TransformVariable Target;
-    public override void Use(object o)
+    public void Awake()
     {
-        Entity e = (Entity)o;
-        Target.Value = e.mTransform;
-        e.abilities.Remove(this);
+        Target.Value = transform;
+        Destroy(this);
     }
 }
