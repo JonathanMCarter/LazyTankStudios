@@ -25,12 +25,14 @@ public class Inventory : MonoBehaviour
 
     int selected = -1;
     public bool isOpen;
-    public const int rows=3;
+    
 
 
     [HideInInspector]
     public bool vendorMode;
-
+    public const int ROWS = 3;
+    public const int COLUMN = 4;
+    public int column=4;
 
     //Add item to inventory with quantity, bool to remove as well can also use this to increase quantity
     public void addItem(int id, int quantity, bool remove)
@@ -96,30 +98,40 @@ public class Inventory : MonoBehaviour
                 equipItem(selected, !isEquipped(selected));
                 StartCoroutine(delay());
             }
+
+            //Lock selector in horizontal depending on which row it is (RIGHT END)
             if (Input.GetAxisRaw("Horizontal") == 1 && !vendorMode)
             {
-                if (selected >= rows) selected -= rows;
-                else selected++;
+                if (selected < column - 1) selected++;
                 StartCoroutine(delay());
             }
+
+            //Lock selector on horizontal depending on which row it is (LEFT END)
             else if (Input.GetAxisRaw("Horizontal") == -1 && !vendorMode)
             {
-                if (selected > 1+(selected/rows)) selected--;
-               // else selected--;
+                if (selected > column - 1 - ROWS) selected--;
                 StartCoroutine(delay());
             }
 
-
+            //Lock selector on vertical depending whether it exceeds the limits (LEFT END)
             if (Input.GetAxisRaw("Vertical") == 1 && !vendorMode)
             {
-                if (selected-items.Length/rows< 0) selected += items.Length - items.Length/rows;
-                else selected -= items.Length/rows;
+                if (selected - COLUMN >= 0)
+                {
+                    selected -= COLUMN;
+                    column -= COLUMN;
+                }
                 StartCoroutine(delay());
             }
+
+            //Lock selector on vertical depending whether it exceeds the limits (RIGHT END )
             else if (Input.GetAxisRaw("Vertical") == -1 && !vendorMode)
             {
-                if (selected + items.Length/rows >= items.Length) selected -= items.Length - items.Length/rows;
-                else selected += items.Length/rows;
+                if (selected + COLUMN < items.Length)
+                {
+                    selected += COLUMN;
+                    column+=COLUMN;
+                }
                 StartCoroutine(delay());
             }
             for (int i = 0; i < items.Length; i++)
@@ -134,7 +146,7 @@ public class Inventory : MonoBehaviour
     IEnumerator delay()
     {
         delayed = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         delayed = false;
     }
 
