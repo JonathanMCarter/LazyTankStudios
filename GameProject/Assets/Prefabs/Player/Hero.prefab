@@ -548,10 +548,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 200
   menu: {fileID: 0}
-  Hearts:
-  - {fileID: 1258924024}
-  - {fileID: 2014029384}
-  - {fileID: 193307815}
+  healthUI: {fileID: 0}
+  health: 8
   attackHitBox: {fileID: 1743666070}
   AttackDuration: 0.5
 --- !u!114 &3257857658046344169
@@ -604,4 +602,4 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 3.93
+  m_EdgeRadius: 1.5

@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: 3776ca9f6ae32ca4e9b97dadee84feb5
+guid: 31abf14c4f6d4f446b5a94fd290656b2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2492291680909451386
-    second: Monster4Animated_0
+      213: -2167054125328104530
+    second: HeroAttack_0
   - first:
-      213: 243947699326194303
-    second: Monster4Animated_1
+      213: 2084790641146429783
+    second: HeroAttack_1
   - first:
-      213: -7800606001254457230
-    second: Monster4Animated_2
+      213: 2305010351155518712
+    second: HeroAttack_2
+  - first:
+      213: -8768885262001318260
+    second: HeroAttack_3
+  - first:
+      213: 5979895199057241939
+    second: HeroAttack_4
+  - first:
+      213: 2076163144908527037
+    second: HeroAttack_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -51,11 +60,11 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 8
-  spriteBorder: {x: 9, y: 0, z: 9, w: 0}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -69,10 +78,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 32
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -80,10 +89,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 32
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -91,10 +100,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Windows Store Apps
-    maxTextureSize: 32
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,10 +111,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Android
-    maxTextureSize: 32
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,21 +122,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: WebGL
-    maxTextureSize: 32
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 32
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -137,13 +135,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Monster4Animated_0
+      name: HeroAttack_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 419c06fd1142ab14aae1c6e3922e8797
+      internalID: -2167054125328104530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeroAttack_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 12
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +170,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abb7cd2dac85937478af8cc4cff4cc74
-      internalID: -2492291680909451386
+      spriteID: 1bc09c5854f5a5d488e4c7d8994916d5
+      internalID: 2084790641146429783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monster4Animated_1
+      name: HeroAttack_2
       rect:
         serializedVersion: 2
-        x: 8
-        y: 0
+        x: 15
+        y: 3
         width: 8
-        height: 8
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,20 +191,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b060778cb331334dbbda64694c842b8
-      internalID: 243947699326194303
+      spriteID: 784492a91892dde4aaa5f386309295f6
+      internalID: 2305010351155518712
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monster4Animated_2
+      name: HeroAttack_3
       rect:
         serializedVersion: 2
-        x: 16
+        x: 23
         y: 0
         width: 8
-        height: 8
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +212,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dd5b2ab1fd64fe48b6a64027cc806c1
-      internalID: -7800606001254457230
+      spriteID: 2999c66c8e6a81140bcf5d4cf606d133
+      internalID: -8768885262001318260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeroAttack_4
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 3
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 645a1b528ad8ef342984c81644969ba0
+      internalID: 5979895199057241939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeroAttack_5
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 0
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f8d659c8da630f43bbf6c8cdf9b5d81
+      internalID: 2076163144908527037
       vertices: []
       indices: 
       edges: []
@@ -202,7 +263,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8ba4b638b516607419936eee3484df74
+    spriteID: e0ee11d26f56f16428e8f2a369b38979
     internalID: 0
     vertices: []
     indices: 

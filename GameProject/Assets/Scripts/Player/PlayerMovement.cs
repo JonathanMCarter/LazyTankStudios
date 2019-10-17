@@ -14,6 +14,10 @@ using UnityEngine;
  * Last Edit: 13.10.19
  * Reason: Combat
  * 
+ * Also Edited by : Andreas Kraemer
+ * Last Edit: 17.10.19
+ * Reason: Link Heart UI and attack animation
+ * 
  * */
 
 public class PlayerMovement : MonoBehaviour
@@ -28,7 +32,12 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer myRenderer;
     private InputManager IM;
     //Tony Was Here
-    public SpriteRenderer[] Hearts;
+
+    //Edit by Andreas--
+    //public SpriteRenderer[] Hearts;
+    public HealthUI healthUI; 
+    //Andreas edit end--
+
     public int health;
     public BoxCollider2D attackHitBox;
     private bool attacking;
@@ -43,10 +52,17 @@ public class PlayerMovement : MonoBehaviour
         myRenderer = GetComponent<SpriteRenderer>();
         IM = FindObjectOfType<InputManager>();
         //Tony Was here
-        health = 3;
+        //Andreas edit--
+        //health = 3;
+        //Andreas edit end--
         attackHitBox.gameObject.SetActive(false);
         attacking = false;
         //Tony Left Start
+
+        //Andreas edit--
+        healthUI.maxHealth=health;
+        healthUI.currentHealth=health;
+        //Andreas edit end--
     }
 
     void Update()
@@ -63,7 +79,10 @@ public class PlayerMovement : MonoBehaviour
         //Tony was Here
         if (IM.Button_A())//attacking
         {
-            PlayKickAnimation();
+            //Andreas edit
+            //PlayKickAnimation();
+            PlayAttackAnimation();
+            //Andreas edit end
             attackHitBox.gameObject.SetActive(true);
             attacking = true;
             countdown = AttackDuration;
@@ -80,9 +99,20 @@ public class PlayerMovement : MonoBehaviour
         //To here
     }
 
+    ///<summary>
+    ///Plays the Hero's Kick animation
+    ///</summary>
     public void PlayKickAnimation()
     {
         myAnim.Play("Hero_Kick", 0);
+    }
+
+    ///<summary>
+    ///Plays the Hero's Attack animation
+    ///</summary>
+    public void PlayAttackAnimation()
+    {
+        myAnim.SetTrigger("Attack");
     }
 
     private void OnDisable()
@@ -91,32 +121,60 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Tony Was Here too--------------------------------------
+    //Edit Andreas--
+    /* 
     void OnTriggerEnter2D(Collider2D other)
     {
 
         if (other.gameObject.tag == "Enemy")
         {
+            
             for (int i = 0; i < health; ++i)
-            {
+            {      
                 Hearts[i].gameObject.SetActive(true);
             }
+
         }
 
     }
+    */
+    /* 
     public void RemoveHeart()
     {
         Hearts[health - 1].gameObject.SetActive(false); 
     }
+    */
+    /*
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            RemoveHeart();
+            //RemoveHeart();
             --health;
+            healthUI.currentHealth=health;
             if (health <= 0) gameObject.SetActive(false);             
         }
     }
+    */
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            TakeDamage(1);           
+        }
+    }
 
+    ///<summary>
+    /// Cause the player to take desired amount of damage
+    ///</summary>
+    public void TakeDamage(int damage)
+    {
+        health-=damage;
+        healthUI.currentHealth=health;
+        if (health <= 0) gameObject.SetActive(false);  
+    }
+
+    /* 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Enemy")
@@ -126,6 +184,8 @@ public class PlayerMovement : MonoBehaviour
                 Hearts[i].gameObject.SetActive(false);
         }
     }
+    */
+    //Andreas edit end--
     //Tony Has left-----------------------------------
 
     //End of update from LC

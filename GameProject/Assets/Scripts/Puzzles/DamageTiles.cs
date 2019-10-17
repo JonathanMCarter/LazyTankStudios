@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * 
+ * Owner: 
+ * Last Edit : 
+ * 
+ * Also Edited by : Andreas Kraemer
+ * Last Edit: 17.10.19
+ * Reason: Link Heart UI
+ * 
+ * */
+
 public class DamageTiles : MonoBehaviour
 {
     public int Damage;
@@ -20,9 +31,11 @@ public class DamageTiles : MonoBehaviour
         {
             if (MyCo == null) MyCo = StartCoroutine(Timer());
                 
-            
-            Hit.gameObject.GetComponent<PlayerMovement>().health -= _Damage;
-            gameObject.GetComponent<PlayerMovement>().RemoveHeart();
+            //Andreas edit--
+            //Hit.gameObject.GetComponent<PlayerMovement>().health -= _Damage;
+            //gameObject.GetComponent<PlayerMovement>().RemoveHeart();
+            Hit.gameObject.GetComponent<PlayerMovement>().TakeDamage(_Damage);
+            //Andreas edit end--
         }
        
     }
