@@ -42,6 +42,8 @@ public class SythEditor : EditorWindow
         switch (ToolbarInt)
         {
             case 0:
+                EditorGUILayout.HelpBox("Syth: Manual Entry, this would be a version where the user would manually input either a string value of the note or a int value for the frequency. Not Pretty but it would work fine.", MessageType.Info);
+
                 EditorGUILayout.BeginVertical();
 
                 if (Track.Count == 0)
@@ -80,12 +82,14 @@ public class SythEditor : EditorWindow
                 EditorGUILayout.EndVertical();
                 break;
             case 1:
+                EditorGUILayout.HelpBox("Syth: Piano Entry, This would let the user press the notes in order on a virtual keyboard, having an output the user could then edit in theory.", MessageType.Info);
+
                 // Piano Option
                 EditorGUILayout.BeginHorizontal();
 
                 GUI.color = Color.white;
                 // C - 1 / B# - 1
-                if (GUILayout.Button("C - 1", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("C - 1", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -99,7 +103,7 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // D - 1
-                if (GUILayout.Button("D", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("D", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -114,7 +118,7 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // E / Fb - 1
-                if (GUILayout.Button("E", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("E", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -123,7 +127,7 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // F / E# - 1
-                if (GUILayout.Button("F", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("F", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -137,7 +141,7 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // G - 1
-                if (GUILayout.Button("G", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("G", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -151,7 +155,7 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // A - 1
-                if (GUILayout.Button("A", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("A", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -165,14 +169,14 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // B / Cb - 1
-                if (GUILayout.Button("B", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("B", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
 
                 GUI.color = Color.white;
                 // Middle C / B#
-                if (GUILayout.Button("Mid C", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("Mid C", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -187,7 +191,7 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // D
-                if (GUILayout.Button("D", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("D", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -201,7 +205,7 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // E / Fb
-                if (GUILayout.Button("E", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("E", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -209,7 +213,7 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // E# / F
-                if (GUILayout.Button("F", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("F", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -223,7 +227,7 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // G
-                if (GUILayout.Button("G", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("G", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -237,7 +241,7 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // A
-                if (GUILayout.Button("A", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("A", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
@@ -252,13 +256,13 @@ public class SythEditor : EditorWindow
 
                 GUI.color = Color.white;
                 // B / C#
-                if (GUILayout.Button("B", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("B", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }
 
                 // C + 1
-                if (GUILayout.Button("C + 1", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(150)))
+                if (GUILayout.Button("C + 1", GUILayout.MinHeight(WhiteKeyMin), GUILayout.MaxWidth(WhiteKeyMax), GUILayout.Height(WhiteKeyMax * 2.5f)))
                 {
 
                 }

@@ -55,7 +55,7 @@ public class ItemEditor : EditorWindow
     //private Rect DeselectWindow;
 
 
-    [MenuItem("Tools/Depreciated/Item Editor", priority = 30)]
+    [MenuItem("Tools/Depreciated/Item Editor", priority = 50)]
     public static void ShowWindow()
     {
         GetWindow<ItemEditor>("(Depreciated) Item Editor");
