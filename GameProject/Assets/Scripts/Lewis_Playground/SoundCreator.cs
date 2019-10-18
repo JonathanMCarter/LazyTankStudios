@@ -39,7 +39,7 @@ public class SoundCreator : MonoBehaviour
         int count = 0;
         while (count < data.Length)
         {
-            data[count] = Mathf.Sin(2 * Mathf.PI * frequency_current * position / samplerate);
+            data[count] = Mathf.Sign(Mathf.Sin(2 * Mathf.PI * frequency_current * position / samplerate));
             position++;
             count++;
         }
@@ -76,7 +76,7 @@ public class SoundCreator : MonoBehaviour
         float[] temp = frequency;
         for (int i = 0; i < frequency.Length; i++)
         {
-            if (frequency[i] != 0) frequency[i] = 600 * Mathf.Pow(1.05946f, frequency[i]);
+            if (frequency[i] != 0) frequency[i] = 300 * Mathf.Pow(1.05946f, frequency[i]);
         }
     }
 }
