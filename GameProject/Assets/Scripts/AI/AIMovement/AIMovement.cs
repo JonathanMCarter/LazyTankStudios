@@ -28,12 +28,12 @@ namespace AI
         [SerializeField] float maxIdleTime = 2f;
         [SerializeField] float awarnessSize = .75f;
 
-        [SerializeField] GameObject player;
+        private GameObject player;
 
         //Tony Edit
         public SpriteRenderer[] Hearts;
         private int Health = 2;
-        public BoxCollider2D HeroAttackThing;
+        private BoxCollider2D HeroAttackThing;
         //End of edit
         private FiniteStateMachine fsm;
         private TaskOverTime tot;
@@ -50,6 +50,8 @@ namespace AI
         // Start is called before the first frame update
         void Awake()
         {
+            player  = FindObjectOfType<PlayerMovement>().gameObject;
+            HeroAttackThing = player.GetComponent<BoxCollider2D>();
             rootPos = transform.position;
             CircleCollider2D c = GetComponent<CircleCollider2D>();
             c.radius = awarnessSize;
