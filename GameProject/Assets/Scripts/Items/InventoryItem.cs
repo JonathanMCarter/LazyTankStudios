@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 /**
  * Created by Toby Wishart
- * Last edit: 19/10/19
+ * Last edit: 12/10/19
  * 
  * An item that can be found in the world and picked up, the sprite of the item doesn't matter as the icon in the inventory is a separate icon
  * So for example, if there were hidden items, no sprite could be used
@@ -23,7 +23,7 @@ public class InventoryItem : MonoBehaviour
 
             if (Input.GetButton("Submit"))
             {
-                GameObject.Find("InventoryHotbar").GetComponent<Inventory>().addItem(ID, quantity, false);
+                GameObject.Find("Inventory").GetComponent<Inventory>().addItem(ID, quantity, false);
                 Destroy(gameObject);
             }
         }
