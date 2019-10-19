@@ -389,9 +389,8 @@ GameObject:
   - component: {fileID: 9166002442120698618}
   - component: {fileID: 9166002442120698599}
   - component: {fileID: 538079848}
-  - component: {fileID: 538079847}
+  - component: {fileID: 8285090126079130940}
   - component: {fileID: 3257857658046344169}
-  - component: {fileID: -7698619071147373316}
   - component: {fileID: 1504255640}
   m_Layer: 0
   m_Name: Hero
@@ -534,24 +533,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &538079847
+--- !u!114 &8285090126079130940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9166002442120698622}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4814e0ff77e16c346842fd67c1590e1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1af63586371a55b4f82519e282f155ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
-  menu: {fileID: 0}
+  speed: 100
+  i: {fileID: 0}
+  DamageBulletThingy: {fileID: 0}
+  Delay: 0.4
   healthUI: {fileID: 0}
-  health: 8
+  health: 5
   attackHitBox: {fileID: 1743666070}
-  AttackDuration: 0.5
+  AttackDuration: 1
 --- !u!114 &3257857658046344169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,18 +566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushStrenght: 1
---- !u!114 &-7698619071147373316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9166002442120698622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c0e528211e1ec41a0836fe8f32d0bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1504255640
 BoxCollider2D:
   m_ObjectHideFlags: 0
