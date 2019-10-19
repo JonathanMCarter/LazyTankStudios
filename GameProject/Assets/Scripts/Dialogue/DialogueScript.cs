@@ -66,6 +66,10 @@ public class DialogueScript : MonoBehaviour
 	public int TypeWriterCount = 1;
 
 
+    // Stuff for events 'n' stuff 
+    private Coroutine PauseCo;
+    public Animation AnimToPlay;
+
     private void Update()
     {
         if (RequireInput)
@@ -116,10 +120,41 @@ public class DialogueScript : MonoBehaviour
     {
         if (DialStage < File.Names.Count)
         {
-            DialName.text = File.Names[DialStage];
-            DialText.text = File.Dialogue[DialStage];
-            DialStage++;
-            InputPressed = false;
+            switch (File.Names[DialStage])
+            {
+                // Cinematic
+                case "###":
+                    // Put code here to run cinematic
+                    break;
+
+                // Pause
+                case "@@@":
+                    // Pauses dialogue for a little bit (for dramitic effect..............................................)
+                    if (PauseCo == null)
+                    {
+                        PauseCo = StartCoroutine(PauseDial(3));
+                    }
+                    break;
+
+                // Play Animation
+                case "^^^":
+                    // Put code to play animation
+                    break;
+
+                // End Dialogue
+                case "***":
+                    DialStage = 0;
+                    FileHasEnded = true;
+                    break;
+
+                // Read Dial as normal
+                default:
+                    DialName.text = File.Names[DialStage];
+                    DialText.text = File.Dialogue[DialStage];
+                    DialStage++;
+                    InputPressed = false;
+                    break;
+            }
         }
         else
         {
@@ -184,5 +219,12 @@ public class DialogueScript : MonoBehaviour
         if (InputPressed) { InputPressed = false; }
         if (FileHasEnded) { FileHasEnded = false; }
         DialStage = 0;
+    }
+
+
+    private IEnumerator PauseDial(float Delay)
+    {
+        yield return new WaitForSeconds(Delay);
+        ++DialStage;
     }
 }

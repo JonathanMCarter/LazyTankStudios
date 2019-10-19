@@ -19,10 +19,10 @@ public class Vendor : MonoBehaviour
     public DialogueFile VendorSpeech;
 
     //Inventories
-    Inventory inventory;
-    Inventory VendorInventory;
-    InvSlot playerInventorySlot;
-    InvSlot VendorInventorySlot;
+    public Inventory inventory;
+    public Inventory VendorInventory;
+    public InvSlot playerInventorySlot;
+    public InvSlot VendorInventorySlot;
 
     //Do it once
     bool happened = false;
@@ -32,11 +32,20 @@ public class Vendor : MonoBehaviour
     //X position of the inventory 
     const int PANEL_POSITION_VENDOR_ON = 250;
 
+    // Jonathan Edit
+    private DialogueScript DS;
+
     private void Start()
     {
+        // Jonathan Edit
+        inventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(3).GetComponent<Inventory>();
+        VendorInventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(2).GetComponent<Inventory>();
+
+        DS = FindObjectOfType<DialogueScript>();
+
         //Retrieve inventories
-        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
-        VendorInventory = GameObject.Find("VendorInventory").GetComponent<Inventory>();
+        //inventory = GameObject.Find("PlayerInventory").GetComponent<Inventory>();
+        //VendorInventory = GameObject.Find("VendorInventory").GetComponent<Inventory>();
 
     }
 
@@ -100,29 +109,46 @@ public class Vendor : MonoBehaviour
         }
 
         //CHANGE IT
-        if (GameObject.Find("DialogueHandler").GetComponent<DialogueScript>().FileHasEnded && !happened)
+        // Jonathan @ 23:37 (been awake for 17h & 37m)
+        // ndfkjhdsijfgsdfjkhdskjfhsdkiuhkjdhiupsduhdsgiusdhg
+        // THIS IS NOT THE WAY TO DO THIS!!!!!!!
+        // really....
+        // this will run this on ANY!!!!!!!!!!!!!!!!!!!!! dialouge in the game, not just the Vendors!!!!!!!!!
+        // ...........why.........just why...
+        //
+        //
+        // Instead, check to see if the file been read is actually the one on the vendor.....
+        if (DS.File == VendorSpeech)
         {
-            ToogleSellorBuyPanel(1);
-            if(isSellOrBuyPanelOpened())
-                            GameObject.Find("Hero").GetComponent<PlayerMovement>().enabled = !isSellOrBuyPanelOpened();
-
-
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (DS.FileHasEnded && !happened)
             {
-                switch (selected)
+
+                ToogleSellorBuyPanel(1);
+
+                if (isSellOrBuyPanelOpened())
                 {
-                    case 0:
-                        SellOrBuy(true);
-                        break;
-                    case 1:
-                        SellOrBuy(false);
-                        break;
+                    GameObject.Find("Hero").GetComponent<PlayerMovement>().enabled = !isSellOrBuyPanelOpened();
                 }
-                //this only happens once
-                happened = !happened;
+
+
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    switch (selected)
+                    {
+                        case 0:
+                            SellOrBuy(true);
+                            break;
+                        case 1:
+                            SellOrBuy(false);
+                            break;
+                    }
+
+                    //this only happens once
+                    happened = !happened;
+
+                }
 
             }
-
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -143,8 +169,8 @@ public class Vendor : MonoBehaviour
 
         if (collision.gameObject.name == "Hero")
         {
-            //Play speech
-            GameObject.Find("DialogueHandler").GetComponent<DialogueScript>().ChangeFile(VendorSpeech);
+            //Play speech - edited by jonathan to use findoftype
+            DS.ChangeFile(VendorSpeech);
 
             //Position the inventories
             if(inventory.transform.localPosition.x>-PANEL_POSITION_VENDOR_ON)
