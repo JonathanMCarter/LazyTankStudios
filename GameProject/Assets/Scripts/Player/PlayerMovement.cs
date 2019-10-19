@@ -8,7 +8,8 @@ using UnityEngine;
  * This script gets the input using the Unity Input manager for K/M and controller input, as well as touch data and outputs it using 3 public functions. This allows other scripts to access input data from across all platforms using one function.
  * 
  * Owner: Toby Wishart (but really is Lewis') 
- * Last Edit : 
+ * Last Edit : 19/10/19
+ * Reason: Integrated items
  * 
  * Also Edited by : Tony Parsons
  * Last Edit: 13.10.19
@@ -23,7 +24,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 100;
-    public GameObject menu;
+    public Inventory i;
 
 
     //Start of Update from LC
@@ -44,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
     public float AttackDuration;
     private float countdown;
     //end of Tony variables
+
+    //Items enum, should matchup with the item IDs i.e. Sword is in slot 0 and has ID 0 therefore SWORD is 0 here
+    enum ITEMS
+    {
+        SWORD, BLAZBOOTS, ICEBOW, SHIELDSHARPTON, TELERUNE, ELIXIRLIFE, ELIXIRSTR
+    }
 
     private void Start()
     {
@@ -73,19 +80,18 @@ public class PlayerMovement : MonoBehaviour
         myAnim.SetFloat("SpeedY", IM.Y_Axis());
         if (IM.Button_Menu())
         {
-            menu.SetActive(true);
+            i.open();
             this.enabled = false;
         }
-        //Tony was Here
-        if (IM.Button_A())//attacking
+        //Toby: A and B item actions
+        if (IM.Button_A() && !i.isOpen)
         {
-            //Andreas edit
-            //PlayKickAnimation();
-            PlayAttackAnimation();
-            //Andreas edit end
-            attackHitBox.gameObject.SetActive(true);
-            attacking = true;
-            countdown = AttackDuration;
+            useItem(i.equippedA);
+        }
+
+        if (IM.Button_B() && !i.isOpen)
+        {
+            useItem(i.equippedB);
         }
         if (attacking)
         {
@@ -97,6 +103,28 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         //To here
+    }
+    //Toby: Function for using an item of a given ID
+    void useItem(int ID)
+    {
+        switch (ID)
+        {
+            case (int)ITEMS.SWORD:
+                //Andreas edit
+                //PlayKickAnimation();
+                PlayAttackAnimation();
+                //Andreas edit end
+                attackHitBox.gameObject.SetActive(true);
+                attacking = true;
+                countdown = AttackDuration;
+                break;
+
+            case -1:
+            default:
+                //nothing or invalid item equipped
+                Debug.Log("Trying to use nothing");
+                break;
+        }
     }
 
     ///<summary>
