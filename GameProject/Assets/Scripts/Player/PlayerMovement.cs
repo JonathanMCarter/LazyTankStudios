@@ -158,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
     public void FireProjectile()
     {
         GameObject Go = Instantiate(DamageBulletThingy, transform.position, transform.rotation);
+        Go.transform.localScale = new Vector3(WeaponStats.Size, WeaponStats.Size, WeaponStats.Size);
         Go.GetComponent<Rigidbody2D>().velocity = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * WeaponStats.Speed;
         Destroy(Go, WeaponStats.Lifetime);
     }
@@ -207,7 +208,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            //TakeDamage(1);           
+            Debug.Log("********** Player Should Be Taking Damage Now...");
+
+            TakeDamage(1);           
         }
     }
 

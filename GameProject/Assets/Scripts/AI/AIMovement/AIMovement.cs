@@ -100,10 +100,14 @@ namespace AI
             //if (collision == HeroAttackThing)
             if (collision.gameObject.tag == "Bullet")
             {
+                Destroy(collision.gameObject);
+
+                Debug.Log("********** Enemy Should Be Taking Damage Now...");
+
                 Hearts[Health - 1].gameObject.SetActive(false);
                 --Health;
-                //if (Health <= 0)
-                //    this.gameObject.SetActive(false);
+                if (Health <= 0)
+                    this.gameObject.SetActive(false);
             }
         }
 
