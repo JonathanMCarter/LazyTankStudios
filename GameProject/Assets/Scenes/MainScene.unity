@@ -12814,7 +12814,7 @@ PrefabInstance:
     - target: {fileID: 3380670282997772885, guid: 2da5834ec9d3494458d9a055f9c2017e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3380670282997772885, guid: 2da5834ec9d3494458d9a055f9c2017e,
         type: 3}
@@ -15096,6 +15096,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407936297}
   m_CullTransparentMesh: 0
+--- !u!1 &448377126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 402899740}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 448377127}
+  m_Layer: 0
+  m_Name: HealthUI (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &448377127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 402899740}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448377126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &507696703
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15693,6 +15723,36 @@ Transform:
   m_Father: {fileID: 1857155340}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &816848718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 3977055148898505883}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 816848719}
+  m_Layer: 0
+  m_Name: CoinUI (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &816848719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 3977055148898505883}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816848718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &873180819
 GameObject:
   m_ObjectHideFlags: 0
@@ -15889,11 +15949,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7196161479515244973, guid: 9e9f44b7c2ddfc0409cabdbb5a809f0c,
-        type: 3}
-      propertyPath: m_Name
-      value: Inventory
-      objectReference: {fileID: 0}
     - target: {fileID: 7196161479515245010, guid: 9e9f44b7c2ddfc0409cabdbb5a809f0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15998,6 +16053,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196161479515244973, guid: 9e9f44b7c2ddfc0409cabdbb5a809f0c,
+        type: 3}
+      propertyPath: m_Name
+      value: Inventory
       objectReference: {fileID: 0}
     - target: {fileID: 7196161480161964709, guid: 9e9f44b7c2ddfc0409cabdbb5a809f0c,
         type: 3}
@@ -29125,11 +29185,9 @@ MonoBehaviour:
   movementSpeed: 2
   maxIdleTime: 2
   awarnessSize: 4
-  player: {fileID: 972919555}
   Hearts:
   - {fileID: 1939579873}
   - {fileID: 1212349606}
-  HeroAttackThing: {fileID: 972919556}
 --- !u!58 &960745835
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -29210,18 +29268,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &972919555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9166002442120698622, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
-    type: 3}
-  m_PrefabInstance: {fileID: 507696703}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &972919556 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 9166002442120698618, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
-    type: 3}
-  m_PrefabInstance: {fileID: 507696703}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1007350669
 GameObject:
   m_ObjectHideFlags: 0
@@ -50645,11 +50691,9 @@ MonoBehaviour:
   movementSpeed: 2
   maxIdleTime: 2
   awarnessSize: 4
-  player: {fileID: 972919555}
   Hearts:
   - {fileID: 699555756}
   - {fileID: 2092201989}
-  HeroAttackThing: {fileID: 972919556}
 --- !u!58 &1857155338
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -50992,7 +51036,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1987422530
 GameObject:
@@ -63150,7 +63194,7 @@ Transform:
   m_Children:
   - {fileID: 249938047}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2048563506
 BoxCollider2D:
@@ -63515,7 +63559,7 @@ PrefabInstance:
     - target: {fileID: 5678945526099878414, guid: 70deb63141af1964b8aec9f7f062f1d2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5678945526099878414, guid: 70deb63141af1964b8aec9f7f062f1d2,
         type: 3}
