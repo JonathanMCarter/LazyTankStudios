@@ -96,7 +96,8 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < items.Length; i++)
         {
-            transform.GetChild(i).GetComponent<InvSlot>().UnselectedColourApplied();
+            if(!state)
+                 transform.GetChild(i).GetComponent<InvSlot>().UnselectedColourApplied();
             transform.GetChild(i).GetComponent<InvSlot>().enabled = state;
 
         }

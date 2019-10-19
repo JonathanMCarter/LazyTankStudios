@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Vendor : MonoBehaviour
 {
@@ -22,9 +23,12 @@ public class Vendor : MonoBehaviour
     Inventory VendorInventory;
     InvSlot playerInventorySlot;
     InvSlot VendorInventorySlot;
+
     //Do it once
     bool happened = false;
     bool Sell = true;
+    int selected = 0;
+
     //X position of the inventory 
     const int PANEL_POSITION_VENDOR_ON = 250;
 
@@ -41,13 +45,84 @@ public class Vendor : MonoBehaviour
     {
         playerInventorySlot = inventory.transform.GetChild(inventory.selected).GetComponent<InvSlot>();
         VendorInventorySlot = VendorInventory.transform.GetChild(VendorInventory.selected).GetComponent<InvSlot>();
+        StartCoroutine(delay());
+
+        if (isSellOrBuyPanelOpened())
+        {
+            GameObject.Find("SellOrBuyPanel").transform.GetChild(selected).GetComponent<Image>().color = new Color(0.745283f, 0.745283f, 0.745283f);
+
+            if (Input.GetAxisRaw("Vertical") == 1 && selected < 2 && selected > 0)
+            {
+                StartCoroutine(delay());
+                selected--;
+
+            }
+            else if (Input.GetAxisRaw("Vertical") == -1 && selected >= 0 && selected < 1)
+            {
+                StartCoroutine(delay());
+                selected++;
+
+            }
+            GameObject.Find("SellOrBuyPanel").transform.GetChild(selected).GetComponent<Image>().color = new Color(1, 1, 1);
+
+        }
+        if (Input.GetKeyDown(KeyCode.Return) && inventory.isOpen)
+        {
+            if (playerInventorySlot.hasItem && Sell)
+            {
+                if (playerInventorySlot.quantity > 1)
+                {
+                    //Remove item from player inventory in relation with the quantity we have 
+                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, !Sell, 1, !Sell);
+
+                    //Add a item into the vendor inventory 
+                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                }
+                else if (playerInventorySlot.quantity == 1)
+                {
+                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
+                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                }
+            }
+            else if (VendorInventorySlot.hasItem & !Sell)
+            {
+                if (VendorInventorySlot.quantity > 1)
+                {
+                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
+                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, Sell, 1, Sell);
+                }
+                else if (VendorInventorySlot.quantity == 1)
+                {
+                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
+                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                }
+            }
+        }
+
         //CHANGE IT
         if (GameObject.Find("DialogueHandler").GetComponent<DialogueScript>().FileHasEnded && !happened)
         {
-            displaySellorBuyPanel(1);
+            ToogleSellorBuyPanel(1);
+            if(isSellOrBuyPanelOpened())
+                            GameObject.Find("Hero").GetComponent<PlayerMovement>().enabled = !isSellOrBuyPanelOpened();
 
-            //this only happens once
-            happened = !happened;
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                switch (selected)
+                {
+                    case 0:
+                        SellOrBuy(true);
+                        break;
+                    case 1:
+                        SellOrBuy(false);
+                        break;
+                }
+                //this only happens once
+                happened = !happened;
+
+            }
+
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -57,42 +132,6 @@ public class Vendor : MonoBehaviour
             inventory.StartCoroutine(inventory.ToogleSlots(Sell));
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) && GameObject.Find("DialogueHandler").GetComponent<DialogueScript>().FileHasEnded)
-        {
-            if (playerInventorySlot.hasItem && Sell)
-            {
-                if (playerInventorySlot.quantity > 1)
-                {
-                    //Remove item from player inventory in relation with the quantity we have 
-                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, !Sell,1,!Sell);
-
-                    //Add a item into the vendor inventory 
-                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell,1,Sell);
-
-                }
-                else if (playerInventorySlot.quantity == 1)
-                {
-                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell);
-                    VendorInventorySlot.quantity++;
-                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell);
-                }
-            }
-            else if (VendorInventorySlot.hasItem & !Sell)
-            {
-                if (VendorInventorySlot.quantity > 1)
-                {
-
-                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell,1,!Sell);
-                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, Sell,1,Sell);
-
-                }
-                else if (VendorInventorySlot.quantity == 1)
-                {
-                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell,1,!Sell);
-                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell,1,Sell);
-                }
-            }
-        }
 
 
     }
@@ -128,20 +167,40 @@ public class Vendor : MonoBehaviour
     {
         Sell = action;
         if (Sell)
+        {
             VendorInventory.StartCoroutine(VendorInventory.ToogleSlots(!Sell));
-        else inventory.StartCoroutine(inventory.ToogleSlots(Sell));
-        print(Sell);
+            inventory.StartCoroutine(inventory.ToogleSlots(Sell));
+        }
+        else
+        {
+            inventory.StartCoroutine(inventory.ToogleSlots(Sell));
+            VendorInventory.StartCoroutine(VendorInventory.ToogleSlots(!Sell));
+
+        }
 
 
         inventory.open();
         inventory.VendorMode = true;
         VendorInventory.open();
         VendorInventory.VendorMode = true;
-        displaySellorBuyPanel(0);
+        ToogleSellorBuyPanel(0);
 
     }
-    void displaySellorBuyPanel(int state)
+    void ToogleSellorBuyPanel(int state)
     {
         GameObject.Find("SellOrBuyPanel").GetComponent<CanvasGroup>().alpha = state;
     }
+
+    bool isSellOrBuyPanelOpened()
+    {
+        return GameObject.Find("SellOrBuyPanel").GetComponent<CanvasGroup>().alpha == 1 ? true : false;
+
+    }
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(0.1f);
+    }
+
+
+
 }
