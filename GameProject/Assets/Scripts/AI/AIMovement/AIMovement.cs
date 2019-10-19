@@ -33,7 +33,7 @@ namespace AI
         //Tony Edit
         public SpriteRenderer[] Hearts;
         private int Health = 2;
-        private BoxCollider2D HeroAttackThing;
+        //private BoxCollider2D HeroAttackThing;
         //End of edit
         private FiniteStateMachine fsm;
         private TaskOverTime tot;
@@ -47,11 +47,13 @@ namespace AI
         public bool IsMoving { get; private set; }
         public bool IsReadyToMove { get; private set; }
 
+        Coroutine Fix;
+
         // Start is called before the first frame update
         void Awake()
         {
             player  = FindObjectOfType<PlayerMovement>().gameObject;
-            HeroAttackThing = player.GetComponent<BoxCollider2D>();
+            //HeroAttackThing = player.GetComponent<BoxCollider2D>();
             rootPos = transform.position;
             CircleCollider2D c = GetComponent<CircleCollider2D>();
             c.radius = awarnessSize;
@@ -81,18 +83,27 @@ namespace AI
         private void OnTriggerEnter2D(Collider2D collision)
         {
             tot.Stop();
+
             if (collision.tag == "Player")
             {
                 fsm.ChangeState(new ChasePlayerState(this, collision.gameObject));
                 player = collision.gameObject;
+
+
                 //Tony Edit
                 for (int i = 0; i < Health; ++i)
                     Hearts[i].gameObject.SetActive(true);
                 //end of edit
             }
+
             //Tony Edit
-            if (collision == HeroAttackThing)
+            //if (collision == HeroAttackThing)
+            if (collision.gameObject.tag == "Bullet")
             {
+                Destroy(collision.gameObject);
+
+                Debug.Log("********** Enemy Should Be Taking Damage Now...");
+
                 Hearts[Health - 1].gameObject.SetActive(false);
                 --Health;
                 if (Health <= 0)
@@ -103,7 +114,10 @@ namespace AI
         private void OnTriggerExit2D(Collider2D other)
         {
             //Cache States someday
-            fsm.ChangeState(new RandomWanderState(this));
+
+
+            if (Fix == null)
+                Fix = StartCoroutine(StopBug());
             for (int i = 0; i < Health; ++i)
                 Hearts[i].gameObject.SetActive(false);
         }
@@ -128,6 +142,15 @@ namespace AI
         {
             IsMoving = false;
             tot.Start(Random.Range(0, maxIdleTime), (float f) => { }, () => { IsReadyToMove = true; });
+        }
+
+
+        // Jonathan Added this to stop the annoying bouncing of the sprite for no reason!!!!!!
+        private IEnumerator StopBug()
+        {
+            yield return new WaitForSeconds(XRange / 2);
+            fsm.ChangeState(new RandomWanderState(this));
+            Fix = null;
         }
     }
 }

@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Added by Jonathan
     public GameObject DamageBulletThingy;
-    public float Delay;
+    public ProjectileStats WeaponStats;
     // end of edit here...
 
     //Start of Update from LC
@@ -97,6 +97,8 @@ public class PlayerMovement : MonoBehaviour
         {
             useItem(i.equippedB);
         }
+
+
         if (attacking)
         {
             countdown -= Time.deltaTime;
@@ -129,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
             case -1:
             default:
                 //nothing or invalid item equipped
+                if (attacking) attacking = false;
                 Debug.Log("Trying to use nothing");
                 break;
         }
@@ -155,8 +158,9 @@ public class PlayerMovement : MonoBehaviour
     public void FireProjectile()
     {
         GameObject Go = Instantiate(DamageBulletThingy, transform.position, transform.rotation);
-        Go.GetComponent<Rigidbody2D>().velocity = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * 15;
-        Destroy(Go, Delay);
+        Go.transform.localScale = new Vector3(WeaponStats.Size, WeaponStats.Size, WeaponStats.Size);
+        Go.GetComponent<Rigidbody2D>().velocity = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * WeaponStats.Speed;
+        Destroy(Go, WeaponStats.Lifetime);
     }
 
     private void OnDisable()
@@ -204,6 +208,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            Debug.Log("********** Player Should Be Taking Damage Now...");
+
             TakeDamage(1);           
         }
     }
