@@ -38,6 +38,8 @@ Shader "Custom/ColourChanger"
     }
     SubShader
     {
+		Cull Off
+
         Pass
         {
 

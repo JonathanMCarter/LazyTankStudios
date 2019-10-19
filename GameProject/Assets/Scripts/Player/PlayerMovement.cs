@@ -81,7 +81,10 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawLine(transform.position, transform.right, Color.yellow);
 
         myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed;
-        myRenderer.flipX = (myRigid.velocity.x < 0);
+        //myRenderer.flipX = (myRigid.velocity.x < 0);
+
+
+
         myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
         myAnim.SetFloat("SpeedY", IM.Y_Axis());
         if (IM.Button_Menu())

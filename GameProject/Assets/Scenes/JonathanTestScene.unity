@@ -32462,6 +32462,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1054382493}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1054382495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
+    type: 3}
+  m_PrefabInstance: {fileID: 1054382493}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af63586371a55b4f82519e282f155ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1069986314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63223,6 +63235,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VendorSpeech: {fileID: 11400000, guid: 8a1eded10cd2ec542ad679d91e254224, type: 2}
+--- !u!114 &1671166820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671166818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd88efa93e21734a9d4485838af0ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interact:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1671166821}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1671166821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671166818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3f2379849ac24499c0102324d4ba53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 0}
+  dialogue: {fileID: 0}
+  questdialogue: {fileID: 0}
+  movement: {fileID: 1054382495}
 --- !u!1001 &1690893755
 PrefabInstance:
   m_ObjectHideFlags: 0
