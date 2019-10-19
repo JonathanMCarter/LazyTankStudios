@@ -119,7 +119,9 @@ namespace AI
         public void ChasePlayer()
         {
             if ((player.transform.position - transform.position).magnitude > 0.5f)
+            {
                 transform.position += (player.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime;
+            }
         }
 
         private void Idle()
