@@ -6,10 +6,10 @@ using UnityEngine.UI;
 /*
  * Menu Script
  * 
- * Probably isn't needed anymore
+ * 
  * 
  * Owner: Toby Wishart
- * Last Edit : 19/10/19 Changed inventory to hotbar
+ * Last Edit : 12/10/19 Added delay and opens inventory
  * 
  * Also Edited by : Tony Parsons
  * Last Edit: 05/06.10.19
@@ -35,7 +35,7 @@ public class Menu : MonoBehaviour
                 {
                     //Tony - I've made it so items opens combat for testing purposes, remove it after finding a better way for accessing combat
                     case menu.ITEMS:
-                        GameObject.Find("InventoryHotbar").GetComponent<Inventory>().open();
+                        GameObject.Find("Inventory").GetComponent<Inventory>().open();
                         //combatOverlay.SetActive(true);
                         break;
                     case menu.START:

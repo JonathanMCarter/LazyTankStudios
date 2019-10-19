@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*
  * Created by Toby Wishart
- * Last edit: 19/10/19
+ * Last edit: 11/10/19
  * Also edited: Gabriel Potamianos
  * Last edit: 14/10/19
  * 
@@ -21,14 +21,9 @@ public class Inventory : MonoBehaviour
 {
 
     bool[] items;
-    //ID for the item equipped with the A button
-    public int equippedA = -1;
-    //ID for the item equipped with the B button
-    public int equippedB = -1;
-
+    public int equipped = -1;
+    
     public bool isOpen;
-
-    InputManager IM;
 
 
     #region Gabriel Variables
@@ -68,32 +63,20 @@ public class Inventory : MonoBehaviour
     }
 
     //Equip or unequip item as long as player has item
-    //id = the item ID
-    //equip = equipping or unequipping
-    //button = the button pressed
-    public void equipItem(int id, bool equip, int button)
+    public void equipItem(int id, bool equip)
     {
         if (items[id])
         {
             InvSlot slot = transform.GetChild(id).GetComponent<InvSlot>();
-            slot.equip(equip ? button : 0);
-            switch (button) {
-                case 1:
-                    equippedA = equip ? id : -1;
-                    equippedB = equippedA == equippedB ? -1 : equippedB;
-                    break;
-                case 2:
-                    equippedB = equip ? id : -1;
-                    equippedA = equippedA == equippedB ? -1 : equippedA;
-                    break;
-            }
-            for (int i = 0; i < items.Length; i++) transform.GetChild(i).GetComponent<InvSlot>().equip(i == equippedA ? 1 : i == equippedB ? 2 : 0);
+            slot.equip(equip);
+            equipped = equip ? id : -1;
+            for (int i = 0; i < items.Length; i++) transform.GetChild(i).GetComponent<InvSlot>().equip(i == id && equip);
         }
     }
 
-    public bool isEquipped(int id, int button)
+    public bool isEquipped(int id)
     {
-        return transform.GetChild(id).GetComponent<InvSlot>().equipped == button;
+        return transform.GetChild(id).GetComponent<InvSlot>().equipped;
     }
 
     //Open/close inventory
@@ -131,8 +114,6 @@ public class Inventory : MonoBehaviour
     {
         items = new bool[transform.childCount];
         VendorMode = false;
-
-        IM = GameObject.FindObjectOfType<InputManager>();
     }
 
     private bool delayed = false;
@@ -143,55 +124,35 @@ public class Inventory : MonoBehaviour
         if (isOpen && !delayed)
         {
 
-            if (IM.Button_Menu())
+            if (Input.GetButtonDown("Cancel"))
             {
                 open();
                 StartCoroutine(delay());
             }
-            if (IM.Button_A() && !VendorMode)
+            if (Input.GetButtonDown("Submit") && !VendorMode)
             {
-                equipItem(selected, !isEquipped(selected, 1), 1);
-                StartCoroutine(delay());
-            }
-
-            if (IM.Button_B() && !VendorMode)
-            {
-                equipItem(selected, !isEquipped(selected, 2), 2);
+                equipItem(selected, !isEquipped(selected));
                 StartCoroutine(delay());
             }
 
             #region Gabriel Edit Selector Movement
 
             //Lock selector in horizontal depending on which row it is (RIGHT END)
-            if (IM.X_Axis() == 1 )
+            if (Input.GetAxisRaw("Horizontal") == 1 )
             {
-                if (VendorMode)
-                {
-                    if (selected < column - 1) selected++;
-                } else
-                {
-                    selected++;
-                    if (selected == items.Length) selected = 0;
-                }
+                if (selected < column - 1) selected++;
                 StartCoroutine(delay());
             }
 
             //Lock selector on horizontal depending on which row it is (LEFT END)
-            else if (IM.X_Axis() == -1 )
+            else if (Input.GetAxisRaw("Horizontal") == -1 )
             {
-                if (VendorMode)
-                {
-                    if (selected > column - 1 - ROWS) selected--;
-                } else
-                {
-                    selected--;
-                    if (selected == -1) selected = items.Length - 1;
-                }
+                if (selected > column - 1 - ROWS) selected--;
                 StartCoroutine(delay());
             }
 
             //Lock selector on vertical depending whether it exceeds the limits (LEFT END)
-            if (IM.Y_Axis() == 1 )
+            if (Input.GetAxisRaw("Vertical") == 1 )
             {
                 if (selected - COLUMN >= 0)
                 {
@@ -202,7 +163,7 @@ public class Inventory : MonoBehaviour
             }
 
             //Lock selector on vertical depending whether it exceeds the limits (RIGHT END )
-            else if (IM.Y_Axis() == -1)
+            else if (Input.GetAxisRaw("Vertical") == -1)
             {
                 if (selected + COLUMN < items.Length)
                 {
