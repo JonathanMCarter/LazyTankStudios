@@ -127,11 +127,11 @@ public class Inventory : MonoBehaviour
     }
 
     #endregion
+
     void Start()
     {
         items = new bool[transform.childCount];
         VendorMode = false;
-
         IM = GameObject.FindObjectOfType<InputManager>();
     }
 
@@ -140,6 +140,7 @@ public class Inventory : MonoBehaviour
     {
 
         GetComponent<CanvasGroup>().alpha = isOpen ? 1 : 0;
+
         if (isOpen && !delayed)
         {
 
