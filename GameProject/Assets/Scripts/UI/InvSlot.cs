@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * Owner: Toby Wishart
+ * Last edit: 19/10/19
+ * Reason: Equip icon displays A or B
+ */
+
 public class InvSlot : MonoBehaviour
 {
 
     public bool hasItem = false;
     public int quantity = 0;
-    public bool equipped = false;
+    //0 = not equipped 1 = a equipped 2 = b equipped
+    public int equipped = 0;
     [HideInInspector]
     public bool selected = false;
 
-    GameObject i, e;
-    Text q;
+    GameObject i;
+    Text q, e;
 
     void Start()
     {
         i = transform.GetChild(0).gameObject;
         q = transform.GetChild(1).gameObject.GetComponent<Text>();
-        e = transform.GetChild(2).gameObject;
+        e = transform.GetChild(2).gameObject.GetComponent<Text>();
         updateIcon();
         selected = false;
     }
@@ -29,10 +36,10 @@ public class InvSlot : MonoBehaviour
     {
         i.SetActive(hasItem);
         q.text = quantity > 0 ? quantity.ToString() : "";
-        e.SetActive(equipped);
+        e.text = equipped > 0 ? equipped == 1 ? "A" : "B" : "";
     }
 
-    public void equip(bool equip)
+    public void equip(int equip)
     {
         equipped = equip;
         updateIcon();
@@ -40,7 +47,7 @@ public class InvSlot : MonoBehaviour
 
     void Update()
     {
-        GetComponent<Image>().color = selected ? new Color(1,1,1) : new Color(0.35f, 0.35f, 0.35f);
+        GetComponent<Image>().color = selected ? new Color(0,0,1) : new Color(0.35f, 0.35f, 0.35f);
     }
 
     public void UnselectedColourApplied()
