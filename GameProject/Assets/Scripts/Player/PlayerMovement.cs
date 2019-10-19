@@ -78,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.DrawLine(transform.position, transform.right, Color.yellow);
+
         myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed;
         myRenderer.flipX = (myRigid.velocity.x < 0);
         myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
@@ -157,9 +159,14 @@ public class PlayerMovement : MonoBehaviour
     // Added by Jonathan
     public void FireProjectile()
     {
+        Debug.Log(((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized));
         GameObject Go = Instantiate(DamageBulletThingy, transform.position, transform.rotation);
         Go.transform.localScale = new Vector3(WeaponStats.Size, WeaponStats.Size, WeaponStats.Size);
-        Go.GetComponent<Rigidbody2D>().velocity = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * WeaponStats.Speed;
+
+        // I'm aware that if you click close to yourself the bullet goes slow. 
+        Vector3 Dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+
+        Go.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Clamp(Dir.x, -.3f, .3f), Dir.y) * WeaponStats.Speed, ForceMode2D.Impulse);
         Destroy(Go, WeaponStats.Lifetime);
     }
 

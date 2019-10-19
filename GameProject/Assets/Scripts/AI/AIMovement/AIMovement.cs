@@ -32,12 +32,16 @@ namespace AI
 
         //Tony Edit
         public SpriteRenderer[] Hearts;
-        private int Health = 2;
+        public int Health = 2;
         //private BoxCollider2D HeroAttackThing;
         //End of edit
         private FiniteStateMachine fsm;
         private TaskOverTime tot;
         private Vector2 rootPos;
+
+        // Jonathan Addition
+        private bool HeartsShowing;
+        private bool HeartsCoRunning = false;
 
         public Vector2 RootPos => rootPos;
         public int XRange => xRange;
@@ -67,6 +71,11 @@ namespace AI
         void Update()
         {
             fsm.ExecuteCurrentState();
+
+            if (Health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
         }
 
         private void OnDrawGizmos()
@@ -82,6 +91,11 @@ namespace AI
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (Fix != null)
+            {
+                StopCoroutine(Fix);
+                Fix = null;
+            }
             tot.Stop();
 
             if (collision.tag == "Player")
@@ -91,9 +105,15 @@ namespace AI
 
 
                 //Tony Edit
-                for (int i = 0; i < Health; ++i)
-                    Hearts[i].gameObject.SetActive(true);
+                //for (int i = 0; i < Health; ++i)
+                //    Hearts[i].gameObject.SetActive(true);
                 //end of edit
+
+                if (!HeartsCoRunning)
+                {
+                    HeartsShowing = false;
+                    StartCoroutine(HeartsCo());
+                }
             }
 
             //Tony Edit
@@ -106,20 +126,25 @@ namespace AI
 
                 Hearts[Health - 1].gameObject.SetActive(false);
                 --Health;
-                if (Health <= 0)
-                    this.gameObject.SetActive(false);
+                //if (Health <= 0)
+                //    this.gameObject.SetActive(false);
             }
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
             //Cache States someday
-
+            
 
             if (Fix == null)
                 Fix = StartCoroutine(StopBug());
-            for (int i = 0; i < Health; ++i)
-                Hearts[i].gameObject.SetActive(false);
+
+
+            if (!HeartsCoRunning)
+            {
+                HeartsShowing = true;
+                StartCoroutine(HeartsCo());
+            }
         }
 
         public void RandomWander(Vector2 destination)
@@ -146,11 +171,42 @@ namespace AI
 
 
         // Jonathan Added this to stop the annoying bouncing of the sprite for no reason!!!!!!
+        // well it kinda works somme of the time, keep it in and working on making it so AI has delays to its thinking so it doesn't keep breaking like this...
         private IEnumerator StopBug()
         {
+            IsMoving = false;
             yield return new WaitForSeconds(XRange / 2);
             fsm.ChangeState(new RandomWanderState(this));
             Fix = null;
+        }
+
+
+        // Makes it so the hearts don't glitch in and out of exsistance
+        // granted the way its codes does work... just not well enough... this just fixes that a little....
+        private IEnumerator HeartsCo()
+        {
+            HeartsCoRunning = true;
+
+            if ((HeartsShowing) && (Health > 0))
+            {
+                for (int i = 0; i < Health; ++i)
+                {
+                    Hearts[i].gameObject.SetActive(false);
+                    HeartsShowing = false;  
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Health; ++i)
+                {
+                    Hearts[i].gameObject.SetActive(true);
+                    HeartsShowing = true;
+                }
+            }
+
+            yield return new WaitForSeconds(.25f);
+
+            HeartsCoRunning = false;
         }
     }
 }
