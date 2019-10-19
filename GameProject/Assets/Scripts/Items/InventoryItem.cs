@@ -23,7 +23,8 @@ public class InventoryItem : MonoBehaviour
 
             if (Input.GetButton("Submit"))
             {
-                GameObject.Find("InventoryHotbar").GetComponent<Inventory>().addItem(ID, quantity, false);
+                FindObjectOfType<Inventory>().addItem(ID, quantity, false);
+                //GameObject.Find("InventoryHotbar").GetComponent<Inventory>().addItem(ID, quantity, false);
                 Destroy(gameObject);
             }
         }
