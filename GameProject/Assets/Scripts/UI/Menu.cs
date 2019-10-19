@@ -35,7 +35,7 @@ public class Menu : MonoBehaviour
                 {
                     //Tony - I've made it so items opens combat for testing purposes, remove it after finding a better way for accessing combat
                     case menu.ITEMS:
-                        GameObject.Find("Inventory").GetComponent<Inventory>().open();
+                        GameObject.Find("InventoryHotbar").GetComponent<Inventory>().open();
                         //combatOverlay.SetActive(true);
                         break;
                     case menu.START:
