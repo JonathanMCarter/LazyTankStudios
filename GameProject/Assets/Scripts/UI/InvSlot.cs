@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * Owner: Toby Wishart
+ * Last edit: 19/10/19
+ * Reason: Equip icon displays A or B
+ */
+
 public class InvSlot : MonoBehaviour
 {
 

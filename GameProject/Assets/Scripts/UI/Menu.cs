@@ -6,10 +6,10 @@ using UnityEngine.UI;
 /*
  * Menu Script
  * 
- * 
+ * Probably isn't needed anymore
  * 
  * Owner: Toby Wishart
- * Last Edit : 12/10/19 Added delay and opens inventory
+ * Last Edit : 19/10/19 Changed inventory to hotbar
  * 
  * Also Edited by : Tony Parsons
  * Last Edit: 05/06.10.19

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*
  * Created by Toby Wishart
- * Last edit: 11/10/19
+ * Last edit: 19/10/19
  * Also edited: Gabriel Potamianos
  * Last edit: 14/10/19
  * 
@@ -21,7 +21,9 @@ public class Inventory : MonoBehaviour
 {
 
     bool[] items;
+    //ID for the item equipped with the A button
     public int equippedA = -1;
+    //ID for the item equipped with the B button
     public int equippedB = -1;
 
     public bool isOpen;
@@ -66,6 +68,9 @@ public class Inventory : MonoBehaviour
     }
 
     //Equip or unequip item as long as player has item
+    //id = the item ID
+    //equip = equipping or unequipping
+    //button = the button pressed
     public void equipItem(int id, bool equip, int button)
     {
         if (items[id])
