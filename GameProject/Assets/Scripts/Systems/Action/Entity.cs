@@ -19,7 +19,7 @@ public class Entity : MonoBehaviour
     {
         foreach (var action in updateActions)
         {
-            action.Execute(this);
+            StartCoroutine(action.Execute(this));
         }
     }
 }
