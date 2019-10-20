@@ -4,39 +4,43 @@ using UnityEngine;
 
 /**
  * Created by Toby Wishart
- * Last edit: 12/10/19
+ * Last edit: 20/10/19
  * 
- * Script is unfinished
+ * Script for fading in and out with the gate
  */
 public class ZoneTransition : MonoBehaviour
 {
 
     Animator a;
+    public Transform destination;
+    GameObject player;
 
     void Start()
     {
-        a = GetComponent<Animator>();
+        a = GameObject.Find("ZoneFadeScreen").GetComponent<Animator>();
+        player = GameObject.FindWithTag("Player");
     }
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        player.GetComponent<PlayerMovement>().enabled = false;
+        player.GetComponent<PlayerZoneTransition>().Destination = destination;
+        Camera.main.GetComponent<CameraMove>().enabled = false;
+        a.SetBool("in", false);
+        a.SetBool("out", true);
     }
 
     //Function for fade out animation event
-    void FadeOutEnd()
+    public void FadeOutEnd()
     {
-
+        player.GetComponent<PlayerZoneTransition>().StartTransition();
     }
 
     //Function for fade in animation event
-    void FadeInEnd()
+    public void FadeInEnd()
     {
-
-    }
-
-    void Transition()
-    {
-
+        a.SetBool("in", false);
+        a.SetBool("out", false);
+        player.GetComponent<PlayerMovement>().enabled = true;
     }
 }
