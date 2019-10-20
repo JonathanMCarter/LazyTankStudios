@@ -9,7 +9,8 @@ public class Vendor : MonoBehaviour
      * Vendor Script
      * 
      * Created by: Gabriel Potamianos
-     * Last edited: 14/10/2019
+     * Last Edited by: Jonathan Carter @ some ungodly hour....
+     * Last edited: 19/10/2019
      * 
      * It does retrieve the file dialogue and connects it to the dialogue handler.
      * Opens the inventories
@@ -40,6 +41,12 @@ public class Vendor : MonoBehaviour
         // Jonathan Edit
         inventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(3).GetComponent<Inventory>();
         VendorInventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(2).GetComponent<Inventory>();
+
+        if (GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.activeInHierarchy)
+        {
+            GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.SetActive(false);
+            GameObject.Find("SellOrBuyPanel").transform.GetChild(1).gameObject.SetActive(false);
+        }
 
         DS = FindObjectOfType<DialogueScript>();
 
@@ -108,7 +115,6 @@ public class Vendor : MonoBehaviour
             }
         }
 
-        //CHANGE IT
         // Jonathan @ 23:37 (been awake for 17h & 37m)
         // ndfkjhdsijfgsdfjkhdskjfhsdkiuhkjdhiupsduhdsgiusdhg
         // THIS IS NOT THE WAY TO DO THIS!!!!!!!
@@ -118,10 +124,18 @@ public class Vendor : MonoBehaviour
         //
         //
         // Instead, check to see if the file been read is actually the one on the vendor.....
+        // Shouldn't cause problems anymore......
         if (DS.File == VendorSpeech)
         {
             if (DS.FileHasEnded && !happened)
             {
+                // Jonathan Edit - Makes it so it enables the sell / buy buttons again after they are disabled the first time
+                if (!GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.activeInHierarchy)
+                {
+                    GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.SetActive(true);
+                    GameObject.Find("SellOrBuyPanel").transform.GetChild(1).gameObject.SetActive(true);
+                }
+
 
                 ToogleSellorBuyPanel(1);
 
@@ -173,7 +187,7 @@ public class Vendor : MonoBehaviour
             DS.ChangeFile(VendorSpeech);
 
             //Position the inventories
-            if(inventory.transform.localPosition.x>-PANEL_POSITION_VENDOR_ON)
+            if (inventory.transform.localPosition.x>-PANEL_POSITION_VENDOR_ON)
                 inventory.VendorPanelPosition(PANEL_POSITION_VENDOR_ON);
             
             if (VendorInventory.transform.localPosition.x < PANEL_POSITION_VENDOR_ON)
@@ -201,7 +215,6 @@ public class Vendor : MonoBehaviour
         {
             inventory.StartCoroutine(inventory.ToogleSlots(Sell));
             VendorInventory.StartCoroutine(VendorInventory.ToogleSlots(!Sell));
-
         }
 
 
@@ -209,7 +222,12 @@ public class Vendor : MonoBehaviour
         inventory.VendorMode = true;
         VendorInventory.open();
         VendorInventory.VendorMode = true;
-        ToogleSellorBuyPanel(0);
+
+        // Jonathan Edit - Makes it so it disables the sell / buy buttons
+        GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.SetActive(false);
+        GameObject.Find("SellOrBuyPanel").transform.GetChild(1).gameObject.SetActive(false);
+
+        //ToogleSellorBuyPanel(0);
 
     }
     void ToogleSellorBuyPanel(int state)

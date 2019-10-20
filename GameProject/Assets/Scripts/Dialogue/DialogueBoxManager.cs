@@ -15,6 +15,7 @@ public class DialogueBoxManager : MonoBehaviour
     private void Awake()
     {
         panel = GetComponent<RectTransform>();
+        gameObject.SetActive(false);
     }
     void OnEnable()
     {

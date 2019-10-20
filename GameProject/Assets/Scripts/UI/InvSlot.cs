@@ -53,6 +53,5 @@ public class InvSlot : MonoBehaviour
     public void UnselectedColourApplied()
     {
         GetComponent<Image>().color =new Color(0.35f, 0.35f, 0.35f);
-
     }
 }
