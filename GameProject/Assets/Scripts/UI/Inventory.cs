@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
     public const int COLUMN = 4;
     public int selected = 0;
     int column = 4;
-    public bool VendorMode { get; set; }
+    public bool VendorMode;
 
     #endregion
 

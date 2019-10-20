@@ -93,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
         //Toby: A and B item actions
         if (IM.Button_A() && !i.isOpen)
         {
+            Debug.Log("Test");
             useItem(i.equippedA);
         }
 
@@ -116,6 +117,8 @@ public class PlayerMovement : MonoBehaviour
     //Toby: Function for using an item of a given ID
     void useItem(int ID)
     {
+        Debug.Log(ID.ToString());
+
         switch (ID)
         {
             case (int)ITEMS.SWORD:
@@ -130,7 +133,19 @@ public class PlayerMovement : MonoBehaviour
                 // Jonathan Added This function
                 FireProjectile();
                 break;
+            // Temp - just so the axe or anything with the ID of 1 works for now.....
+            case 1:
+                //Andreas edit
+                //PlayKickAnimation();
+                PlayAttackAnimation();
+                //Andreas edit end
+                attackHitBox.gameObject.SetActive(true);
+                attacking = true;
+                countdown = AttackDuration;
 
+                // Jonathan Added This function
+                FireProjectile();
+                break;
             case -1:
             default:
                 //nothing or invalid item equipped

@@ -35,12 +35,13 @@ public class Vendor : MonoBehaviour
 
     // Jonathan Edit
     private DialogueScript DS;
+    public bool IsUsingVendor;
 
     private void Start()
     {
         // Jonathan Edit
-        inventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(3).GetComponent<Inventory>();
-        VendorInventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(2).GetComponent<Inventory>();
+        inventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(2).GetComponent<Inventory>();
+        VendorInventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(3).GetComponent<Inventory>();
 
         if (GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.activeInHierarchy)
         {
@@ -82,53 +83,51 @@ public class Vendor : MonoBehaviour
             GameObject.Find("SellOrBuyPanel").transform.GetChild(selected).GetComponent<Image>().color = new Color(1, 1, 1);
 
         }
-        if (Input.GetKeyDown(KeyCode.Return) && inventory.isOpen)
-        {
-            if (playerInventorySlot.hasItem && Sell)
-            {
-                if (playerInventorySlot.quantity > 1)
-                {
-                    //Remove item from player inventory in relation with the quantity we have 
-                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, !Sell, 1, !Sell);
 
-                    //Add a item into the vendor inventory 
-                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
-                }
-                else if (playerInventorySlot.quantity == 1)
-                {
-                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
-                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
-                }
-            }
-            else if (VendorInventorySlot.hasItem & !Sell)
+        if (IsUsingVendor)
+        {
+            if (Input.GetKeyDown(KeyCode.Return) && inventory.isOpen)
             {
-                if (VendorInventorySlot.quantity > 1)
+                if (playerInventorySlot.hasItem && Sell)
                 {
-                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
-                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, Sell, 1, Sell);
+                    if (playerInventorySlot.quantity > 1)
+                    {
+                        //Remove item from player inventory in relation with the quantity we have 
+                        inventory.addItem(inventory.selected, playerInventorySlot.quantity, !Sell, 1, !Sell);
+
+                        //Add a item into the vendor inventory 
+                        VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                    }
+                    else if (playerInventorySlot.quantity == 1)
+                    {
+                        inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
+                        VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                    }
                 }
-                else if (VendorInventorySlot.quantity == 1)
+                else if (VendorInventorySlot.hasItem & !Sell)
                 {
-                    inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
-                    VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                    if (VendorInventorySlot.quantity > 1)
+                    {
+                        inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
+                        VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, Sell, 1, Sell);
+                    }
+                    else if (VendorInventorySlot.quantity == 1)
+                    {
+                        inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
+                        VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                    }
                 }
             }
         }
 
-        // Jonathan @ 23:37 (been awake for 17h & 37m)
-        // ndfkjhdsijfgsdfjkhdskjfhsdkiuhkjdhiupsduhdsgiusdhg
-        // THIS IS NOT THE WAY TO DO THIS!!!!!!!
-        // really....
-        // this will run this on ANY!!!!!!!!!!!!!!!!!!!!! dialouge in the game, not just the Vendors!!!!!!!!!
-        // ...........why.........just why...
-        //
-        //
-        // Instead, check to see if the file been read is actually the one on the vendor.....
+        // Check to see if the file been read is actually the one on the vendor.....
         // Shouldn't cause problems anymore......
         if (DS.File == VendorSpeech)
         {
             if (DS.FileHasEnded && !happened)
             {
+                IsUsingVendor = true;
+
                 // Jonathan Edit - Makes it so it enables the sell / buy buttons again after they are disabled the first time
                 if (!GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.activeInHierarchy)
                 {
@@ -136,6 +135,7 @@ public class Vendor : MonoBehaviour
                     GameObject.Find("SellOrBuyPanel").transform.GetChild(1).gameObject.SetActive(true);
                 }
 
+                VendorInventory.gameObject.SetActive(false);
 
                 ToogleSellorBuyPanel(1);
 
@@ -220,16 +220,19 @@ public class Vendor : MonoBehaviour
 
         inventory.open();
         inventory.VendorMode = true;
+        VendorInventory.gameObject.SetActive(true);
         VendorInventory.open();
         VendorInventory.VendorMode = true;
 
         // Jonathan Edit - Makes it so it disables the sell / buy buttons
         GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.SetActive(false);
         GameObject.Find("SellOrBuyPanel").transform.GetChild(1).gameObject.SetActive(false);
+        IsUsingVendor = false;
 
         //ToogleSellorBuyPanel(0);
 
     }
+
     void ToogleSellorBuyPanel(int state)
     {
         GameObject.Find("SellOrBuyPanel").GetComponent<CanvasGroup>().alpha = state;
