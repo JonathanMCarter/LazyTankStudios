@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b8ce1703db0b34d48a85a7ca994fd708, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,10 +136,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65cb0aa0ced42a045a40d4b277d398b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xRange: 0
-  yRange: 0
+  xRange: 4
+  yRange: 4
   showGizmos: 0
-  movementSpeed: 2
-  maxIdleTime: 2
-  awarnessSize: 0.75
+  movementSpeed: 1
+  maxIdleTime: 1
+  awarnessSize: 2
   Hearts: []
+  Health: 2

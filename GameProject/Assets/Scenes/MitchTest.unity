@@ -193,39 +193,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da, type: 3}
---- !u!21 &63629355
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ColourChanger_MAT
-  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _PalCol1: {r: 0.4056604, g: 0.3929463, b: 0.36165008, a: 1}
-    - _PalCol2: {r: 0.7924528, g: 0.6670511, b: 0.497152, a: 1}
-    - _PalCol3: {r: 0.77687794, g: 0.80454564, b: 0.8113208, a: 1}
-    - _PalCol4: {r: 1, g: 1, b: 1, a: 0}
-    - _TexCol1: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
-    - _TexCol2: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
-    - _TexCol3: {r: 0.8313726, g: 0.8313726, b: 0.8313726, a: 1}
-    - _TexCol4: {r: 0.60784316, g: 0.7372549, b: 0.058823533, a: 1}
 --- !u!1 &196436671 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7560702775571044455, guid: 736aa0b43dfb14e47914979bdb936a71,
@@ -483,51 +450,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6895107349098414324, guid: 6369514f6961413479b8793b856ebc72,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 666511280}
-    - target: {fileID: 6895107349234991634, guid: 6369514f6961413479b8793b856ebc72,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b8ce1703db0b34d48a85a7ca994fd708, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6369514f6961413479b8793b856ebc72, type: 3}
---- !u!21 &666511280
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ColourChanger_MAT
-  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _PalCol1: {r: 0.9607843, g: 0.82845265, b: 0.52156866, a: 1}
-    - _PalCol2: {r: 0.754717, g: 0.6585338, b: 0.43787825, a: 1}
-    - _PalCol3: {r: 0.6603774, g: 0.5603863, b: 0.3270737, a: 1}
-    - _PalCol4: {r: 1, g: 1, b: 1, a: 0}
-    - _TexCol1: {r: 0.8313726, g: 0.8313726, b: 0.8313726, a: 1}
-    - _TexCol2: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
-    - _TexCol3: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
-    - _TexCol4: {r: 0.60784316, g: 0.7372549, b: 0.058823533, a: 1}
 --- !u!1 &898521703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,11 +1405,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7418834011263261253, guid: 1f2a5009750a7f64481914fe02ffe397,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 63629355}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f2a5009750a7f64481914fe02ffe397, type: 3}
 --- !u!1001 &4580396117082566123
@@ -1577,12 +1496,12 @@ PrefabInstance:
     - target: {fileID: 7266312070471349925, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.28
+      value: 3.19
       objectReference: {fileID: 0}
     - target: {fileID: 7266312070471349925, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.77
+      value: -1.84
       objectReference: {fileID: 0}
     - target: {fileID: 7266312070471349925, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
         type: 3}
