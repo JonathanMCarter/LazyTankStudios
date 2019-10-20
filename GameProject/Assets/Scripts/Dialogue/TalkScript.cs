@@ -25,9 +25,10 @@ public class TalkScript : MonoBehaviour
     DialogueScript ds;
     //QuestScript qs;
 
-    void Start()
+    void Awake()
     {
         ds = FindObjectOfType<DialogueScript>(); //added by LC
+        panel = FindObjectOfType<DialogueBoxManager>().gameObject;
         //qs = FindObjectOfType<QuestScript>();
         //ds = GameObject.Find("DialogueHandler").GetComponent<DialogueScript>();
         ds.ChangeFile(dialogue);
