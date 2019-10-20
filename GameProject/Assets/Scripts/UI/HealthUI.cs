@@ -11,8 +11,10 @@ using UnityEngine.UI;
  * Owner: Andreas Kraemer
  * Last Edit : 12/10/19
  * 
- * Also Edited by : <Enter name here if you edit this script>
- * Last Edit: <Date here if you edit this script>
+ * Also Edited by : Tony Parsons
+ * Last Edit:  20/10/2019
+ * 
+ * Reason: optimisation made what was in update into it's own function so it's not running all the time
  * 
  * */
 
@@ -25,16 +27,16 @@ public class HealthUI : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
-    // Update is called once per frame
-    void Update()
+
+    public void ShowHearts()
     {
-        for(int i=0;i<hearts.Length;i++)
+        for (int i = 0; i < hearts.Length; i++)
         {
             //sets hearts to max health
-            hearts[i].enabled=i<maxHealth?true:false;
+            hearts[i].enabled = i < maxHealth ? true : false;
 
             //switches heart sprites depending on the current health
-            hearts[i].sprite=i<currentHealth?fullHeart:emptyHeart;
+            hearts[i].sprite = i < currentHealth ? fullHeart : emptyHeart;
         }
     }
 }

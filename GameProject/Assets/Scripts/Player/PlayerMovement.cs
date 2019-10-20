@@ -24,6 +24,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 100;
+    private float baseSpeed;//for when the speed needs to be changed temporarily
     public Inventory i;
 
     // Added by Jonathan
@@ -40,14 +41,19 @@ public class PlayerMovement : MonoBehaviour
 
     //Edit by Andreas--
     //public SpriteRenderer[] Hearts;
-    public HealthUI healthUI; 
+    public HealthUI healthUI;
     //Andreas edit end--
 
+    //Tony's Variables
     public int health;
-    public BoxCollider2D attackHitBox;
+    public BoxCollider2D attackHitBox;//atach to attackrotater
+    public Transform attackRotater;//make a new transform as a child of the hero, make the attackHitBox a child of this transform
     private bool attacking;
-    public float AttackDuration;
+    public float AbilityDuration;
     private float countdown;
+    public float dashSpeedMultiplier;
+    private bool dashing;
+    private bool shieldUp;
     //end of Tony variables
 
     //Items enum, should matchup with the item IDs i.e. Sword is in slot 0 and has ID 0 therefore SWORD is 0 here
@@ -63,16 +69,15 @@ public class PlayerMovement : MonoBehaviour
         myRenderer = GetComponent<SpriteRenderer>();
         IM = FindObjectOfType<InputManager>();
         //Tony Was here
-        //Andreas edit--
-        //health = 3;
-        //Andreas edit end--
         attackHitBox.gameObject.SetActive(false);
         attacking = false;
+        baseSpeed = speed;
         //Tony Left Start
 
         //Andreas edit--
         healthUI.maxHealth=health;
         healthUI.currentHealth=health;
+        healthUI.ShowHearts();//tony addition
         //Andreas edit end--
     }
 
@@ -81,7 +86,9 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawLine(transform.position, transform.right, Color.yellow);
 
         myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed;
-        myRenderer.flipX = (myRigid.velocity.x < 0);
+
+        //tony function
+        SetRotater();//rotates the attack hit box
 
         myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
         myAnim.SetFloat("SpeedY", IM.Y_Axis());
@@ -103,20 +110,35 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (attacking)
+        //Tony action stuff
+        if (attacking || dashing || shieldUp)
         {
             countdown -= Time.deltaTime;
             if (countdown <= 0)
             {
-                attackHitBox.gameObject.SetActive(false);
-                attacking = false;
+                if (attacking)
+                {
+                    attackHitBox.gameObject.SetActive(false);
+                    attacking = false;
+                }
+                if (dashing)
+                {
+                    speed = baseSpeed;
+                    dashing = false;
+                }
+                if (shieldUp)
+                    shieldUp = false;
             }
         }
+        //To here
         //To here
     }
     //Toby: Function for using an item of a given ID
     void useItem(int ID)
     {
+        //setup countdown
+        countdown = AbilityDuration;
+
         Debug.Log(ID.ToString());
 
         switch (ID)
@@ -128,20 +150,32 @@ public class PlayerMovement : MonoBehaviour
                 //Andreas edit end
                 attackHitBox.gameObject.SetActive(true);
                 attacking = true;
-                countdown = AttackDuration;
 
                 // Jonathan Added This function
                 FireProjectile();
                 break;
+
+            //Tony Stuff
+            case (int)ITEMS.BLAZBOOTS:
+                //animation here
+
+                //-----------
+                speed *= dashSpeedMultiplier;
+                dashing = true;
+                break;
+            case (int)ITEMS.SHIELDSHARPTON:
+                //animation
+                //---------
+                shieldUp = true;
+                break;
             // Temp - just so the axe or anything with the ID of 1 works for now.....
-            case 1:
+            case 4:
                 //Andreas edit
                 //PlayKickAnimation();
                 PlayAttackAnimation();
                 //Andreas edit end
                 attackHitBox.gameObject.SetActive(true);
                 attacking = true;
-                countdown = AttackDuration;
 
                 // Jonathan Added This function
                 FireProjectile();
@@ -246,7 +280,33 @@ public class PlayerMovement : MonoBehaviour
         healthUI.currentHealth=health;
         if (health <= 0) gameObject.SetActive(false);  
     }
-
+    
+    
+    //rotates the attackhitbox with the player
+    private void SetRotater()
+    {
+        //Tony - moves attack location 
+        if (myRigid.velocity.x > 0.1)
+        {
+            myRenderer.flipX = false;
+            attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 0, 0));
+        }
+        //was having a problem with this so it might look kinda weird
+        if (myRigid.velocity.x < -0.1)
+        {
+            myRenderer.flipX = true;
+            attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 180, 0));
+        }
+        if (myRigid.velocity.y > 0.1)
+        {
+            attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 0, 0));
+            if (attackRotater.rotation != new Quaternion(0, 0, 90, 0))
+                attackRotater.Rotate(Vector3.forward * 90);
+        }
+        if (myRigid.velocity.y < -0.1)
+            if (attackRotater.rotation != new Quaternion(0, 0, -90, 0))
+                attackRotater.Rotate(Vector3.forward * -90);
+    }
     /* 
     void OnTriggerExit2D(Collider2D other)
     {
