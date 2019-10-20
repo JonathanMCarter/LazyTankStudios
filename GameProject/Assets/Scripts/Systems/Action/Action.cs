@@ -8,7 +8,7 @@ public abstract class Action : ScriptableObject
     public bool CanInterrupt;
     public Animation AnimationClip;
     public bool ISCOMPLETE { get; protected set; } = false;
-    public abstract IEnumerator Execute(Entity mb);
+    public abstract IEnumerator Execute(Entity entity);
     public virtual bool IsComplete()
     {
         return ISCOMPLETE && Reset();

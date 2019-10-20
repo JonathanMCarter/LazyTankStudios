@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abcd70c2c868e704eb013e737943d5f7, type: 3}
-  m_Name: Wait
+  m_Script: {fileID: 11500000, guid: 43afdbb5b09b8b346bb15eb249aa0fe4, type: 3}
+  m_Name: New Action Sequence
   m_EditorClassIdentifier: 
-  ExpiryTime: 3
+  ExpiryTime: 0
   CanInterrupt: 0
   AnimationClip: {fileID: 0}
+  SubActions:
+  - {fileID: 11400000, guid: 9777242664e1ce549a2bc596cdf4e34a, type: 2}
+  - {fileID: 11400000, guid: 68fd1e7e863672040ab9ea76cbf98893, type: 2}

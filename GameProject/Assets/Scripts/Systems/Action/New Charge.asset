@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abcd70c2c868e704eb013e737943d5f7, type: 3}
-  m_Name: Wait
+  m_Script: {fileID: 11500000, guid: 5b83c848314fa8a4e966e44b0f43ee06, type: 3}
+  m_Name: New Charge
   m_EditorClassIdentifier: 
-  ExpiryTime: 3
+  ExpiryTime: 0
   CanInterrupt: 0
   AnimationClip: {fileID: 0}
+  ChargeTime: 3
+  ChargeSpeed: 2
+  OnCollision: {fileID: 11400000, guid: d312fea18fdc9f04f8be4c98f92e8e27, type: 2}
+  Player: {fileID: 11400000, guid: 2331b9cca2c639d4ca60866be7ede2be, type: 2}
