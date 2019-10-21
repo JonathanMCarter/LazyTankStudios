@@ -95,19 +95,14 @@ namespace AI
             Gizmos.DrawWireCube(transform.position, awarnessSize);
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerStay2D(Collider2D collision)
         {
-            if (Fix != null)
-            {
-                StopCoroutine(Fix);
-                Fix = null;
-            }
-            tot.Stop();
-
-            if (collision.tag == "Player")
+            //if (collision.tag == "Player") //Need to get gameObject of collision. Comment added by LC
+            if (collision.gameObject.CompareTag("Player"))
             {
                 fsm.ChangeState(new ChasePlayerState(this, collision.gameObject));
-                player = collision.gameObject;
+                player = collision.gameObject; //why do we need to store player info here if not reusing it? comment added by LC
+                collision.GetComponent<PlayerMovement>().TakeDamage(1); //added by LC temp for prototype until abilities working
 
 
                 //Tony Edit
@@ -121,6 +116,38 @@ namespace AI
                     StartCoroutine(HeartsCo());
                 }
             }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (Fix != null)
+            {
+                StopCoroutine(Fix);
+                Fix = null;
+            }
+            tot.Stop();
+            ////////////////////////Section moved to OnTriggerStay//////////////////
+            ////if (collision.tag == "Player") //Need to get gameObject of collision. Comment added by LC
+            //if (collision.gameObject.CompareTag("Player"))
+            //{
+            //    print("PlayerCol");
+            //    fsm.ChangeState(new ChasePlayerState(this, collision.gameObject));
+            //    player = collision.gameObject; //why do we need to store player info here if not reusing it? comment added by LC
+            //    collision.GetComponent<PlayerMovement>().TakeDamage(1); //added by LC temp for prototype until abilities working
+
+
+            //    //Tony Edit
+            //    //for (int i = 0; i < Health; ++i)
+            //    //    Hearts[i].gameObject.SetActive(true);
+            //    //end of edit
+
+            //    if (!HeartsCoRunning)
+            //    {
+            //        HeartsShowing = false;
+            //        StartCoroutine(HeartsCo());
+            //    }
+            //}
+            /////////////////////////////////////////////////////////////////////////////
 
             //Tony Edit
             //if (collision == HeroAttackThing)
@@ -136,6 +163,8 @@ namespace AI
                 //    this.gameObject.SetActive(false);
             }
         }
+
+       
 
         private void OnTriggerExit2D(Collider2D other)
         {
@@ -207,7 +236,7 @@ namespace AI
             {
                 for (int i = 0; i < Health; ++i)
                 {
-                    Hearts[i].gameObject.SetActive(false);
+                   // Hearts[i].gameObject.SetActive(false); commented out by LC - Was causing hearts to always be inactive after a hit
                     HeartsShowing = false;  
                 }
             }

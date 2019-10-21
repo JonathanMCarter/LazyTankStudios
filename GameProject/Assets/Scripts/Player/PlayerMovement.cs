@@ -34,8 +34,8 @@ public class PlayerMovement : MonoBehaviour
     private Direction ImFacing;
     public float speed = 100;
     private float baseSpeed;//for when the speed needs to be changed temporarily
-    public Inventory i;
-
+  //  public Inventory i; //please dont name variables as one letter. we need to be able to clearly know what something is atm. Comment added by LC
+    public Inventory myInventory;
     // Added by Jonathan
     public GameObject DamageBulletThingy;
     public ProjectileStats WeaponStats;
@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator myAnim;
     private SpriteRenderer myRenderer;
     private InputManager IM;
+    public bool TakeDamageCD; //temp add by LC
     //Tony Was Here
 
     //Edit by Andreas--
@@ -122,19 +123,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (IM.Button_Menu())
         {
-            i.open();
+            myInventory.open();
             this.enabled = false;
         }
         //Toby: A and B item actions
-        if (IM.Button_A() && !i.isOpen)
+        if (IM.Button_A() && !myInventory.isOpen)
         {
            // Debug.Log("Test"); //commented out by LC to help clear debug log
-            useItem(i.equippedA);
+            useItem(myInventory.equippedA);
         }
 
-        if (IM.Button_B() && !i.isOpen)
+        if (IM.Button_B() && !myInventory.isOpen)
         {
-            useItem(i.equippedB);
+            useItem(myInventory.equippedB);
         }
 
 
@@ -262,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void FireProjectile() //Fires off player facing certain direction
     {
-        GameObject Go = Instantiate(DamageBulletThingy, transform.position, transform.rotation);
+        GameObject Go = Instantiate(DamageBulletThingy, attackRotater.GetChild(0).transform.position, transform.rotation);
         Vector2 Dir = new Vector2(0, 0);
         switch (ImFacing)
         {
@@ -346,15 +347,39 @@ public class PlayerMovement : MonoBehaviour
     ///</summary>
     public void TakeDamage(int damage)
     {
-        Debug.LogError("this is running");
+
+        //added by LC to stop taking damage too quickly
+        if (TakeDamageCD) return;
+        if (health <= 0) return;
+        StartCoroutine(DamageCooldown());
+
+
+        //Debug.LogError("this is running");
         health-=damage;
         healthUI.currentHealth=health;
+        healthUI.ShowHearts(); //update the display of hearts. LC
         audioManager.Play("Damage");
         if (health <= 0)
-        { 
+        {
             audioManager.Play("Death");
-            gameObject.SetActive(false); 
+            StartCoroutine(GameReset());
+            //gameObject.SetActive(false); 
+            this.enabled = false;
+            
         } 
+    }
+
+    IEnumerator GameReset() //added temp by LC
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    IEnumerator DamageCooldown() //temp add by LC
+    {
+        TakeDamageCD = !TakeDamageCD;
+        yield return new WaitForSeconds(1);
+        TakeDamageCD = !TakeDamageCD;
     }
 
     ///<summary>

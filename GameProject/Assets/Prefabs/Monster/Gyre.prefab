@@ -278,7 +278,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7592886192079651103}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
   showGizmos: 0
   movementSpeed: 2
   maxIdleTime: 2
-  awarnessSize: 0.75
+  awarnessSize: {x: 1, y: 1}
   Hearts:
   - {fileID: 5857575523598648605}
   - {fileID: 5139590910777473350}

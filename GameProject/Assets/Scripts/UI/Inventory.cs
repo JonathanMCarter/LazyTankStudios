@@ -57,6 +57,7 @@ public class Inventory : MonoBehaviour
         slot.hasItem = !remove;
         slot.quantity = remove ? 0 : quantity;
         slot.updateIcon();
+        print(slot.quantity);
         //Andreas edit--
         //audioManager.Play("Item_PickUp");
         //Andreas edit end--
