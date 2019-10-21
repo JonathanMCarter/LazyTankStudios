@@ -92,7 +92,7 @@ namespace AI
             Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, new Vector3(xRange, yRange));
 
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, awarnessSize);
+            Gizmos.DrawWireCube(transform.position, awarnessSize);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
