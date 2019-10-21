@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
         slot.quantity = remove ? 0 : quantity;
         slot.updateIcon();
         //Andreas edit--
-        audioManager.Play("Item_PickUp");
+        //audioManager.Play("Item_PickUp");
         //Andreas edit end--
     }
     public void addItem(int id, int quantity, bool remove,int QuantityToBeChangedWith,bool Increase)
@@ -70,7 +70,7 @@ public class Inventory : MonoBehaviour
         slot.quantity = remove ? 0 : quantity;
         slot.updateIcon();
         //Andreas edit--
-        audioManager.Play("Item_PickUp");
+        //audioManager.Play("Item_PickUp");
         //Andreas edit end--
     }
 

@@ -193,31 +193,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da, type: 3}
---- !u!1 &196436671 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7560702775571044455, guid: 736aa0b43dfb14e47914979bdb936a71,
-    type: 3}
-  m_PrefabInstance: {fileID: 8957102178279374620}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &196436672
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 196436671}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8dbed30b2e828894681c3053b8c8575b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!21 &318108578
 Material:
   serializedVersion: 6
@@ -343,46 +318,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3536409014384175863, guid: 2d36e85bf2253284eab855f2fe25cdb3,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 1262580085}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d36e85bf2253284eab855f2fe25cdb3, type: 3}
---- !u!21 &635297701
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ColourChanger_MAT
-  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _PalCol1: {r: 0.7697852, g: 0.8113208, b: 0.7692239, a: 1}
-    - _PalCol2: {r: 0.34178725, g: 0.65882355, b: 0.3254902, a: 1}
-    - _PalCol3: {r: 0.7012538, g: 1, b: 0.6933962, a: 1}
-    - _PalCol4: {r: 1, g: 1, b: 1, a: 0}
-    - _TexCol1: {r: 0.8313726, g: 0.8313726, b: 0.8313726, a: 1}
-    - _TexCol2: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
-    - _TexCol3: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
-    - _TexCol4: {r: 0.60784316, g: 0.7372549, b: 0.058823533, a: 1}
 --- !u!1001 &657592835
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -535,39 +472,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &925429329
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ColourChanger_MAT
-  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _PalCol1: {r: 0.67058825, g: 0.5900997, b: 0.44705883, a: 1}
-    - _PalCol2: {r: 0.16491634, g: 0.3207547, b: 0.16869341, a: 1}
-    - _PalCol3: {r: 0.5787533, g: 0.7529412, b: 0.4392157, a: 1}
-    - _PalCol4: {r: 1, g: 1, b: 1, a: 0}
-    - _TexCol1: {r: 0.8313726, g: 0.8313726, b: 0.8313726, a: 1}
-    - _TexCol2: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
-    - _TexCol3: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
-    - _TexCol4: {r: 0.60784316, g: 0.7372549, b: 0.058823533, a: 1}
 --- !u!1001 &963134299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -635,46 +539,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7073439926770776024, guid: 9601121d7bbf12d44b53787dd46a20be,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 1905587320}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9601121d7bbf12d44b53787dd46a20be, type: 3}
---- !u!21 &1136686226
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ColourChanger_MAT
-  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _PalCol1: {r: 0, g: 1, b: 0.99020815, a: 1}
-    - _PalCol2: {r: 0.19157174, g: 0.3356545, b: 0.38679248, a: 1}
-    - _PalCol3: {r: 0.4392157, g: 0.67847663, b: 0.7529412, a: 1}
-    - _PalCol4: {r: 1, g: 1, b: 1, a: 0}
-    - _TexCol1: {r: 0.8313726, g: 0.8313726, b: 0.8313726, a: 1}
-    - _TexCol2: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
-    - _TexCol3: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
-    - _TexCol4: {r: 0.60784316, g: 0.7372549, b: 0.058823533, a: 1}
 --- !u!1 &1138388067
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,39 +585,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1262580085
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ColourChanger_MAT
-  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _PalCol1: {r: 0.7075472, g: 0.8896264, b: 0.9433962, a: 1}
-    - _PalCol2: {r: 0.54294235, g: 0.75494385, b: 0.7830189, a: 1}
-    - _PalCol3: {r: 0, g: 0.8927181, b: 1, a: 1}
-    - _PalCol4: {r: 1, g: 1, b: 1, a: 0}
-    - _TexCol1: {r: 0.8313726, g: 0.8313726, b: 0.8313726, a: 1}
-    - _TexCol2: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
-    - _TexCol3: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
-    - _TexCol4: {r: 0.60784316, g: 0.7372549, b: 0.058823533, a: 1}
 --- !u!1001 &1307516408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -965,39 +798,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b4649d59cd57084eaf1fcfb2f69b43e, type: 3}
---- !u!21 &1721534458
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ColourChanger_MAT
-  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _PalCol1: {r: 0.63659316, g: 0.29411763, b: 0.8784314, a: 1}
-    - _PalCol2: {r: 0.46398422, g: 0.039215684, b: 0.7372549, a: 1}
-    - _PalCol3: {r: 0.6088691, g: 0.5176471, b: 0.6784314, a: 1}
-    - _PalCol4: {r: 1, g: 1, b: 1, a: 0}
-    - _TexCol1: {r: 0.8313726, g: 0.8313726, b: 0.8313726, a: 1}
-    - _TexCol2: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
-    - _TexCol3: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
-    - _TexCol4: {r: 0.60784316, g: 0.7372549, b: 0.058823533, a: 1}
 --- !u!1 &1780509917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1077,39 +877,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1905587320
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ColourChanger_MAT
-  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _PalCol1: {r: 0.735849, g: 0.68114215, b: 0.6213065, a: 1}
-    - _PalCol2: {r: 0.8584906, g: 0.55352503, b: 0.10933607, a: 1}
-    - _PalCol3: {r: 0.5660378, g: 0.3752244, b: 0.09878961, a: 1}
-    - _PalCol4: {r: 0.5731577, g: 0.754717, b: 0.7238519, a: 0}
-    - _TexCol1: {r: 0.8313726, g: 0.8313726, b: 0.8313726, a: 1}
-    - _TexCol2: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
-    - _TexCol3: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
-    - _TexCol4: {r: 0.60784316, g: 0.7372549, b: 0.058823533, a: 1}
 --- !u!1001 &688123500983702691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1177,11 +944,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1644123379657025415, guid: 8aa9569eb3406dc4f8917c74d3711ff1,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 1136686226}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8aa9569eb3406dc4f8917c74d3711ff1, type: 3}
 --- !u!1 &748065833779268477 stripped
@@ -1474,11 +1236,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6978812724964183398, guid: d5e02df60cf1e984598cbf29786b6bf3,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 925429329}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5e02df60cf1e984598cbf29786b6bf3, type: 3}
 --- !u!1001 &4860331235357009660
@@ -1547,6 +1304,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 570598749321593093, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541726241909726321, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6840027318512830127, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
         type: 3}
@@ -1622,11 +1389,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8732367992421868476, guid: bf9400638acce2d4eaf748da6301085b,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 635297701}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf9400638acce2d4eaf748da6301085b, type: 3}
 --- !u!1001 &6872406675520510027
@@ -1696,11 +1458,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 106852320974651961, guid: cb1ccb38105e6584ea6adb2091f194de,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 1721534458}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb1ccb38105e6584ea6adb2091f194de, type: 3}
 --- !u!95 &7526709679317939884
@@ -1789,10 +1546,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8373924555221499258, guid: 736aa0b43dfb14e47914979bdb936a71,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b8ce1703db0b34d48a85a7ca994fd708, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 736aa0b43dfb14e47914979bdb936a71, type: 3}

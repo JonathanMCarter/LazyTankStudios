@@ -18,7 +18,7 @@ using UnityEngine;
 
 namespace AI
 {
-    [RequireComponent(typeof(CircleCollider2D))]
+    [RequireComponent(typeof(BoxCollider2D))]
     public class AIMovement : MonoBehaviour
     {
         [SerializeField] private int xRange;
@@ -26,7 +26,7 @@ namespace AI
         [SerializeField] bool showGizmos;
         [SerializeField] float movementSpeed = 2f;
         [SerializeField] float maxIdleTime = 2f;
-        [SerializeField] float awarnessSize = .75f;
+        [SerializeField] Vector2 awarnessSize = Vector2.one;
 
         private GameObject player;
 
@@ -61,8 +61,8 @@ namespace AI
             player  = FindObjectOfType<PlayerMovement>().gameObject;
             //HeroAttackThing = player.GetComponent<BoxCollider2D>();
             rootPos = transform.position;
-            CircleCollider2D c = GetComponent<CircleCollider2D>();
-            c.radius = awarnessSize;
+            BoxCollider2D c = GetComponent<BoxCollider2D>();
+            c.size = awarnessSize;
             c.isTrigger = true;
             tot = new TaskOverTime(this);
             IsReadyToMove = true;
@@ -92,7 +92,7 @@ namespace AI
             Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, new Vector3(xRange, yRange));
 
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, awarnessSize);
+            Gizmos.DrawWireCube(transform.position, awarnessSize);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
