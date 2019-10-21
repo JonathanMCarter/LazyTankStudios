@@ -283,8 +283,9 @@ public class PlayerMovement : MonoBehaviour
                 print("Direction Error - LC");
                 break;
         };
-        Go.GetComponent<Rigidbody2D>().AddForce(Dir * WeaponStats.Speed, ForceMode2D.Impulse);
-        Destroy(Go, WeaponStats.Lifetime);
+       // Go.GetComponent<Rigidbody2D>().AddForce(Dir * WeaponStats.Speed, ForceMode2D.Impulse); //moving to bullet script
+        Go.GetComponent<Bullet>().SetStats((int)WeaponStats.Damage, (Dir * WeaponStats.Speed), WeaponStats.Lifetime);
+        //Destroy(Go, WeaponStats.Lifetime);
     }
 
     private void OnDisable()

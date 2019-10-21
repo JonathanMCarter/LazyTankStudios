@@ -42,11 +42,13 @@ public class PuzzleGateScript : MonoBehaviour
             {
                 // Should make it so what passes though doubles in speed... (may run more than once though by accident)
                 case Effect.Speed:
-                    collision.gameObject.GetComponent<Rigidbody2D>().velocity *= 2;
+                    collision.GetComponent<Bullet>().IncreaseSpeed(); //added by LC
+                    //collision.gameObject.GetComponent<Rigidbody2D>().velocity *= 2;
                     break;
                 // Should alter the dmg to be doubled (this currently doesn't undo)
                 case Effect.DoubleDMG:
-                    Player.WeaponStats.Damage *= 2;
+                    collision.GetComponent<Bullet>().IncreaseDamage(2); //Added by LC
+                    //Player.WeaponStats.Damage *= 2;
                     break;
                 // Should double the scale of what passes through
                 case Effect.IncreaseSize:

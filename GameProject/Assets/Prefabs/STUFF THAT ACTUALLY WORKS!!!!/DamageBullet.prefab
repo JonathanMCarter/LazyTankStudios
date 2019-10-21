@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7737467635452963851}
   - component: {fileID: 2282651152341740740}
   - component: {fileID: 7672950358498464706}
+  - component: {fileID: 3170101555825615316}
   m_Layer: 0
   m_Name: DamageBullet
   m_TagString: Bullet
@@ -118,3 +119,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &3170101555825615316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6827261557022495565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4625a95c20288458e58e249e75c7c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
