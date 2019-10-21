@@ -52,6 +52,8 @@ namespace AI
         public bool IsReadyToMove { get; private set; }
 
         Coroutine Fix;
+        //Andreas edit--
+        private Animator myAnim;
 
         // Start is called before the first frame update
         void Awake()
@@ -65,6 +67,9 @@ namespace AI
             tot = new TaskOverTime(this);
             IsReadyToMove = true;
             fsm = new FiniteStateMachine(this, new RandomWanderState(this));
+            //Andreas edit--
+            try{myAnim=GetComponent<Animator>();}
+            catch{}
         }
 
         // Update is called once per frame
@@ -154,6 +159,11 @@ namespace AI
             IsReadyToMove = false;
             Vector2 start = transform.position;
             tot.Start((destination - start).magnitude / movementSpeed, (float progress) => transform.position = Vector2.Lerp(start, destination, progress), Idle);
+            try{
+            myAnim.SetFloat("SpeedX", Mathf.Abs((destination - start).x));
+            myAnim.SetFloat("SpeedY", (destination - start).y);
+            }
+            catch{}
         }
 
         public void ChasePlayer()
@@ -162,6 +172,11 @@ namespace AI
             {
                 transform.position += (player.transform.position - transform.position).normalized * movementSpeed * Time.deltaTime;
             }
+            try{
+            myAnim.SetFloat("SpeedX", Mathf.Abs((player.transform.position - transform.position).normalized.x));
+            myAnim.SetFloat("SpeedY", (player.transform.position - transform.position).normalized.y);
+            }
+            catch{}
         }
 
         private void Idle()

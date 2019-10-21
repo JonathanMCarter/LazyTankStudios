@@ -99,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
         myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
         myAnim.SetFloat("SpeedY", IM.Y_Axis());
+
         if (IM.Button_Menu())
         {
             i.open();
