@@ -74,7 +74,8 @@ namespace AI
 
             if (Health <= 0)
             {
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
+                gameObject.SetActive(false);
             }
         }
 

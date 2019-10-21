@@ -65,16 +65,19 @@ public class Quests : MonoBehaviour
 
     private void Update()
     {
-        if (Quest.Kills.Count > 0)
-            foreach (GameObject enemy in Quest.Kills)
-            {
-                if (enemy.GetComponent<AIMovement>().Health <= 0)
+        if (Quest != null)
+        {
+            if (Quest.Kills.Count > 0)
+                foreach (GameObject enemy in Quest.Kills)
                 {
-                    Quest.Kills.Remove(enemy);
-                    Destroy(enemy);
+                    if (enemy.GetComponent<AIMovement>().Health <= 0)
+                    {
+                        Quest.Kills.Remove(enemy);
+                        Destroy(enemy);
+                    }
                 }
-            }
-        else print("IT WORKS");
+            else print("IT WORKS");
+        }
 
     }
 
