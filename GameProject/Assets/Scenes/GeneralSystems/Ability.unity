@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 463939730}
   - component: {fileID: 463939729}
   - component: {fileID: 463939732}
+  - component: {fileID: 463939733}
+  - component: {fileID: 463939734}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -151,9 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdcf9f4ea11cb24c9434fb275b6b3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 11400000, guid: 85095db494d67eb468cff3bbb5ee25ae, type: 2}
-  updateActions: []
   OnCollision: {fileID: 11400000, guid: d312fea18fdc9f04f8be4c98f92e8e27, type: 2}
 --- !u!212 &463939730
 SpriteRenderer:
@@ -243,6 +242,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &463939733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463939728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cb0aa0ced42a045a40d4b277d398b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xRange: 3
+  yRange: 3
+  showGizmos: 1
+  movementSpeed: 2
+  maxIdleTime: 2
+  awarnessSize: 0.75
+  actions:
+  - {fileID: 11400000, guid: 85095db494d67eb468cff3bbb5ee25ae, type: 2}
+--- !u!58 &463939734
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463939728}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.08
 --- !u!1 &1827663884
 GameObject:
   m_ObjectHideFlags: 0

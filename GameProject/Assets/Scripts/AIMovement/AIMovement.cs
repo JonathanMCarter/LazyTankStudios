@@ -12,8 +12,7 @@ namespace AI
         [SerializeField] float movementSpeed = 2f;
         [SerializeField] float maxIdleTime = 2f;
         [SerializeField] float awarnessSize = .75f;
-
-        [SerializeField] Player player;
+        [SerializeField] private List<Action> actions = new List<Action>();
 
         private FiniteStateMachine fsm;
         private TaskOverTime tot;
@@ -49,13 +48,15 @@ namespace AI
             Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, new Vector3(xRange, yRange));
 
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, awarnessSize *3); // Wtf? Why * 3?? Works.
+            Gizmos.DrawWireSphere(transform.position, awarnessSize); // Wtf? Why * 3?? Works.
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            Debug.Log("Collison");
             tot.Stop();
-            fsm.ChangeState(new ChasePlayerState(this, player));
+            StartCoroutine(actions[0].Execute(GetComponent<Entity>()));
+
         }
 
         private void OnTriggerExit2D(Collider2D other)
