@@ -350,7 +350,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1119980331, guid: 2da5834ec9d3494458d9a055f9c2017e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2da5834ec9d3494458d9a055f9c2017e, type: 3}
 --- !u!114 &993649259 stripped
 MonoBehaviour:
@@ -718,6 +719,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
       value: Select
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038455477621846641, guid: 9de319393d6e41f4496f305eedd3056c,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2038455477621846641, guid: 9de319393d6e41f4496f305eedd3056c,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405791671709989903, guid: 9de319393d6e41f4496f305eedd3056c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405791671709989903, guid: 9de319393d6e41f4496f305eedd3056c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 167.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079917137957634957, guid: 9de319393d6e41f4496f305eedd3056c,
+        type: 3}
+      propertyPath: m_Text
+      value: Tales of Orelia
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9de319393d6e41f4496f305eedd3056c, type: 3}

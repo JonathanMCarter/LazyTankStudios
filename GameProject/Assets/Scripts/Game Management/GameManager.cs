@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void QuitGame()
     {
-        Application.Quit();
+        Application.Quit(); //Need to hide the Exit button on WebGL build (and possibly mobile)
     }
 
     /// <summary>
