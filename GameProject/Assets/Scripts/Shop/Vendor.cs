@@ -60,6 +60,16 @@ public class Vendor : MonoBehaviour
 
     private void Update()
     {
+        if (!inventory.gameObject.activeInHierarchy)
+        {
+            inventory.gameObject.SetActive(true);
+        }
+
+        if (!VendorInventory.gameObject.activeInHierarchy)
+        {
+            VendorInventory.gameObject.SetActive(true);
+        }
+
         playerInventorySlot = inventory.transform.GetChild(inventory.selected).GetComponent<InvSlot>();
         VendorInventorySlot = VendorInventory.transform.GetChild(VendorInventory.selected).GetComponent<InvSlot>();
         StartCoroutine(delay());
