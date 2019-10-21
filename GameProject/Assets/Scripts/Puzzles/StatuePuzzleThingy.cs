@@ -14,13 +14,19 @@ public class StatuePuzzleThingy : MonoBehaviour
 
     public GameObject Boundary;
 
+    public GameObject Door;
+
     public PlayerMovement Player;
+
+    public bool Rooms12Cleared;
+    public bool Em3Spawned;
+
+    public bool PuzzleComplete;
 
     // Start is called before the first frame update
     void Start()
     {
         Player = FindObjectOfType<PlayerMovement>();
-        SpawnRM3EM();
     }
 
     // Update is called once per frame
@@ -48,20 +54,38 @@ public class StatuePuzzleThingy : MonoBehaviour
             }
         }
 
-        if (Room3Em.Count != 0)
+        if (Em3Spawned)
         {
-            for (int i = 0; i < Room3Em.Count; i++)
+            if (Room3Em.Count != 0)
             {
-                if (!Room3Em[i].activeInHierarchy)
+                for (int i = 0; i < Room3Em.Count; i++)
                 {
-                    Room3Em.RemoveAt(i);
+                    if (!Room3Em[i].activeInHierarchy)
+                    {
+                        Room3Em.RemoveAt(i);
+                    }
                 }
             }
         }
 
         Room1Cleared();
         Room2Cleared();
-        Room3Cleared();
+
+
+        if ((Room1Em.Count == 0) && (Room2Em.Count == 0))
+        {
+            Rooms12Cleared = true;
+
+            if (Em3Spawned)
+            {
+                Room3Cleared();
+            }
+        }
+
+        if (PuzzleComplete)
+        {
+            Door.SetActive(false);
+        }
     }
 
     public void Room1Cleared()
@@ -78,7 +102,6 @@ public class StatuePuzzleThingy : MonoBehaviour
     {
         if ((Room2Em.Count == 0) && (!ItemSpawned[1]))
         {
-            Debug.Log("s,dfjklsdahjufhsuodf");
             Instantiate(RoomItems[1], Player.gameObject.transform.position, Player.gameObject.transform.rotation);
             ItemSpawned[1] = true;
         }
@@ -96,18 +119,24 @@ public class StatuePuzzleThingy : MonoBehaviour
 
     public void SpawnRM3EM()
     {
-        for (int i = 0; i < Room3Em.Count; i++)
+        if (!Em3Spawned)
         {
-            Vector2 Pos = new Vector2();
+            for (int i = 0; i < Room3Em.Count; i++)
+            {
+                Vector2 Pos = new Vector2();
 
-            // This needs changing to work!!
-            //Pos = new Vector2(Mathf.Clamp(Pos.x, -Boundary.GetComponent<BoxCollider2D>().bounds.center.x, Boundary.GetComponent<BoxCollider2D>().bounds.center.x), Mathf.Clamp(Pos.y, -Boundary.GetComponent<BoxCollider2D>().bounds.center.y, Boundary.GetComponent<BoxCollider2D>().bounds.center.y));
+                // This needs changing to work!!
+                //Pos = new Vector2(Mathf.Clamp(Pos.x, -Boundary.GetComponent<BoxCollider2D>().bounds.center.x, Boundary.GetComponent<BoxCollider2D>().bounds.center.x), Mathf.Clamp(Pos.y, -Boundary.GetComponent<BoxCollider2D>().bounds.center.y, Boundary.GetComponent<BoxCollider2D>().bounds.center.y));
 
-            Pos = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
+                Pos = new Vector2(Random.Range(-62.5f, -33.1f), Random.Range(-39.6f, -8f));
 
-            Debug.Log(Pos);
+                Debug.Log(Pos);
 
-            Instantiate(Room3Em[0], Pos, transform.rotation);
+                GameObject Go = Instantiate(Room3Em[0], Pos, transform.rotation);
+                Room3Em[0] = Go;
+
+                Em3Spawned = true;
+            }
         }
     }
 }

@@ -266,10 +266,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            Debug.LogError("this is running");
             //Debug.Log("********** Player Should Be Taking Damage Now...");
 
             TakeDamage(1);
-           // other.gameObject.GetComponent<AIMovement>().Health = 0;
+            // other.gameObject.GetComponent<AIMovement>().Health = 0;
         }
     }
 
@@ -278,6 +279,7 @@ public class PlayerMovement : MonoBehaviour
     ///</summary>
     public void TakeDamage(int damage)
     {
+        Debug.LogError("this is running");
         health-=damage;
         healthUI.currentHealth=health;
         if (health <= 0) gameObject.SetActive(false);  

@@ -17,7 +17,12 @@ public class TriggerThingyScript : MonoBehaviour
     {
         if ((ItemsCollected == 2) && (ItemGrabbed[0]) && (ItemGrabbed[1]))
         {
+            Statue.SpawnRM3EM();
+        }
 
+        if (ItemsCollected == 3)
+        {
+            Statue.PuzzleComplete = true;
         }
     }
 
