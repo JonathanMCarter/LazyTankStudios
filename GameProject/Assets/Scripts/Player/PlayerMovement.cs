@@ -21,6 +21,10 @@ using UnityEngine.SceneManagement;
  * Last Edit: 21.10.19
  * Reason: Call Sound Effects
  * 
+ * Also Edited by: Lewis Cleminson
+ * Last Edit: 21.10.19
+ * Reason: HealthUI null reference
+ * 
  * */
 
 public class PlayerMovement : MonoBehaviour
@@ -71,11 +75,15 @@ public class PlayerMovement : MonoBehaviour
         myAnim = GetComponent<Animator>();
         myRenderer = GetComponent<SpriteRenderer>();
         IM = FindObjectOfType<InputManager>();
+
+        attackHitBox = transform.GetChild(0).GetComponent<BoxCollider2D>(); //added by LC
         //Tony Was here
         attackHitBox.gameObject.SetActive(false);
         attacking = false;
         baseSpeed = speed;
         //Tony Left Start
+
+        if (healthUI == null) healthUI = FindObjectOfType<HealthUI>(); //Added by LC
 
         //Andreas edit--
         healthUI.maxHealth=health;
