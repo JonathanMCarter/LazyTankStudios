@@ -6,6 +6,11 @@ using UnityEngine.UI;
 /**
  * Created by Toby Wishart
  * Last edit: 12/10/19
+ * 
+ * 
+ * Also Edited by: Lewis Cleminson
+ * Last Edit: 21.10.19
+ * Reason: Game Object being set to disabled before other objects can reference it
  */
 public class DialogueBoxManager : MonoBehaviour
 {
@@ -15,7 +20,12 @@ public class DialogueBoxManager : MonoBehaviour
     private void Awake()
     {
         panel = GetComponent<RectTransform>();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false); 
+    }
+
+    private void Start()
+    {
+        gameObject.SetActive(false); //Added by LC. Start runs after Awake- allows other GO to get reference before disabling it.
     }
     void OnEnable()
     {

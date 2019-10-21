@@ -15,6 +15,9 @@ public class Vendor : MonoBehaviour
      * It does retrieve the file dialogue and connects it to the dialogue handler.
      * Opens the inventories
 
+        Also Edited by: Lewis Cleminson
+        Last Edit: 21.10.19
+        Reason: Change start function to awake to get reference on object earlier.
     */
     //File to get Dialgoue
     public DialogueFile VendorSpeech;
@@ -40,10 +43,10 @@ public class Vendor : MonoBehaviour
     //Andreas edit
     private AudioManager audioManager;
 
-    private void Start()
+    private void Awake()//changed to awake so can get reference before Inventory panel is deactived
     {
         //Andreas edit
-        audioManager=GameObject.FindObjectOfType<AudioManager>();
+        audioManager= FindObjectOfType<AudioManager>();
 
         // Jonathan Edit
         inventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(2).GetComponent<Inventory>();

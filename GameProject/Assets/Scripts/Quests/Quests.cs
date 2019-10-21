@@ -63,18 +63,18 @@ public class Quests : MonoBehaviour
             Quest.Items[i].GetComponent<SpriteRenderer>().sprite = Quest.ItemsSprites[i];
     }
 
-    private void Update()
+    private void Update() //Are you really going to be checking this every frame update? Is there not a better way to do this? Comment added by LC
     {
         if (Quest != null)
         {
             if (Quest.Kills.Count > 0)
                 foreach (GameObject enemy in Quest.Kills)
                 {
-                    if (enemy.GetComponent<AIMovement>().Health <= 0)
-                    {
-                        Quest.Kills.Remove(enemy);
-                        Destroy(enemy);
-                    }
+                    //if (enemy.GetComponent<AIMovement>().Health <= 0)
+                    //{
+                    //    Quest.Kills.Remove(enemy);
+                    //    Destroy(enemy);
+                    //}
                 }
             else print("IT WORKS");
         }
