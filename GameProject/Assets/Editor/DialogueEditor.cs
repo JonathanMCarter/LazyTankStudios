@@ -101,6 +101,6 @@ public class DialogueEditor : Editor
 
 
         // Base inspector - Disabled as this isn't used really.
-        //base.OnInspectorGUI();
+        base.OnInspectorGUI();
 	}
 }
