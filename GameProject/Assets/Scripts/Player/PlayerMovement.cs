@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -267,7 +268,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("********** Player Should Be Taking Damage Now...");
 
-            TakeDamage(1);           
+            TakeDamage(1);
+           // other.gameObject.GetComponent<AIMovement>().Health = 0;
         }
     }
 

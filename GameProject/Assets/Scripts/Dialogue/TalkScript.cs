@@ -47,9 +47,9 @@ public class TalkScript : MonoBehaviour
         Debug.Log("Talk Called");
         panel.SetActive(true);
 
-        ds.ChangeFile(dialogue);
+        //ds.ChangeFile(dialogue);
 
-        ds.Reset();
+       // ds.Reset();
         talking = true;
         movement.enabled = !talking;
     }

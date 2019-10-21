@@ -20,7 +20,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
 
-    bool[] items;
+    public bool[] items;
     //ID for the item equipped with the A button
     public int equippedA = -1;
     //ID for the item equipped with the B button

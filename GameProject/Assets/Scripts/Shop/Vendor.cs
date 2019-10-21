@@ -180,7 +180,7 @@ public class Vendor : MonoBehaviour
     {
         //Resets itself everytime you get into the interactable zone
         happened = false;
-
+        
         if (collision.gameObject.name == "Hero")
         {
             //Play speech - edited by jonathan to use findoftype
