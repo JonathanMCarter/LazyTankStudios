@@ -13,6 +13,14 @@ public class TriggerThingyScript : MonoBehaviour
     {
         Statue = FindObjectOfType<StatuePuzzleThingy>();
     }
+    private void Update()
+    {
+        if ((ItemsCollected == 2) && (ItemGrabbed[0]) && (ItemGrabbed[1]))
+        {
+
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

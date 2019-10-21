@@ -12,12 +12,15 @@ public class StatuePuzzleThingy : MonoBehaviour
     public List<GameObject> RoomItems;
     public List<bool> ItemSpawned;
 
+    public GameObject Boundary;
+
     public PlayerMovement Player;
 
     // Start is called before the first frame update
     void Start()
     {
         Player = FindObjectOfType<PlayerMovement>();
+        SpawnRM3EM();
     }
 
     // Update is called once per frame
@@ -34,7 +37,31 @@ public class StatuePuzzleThingy : MonoBehaviour
             }
         }
 
+        if (Room2Em.Count != 0)
+        {
+            for (int i = 0; i < Room2Em.Count; i++)
+            {
+                if (!Room2Em[i].activeInHierarchy)
+                {
+                    Room2Em.RemoveAt(i);
+                }
+            }
+        }
+
+        if (Room3Em.Count != 0)
+        {
+            for (int i = 0; i < Room3Em.Count; i++)
+            {
+                if (!Room3Em[i].activeInHierarchy)
+                {
+                    Room3Em.RemoveAt(i);
+                }
+            }
+        }
+
         Room1Cleared();
+        Room2Cleared();
+        Room3Cleared();
     }
 
     public void Room1Cleared()
@@ -64,6 +91,23 @@ public class StatuePuzzleThingy : MonoBehaviour
             Debug.Log("s,dfjklsdahjufhsuodf");
             Instantiate(RoomItems[2], Player.gameObject.transform.position, Player.gameObject.transform.rotation);
             ItemSpawned[2] = true;
+        }
+    }
+
+    public void SpawnRM3EM()
+    {
+        for (int i = 0; i < Room3Em.Count; i++)
+        {
+            Vector2 Pos = new Vector2();
+
+            // This needs changing to work!!
+            //Pos = new Vector2(Mathf.Clamp(Pos.x, -Boundary.GetComponent<BoxCollider2D>().bounds.center.x, Boundary.GetComponent<BoxCollider2D>().bounds.center.x), Mathf.Clamp(Pos.y, -Boundary.GetComponent<BoxCollider2D>().bounds.center.y, Boundary.GetComponent<BoxCollider2D>().bounds.center.y));
+
+            Pos = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
+
+            Debug.Log(Pos);
+
+            Instantiate(Room3Em[0], Pos, transform.rotation);
         }
     }
 }

@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawLine(transform.position, transform.right, Color.yellow);
+        //Debug.DrawLine(transform.position, transform.right, Color.yellow);
 
         myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed;
 
@@ -185,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
             default:
                 //nothing or invalid item equipped
                 if (attacking) attacking = false;
-                Debug.Log("Trying to use nothing");
+                //Debug.Log("Trying to use nothing");
                 break;
         }
     }
@@ -210,7 +210,7 @@ public class PlayerMovement : MonoBehaviour
     // Added by Jonathan
     public void FireProjectile()
     {
-        Debug.Log(((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized));
+        //Debug.Log(((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized));
         GameObject Go = Instantiate(DamageBulletThingy, transform.position, transform.rotation);
         Go.transform.localScale = new Vector3(WeaponStats.Size, WeaponStats.Size, WeaponStats.Size);
 
@@ -266,7 +266,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("********** Player Should Be Taking Damage Now...");
+            //Debug.Log("********** Player Should Be Taking Damage Now...");
 
             TakeDamage(1);
            // other.gameObject.GetComponent<AIMovement>().Health = 0;
