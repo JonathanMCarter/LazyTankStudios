@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 100;
+    private float baseSpeed;//for when the speed needs to be changed temporarily
     public Inventory i;
 
     // Added by Jonathan
@@ -40,14 +42,19 @@ public class PlayerMovement : MonoBehaviour
 
     //Edit by Andreas--
     //public SpriteRenderer[] Hearts;
-    public HealthUI healthUI; 
+    public HealthUI healthUI;
     //Andreas edit end--
 
+    //Tony's Variables
     public int health;
-    public BoxCollider2D attackHitBox;
+    public BoxCollider2D attackHitBox;//atach to attackrotater
+    public Transform attackRotater;//make a new transform as a child of the hero, make the attackHitBox a child of this transform
     private bool attacking;
-    public float AttackDuration;
+    public float AbilityDuration;
     private float countdown;
+    public float dashSpeedMultiplier;
+    private bool dashing;
+    private bool shieldUp;
     //end of Tony variables
 
     //Items enum, should matchup with the item IDs i.e. Sword is in slot 0 and has ID 0 therefore SWORD is 0 here
@@ -63,23 +70,27 @@ public class PlayerMovement : MonoBehaviour
         myRenderer = GetComponent<SpriteRenderer>();
         IM = FindObjectOfType<InputManager>();
         //Tony Was here
-        //Andreas edit--
-        //health = 3;
-        //Andreas edit end--
         attackHitBox.gameObject.SetActive(false);
         attacking = false;
+        baseSpeed = speed;
         //Tony Left Start
 
         //Andreas edit--
         healthUI.maxHealth=health;
         healthUI.currentHealth=health;
+        healthUI.ShowHearts();//tony addition
         //Andreas edit end--
     }
 
     void Update()
     {
+        //Debug.DrawLine(transform.position, transform.right, Color.yellow);
+
         myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed;
-        myRenderer.flipX = (myRigid.velocity.x < 0);
+
+        //tony function
+        //SetRotater();//rotates the attack hit box
+
         myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
         myAnim.SetFloat("SpeedY", IM.Y_Axis());
         if (IM.Button_Menu())
@@ -90,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         //Toby: A and B item actions
         if (IM.Button_A() && !i.isOpen)
         {
+            Debug.Log("Test");
             useItem(i.equippedA);
         }
 
@@ -99,20 +111,37 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (attacking)
+        //Tony action stuff
+        if (attacking || dashing || shieldUp)
         {
             countdown -= Time.deltaTime;
             if (countdown <= 0)
             {
-                attackHitBox.gameObject.SetActive(false);
-                attacking = false;
+                if (attacking)
+                {
+                    attackHitBox.gameObject.SetActive(false);
+                    attacking = false;
+                }
+                if (dashing)
+                {
+                    speed = baseSpeed;
+                    dashing = false;
+                }
+                if (shieldUp)
+                    shieldUp = false;
             }
         }
+        //To here
         //To here
     }
     //Toby: Function for using an item of a given ID
     void useItem(int ID)
     {
+        //setup countdown
+        countdown = AbilityDuration;
+
+        Debug.Log(ID.ToString());
+
         switch (ID)
         {
             case (int)ITEMS.SWORD:
@@ -122,17 +151,41 @@ public class PlayerMovement : MonoBehaviour
                 //Andreas edit end
                 attackHitBox.gameObject.SetActive(true);
                 attacking = true;
-                countdown = AttackDuration;
 
                 // Jonathan Added This function
                 FireProjectile();
                 break;
 
+            //Tony Stuff
+            case (int)ITEMS.BLAZBOOTS:
+                //animation here
+
+                //-----------
+                speed *= dashSpeedMultiplier;
+                dashing = true;
+                break;
+            case (int)ITEMS.SHIELDSHARPTON:
+                //animation
+                //---------
+                shieldUp = true;
+                break;
+            // Temp - just so the axe or anything with the ID of 1 works for now.....
+            case 4:
+                //Andreas edit
+                //PlayKickAnimation();
+                PlayAttackAnimation();
+                //Andreas edit end
+                attackHitBox.gameObject.SetActive(true);
+                attacking = true;
+
+                // Jonathan Added This function
+                FireProjectile();
+                break;
             case -1:
             default:
                 //nothing or invalid item equipped
                 if (attacking) attacking = false;
-                Debug.Log("Trying to use nothing");
+                //Debug.Log("Trying to use nothing");
                 break;
         }
     }
@@ -157,9 +210,14 @@ public class PlayerMovement : MonoBehaviour
     // Added by Jonathan
     public void FireProjectile()
     {
+        //Debug.Log(((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized));
         GameObject Go = Instantiate(DamageBulletThingy, transform.position, transform.rotation);
         Go.transform.localScale = new Vector3(WeaponStats.Size, WeaponStats.Size, WeaponStats.Size);
-        Go.GetComponent<Rigidbody2D>().velocity = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * WeaponStats.Speed;
+
+        // I'm aware that if you click close to yourself the bullet goes slow. 
+        Vector3 Dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+
+        Go.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Clamp(Dir.x, -.3f, .3f), Dir.y) * WeaponStats.Speed, ForceMode2D.Impulse);
         Destroy(Go, WeaponStats.Lifetime);
     }
 
@@ -208,9 +266,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("********** Player Should Be Taking Damage Now...");
+            Debug.LogError("this is running");
+            //Debug.Log("********** Player Should Be Taking Damage Now...");
 
-            TakeDamage(1);           
+            TakeDamage(1);
+            // other.gameObject.GetComponent<AIMovement>().Health = 0;
         }
     }
 
@@ -219,11 +279,38 @@ public class PlayerMovement : MonoBehaviour
     ///</summary>
     public void TakeDamage(int damage)
     {
+        Debug.LogError("this is running");
         health-=damage;
         healthUI.currentHealth=health;
         if (health <= 0) gameObject.SetActive(false);  
     }
-
+    
+    
+    //rotates the attackhitbox with the player
+    //private void SetRotater()
+    //{
+    //    //Tony - moves attack location 
+    //    if (myRigid.velocity.x > 0.1)
+    //    {
+    //        myRenderer.flipX = false;
+    //        attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 0, 0));
+    //    }
+    //    //was having a problem with this so it might look kinda weird
+    //    if (myRigid.velocity.x < -0.1)
+    //    {
+    //        myRenderer.flipX = true;
+    //        attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 180, 0));
+    //    }
+    //    if (myRigid.velocity.y > 0.1)
+    //    {
+    //        attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 0, 0));
+    //        if (attackRotater.rotation != new Quaternion(0, 0, 90, 0))
+    //            attackRotater.Rotate(Vector3.forward * 90);
+    //    }
+    //    if (myRigid.velocity.y < -0.1)
+    //        if (attackRotater.rotation != new Quaternion(0, 0, -90, 0))
+    //            attackRotater.Rotate(Vector3.forward * -90);
+    //}
     /* 
     void OnTriggerExit2D(Collider2D other)
     {

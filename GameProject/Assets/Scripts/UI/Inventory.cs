@@ -20,7 +20,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
 
-    bool[] items;
+    public bool[] items;
     //ID for the item equipped with the A button
     public int equippedA = -1;
     //ID for the item equipped with the B button
@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
     public const int COLUMN = 4;
     public int selected = 0;
     int column = 4;
-    public bool VendorMode { get; set; }
+    public bool VendorMode;
 
     #endregion
 
@@ -127,11 +127,11 @@ public class Inventory : MonoBehaviour
     }
 
     #endregion
+
     void Start()
     {
         items = new bool[transform.childCount];
         VendorMode = false;
-
         IM = GameObject.FindObjectOfType<InputManager>();
     }
 
@@ -140,6 +140,7 @@ public class Inventory : MonoBehaviour
     {
 
         GetComponent<CanvasGroup>().alpha = isOpen ? 1 : 0;
+
         if (isOpen && !delayed)
         {
 
@@ -230,9 +231,4 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         delayed = false;
     }
-
-
-
-
-
 }
