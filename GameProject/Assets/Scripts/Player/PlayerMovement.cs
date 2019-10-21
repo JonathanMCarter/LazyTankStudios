@@ -228,14 +228,19 @@ public class PlayerMovement : MonoBehaviour
     // Added by Jonathan
     public void FireProjectile()
     {
-        //Debug.Log(((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized));
+        Debug.Log(((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized));
         GameObject Go = Instantiate(DamageBulletThingy, transform.position, transform.rotation);
-        Go.transform.localScale = new Vector3(WeaponStats.Size, WeaponStats.Size, WeaponStats.Size);
 
-        // I'm aware that if you click close to yourself the bullet goes slow. 
+        //I'm aware that if you click close to yourself the bullet goes slow. 
         Vector3 Dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
 
         Go.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Clamp(Dir.x, -.3f, .3f), Dir.y) * WeaponStats.Speed, ForceMode2D.Impulse);
+
+        //Alternate firing method - Tony (comment above uncomment this) In terms of input I think there are only 3 buttons in the final build, unless I missed something
+        //GameObject Go = Instantiate(DamageBulletThingy, attackHitBox.transform.position, attackRotater.transform.rotation);
+        //Go.transform.localScale = new Vector3(WeaponStats.Size, WeaponStats.Size, WeaponStats.Size);
+        //--------------------------------
+        Go.GetComponent<Rigidbody2D>().velocity = Go.transform.right * WeaponStats.Speed;
         Destroy(Go, WeaponStats.Lifetime);
     }
 
