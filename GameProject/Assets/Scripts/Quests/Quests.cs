@@ -18,7 +18,7 @@ public class Quest
 
 
 
-    public bool KillRequest, CollectRequest, DeliverRequest;
+    public bool KillRequest, CollectRequest, DeliverRequest, ToPos;
     public List<GameObject> Kills;
     public GameObject[] Collectible;
     public int[] CollectibleAmmount;
@@ -85,10 +85,10 @@ public class Quests : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
        if (collision.gameObject.name == "Hero")
-        {
+       {
             ds.ChangeFile(Quest.Dialogue);
             Quest.status = Quest.Status.OnGoing;
-        }
+       }
     }
 
 }

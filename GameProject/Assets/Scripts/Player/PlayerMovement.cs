@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
  * Player Movement Script
@@ -94,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed;
 
         //tony function
-        //SetRotater();//rotates the attack hit box
+        SetRotater();//rotates the attack hit box
 
         myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
         myAnim.SetFloat("SpeedY", IM.Y_Axis());
@@ -234,6 +235,8 @@ public class PlayerMovement : MonoBehaviour
         myRigid.velocity = new Vector2(0, 0);
     }
 
+    
+
     //Tony Was Here too--------------------------------------
     //Edit Andreas--
     /* 
@@ -307,33 +310,33 @@ public class PlayerMovement : MonoBehaviour
         healthUI.currentHealth=health;
         audioManager.Play("Heal");
     }
-    
-    
+
+
     //rotates the attackhitbox with the player
-    //private void SetRotater()
-    //{
-    //    //Tony - moves attack location 
-    //    if (myRigid.velocity.x > 0.1)
-    //    {
-    //        myRenderer.flipX = false;
-    //        attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 0, 0));
-    //    }
-    //    //was having a problem with this so it might look kinda weird
-    //    if (myRigid.velocity.x < -0.1)
-    //    {
-    //        myRenderer.flipX = true;
-    //        attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 180, 0));
-    //    }
-    //    if (myRigid.velocity.y > 0.1)
-    //    {
-    //        attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 0, 0));
-    //        if (attackRotater.rotation != new Quaternion(0, 0, 90, 0))
-    //            attackRotater.Rotate(Vector3.forward * 90);
-    //    }
-    //    if (myRigid.velocity.y < -0.1)
-    //        if (attackRotater.rotation != new Quaternion(0, 0, -90, 0))
-    //            attackRotater.Rotate(Vector3.forward * -90);
-    //}
+    private void SetRotater()
+    {
+        //Tony - moves attack location 
+        if (myRigid.velocity.x > 0.1)
+        {
+            myRenderer.flipX = false;
+            attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 0, 0));
+        }
+        //was having a problem with this so it might look kinda weird
+        if (myRigid.velocity.x < -0.1)
+        {
+            myRenderer.flipX = true;
+            attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 180, 0));
+        }
+        if (myRigid.velocity.y > 0.1)
+        {
+            attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 0, 0));
+            if (attackRotater.rotation != new Quaternion(0, 0, 90, 0))
+                attackRotater.Rotate(Vector3.forward * 90);
+        }
+        if (myRigid.velocity.y < -0.1)
+            if (attackRotater.rotation != new Quaternion(0, 0, -90, 0))
+                attackRotater.Rotate(Vector3.forward * -90);
+    }
     /* 
     void OnTriggerExit2D(Collider2D other)
     {
