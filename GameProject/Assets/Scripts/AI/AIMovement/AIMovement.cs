@@ -155,7 +155,7 @@ namespace AI
             {
                 Destroy(collision.gameObject);
 
-                Debug.Log("********** Enemy Should Be Taking Damage Now...");
+               // Debug.Log("********** Enemy Should Be Taking Damage Now...");
 
                 Hearts[Health - 1].gameObject.SetActive(false);
                 --Health;

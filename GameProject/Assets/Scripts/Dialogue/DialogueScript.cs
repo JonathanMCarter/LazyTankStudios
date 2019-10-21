@@ -118,6 +118,7 @@ public class DialogueScript : MonoBehaviour
     // Reads the next line of the dialogue sequence
     public void DisplayNextLine()
     {
+
         if (DialStage < File.Names.Count)
         {
             switch (File.Names[DialStage])
@@ -129,7 +130,7 @@ public class DialogueScript : MonoBehaviour
 
                 // Pause
                 case "@@@":
-                    // Pauses dialogue for a little bit (for dramitic effect..............................................)
+                    // Pauses dialogue for a little bit (for dramatic effect..............................................)
                     if (PauseCo == null)
                     {
                         PauseCo = StartCoroutine(PauseDial(3));

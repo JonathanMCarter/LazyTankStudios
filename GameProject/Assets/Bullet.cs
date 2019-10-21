@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
     IEnumerator Destructor()
     {
         yield return new WaitForSeconds(Lifespan);
-        print("Destroyed Bullet with " + Speed + " Speed and " + Damage + " Damage" + ">>> UNCOMMENT ME IF YOU LIKE");
+        //print("Destroyed Bullet with " + Speed + " Speed and " + Damage + " Damage" + ">>> UNCOMMENT ME IF YOU LIKE");
         Destroy(this.gameObject);
     }
 
