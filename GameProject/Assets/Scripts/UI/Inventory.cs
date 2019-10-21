@@ -8,6 +8,8 @@ using UnityEngine;
  * Also edited: Gabriel Potamianos
  * Last edit: 14/10/19
  * 
+ * Also edited: Andreas Kraemer
+ * Last edit: 21/10/19
  * 
  * 
  * Class to handle inventory
@@ -42,6 +44,10 @@ public class Inventory : MonoBehaviour
 
     #endregion
 
+    #region Andreas Variables
+    private AudioManager audioManager;
+    #endregion
+
     #region Toby Functions
     //Add item to inventory with quantity, bool to remove as well can also use this to increase quantity
     public void addItem(int id, int quantity, bool remove)
@@ -51,6 +57,9 @@ public class Inventory : MonoBehaviour
         slot.hasItem = !remove;
         slot.quantity = remove ? 0 : quantity;
         slot.updateIcon();
+        //Andreas edit--
+        audioManager.Play("Item_PickUp");
+        //Andreas edit end--
     }
     public void addItem(int id, int quantity, bool remove,int QuantityToBeChangedWith,bool Increase)
     {
@@ -60,6 +69,9 @@ public class Inventory : MonoBehaviour
         slot.hasItem = !remove;
         slot.quantity = remove ? 0 : quantity;
         slot.updateIcon();
+        //Andreas edit--
+        audioManager.Play("Item_PickUp");
+        //Andreas edit end--
     }
 
     public bool hasItem(int id)
@@ -100,6 +112,10 @@ public class Inventory : MonoBehaviour
     public void open()
     {
         isOpen = !isOpen;
+        //Andreas edit--
+        string effectToPlay=isOpen?"Inventory_Open":"Inventory_Close";
+        audioManager.Play(effectToPlay);
+        //Andreas edit end--
         selected = 0;
     }
 
@@ -133,6 +149,7 @@ public class Inventory : MonoBehaviour
         items = new bool[transform.childCount];
         VendorMode = false;
         IM = GameObject.FindObjectOfType<InputManager>();
+        audioManager=GameObject.FindObjectOfType<AudioManager>();
     }
 
     private bool delayed = false;
@@ -221,6 +238,8 @@ public class Inventory : MonoBehaviour
 
             // Locks player until the inventory is closed 
             GameObject.Find("Hero").GetComponent<PlayerMovement>().enabled = !isOpen;
+
+
 
         }
     }

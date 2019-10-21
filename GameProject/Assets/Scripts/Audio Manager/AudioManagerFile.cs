@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-
+/* 
 [CreateAssetMenu(fileName = "Audio Manager File", menuName = "Carter Games/Audio Manager File")]
 public class AudioManagerFile : ScriptableObject
 {
@@ -9,3 +9,4 @@ public class AudioManagerFile : ScriptableObject
     public GameObject Prefab;
     public bool Populated;
 }
+*/

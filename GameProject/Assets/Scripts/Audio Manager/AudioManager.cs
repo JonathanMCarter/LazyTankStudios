@@ -11,8 +11,8 @@ using UnityEngine;
  *							  Last Updated: 22/08/19
  * 
  * 
-*/
 
+Thanks Jonathan but I wrote my own AudioManager in a way shorter script(probably worse than your's but scriptsize matters)
 
 public class AudioManager : MonoBehaviour
 {
@@ -125,3 +125,4 @@ public class AudioManager : MonoBehaviour
 		}
 	}
 }
+*/

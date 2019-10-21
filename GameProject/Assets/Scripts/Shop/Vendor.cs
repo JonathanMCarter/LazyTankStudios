@@ -37,8 +37,14 @@ public class Vendor : MonoBehaviour
     private DialogueScript DS;
     public bool IsUsingVendor;
 
+    //Andreas edit
+    private AudioManager audioManager;
+
     private void Start()
     {
+        //Andreas edit
+        audioManager=GameObject.FindObjectOfType<AudioManager>();
+
         // Jonathan Edit
         inventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(2).GetComponent<Inventory>();
         VendorInventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(3).GetComponent<Inventory>();
@@ -103,6 +109,7 @@ public class Vendor : MonoBehaviour
                         inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
                         VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
                     }
+                    audioManager.Play("Sell");
                 }
                 else if (VendorInventorySlot.hasItem & !Sell)
                 {
@@ -116,6 +123,7 @@ public class Vendor : MonoBehaviour
                         inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
                         VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
                     }
+                    audioManager.Play("Buy");
                 }
             }
         }

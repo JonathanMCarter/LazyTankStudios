@@ -7,6 +7,13 @@ using UnityEngine;
  * Last edit: 20/10/19
  * 
  * Script for moving the player to the destination of the gate and move the player across the screen
+ *
+ *
+ * Also edited by:Andreas Kraemer
+ * Last edit: 21/10/19
+ *
+ * Added sound effects
+ *
  */
 public class PlayerZoneTransition : MonoBehaviour
 {
@@ -20,6 +27,13 @@ public class PlayerZoneTransition : MonoBehaviour
     public Transform Destination;
     bool transitioning = false;
 
+    private AudioManager audioManager;
+
+    public void Start()
+    {
+        audioManager=GameObject.FindObjectOfType<AudioManager>();
+    }
+
     public void StartTransition()
     {
         cameraBox = Camera.main.GetComponent<BoxCollider2D>();
@@ -32,6 +46,7 @@ public class PlayerZoneTransition : MonoBehaviour
             box.enabled = false;
         }
         transitioning = true;
+        audioManager.Play("Door");
     }
 
     private void Update()

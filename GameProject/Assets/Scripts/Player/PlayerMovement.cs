@@ -17,8 +17,8 @@ using UnityEngine;
  * Reason: Combat
  * 
  * Also Edited by : Andreas Kraemer
- * Last Edit: 17.10.19
- * Reason: Link Heart UI and attack animation
+ * Last Edit: 21.10.19
+ * Reason: Call Sound Effects
  * 
  * */
 
@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     //Edit by Andreas--
     //public SpriteRenderer[] Hearts;
     public HealthUI healthUI;
+    private AudioManager audioManager;
     //Andreas edit end--
 
     //Tony's Variables
@@ -79,6 +80,10 @@ public class PlayerMovement : MonoBehaviour
         healthUI.maxHealth=health;
         healthUI.currentHealth=health;
         healthUI.ShowHearts();//tony addition
+        //Andreas edit end--
+
+        //Andreas edit--
+        audioManager=GameObject.FindObjectOfType<AudioManager>();
         //Andreas edit end--
     }
 
@@ -140,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
         //setup countdown
         countdown = AbilityDuration;
 
+
         Debug.Log(ID.ToString());
 
         switch (ID)
@@ -190,13 +196,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    ///<summary>
-    ///Plays the Hero's Kick animation
-    ///</summary>
+
+    //Andreas edit --Animation has been removed
+    /* 
     public void PlayKickAnimation()
     {
         myAnim.Play("Hero_Kick", 0);
     }
+    */
+    //
 
     ///<summary>
     ///Plays the Hero's Attack animation
@@ -282,7 +290,22 @@ public class PlayerMovement : MonoBehaviour
         Debug.LogError("this is running");
         health-=damage;
         healthUI.currentHealth=health;
-        if (health <= 0) gameObject.SetActive(false);  
+        audioManager.Play("Damage");
+        if (health <= 0)
+        { 
+            audioManager.Play("Death");
+            gameObject.SetActive(false); 
+        } 
+    }
+
+    ///<summary>
+    /// Heals the player for [value]
+    ///</summary>
+    public void Heal(int value)
+    {
+        health=health+value<healthUI.maxHealth?health+value:healthUI.maxHealth;
+        healthUI.currentHealth=health;
+        audioManager.Play("Heal");
     }
     
     

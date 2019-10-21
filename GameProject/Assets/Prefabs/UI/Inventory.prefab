@@ -364,7 +364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3, y: 0.1}
   m_AnchorMax: {x: 0.7, y: 0.9}
-  m_AnchoredPosition: {x: 0, y: 0.000012398}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.000030518, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7196161479515245009
@@ -440,10 +440,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bd088815abb6140973716f36938f06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipped: -1
+  items: 
+  equippedA: -1
+  equippedB: -1
   isOpen: 0
-  vendorMode: 0
-  column: 4
+  selected: 0
+  VendorMode: 0
 --- !u!225 &7196161479515245015
 CanvasGroup:
   m_ObjectHideFlags: 0

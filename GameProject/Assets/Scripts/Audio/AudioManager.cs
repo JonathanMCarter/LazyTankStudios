@@ -18,6 +18,11 @@ public class AudioManager : MonoBehaviour
 {
     //Insert sound file into the array via the editor, give it a name and set volume and pitch
     public Sound[] sounds;
+    private AudioSource audioSource;
+    public void Start()
+    {
+        audioSource=gameObject.AddComponent<AudioSource>();
+    }
     ///<summary>
     ///Call Play([insert name of soundeffect here]) to play a sound
     ///</summary>
@@ -27,7 +32,7 @@ public class AudioManager : MonoBehaviour
         {
             if (s.name.Equals(name))
             {
-                s.source = gameObject.AddComponent<AudioSource>();
+                s.source = audioSource;
                 s.source.clip = s.audioClip;
                 s.source.Play();
             }
