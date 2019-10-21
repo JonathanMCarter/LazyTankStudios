@@ -62,7 +62,7 @@ public class ShaderEditorGUI : ShaderGUI
 
         if (GUILayout.Button("Make Material Instance"))
         {
-            Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial = Material.Instantiate<Material>(Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial);
+            Selection.gameObjects[0].GetComponent<Renderer>().material = Selection.gameObjects[0].GetComponent<Renderer>().material;
         }
 
         // This doesn't work yet
