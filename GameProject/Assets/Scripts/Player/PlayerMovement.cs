@@ -24,11 +24,14 @@ using UnityEngine.SceneManagement;
  * Also Edited by: Lewis Cleminson
  * Last Edit: 21.10.19
  * Reason: HealthUI null reference
+ * Added Enum for facing direction for bullets direction reference
  * 
  * */
 
 public class PlayerMovement : MonoBehaviour
 {
+    private enum Direction {Up, Down, Left, Right };
+    private Direction ImFacing;
     public float speed = 100;
     private float baseSpeed;//for when the speed needs to be changed temporarily
     public Inventory i;
@@ -71,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        ImFacing = Direction.Down; //Added by LC
         myRigid = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
         myRenderer = GetComponent<SpriteRenderer>();
@@ -100,13 +104,21 @@ public class PlayerMovement : MonoBehaviour
     {
         //Debug.DrawLine(transform.position, transform.right, Color.yellow);
 
-        myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed;
+        myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed; //Changing a rigidbody should take place in FixedUpdate rather than Update as that is when the physics system runs, whereas update is when items are drawn on screen. comment added by LC
 
         //tony function
         SetRotater();//rotates the attack hit box
 
         myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
         myAnim.SetFloat("SpeedY", IM.Y_Axis());
+
+        /////////////////////Added by LC as temp for directions////////////////////
+        if (IM.X_Axis() > 0.1f) ImFacing = Direction.Right;
+        if (IM.X_Axis() < -0.1f) ImFacing = Direction.Left;
+        if (IM.Y_Axis() > 0.1f) ImFacing = Direction.Up;
+        if (IM.Y_Axis() < -0.1f) ImFacing = Direction.Down;
+
+        ////////////////////////////////////////////////
 
         if (IM.Button_Menu())
         {
@@ -116,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         //Toby: A and B item actions
         if (IM.Button_A() && !i.isOpen)
         {
-            Debug.Log("Test");
+           // Debug.Log("Test"); //commented out by LC to help clear debug log
             useItem(i.equippedA);
         }
 
@@ -156,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
         countdown = AbilityDuration;
 
 
-        Debug.Log(ID.ToString());
+        //Debug.Log(ID.ToString());//commented out by LC to help clear debug log
 
         switch (ID)
         {
@@ -200,6 +212,7 @@ public class PlayerMovement : MonoBehaviour
             case -1:
             default:
                 //nothing or invalid item equipped
+                FireProjectile(); //Added by LC for testing purposes
                 if (attacking) attacking = false;
                 //Debug.Log("Trying to use nothing");
                 break;
@@ -225,22 +238,51 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    // Added by Jonathan
-    public void FireProjectile()
+    //// Added by Jonathan
+    //public void FireProjectile()
+    //{
+    //    Debug.Log(((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized));
+    //    GameObject Go = Instantiate(DamageBulletThingy, transform.position, transform.rotation);
+
+    //    //I'm aware that if you click close to yourself the bullet goes slow. 
+    //    Vector3 Dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+
+    //    Go.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Clamp(Dir.x, -.3f, .3f), Dir.y) * WeaponStats.Speed, ForceMode2D.Impulse);
+
+    //    //Alternate firing method - Tony (comment above uncomment this) In terms of input I think there are only 3 buttons in the final build, unless I missed something
+    //    //GameObject Go = Instantiate(DamageBulletThingy, attackHitBox.transform.position, attackRotater.transform.rotation);
+    //    //Go.transform.localScale = new Vector3(WeaponStats.Size, WeaponStats.Size, WeaponStats.Size);
+    //    //--------------------------------
+    //    Go.GetComponent<Rigidbody2D>().velocity = Go.transform.right * WeaponStats.Speed;
+    //    Destroy(Go, WeaponStats.Lifetime);
+    //}
+    
+    //LC remade function - Cant set force of bullet by mouse position, as this wont work with joystick input or mobile input. Instead need to find which way player is facing and fire in that direction
+
+
+    public void FireProjectile() //Fires off player facing certain direction
     {
-        Debug.Log(((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized));
         GameObject Go = Instantiate(DamageBulletThingy, transform.position, transform.rotation);
-
-        //I'm aware that if you click close to yourself the bullet goes slow. 
-        Vector3 Dir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-
-        Go.GetComponent<Rigidbody2D>().AddForce(new Vector2(Mathf.Clamp(Dir.x, -.3f, .3f), Dir.y) * WeaponStats.Speed, ForceMode2D.Impulse);
-
-        //Alternate firing method - Tony (comment above uncomment this) In terms of input I think there are only 3 buttons in the final build, unless I missed something
-        //GameObject Go = Instantiate(DamageBulletThingy, attackHitBox.transform.position, attackRotater.transform.rotation);
-        //Go.transform.localScale = new Vector3(WeaponStats.Size, WeaponStats.Size, WeaponStats.Size);
-        //--------------------------------
-        Go.GetComponent<Rigidbody2D>().velocity = Go.transform.right * WeaponStats.Speed;
+        Vector2 Dir = new Vector2(0, 0);
+        switch (ImFacing)
+        {
+            case (Direction.Down):
+                Dir.y = -1f; //why 3?
+                break;
+            case (Direction.Left):
+                Dir.x = -1f;
+                break;
+            case (Direction.Right):
+                Dir.x = 1f;
+                break;
+            case (Direction.Up):
+                Dir.y = 1f;
+                break;
+            default:
+                print("Direction Error - LC");
+                break;
+        };
+        Go.GetComponent<Rigidbody2D>().AddForce(Dir * WeaponStats.Speed, ForceMode2D.Impulse);
         Destroy(Go, WeaponStats.Lifetime);
     }
 
@@ -334,6 +376,7 @@ public class PlayerMovement : MonoBehaviour
         {
             myRenderer.flipX = false;
             attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 0, 0));
+            
         }
         //was having a problem with this so it might look kinda weird
         if (myRigid.velocity.x < -0.1)

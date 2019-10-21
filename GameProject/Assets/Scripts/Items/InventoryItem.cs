@@ -13,11 +13,21 @@ using UnityEngine.UI;
  * 
  * An item that can be found in the world and picked up, the sprite of the item doesn't matter as the icon in the inventory is a separate icon
  * So for example, if there were hidden items, no sprite could be used
+ * 
+ * Also Edited By: Lewis Cleminson
+ * Last Edit: 21.10.19
+ * Reason: Updated controls to use Input Manager (Allows for cross platform input)
  */
 public class InventoryItem : MonoBehaviour
 {
+    InputManager IM;
     public int ID;
     public int quantity = 1;
+
+    private void Start()
+    {
+        IM = FindObjectOfType<InputManager>();
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -25,7 +35,7 @@ public class InventoryItem : MonoBehaviour
         {
            // Debug.Log(collision.gameObject.name);
 
-            if (Input.GetButton("Submit"))
+            if (IM.Button_A())
             {
                 // Jonathan - Making sure the ref is always to the player inv
                 for (int i = 0; i < FindObjectsOfType<Inventory>().Length; i++)

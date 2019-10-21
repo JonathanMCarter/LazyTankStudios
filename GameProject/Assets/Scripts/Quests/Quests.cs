@@ -76,7 +76,7 @@ public class Quests : MonoBehaviour
                     //    Destroy(enemy);
                     //}
                 }
-            else print("IT WORKS");
+           // else print("IT WORKS"); //turned off by LC to clear debugger
         }
 
     }
