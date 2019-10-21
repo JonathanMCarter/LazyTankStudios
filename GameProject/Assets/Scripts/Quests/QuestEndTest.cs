@@ -17,6 +17,9 @@ public class QuestEndTest : MonoBehaviour
 
     public DialogueScript DS;
     public DialogueFile File;
+    
+    //Andreas - add sound effect
+    private AudioManager audioManager;
 
 
     private void Start()
@@ -24,6 +27,8 @@ public class QuestEndTest : MonoBehaviour
         QS = FindObjectOfType<Quests>();
         DS = FindObjectOfType<DialogueScript>();
         QST = QS.Quest;
+        //Andreas - add sound effect
+        audioManager=GameObject.FindObjectOfType<AudioManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,6 +38,8 @@ public class QuestEndTest : MonoBehaviour
             QST.status = Quest.Status.Completed;
             DS.ChangeFile(File);
             Debug.Log("quest done?");
+            //Andreas - add sound effect
+            audioManager.Play("Victory");
         }
     }
 }
