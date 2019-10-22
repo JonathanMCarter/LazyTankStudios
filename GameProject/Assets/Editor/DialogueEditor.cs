@@ -27,6 +27,12 @@ using System.IO;
 
 */
 
+/// <summary>
+/// Dialogue Custom Inspector Script.
+/// 
+/// This script alteres the inspector for the DialogueScript with a load of custom fields before the origional inspector is shown underneath 
+/// </summary>
+
 [CustomEditor(typeof(DialogueScript))]
 public class DialogueEditor : Editor
 {
