@@ -46,7 +46,7 @@ public class Vendor : MonoBehaviour
     private void Awake()//changed to awake so can get reference before Inventory panel is deactived
     {
         //Andreas edit
-        audioManager= FindObjectOfType<AudioManager>();
+        audioManager = FindObjectOfType<AudioManager>();
 
         // Jonathan Edit
         inventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(2).GetComponent<Inventory>();
@@ -202,16 +202,16 @@ public class Vendor : MonoBehaviour
     {
         //Resets itself everytime you get into the interactable zone
         happened = false;
-        
+
         if (collision.gameObject.name == "Hero")
         {
             //Play speech - edited by jonathan to use findoftype
             DS.ChangeFile(VendorSpeech);
 
             //Position the inventories
-            if (inventory.transform.localPosition.x>-PANEL_POSITION_VENDOR_ON)
+            if (inventory.transform.localPosition.x > -PANEL_POSITION_VENDOR_ON)
                 inventory.VendorPanelPosition(PANEL_POSITION_VENDOR_ON);
-            
+
             if (VendorInventory.transform.localPosition.x < PANEL_POSITION_VENDOR_ON)
                 VendorInventory.VendorPanelPosition(-PANEL_POSITION_VENDOR_ON);
 
@@ -221,9 +221,13 @@ public class Vendor : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.name == "Hero")
+        { 
         //Reset the main inventory on leaving
         inventory.VendorPanelPosition(-PANEL_POSITION_VENDOR_ON);
+        }
     }
+
 
     public void SellOrBuy(bool action)
     {
@@ -250,7 +254,7 @@ public class Vendor : MonoBehaviour
         // Jonathan Edit - Makes it so it disables the sell / buy buttons
         GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.SetActive(false);
         GameObject.Find("SellOrBuyPanel").transform.GetChild(1).gameObject.SetActive(false);
-        IsUsingVendor = false;
+        IsUsingVendor = true;
 
         //ToogleSellorBuyPanel(0);
 
