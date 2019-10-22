@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3139488355853811627}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.84, y: 2.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b8ce1703db0b34d48a85a7ca994fd708, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9068766439883418015}
-  - component: {fileID: 9068766439883417987}
+  - component: {fileID: 2535394759953222889}
   - component: {fileID: 9068766439883417986}
   - component: {fileID: 9068766439883417985}
   - component: {fileID: 9068766439883417984}
@@ -142,7 +142,7 @@ Transform:
   m_Father: {fileID: 8044519269397466832}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9068766439883417987
+--- !u!114 &2535394759953222889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,26 +151,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 9068766439883418014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5776215bb718665458e02b464b7b47a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 11d047d3433a76347a7c5fa09766069e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Quest:
-    type: 0
-    NPCToReturnTo: {fileID: 0}
-    Dialogue: {fileID: 11400000, guid: fd5570201cd590d45887e0c0424003f0, type: 2}
-    KillRequest: 1
-    CollectRequest: 0
-    DeliverRequest: 0
-    Kills:
-    - {fileID: 0}
-    Collectible: []
-    CollectibleAmmount: 
-    DeliverGold: 0
-    reward: 0
-    Items: []
-    ItemsSprites: []
-    GoldReceived: 0
-    status: 0
+  type: 0
+  NPCToReturnTo: {fileID: 0}
+  Dialogue: {fileID: 0}
+  QuestCompleted: {fileID: 0}
+  KillRequest: 0
+  CollectRequest: 0
+  DeliverRequest: 0
+  ToPos: 0
+  Kills: []
+  Collectible: []
+  CollectibleAmmount: 
+  DeliverGold: 0
+  reward: 0
+  Items: []
+  ItemsSprites: []
+  GoldReceived: 0
+  status: 0
 --- !u!61 &9068766439883417986
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -209,6 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd88efa93e21734a9d4485838af0ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enabled: 1
   interact:
     m_PersistentCalls:
       m_Calls:
@@ -238,6 +239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 0}
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: fd5570201cd590d45887e0c0424003f0, type: 2}
   questdialogue: {fileID: 0}
   movement: {fileID: 0}

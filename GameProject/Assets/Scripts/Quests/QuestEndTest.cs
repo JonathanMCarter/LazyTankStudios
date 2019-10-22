@@ -13,7 +13,6 @@ using UnityEngine;
 public class QuestEndTest : MonoBehaviour
 {
     public Quest QST;
-    public Quests QS;
 
     public DialogueScript DS;
     public DialogueFile File;
@@ -24,9 +23,9 @@ public class QuestEndTest : MonoBehaviour
 
     private void Start()
     {
-        QS = FindObjectOfType<Quests>();
+        QST = FindObjectOfType<Quest>();
         DS = FindObjectOfType<DialogueScript>();
-        QST = QS.Quest;
+
         //Andreas - add sound effect
         audioManager=GameObject.FindObjectOfType<AudioManager>();
     }
