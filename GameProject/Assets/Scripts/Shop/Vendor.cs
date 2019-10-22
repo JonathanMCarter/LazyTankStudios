@@ -188,7 +188,8 @@ public class Vendor : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            VendorInventory.StartCoroutine(VendorInventory.ToogleSlots(Sell));
+            if (!VendorInventory.gameObject.activeInHierarchy) VendorInventory.gameObject.SetActive(true); //added by LC
+            VendorInventory.StartCoroutine(VendorInventory.ToogleSlots(Sell)); //could not start co-routine as VendorInventory is Inactive
             Sell = !Sell;
             inventory.StartCoroutine(inventory.ToogleSlots(Sell));
         }
@@ -226,6 +227,7 @@ public class Vendor : MonoBehaviour
 
     public void SellOrBuy(bool action)
     {
+        VendorInventory.gameObject.SetActive(true); //added by LC
         Sell = action;
         if (Sell)
         {
