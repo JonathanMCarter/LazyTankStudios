@@ -14,9 +14,10 @@ using UnityEngine;
  * 
  * LC Notes: Currently will not work, will keep scaling player damage up if it did work as intended. Need to move weapon damage onto projectile, and increase it on there. Would also allow a bool to be on that new bullet script to show if it can be affected by gates or not?
  * Can also use layers (player and enemy layers) to define if a gate is only for player or enemy or both
- */ 
+ */
 public class PuzzleGateScript : MonoBehaviour
 {
+    public float ScaleSize;
     public enum Effect
     {
         Speed,
@@ -52,7 +53,7 @@ public class PuzzleGateScript : MonoBehaviour
                     break;
                 // Should double the scale of what passes through
                 case Effect.IncreaseSize:
-                    collision.transform.localScale *= 2;
+                    collision.transform.localScale *= ScaleSize;
                     break;
                 // does nothing - no idea what to do with this one.....
                 case Effect.Fire:

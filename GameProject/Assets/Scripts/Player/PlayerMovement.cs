@@ -135,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
         //Toby: A and B item actions
         if (IM.Button_A() && !myInventory.isOpen)
         {
+            print("asdf");
            // Debug.Log("Test"); //commented out by LC to help clear debug log
             useItem(myInventory.equippedA);
         }
@@ -176,7 +177,6 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Debug.Log(ID.ToString());//commented out by LC to help clear debug log
-
         switch (ID)
         {
             case (int)ITEMS.SWORD:
