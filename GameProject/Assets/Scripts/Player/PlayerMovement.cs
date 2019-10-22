@@ -82,8 +82,9 @@ public class PlayerMovement : MonoBehaviour
         myRenderer = GetComponent<SpriteRenderer>();
         IM = FindObjectOfType<InputManager>();
 
-        attackHitBox = transform.GetChild(0).GetComponent<BoxCollider2D>(); //added by LC
+        attackHitBox = attackRotater.GetChild(0).GetComponent<BoxCollider2D>(); //added by LC
         //Tony Was here
+        attackRotater.gameObject.SetActive(true);
         attackHitBox.gameObject.SetActive(false);
         attacking = false;
         baseSpeed = speed;
@@ -188,7 +189,7 @@ public class PlayerMovement : MonoBehaviour
                 attacking = true;
 
                 // Jonathan Added This function
-                FireProjectile();
+                //FireProjectile();
                 break;
 
             //Tony Stuff
@@ -196,8 +197,11 @@ public class PlayerMovement : MonoBehaviour
                 //animation here
 
                 //-----------
-                speed *= dashSpeedMultiplier;
-                dashing = true;
+                if (!dashing)
+                {
+                    speed *= dashSpeedMultiplier;
+                    dashing = true;
+                }
                 break;
             case (int)ITEMS.SHIELDSHARPTON:
                 //animation
@@ -219,8 +223,10 @@ public class PlayerMovement : MonoBehaviour
             case -1:
             default:
                 //nothing or invalid item equipped
-                FireProjectile(); //Added by LC for testing purposes
-                if (attacking) attacking = false;
+                if (!attacking)
+                {
+                    FireProjectile(); //Added by LC for testing purposes
+                }
                 //Debug.Log("Trying to use nothing");
                 break;
         }
@@ -365,7 +371,7 @@ public class PlayerMovement : MonoBehaviour
         health-=damage;
         healthUI.currentHealth=health;
         healthUI.ShowHearts(); //update the display of hearts. LC
-        audioManager.Play("Damage");
+        if(audioManager != null)        audioManager.Play("Damage");
         if (health <= 0)
         {
             audioManager.Play("Death");
@@ -390,7 +396,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator DamageCooldown() //temp add by LC
     {
         TakeDamageCD = !TakeDamageCD;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         TakeDamageCD = !TakeDamageCD;
     }
 
