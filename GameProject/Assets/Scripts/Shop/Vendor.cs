@@ -116,27 +116,35 @@ public class Vendor : MonoBehaviour
 
                         //Add a item into the vendor inventory 
                         VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+
                     }
                     else if (playerInventorySlot.quantity == 1)
                     {
                         inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
                         VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
                     }
+                    inventory.addCoins(VendorInventorySlot.BuyingValue);
+
                     audioManager.Play("Sell");
                 }
                 else if (VendorInventorySlot.hasItem & !Sell)
                 {
-                    if (VendorInventorySlot.quantity > 1)
+                    if (inventory.getCoins() >= VendorInventorySlot.SellingValue)
                     {
-                        inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
-                        VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, Sell, 1, Sell);
+                        if (VendorInventorySlot.quantity > 1)
+                        {
+                            inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
+                            VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, Sell, 1, Sell);
+                        }
+                        else if (VendorInventorySlot.quantity == 1)
+                        {
+                            inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
+                            VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                        }
+
+                        inventory.addCoins(-VendorInventorySlot.SellingValue);
+                        audioManager.Play("Buy");
                     }
-                    else if (VendorInventorySlot.quantity == 1)
-                    {
-                        inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
-                        VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
-                    }
-                    audioManager.Play("Buy");
                 }
             }
         }

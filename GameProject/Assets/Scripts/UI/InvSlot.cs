@@ -18,6 +18,8 @@ public class InvSlot : MonoBehaviour
     public int equipped = 0;
     [HideInInspector]
     public bool selected = false;
+    public int BuyingValue;
+    public int SellingValue;
 
     GameObject i;
     Text q, e;

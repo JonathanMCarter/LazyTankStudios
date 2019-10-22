@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 /*
  * Created by Toby Wishart
  * Last edit: 19/10/19
@@ -32,6 +32,7 @@ public class Inventory : MonoBehaviour
 
     InputManager IM;
 
+    int Coins=0;
 
     #region Gabriel Variables
 
@@ -62,7 +63,7 @@ public class Inventory : MonoBehaviour
         //audioManager.Play("Item_PickUp");
         //Andreas edit end--
     }
-    public void addItem(int id, int quantity, bool remove,int QuantityToBeChangedWith,bool Increase)
+    public void addItem(int id, int quantity, bool remove, int QuantityToBeChangedWith, bool Increase)
     {
         quantity = Increase ? quantity += 1 : quantity -= 1;
         items[id] = !remove;
@@ -114,7 +115,7 @@ public class Inventory : MonoBehaviour
     {
         isOpen = !isOpen;
         //Andreas edit--
-        string effectToPlay=isOpen?"Inventory_Open":"Inventory_Close";
+        string effectToPlay = isOpen ? "Inventory_Open" : "Inventory_Close";
         if (audioManager != null) audioManager.Play(effectToPlay);
         //Andreas edit end--
         selected = 0;
@@ -130,8 +131,8 @@ public class Inventory : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < items.Length; i++)
         {
-            if(!state)
-                 transform.GetChild(i).GetComponent<InvSlot>().UnselectedColourApplied();
+            if (!state)
+                transform.GetChild(i).GetComponent<InvSlot>().UnselectedColourApplied();
             transform.GetChild(i).GetComponent<InvSlot>().enabled = state;
 
         }
@@ -142,6 +143,20 @@ public class Inventory : MonoBehaviour
     {
         gameObject.transform.position = new Vector3(transform.position.x - value, transform.position.y, transform.position.z);
     }
+
+
+    public int getCoins()
+    {
+        return Coins;
+    }
+
+    public void addCoins(int coinsToBeAdded)
+    {
+        Coins += coinsToBeAdded;
+        GameObject.Find("CoinUI").transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<Text>().text = Coins.ToString();
+
+    }
+
 
     #endregion
 
@@ -156,7 +171,6 @@ public class Inventory : MonoBehaviour
     private bool delayed = false;
     void Update()
     {
-
         GetComponent<CanvasGroup>().alpha = isOpen ? 1 : 0;
 
         if (isOpen && !delayed)
