@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2764304477393958792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2764304477393958789}
+  - component: {fileID: 2764304477393958791}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2764304477393958789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2764304477393958792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1214901, y: -4.538866, z: -7961.8516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2764304477393958791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2764304477393958792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f672ca774284d0479bc1a4c030f293c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - audioClip: {fileID: 8300000, guid: 2a1da0560c15d5e419722aee4cf21d5f, type: 3}
+    name: Buy
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: 232ad79480f4392469514319a0c575fd, type: 3}
+    name: Inventory_Close
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: e7f6ff64363f54340a71995ab4d0379c, type: 3}
+    name: Death
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: e2e0f5881dae6cd45ba3573fba20b2ab, type: 3}
+    name: Door
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: a873c37fd430a1f46a4fe67086e48b97, type: 3}
+    name: Heal
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: fc5ae97e96154ef4b86c3c728896129d, type: 3}
+    name: Inventory_Open
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: 85f8960006ad0f748a70f30c46c43876, type: 3}
+    name: Item_PickUp
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: ef6a245e2071f5b43b70cf628fe10846, type: 3}
+    name: Select
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: ac3de3222e8690c47bc5667df74dcab2, type: 3}
+    name: Sell
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: 2d5912cb5c4808f469cee796e45c53bb, type: 3}
+    name: Damage
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: f99d4f14ac5b26341b7e575c2ed155fa, type: 3}
+    name: Victory
+    volume: 1
+    pitch: 0
+    source: {fileID: 0}
