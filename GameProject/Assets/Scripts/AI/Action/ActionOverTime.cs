@@ -11,6 +11,7 @@ namespace Test
             elapsedTime = 0f;
             while(progress <= 1f)
             {
+                Debug.Log(elapsedTime);
                 elapsedTime += deltaTime;
                 progress += deltaTime / ExpiryTime;
                 ActionDelegate(mb, deltaTime);

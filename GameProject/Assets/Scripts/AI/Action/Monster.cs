@@ -8,30 +8,35 @@ namespace Test
     {
         public GameObject target;
 
-        private MoveAction action;
+        public Ability ability;
         private IEnumerator currentAction;
+        private Chase chase;
+
+        string test = "if(true)Debug.Log('nice');";
 
         void Start()
         {
-            action = ScriptableObject.CreateInstance<MoveAction>();
-            action.Init(target.transform.position, 2f);
+            chase = (Chase)ability;
+            chase.Target = target.transform;
+            chase.Init();
+            UseAction();
+            () => { test };
         }
 
-        void Update() => UseAction();
-
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (!currentAction.MoveNext())
+                {
+                    UseAction();
+                }
+            }
+        }
         private void UseAction()
         {
-            action.target = target.transform.position;
-            currentAction = action.Use(this, Time.deltaTime);
+            currentAction = chase.Use(this, Time.deltaTime);
             StartCoroutine(currentAction);
         }
-    } 
+    }
 }
-//if (Input.GetKeyDown(KeyCode.Space))
-//{
-//    if(!currentAction.MoveNext())
-//    {
-//        Debug.Log("Use");
-//        UseAction();
-//    }
-//}

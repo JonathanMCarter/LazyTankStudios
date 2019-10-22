@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Test
 {
-    public class Action : ScriptableObject
+    public class Action
     {
         public ActionDelegate ActionDelegate { get; set; }
         public float ExpiryTime = 0f;
