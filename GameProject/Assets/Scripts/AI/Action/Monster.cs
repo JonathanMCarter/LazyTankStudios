@@ -8,33 +8,30 @@ namespace Test
     {
         public GameObject target;
 
-        private Test.ChaseAction action;
+        private MoveAction action;
         private IEnumerator currentAction;
-        // Start is called before the first frame update
+
         void Start()
         {
-            action = ScriptableObject.CreateInstance<ChaseAction>();
-            action.Init(target.transform, 10f, 2f);
-            UseAction();
+            action = ScriptableObject.CreateInstance<MoveAction>();
+            action.Init(target.transform.position, 2f);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if(!currentAction.MoveNext())
-                {
-                    Debug.Log("Use");
-                    UseAction();
-                }
-            }
-        }
+        void Update() => UseAction();
 
         private void UseAction()
         {
+            action.target = target.transform.position;
             currentAction = action.Use(this, Time.deltaTime);
             StartCoroutine(currentAction);
         }
     } 
 }
+//if (Input.GetKeyDown(KeyCode.Space))
+//{
+//    if(!currentAction.MoveNext())
+//    {
+//        Debug.Log("Use");
+//        UseAction();
+//    }
+//}
