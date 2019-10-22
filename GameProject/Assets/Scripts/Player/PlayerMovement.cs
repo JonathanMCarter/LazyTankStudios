@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer myRenderer;
     private InputManager IM;
     public bool TakeDamageCD; //temp add by LC
+    public GameObject DeathCanvas;
     //Tony Was Here
 
     //Edit by Andreas--
@@ -377,6 +378,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator GameReset() //added temp by LC
     {
+        if (DeathCanvas != null) DeathCanvas.SetActive(true);
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Main Menu");
         DoNotDes [] Gos = GameObject.FindObjectsOfType<DoNotDes>();
