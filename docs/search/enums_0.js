@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['effect_968',['Effect',['../class_puzzle_gate_script.html#ac82d94ac89a71463f5ed869ac209e4ab',1,'PuzzleGateScript']]],
-  ['eventoptions_969',['EventOptions',['../class_dialogue_editor_window.html#a2c397b01361b105d09a5905197f81421',1,'DialogueEditorWindow']]]
+  ['effect_971',['Effect',['../class_puzzle_gate_script.html#ac82d94ac89a71463f5ed869ac209e4ab',1,'PuzzleGateScript']]],
+  ['eventoptions_972',['EventOptions',['../class_dialogue_editor_window.html#a2c397b01361b105d09a5905197f81421',1,'DialogueEditorWindow']]]
 ];

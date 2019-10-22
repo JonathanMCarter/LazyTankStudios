@@ -15,6 +15,9 @@ var dir_f13b41af88cf68434578284aaf699e39 =
     [ "Quests", "dir_16c639b8d1661eeebbabf9a02f3daf21.html", "dir_16c639b8d1661eeebbabf9a02f3daf21" ],
     [ "Shop", "dir_e840a82b157631d4f8760037a47ca310.html", "dir_e840a82b157631d4f8760037a47ca310" ],
     [ "UI", "dir_4ae35e2d0d203079e26c83ccaec95743.html", "dir_4ae35e2d0d203079e26c83ccaec95743" ],
+    [ "DocumentationCheatSheet.cs", "_documentation_cheat_sheet_8cs.html", [
+      [ "DocumentationCheatSheet", "class_documentation_cheat_sheet.html", "class_documentation_cheat_sheet" ]
+    ] ],
     [ "DoNotDes.cs", "_do_not_des_8cs.html", [
       [ "DoNotDes", "class_do_not_des.html", null ]
     ] ]

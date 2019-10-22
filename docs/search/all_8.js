@@ -6,5 +6,7 @@ var searchData=
   ['healthui_187',['HealthUI',['../class_health_u_i.html',1,'HealthUI'],['../class_player_movement.html#a0b5649cbe0b6bd4593b2b46b793c7f9b',1,'PlayerMovement.healthUI()']]],
   ['healthui_2ecs_188',['HealthUI.cs',['../_health_u_i_8cs.html',1,'']]],
   ['hearts_189',['hearts',['../class_health_u_i.html#a5bcbec0b71b32db04e434c806c4456d2',1,'HealthUI.hearts()'],['../class_a_i_1_1_a_i_movement.html#ac738669153b8c714fb61a46c2d9cb47a',1,'AI.AIMovement.Hearts()']]],
-  ['hp_190',['HP',['../class_combat.html#a126f1a19bcbf61f013b62da785ac7e2c',1,'Combat']]]
+  ['help_2emd_190',['help.md',['../help_8md.html',1,'']]],
+  ['hp_191',['HP',['../class_combat.html#a126f1a19bcbf61f013b62da785ac7e2c',1,'Combat']]],
+  ['homepage_192',['Homepage',['../index.html',1,'']]]
 ];
