@@ -278,6 +278,8 @@ public class InputManager : MonoBehaviour
 #endif
 
 #if UNITY_WEBGL || UNITY_STANDALONE_WIN
+        float x = Input.GetAxisRaw("Horizontal");
+        if (x < 0.1f && x > -0.1f) return 0;//deadspace 
         return Input.GetAxisRaw("Horizontal");
 
 #endif
@@ -297,6 +299,8 @@ public class InputManager : MonoBehaviour
 #endif
 
 #if UNITY_WEBGL || UNITY_STANDALONE_WIN
+        float x = Input.GetAxisRaw("Vertical");
+        if (x < 0.1f && x > -0.1f) return 0;//deadspace 
         return Input.GetAxisRaw("Vertical");
 
 #endif
