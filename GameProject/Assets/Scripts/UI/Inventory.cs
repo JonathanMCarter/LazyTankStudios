@@ -162,6 +162,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        GameObject.Find("CoinUI").transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<Text>().text = "0";
         items = new bool[transform.childCount];
         VendorMode = false;
         IM = GameObject.FindObjectOfType<InputManager>();
