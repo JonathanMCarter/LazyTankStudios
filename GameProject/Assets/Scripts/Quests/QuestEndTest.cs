@@ -35,11 +35,16 @@ public class QuestEndTest : MonoBehaviour
     {
         if (QST.status == Quest.Status.OnGoing)
         {
+            GetComponent<Interact>().Enabled = true;
             QST.status = Quest.Status.Completed;
             DS.ChangeFile(File);
             Debug.Log("quest done?");
             //Andreas - add sound effect
             //audioManager.Play("Victory");
+        }
+        else
+        {
+            GetComponent<Interact>().Enabled = false;
         }
     }
 }
