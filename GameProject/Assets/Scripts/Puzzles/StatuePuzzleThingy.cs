@@ -20,6 +20,7 @@ public class StatuePuzzleThingy : MonoBehaviour
 
     public bool Rooms12Cleared;
     public bool Em3Spawned;
+    private int ItemsReturned; //Added by LC as temp
 
     public bool PuzzleComplete;
 
@@ -27,6 +28,12 @@ public class StatuePuzzleThingy : MonoBehaviour
     void Start()
     {
         Player = FindObjectOfType<PlayerMovement>();
+    }
+
+    public void ItemReturn() //Added by LC as temp
+    {
+        ItemsReturned++;
+        if (ItemsReturned == 3) Door.SetActive(false); //should also play SFX here
     }
 
     // Update is called once per frame
@@ -92,7 +99,7 @@ public class StatuePuzzleThingy : MonoBehaviour
     {
         if ((Room1Em.Count == 0) && (!ItemSpawned[0]))
         {
-            Debug.Log("s,dfjklsdahjufhsuodf");
+            Debug.Log("Room 1 Cleared");
             Instantiate(RoomItems[0], Player.gameObject.transform.position, Player.gameObject.transform.rotation);
             ItemSpawned[0] = true;
         }
@@ -111,7 +118,7 @@ public class StatuePuzzleThingy : MonoBehaviour
     {
         if ((Room3Em.Count == 0) && (!ItemSpawned[2]))
         {
-            Debug.Log("s,dfjklsdahjufhsuodf");
+            Debug.Log("Room 3 Cleared");
             Instantiate(RoomItems[2], Player.gameObject.transform.position, Player.gameObject.transform.rotation);
             ItemSpawned[2] = true;
         }
@@ -128,7 +135,7 @@ public class StatuePuzzleThingy : MonoBehaviour
                 // This needs changing to work!!
                 //Pos = new Vector2(Mathf.Clamp(Pos.x, -Boundary.GetComponent<BoxCollider2D>().bounds.center.x, Boundary.GetComponent<BoxCollider2D>().bounds.center.x), Mathf.Clamp(Pos.y, -Boundary.GetComponent<BoxCollider2D>().bounds.center.y, Boundary.GetComponent<BoxCollider2D>().bounds.center.y));
 
-                Pos = new Vector2(Random.Range(-62.5f, -33.1f), Random.Range(-39.6f, -8f));
+                Pos = new Vector3(Random.Range(-62.5f, -33.1f), Random.Range(-39.6f, -8f), -0.2f);//LC added Zaxis as was spawning behind floor
 
                 Debug.Log(Pos);
 

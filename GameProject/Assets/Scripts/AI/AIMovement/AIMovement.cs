@@ -75,6 +75,7 @@ namespace AI
         // Update is called once per frame
         void Update()
         {
+           
             fsm.ExecuteCurrentState();
 
             if (Health <= 0)
@@ -82,6 +83,12 @@ namespace AI
                 //Destroy(this.gameObject);
                 gameObject.SetActive(false);
             }
+            
+        }
+
+        private void LateUpdate()
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -0.2f); //Added by LC as temp fix as sprite rendered behind floor
         }
 
         private void OnDrawGizmos()
