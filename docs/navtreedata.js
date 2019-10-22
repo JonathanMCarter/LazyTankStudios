@@ -26,7 +26,7 @@ var NAVTREE =
     [ "Homepage", "index.html", [
       [ "Introduction", "index.html#tutorial1", null ],
       [ "How to Setup Doxygen", "index.html#turotial2", null ],
-      [ "How do I format my scritps with content that comes up here?", "index.html#tutorial3", null ],
+      [ "How do I format my scripts with content that comes up here?", "index.html#tutorial3", null ],
       [ "How to publish changes to this site?", "index.html#tutorial4", null ]
     ] ],
     [ "Packages", "namespaces.html", [
