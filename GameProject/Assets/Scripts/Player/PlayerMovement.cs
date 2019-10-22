@@ -365,7 +365,7 @@ public class PlayerMovement : MonoBehaviour
         health-=damage;
         healthUI.currentHealth=health;
         healthUI.ShowHearts(); //update the display of hearts. LC
-        audioManager.Play("Damage");
+        if(audioManager != null)        audioManager.Play("Damage");
         if (health <= 0)
         {
             audioManager.Play("Death");
@@ -390,7 +390,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator DamageCooldown() //temp add by LC
     {
         TakeDamageCD = !TakeDamageCD;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         TakeDamageCD = !TakeDamageCD;
     }
 
