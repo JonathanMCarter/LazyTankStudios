@@ -115,7 +115,7 @@ public class Inventory : MonoBehaviour
         isOpen = !isOpen;
         //Andreas edit--
         string effectToPlay=isOpen?"Inventory_Open":"Inventory_Close";
-        audioManager.Play(effectToPlay);
+        if (audioManager != null) audioManager.Play(effectToPlay);
         //Andreas edit end--
         selected = 0;
     }
