@@ -33,6 +33,7 @@ public class PuzzleComponent : MonoBehaviour
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             collision.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             IsCarrying = false;
+            FindObjectOfType<AudioManager>().Play("Victory");
             this.gameObject.SetActive(false);
         }
         if (IsCarried) return;

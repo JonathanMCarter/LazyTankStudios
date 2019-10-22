@@ -101,11 +101,16 @@ public class PlayerMovement : MonoBehaviour
         //Andreas edit end--
     }
 
+    private void FixedUpdate()
+    {
+        myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * speed; //changed to fixedupdate as better for physics. Was also causing speed to fluxuate with framerate due to time.deltatime used incorrectly.
+    }
+
     void Update()
     {
         //Debug.DrawLine(transform.position, transform.right, Color.yellow);
 
-        myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed; //Changing a rigidbody should take place in FixedUpdate rather than Update as that is when the physics system runs, whereas update is when items are drawn on screen. comment added by LC
+      //  myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed; //Changing a rigidbody should take place in FixedUpdate rather than Update as that is when the physics system runs, whereas update is when items are drawn on screen. comment added by LC
 
         //tony function
         SetRotater();//rotates the attack hit box
@@ -374,6 +379,10 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Main Menu");
+        DoNotDes [] Gos = GameObject.FindObjectsOfType<DoNotDes>();
+        foreach (DoNotDes go in Gos) if (go.gameObject != this.gameObject) Destroy(go.gameObject);
+        yield return new WaitForSeconds(0);
+        Destroy(this.gameObject);
     }
 
     IEnumerator DamageCooldown() //temp add by LC

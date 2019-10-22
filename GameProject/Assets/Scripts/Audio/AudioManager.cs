@@ -19,8 +19,11 @@ public class AudioManager : MonoBehaviour
     //Insert sound file into the array via the editor, give it a name and set volume and pitch
     public Sound[] sounds;
     private AudioSource audioSource;
-    public void Start()
+    public void Awake()
     {
+
+
+
         audioSource=gameObject.AddComponent<AudioSource>();
     }
     ///<summary>

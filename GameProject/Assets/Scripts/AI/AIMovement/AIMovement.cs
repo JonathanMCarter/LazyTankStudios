@@ -96,7 +96,7 @@ namespace AI
             if (!showGizmos) return;
             Gizmos.color = Color.red;
 
-            Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, new Vector3(xRange, yRange));
+           // Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, new Vector3(xRange, yRange));
 
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(transform.position, awarnessSize);
