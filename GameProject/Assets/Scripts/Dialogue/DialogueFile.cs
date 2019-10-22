@@ -19,9 +19,24 @@ using UnityEngine;
 
 */
 
+/// <summary>
+/// Dialouge File Scriptable Object.
+/// 
+/// This scriptable object is used to create dialogue list collections which are read by the main dialogue script to be used in the game.
+/// @note If this is edited at all the whole dialogue system may break.
+/// </summary>
+
 [CreateAssetMenu(fileName = "Dialogue File", menuName = "Carter Games/Dialogue File")]
 public class DialogueFile : ScriptableObject
 {
+    /// <summary>
+    /// Dialogue Names.
+    /// This holds the names of the characters talking in the dialogue.
+    /// </summary>
     public List<string> Names;
+    /// <summary>
+    /// Dialogue Text.
+    /// This holds the actual dialogue of the characters talking in the game.
+    /// </summary>
     public List<string> Dialogue;
 }
