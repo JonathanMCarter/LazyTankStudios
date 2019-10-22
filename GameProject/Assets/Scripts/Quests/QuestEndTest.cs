@@ -39,7 +39,7 @@ public class QuestEndTest : MonoBehaviour
             DS.ChangeFile(File);
             Debug.Log("quest done?");
             //Andreas - add sound effect
-            audioManager.Play("Victory");
+            //audioManager.Play("Victory");
         }
     }
 }
