@@ -8,10 +8,11 @@
 
 	Made by: Jonathan Carter
 	Last Edited By: Jonathan Carter
-	Date Edited Last: 12/10/19 - Added option for transparency on all selected colours, not jsut the 4th colour.
-								 Also removed some old commented code that isn't going to be used anymore.
+	Date Edited Last: 27/10/19 - Added fields to store colour options
 
 	Edit History:
+	12/10/19 - Added option for transparency on all selected colours, not jsut the 4th colour.
+								 Also removed some old commented code that isn't going to be used anymore.
 	- 6/10/19 - To add this comment bit in (nothing else was changed)
 
 	This script makes the colour changing happen, note that there is no intellisense on this script which makes mistakes easy
@@ -28,13 +29,26 @@ Shader "Custom/ColourChanger"
 
 		[HideInInspector]_TexCol1("Colour 1", Color) = (0,0,0,1)
 		[HideInInspector]_TexCol2("Colour 2", Color) = (0,0,0,1)
-	    [HideInInspector]_TexCol3("Colour 3", Color) = (0,0,0,1)
+		[HideInInspector]_TexCol3("Colour 3", Color) = (0,0,0,1)
 		[HideInInspector]_TexCol4("Colour 4", Color) = (0,0,0,1)
 
 		[HideInInspector]_PalCol1("Palette 1", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol2("Palette 2", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol3("Palette 3", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol4("Palette 4", Color) = (0,0,0,1)
+
+		[HideInInspector]_StoreCol1("Store1", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol2("Store2", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol3("Store3", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol4("Store4", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol5("Store5", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol6("Store6", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol7("Store7", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol8("Store8", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol9("Store9", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol10("Store10", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol11("Store11", Color) = (0,0,0,1)
+		[HideInInspector]_StoreCol12("Store12", Color) = (0,0,0,1)
     }
     SubShader
     {
@@ -57,6 +71,7 @@ Shader "Custom/ColourChanger"
 			sampler2D _MainTex;
 			sampler2D _Palette;
 
+			float4 _StoreCol1;
 
 			// Defines the GPU instanced variables - still not sure this does anythig helpful in a 2D game but I've kept it in for now
 			UNITY_INSTANCING_BUFFER_START(Props)
@@ -69,6 +84,8 @@ Shader "Custom/ColourChanger"
 				UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol3)
 				UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol4)
 			UNITY_INSTANCING_BUFFER_END(Props)
+
+
 
 		// Vertex
         struct Appdata

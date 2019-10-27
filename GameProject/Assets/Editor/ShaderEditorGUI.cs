@@ -13,9 +13,10 @@ using UnityEditor;
 
     Made by: Jonathan Carter
     Last Edited By: Jonathan Carter
-    Date Edited Last: 12/10/19 - added labels for help users understand the tool
+    Date Edited Last: 27/10/19 - added 4 palette restriction
 
     Edit History:
+    - 12/10/19 - added labels for help users understand the tool
     - 6/10/19 - To add this comment bit in (nothing else was changed)
 
     This script adds the colour fields to the material dropdown, so you can edit the colours without needing an image palette
@@ -26,24 +27,27 @@ using UnityEditor;
 
 public class ShaderEditorGUI : ShaderGUI
 {
-    public enum Pallettes
+    public enum Palettes
     {
-        Pallette1,
-        Pallette2,
-        Pallette3,
-        Pallette4,
+        Palette1,
+        Palette2,
+        Palette3,
+        Palette4,
     };
 
-    public Pallettes Pal;
+    public Palettes Pal;
 
 
     public bool EditSelection;
+    public string EditSelectionString;
 
     private Material OldMat;
     public Material Mat;
 
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
+        ChangeString();
+
         if (Mat == null)
         {
             OldMat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
@@ -51,7 +55,19 @@ public class ShaderEditorGUI : ShaderGUI
 
         Mat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
 
-        EditSelection = EditorGUILayout.Toggle("Show Selection", EditSelection);
+
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button(EditSelectionString))
+        {
+            EditSelection = !EditSelection;
+        }
+
+        if (GUILayout.Button("Open Editor"))
+        {
+            PaletteEditor Test = EditorWindow.GetWindow<PaletteEditor>();
+            Test.Version = this;
+        }
+        EditorGUILayout.EndHorizontal();
 
         if (EditSelection)
         {
@@ -67,69 +83,90 @@ public class ShaderEditorGUI : ShaderGUI
             EditorGUILayout.EndHorizontal();
         }
 
-        EditorGUILayout.LabelField("Edit the colours currently selected to the new colour.", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Select Palette to change to...", EditorStyles.boldLabel);
+
+        Pal = (Palettes)EditorGUILayout.EnumPopup(Pal);
 
 
-
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Palette Colours:", GUILayout.MaxWidth(100));
-        Mat.SetColor("_PalCol1", EditorGUILayout.ColorField(properties[5].colorValue));
-        Mat.SetColor("_PalCol2", EditorGUILayout.ColorField(properties[6].colorValue));
-        Mat.SetColor("_PalCol3", EditorGUILayout.ColorField(properties[7].colorValue));
-        Mat.SetColor("_PalCol4", EditorGUILayout.ColorField(properties[8].colorValue));
-        EditorGUILayout.EndHorizontal();
-
-        // Show Buttons with colours on them
-        //EditorGUILayout.BeginHorizontal();
-
-        //GUI.color = new Color(properties[5].colorValue.r, properties[5].colorValue.g, properties[5].colorValue.b);
-        //if (GUILayout.Button("", GUILayout.MaxWidth(25), GUILayout.MaxHeight(25)))
-        //{
-
-        //}
-
-        //GUI.color = new Color(properties[6].colorValue.r, properties[6].colorValue.g, properties[6].colorValue.b);
-        //if (GUILayout.Button("", GUILayout.MaxWidth(25), GUILayout.MaxHeight(25)))
-        //{
-
-        //}
-
-        //EditorGUILayout.EndHorizontal();
-        //EditorGUILayout.BeginHorizontal();
-
-        //GUI.color = new Color(properties[7].colorValue.r, properties[7].colorValue.g, properties[7].colorValue.b);
-        //if (GUILayout.Button("", GUILayout.MaxWidth(25), GUILayout.MaxHeight(25)))
-        //{
-
-        //}
-
-        //GUI.color = new Color(properties[8].colorValue.r, properties[8].colorValue.g, properties[8].colorValue.b);
-        //if (GUILayout.Button("", GUILayout.MaxWidth(25), GUILayout.MaxHeight(25)))
-        //{
-
-        //}
-        //GUI.color = Color.white;
-
-        //EditorGUILayout.EndHorizontal();
-
-
-        if (GUILayout.Button("Make Material Instance"))
+        switch (Pal)
         {
-            Selection.gameObjects[0].GetComponent<Renderer>().material = Selection.gameObjects[0].GetComponent<Renderer>().material;
+            case Palettes.Palette1:
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                GUI.color = Mat.GetColor("_StoreCol1");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUI.color = Mat.GetColor("_StoreCol2");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUI.color = Mat.GetColor("_StoreCol3");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
+                Mat.SetColor("_PalCol1", Mat.GetColor("_StoreCol1"));
+                Mat.SetColor("_PalCol2", Mat.GetColor("_StoreCol2"));
+                Mat.SetColor("_PalCol3", Mat.GetColor("_StoreCol3"));
+
+                break;
+            case Palettes.Palette2:
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                GUI.color = Mat.GetColor("_StoreCol4");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUI.color = Mat.GetColor("_StoreCol5");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUI.color = Mat.GetColor("_StoreCol6");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
+                Mat.SetColor("_PalCol1", Mat.GetColor("_StoreCol4"));
+                Mat.SetColor("_PalCol2", Mat.GetColor("_StoreCol5"));
+                Mat.SetColor("_PalCol3", Mat.GetColor("_StoreCol6"));
+                break;
+            case Palettes.Palette3:
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                GUI.color = Mat.GetColor("_StoreCol7");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUI.color = Mat.GetColor("_StoreCol8");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUI.color = Mat.GetColor("_StoreCol9");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
+                Mat.SetColor("_PalCol1", Mat.GetColor("_StoreCol7"));
+                Mat.SetColor("_PalCol2", Mat.GetColor("_StoreCol8"));
+                Mat.SetColor("_PalCol3", Mat.GetColor("_StoreCol9"));
+                break;
+            case Palettes.Palette4:
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                GUI.color = Mat.GetColor("_StoreCol10");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUI.color = Mat.GetColor("_StoreCol11");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUI.color = Mat.GetColor("_StoreCol12");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
+                Mat.SetColor("_PalCol1", Mat.GetColor("_StoreCol10"));
+                Mat.SetColor("_PalCol2", Mat.GetColor("_StoreCol11"));
+                Mat.SetColor("_PalCol3", Mat.GetColor("_StoreCol12"));
+                break;
+            default:
+                break;
         }
 
-        // This doesn't work yet
-        //if (GUILayout.Button("Reset Instance"))
-        //{
-        //    Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial = OldMat;
-        //}
-
-        //if (GUILayout.Button("Make an instance"))
-        //{
-        //    Debug.Log(materialEditor.IsInstancingEnabled());
-        //    Debug.Log(materialEditor.GetInstanceID());
-        //}
+        GUI.color = Color.white;
 
         base.OnGUI(materialEditor, properties);
+    }
+
+    private void ChangeString()
+    {
+        if (EditSelection) { EditSelectionString = "Hide Selection"; }
+        else { EditSelectionString = "Show Selection"; }
     }
 }
