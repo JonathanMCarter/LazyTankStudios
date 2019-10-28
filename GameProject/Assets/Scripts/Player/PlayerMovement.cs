@@ -76,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        if (DeathCanvas != null) DontDestroyOnLoad(DeathCanvas.gameObject); //Added by LC
         ImFacing = Direction.Down; //Added by LC
         myRigid = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
@@ -136,7 +137,6 @@ public class PlayerMovement : MonoBehaviour
         //Toby: A and B item actions
         if (IM.Button_A() && !myInventory.isOpen)
         {
-            print("asdf");
            // Debug.Log("Test"); //commented out by LC to help clear debug log
             useItem(myInventory.equippedA);
         }

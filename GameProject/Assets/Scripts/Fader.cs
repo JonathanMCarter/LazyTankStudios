@@ -41,6 +41,9 @@ public class Fader : MonoBehaviour
             UpdateColor();
             yield return new WaitForSeconds(0.1f);
         }
+         yield return new WaitForSeconds(4.5f);
+        Destroy(this.gameObject);
+
     }
 
     void UpdateColor()
@@ -52,5 +55,6 @@ public class Fader : MonoBehaviour
         mycolor = myText.color;
         mycolor.a += 0.1f;
         myText.color = mycolor;
+       
     }
 }
