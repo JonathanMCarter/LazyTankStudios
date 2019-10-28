@@ -49,6 +49,12 @@ Shader "Custom/ColourChanger"
 		[HideInInspector]_StoreCol10("Store10", Color) = (0,0,0,1)
 		[HideInInspector]_StoreCol11("Store11", Color) = (0,0,0,1)
 		[HideInInspector]_StoreCol12("Store12", Color) = (0,0,0,1)
+		[HideInInspector]_StoreTrans1("StoreTrans1", Color) = (0,0,0,1)
+		[HideInInspector]_StoreTrans2("StoreTrans2", Color) = (0,0,0,1)
+		[HideInInspector]_StoreTrans3("StoreTrans3", Color) = (0,0,0,1)
+		[HideInInspector]_StoreTrans4("StoreTrans4", Color) = (0,0,0,1)
+		[HideInInspector][MaterialToggle]_IsInstance("IsInstance", Float) = 0
+		[HideInInspector][MaterialToggle]_UseTrans("UseTrans", Float) = 1
     }
     SubShader
     {
@@ -70,8 +76,6 @@ Shader "Custom/ColourChanger"
 
 			sampler2D _MainTex;
 			sampler2D _Palette;
-
-			float4 _StoreCol1;
 
 			// Defines the GPU instanced variables - still not sure this does anythig helpful in a 2D game but I've kept it in for now
 			UNITY_INSTANCING_BUFFER_START(Props)

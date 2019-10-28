@@ -43,6 +43,12 @@ public class PaletteEditor : EditorWindow
                     Version.Mat.SetColor("_StoreCol1", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol1")));
                     Version.Mat.SetColor("_StoreCol2", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol2")));
                     Version.Mat.SetColor("_StoreCol3", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol3")));
+
+                    if (Version.Mat.GetFloat("_IsInstance") > 0)
+                    {
+                        Version.Mat.SetColor("_StoreTrans1", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans1")));
+                    }
+
                     EditorGUILayout.EndHorizontal();
                     break;
                 case 1:
@@ -50,6 +56,12 @@ public class PaletteEditor : EditorWindow
                     Version.Mat.SetColor("_StoreCol4", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol4")));
                     Version.Mat.SetColor("_StoreCol5", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol5")));
                     Version.Mat.SetColor("_StoreCol6", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol6")));
+
+                    if (Version.Mat.GetFloat("_IsInstance") > 0)
+                    {
+                        Version.Mat.SetColor("_StoreTrans2", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans2")));
+                    }
+
                     EditorGUILayout.EndHorizontal();
                     break;
                 case 2:
@@ -57,6 +69,12 @@ public class PaletteEditor : EditorWindow
                     Version.Mat.SetColor("_StoreCol7", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol7")));
                     Version.Mat.SetColor("_StoreCol8", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol8")));
                     Version.Mat.SetColor("_StoreCol9", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol9")));
+
+                    if (Version.Mat.GetFloat("_IsInstance") > 0)
+                    {
+                        Version.Mat.SetColor("_StoreTrans3", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans3")));
+                    }
+
                     EditorGUILayout.EndHorizontal();
                     break;
                 case 3:
@@ -64,6 +82,12 @@ public class PaletteEditor : EditorWindow
                     Version.Mat.SetColor("_StoreCol10", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol10")));
                     Version.Mat.SetColor("_StoreCol11", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol11")));
                     Version.Mat.SetColor("_StoreCol12", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol12")));
+
+                    if (Version.Mat.GetFloat("_IsInstance") > 0)
+                    {
+                        Version.Mat.SetColor("_StoreTrans4", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans4")));
+                    }
+
                     EditorGUILayout.EndHorizontal();
                     break;
                 default:
