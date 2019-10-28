@@ -32,6 +32,9 @@ public class Quest : MonoBehaviour
     private DialogueScript ds;
 
 
+    Collider2D[] colliders = new Collider2D[10];
+    ContactFilter2D contactFilter = new ContactFilter2D();
+
     private void Start()
     {
 
@@ -42,15 +45,24 @@ public class Quest : MonoBehaviour
 
     private void Update() 
     {
+        if (NPCToReturnTo)
+        {
+            if (NPCToReturnTo.GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 0 && status.Equals(Status.Completed))
+                displayQuestCompletedDialogue();
+        }
+        else if(status.Equals(Status.Completed))
+            displayQuestCompletedDialogue();
+
+
+        //else if (status == Status.Completed)
+        //{
+        //    displayQuestCompletedDialogue();
+        //    gameObject.SetActive(false);
+        //}
+
         if (status == Status.OnGoing)
             if (checkKilledAllEnemies())
                 status = Status.Completed;
-
-        if (status == Status.Completed)
-        {
-            displayQuestCompletedDialogue();
-            gameObject.SetActive(false);
-        }
 
     }
 
