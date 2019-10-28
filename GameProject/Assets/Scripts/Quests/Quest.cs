@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Quest : MonoBehaviour
 {
+    public int ID;
     public enum Type { Return, NonReturn };
     public Type type;
 
@@ -25,40 +26,48 @@ public class Quest : MonoBehaviour
     public GameObject[] Items;
     public Sprite[] ItemsSprites;
     public int GoldReceived;
-    public enum Status { Available, OnGoing, Completed };
+    public enum Status { NotAvailable, Available, OnGoing, Completed };
 
-    [HideInInspector]
+    
     public Status status;
     private DialogueScript ds;
 
 
     Collider2D[] colliders = new Collider2D[10];
     ContactFilter2D contactFilter = new ContactFilter2D();
+    Quest[] quests;
 
+    private void Awake()
+    {
+        ds = GameObject.Find("DialogueHandler").GetComponent<DialogueScript>();
+        status = Status.NotAvailable;
+        if (ID == 0)
+            status = Status.Available;
+    }
     private void Start()
     {
-
-        ds = GameObject.Find("DialogueHandler").GetComponent<DialogueScript>();
-        for (int i = 0; i < Items.Length; i++)
-            Items[i].GetComponent<SpriteRenderer>().sprite = ItemsSprites[i];
+        quests = GameObject.FindObjectsOfType<Quest>();
+        //for (int i = 0; i < Items.Length; i++)
+        //    Items[i].GetComponent<SpriteRenderer>().sprite = ItemsSprites[i];
     }
 
-    private void Update() 
+    private void Update()
     {
         if (NPCToReturnTo)
         {
-            if (NPCToReturnTo.GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 0 && status.Equals(Status.Completed))
+            if (NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 1
+                && status.Equals(Status.Completed))
+            {
                 displayQuestCompletedDialogue();
+                findNextQuest();
+            }
         }
-        else if(status.Equals(Status.Completed))
+        else if (status.Equals(Status.Completed))
+        {
             displayQuestCompletedDialogue();
+            findNextQuest();
+        }
 
-
-        //else if (status == Status.Completed)
-        //{
-        //    displayQuestCompletedDialogue();
-        //    gameObject.SetActive(false);
-        //}
 
         if (status == Status.OnGoing)
             if (checkKilledAllEnemies())
@@ -66,20 +75,16 @@ public class Quest : MonoBehaviour
 
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Hero")
+        if (collision.gameObject.name == "Hero" && this.isActiveAndEnabled)
         {
             ds.ChangeFile(Dialogue);
             status = Status.OnGoing;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        ds.ChangeFile(QuestCompleted);
-    }
+
 
     private bool checkKilledAllEnemies()
     {
@@ -97,10 +102,35 @@ public class Quest : MonoBehaviour
     void displayQuestCompletedDialogue()
     {
         TalkScript talk = GameObject.Find("GameManager").GetComponent<TalkScript>();
+        ds.ChangeFile(QuestCompleted);
         talk.dialogue = QuestCompleted;
         talk.talk();
     }
 
+    public void findNextQuest()
+    {
+        bool lastQuest = true;
+
+        foreach (Quest component in quests)
+        {
+            if (component.ID == this.ID + 1)
+            {
+                component.enabled=true;
+                component.status = Status.Available;
+                this.enabled = false;
+                lastQuest = false;
+
+            }
+        }
+
+        if (lastQuest)
+        {
+            this.enabled = false;
+            this.GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+
+    }
 }
 
 
