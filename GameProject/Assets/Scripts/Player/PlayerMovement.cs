@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Edit by Andreas--
     //public SpriteRenderer[] Hearts;
-    public HealthUI healthUI;
+    private HealthUI healthUI;
     private AudioManager audioManager;
     //Andreas edit end--
 
@@ -82,17 +82,9 @@ public class PlayerMovement : MonoBehaviour
         myRenderer = GetComponent<SpriteRenderer>();
         IM = FindObjectOfType<InputManager>();
 
-        attackHitBox = attackRotater.GetChild(0).GetComponent<BoxCollider2D>(); //added by LC
-        //Tony Was here
-        attackRotater.gameObject.SetActive(true);
-        attackHitBox.gameObject.SetActive(false);
-        attacking = false;
-        baseSpeed = speed;
-        //Tony Left Start
-
-        if (healthUI == null) healthUI = FindObjectOfType<HealthUI>(); //Added by LC
-
+        
         //Andreas edit--
+         healthUI = FindObjectOfType<HealthUI>();
         healthUI.maxHealth=health;
         healthUI.currentHealth=health;
         healthUI.ShowHearts();//tony addition
@@ -101,6 +93,15 @@ public class PlayerMovement : MonoBehaviour
         //Andreas edit--
         audioManager=GameObject.FindObjectOfType<AudioManager>();
         //Andreas edit end--
+
+        attackHitBox = attackRotater.GetChild(0).GetComponent<BoxCollider2D>(); //added by LC
+        //Tony Was here
+        attackRotater.gameObject.SetActive(true);
+        attackHitBox.gameObject.SetActive(false);
+        attacking = false;
+        baseSpeed = speed;
+        //Tony Left Start
+
     }
 
     private void FixedUpdate()
