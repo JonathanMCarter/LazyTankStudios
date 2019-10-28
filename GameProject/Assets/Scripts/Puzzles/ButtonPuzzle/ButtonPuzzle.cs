@@ -9,6 +9,7 @@ public class ButtonPuzzle : MonoBehaviour
     public ButtonPuzzle Button2;
     public bool Pressed;
     public bool Achieved;
+    public ButtonDoor Hit;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,8 @@ public class ButtonPuzzle : MonoBehaviour
         {
             Achieved = true;
             gameObject.GetComponent<SpriteRenderer>().sprite = NewSprite;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            Hit.Buttons++;
         }
         else
         {
