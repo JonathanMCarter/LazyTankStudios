@@ -7,6 +7,7 @@ public class Credits_End : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Destroy(GameObject.Find("AudioManager")); //Added by LC. 28.10.19
        SceneManager.LoadScene("Main Menu");
     }
 

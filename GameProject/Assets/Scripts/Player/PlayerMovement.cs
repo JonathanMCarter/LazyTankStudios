@@ -14,8 +14,8 @@ using UnityEngine.SceneManagement;
  * Reason: Integrated items
  * 
  * Also Edited by : Tony Parsons
- * Last Edit: 13.10.19
- * Reason: Combat
+ * Last Edit: 28.10.19
+ * Reason: coz
  * 
  * Also Edited by : Andreas Kraemer
  * Last Edit: 21.10.19
@@ -61,9 +61,10 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D attackHitBox;//atach to attackrotater
     public Transform attackRotater;//make a new transform as a child of the hero, make the attackHitBox a child of this transform
     private bool attacking;
-    public float AbilityDuration;
+    public float RangedAttackDuration;
     private float countdown;
     public float dashSpeedMultiplier;
+    public float DashDuration;
     private bool dashing;
     private bool shieldUp;
     //end of Tony variables
@@ -76,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        if (DeathCanvas != null) DontDestroyOnLoad(DeathCanvas.gameObject); //Added by LC
         ImFacing = Direction.Down; //Added by LC
         myRigid = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
@@ -137,7 +139,6 @@ public class PlayerMovement : MonoBehaviour
         //Toby: A and B item actions
         if (IM.Button_A() && !myInventory.isOpen)
         {
-            print("asdf");
            // Debug.Log("Test"); //commented out by LC to help clear debug log
             useItem(myInventory.equippedA);
         }
@@ -174,65 +175,61 @@ public class PlayerMovement : MonoBehaviour
     //Toby: Function for using an item of a given ID
     void useItem(int ID)
     {
-        //setup countdown
-        countdown = AbilityDuration;
 
-
-        //Debug.Log(ID.ToString());//commented out by LC to help clear debug log
-        switch (ID)
+        if (!(attacking || dashing || shieldUp))
         {
-            case (int)ITEMS.SWORD:
-                //Andreas edit
-                //PlayKickAnimation();
-                PlayAttackAnimation();
-                //Andreas edit end
-                attackHitBox.gameObject.SetActive(true);
-                attacking = true;
+            //Debug.Log(ID.ToString());//commented out by LC to help clear debug log
+            switch (ID)
+            {
+                case (int)ITEMS.SWORD:
+                    //Andreas edit
+                    //PlayKickAnimation();
+                    PlayAttackAnimation();
+                    countdown = 1; // length of animation
+                    //Andreas edit end
+                    attackHitBox.gameObject.SetActive(true);
+                    attacking = true;
 
-                // Jonathan Added This function
-                //FireProjectile();
-                break;
+                    // Jonathan Added This function
+                    //FireProjectile();
+                    break;
 
-            //Tony Stuff
-            case (int)ITEMS.BLAZBOOTS:
-                //animation here
+                //Tony Stuff
+                case (int)ITEMS.BLAZBOOTS:
+                    //animation here
 
-                //-----------
-                if (!dashing)
-                {
+                    //-----------
                     speed *= dashSpeedMultiplier;
+                    countdown = DashDuration;
                     dashing = true;
-                }
-                break;
-            case (int)ITEMS.SHIELDSHARPTON:
-                //animation
-                //---------
-                shieldUp = true;
-                break;
-            // Temp - just so the axe or anything with the ID of 1 works for now.....
-            case 4:
-                //Andreas edit
-                //PlayKickAnimation();
-                PlayAttackAnimation();
-                //Andreas edit end
-                attackHitBox.gameObject.SetActive(true);
-                attacking = true;
-
-                // Jonathan Added This function
-                FireProjectile();
-                break;
-            case -1:
-            default:
-                //nothing or invalid item equipped
-                if (!attacking)
-                {
-                    FireProjectile(); //Added by LC for testing purposes
-                }
-                //Debug.Log("Trying to use nothing");
-                break;
+                    break;
+                case (int)ITEMS.SHIELDSHARPTON:
+                    //animation
+                    //---------
+                    shieldUp = true;
+                    break;
+                // Temp - just so the axe or anything with the ID of 1 works for now.....
+                case 4:
+                    //Andreas edit
+                    //PlayKickAnimation();
+                    PlayAttackAnimation();
+                    //Andreas edit end
+                    attackHitBox.gameObject.SetActive(true);
+                    attacking = true;
+                    countdown = RangedAttackDuration;
+                    // Jonathan Added This function
+                    FireProjectile();
+                    break;
+                case -1:
+                default:
+                    //nothing or invalid item equipped
+                     FireProjectile(); //Added by LC for testing purposes
+                    countdown = RangedAttackDuration;
+                    //Debug.Log("Trying to use nothing");
+                    break;
+            }
         }
     }
-
 
     //Andreas edit --Animation has been removed
     /* 
