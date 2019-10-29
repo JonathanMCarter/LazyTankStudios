@@ -10,7 +10,6 @@ public class ButtonPuzzle : MonoBehaviour
     public bool Pressed;
     public bool Achieved;
     public ButtonDoor Hit;
-    // Start is called before the first frame update
     void Start()
     {
         Pressed = false;
