@@ -85,7 +85,14 @@ public class InputManager : MonoBehaviour
                 {
                     case (TouchPhase.Began): //This runs during the first frame the finger is on the screen
                         TouchStartPos = ThisTouch.position; //get the starting position
-                        //TouchOneActive = true; //First touch is now active
+                                                            //TouchOneActive = true; //First touch is now active
+                        //RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint((Input.GetTouch(0).position)), Vector2.zero);
+                        //if (hit.collider != null)
+                        //{
+                        //    Debug.Log(hit.collider.gameObject.name);
+                        //}
+
+
                         break;
 
                     case (TouchPhase.Ended): //this runs in the frame after the finger left the sccreen
@@ -228,6 +235,7 @@ public class InputManager : MonoBehaviour
     public void Fire1Clicked() //called from button in game world (Mobile)
     {
         fire1Clicked = true; //sets fire as being clicked
+        print("Fire1");
         StartCoroutine(ClearButtons());
     }
 
@@ -237,12 +245,14 @@ public class InputManager : MonoBehaviour
     public void Fire2Clicked() //called from button in game world (Mobile)
     {
         fire2Clicked = true; //sets fire 2 as being clicked
+        print("Fire2");
         StartCoroutine(ClearButtons());
     }
 
     public void Fire3Clicked()
     {
         fire3Clicked = true;
+        print("Fire3");
         StartCoroutine(ClearButtons());
     }
 
