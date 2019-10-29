@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /*
     You shouldn't be here.....
@@ -17,6 +18,10 @@ using UnityEngine.UI;
 
     This script handles the dialouge manager, its not finished as I put it into the project as this was a summer project I didn't finish.
     So, some things may not work...
+
+    Also edited by: Toby Wishart
+    Last edit: 29/10/19
+    Reason: Cinematics can be played
 
 */
 
@@ -68,7 +73,7 @@ public class DialogueScript : MonoBehaviour
 
     // Stuff for events 'n' stuff 
     private Coroutine PauseCo;
-    public Animation AnimToPlay;
+    public Animator AnimToPlay;
 
     private void Update()
     {
@@ -126,8 +131,13 @@ public class DialogueScript : MonoBehaviour
                 // Cinematic
                 case "###":
                     // Put code here to run cinematic
+                    DialName.text = "";
+                    DialText.text = "";
+                    if (PauseCo == null)
+                    {
+                        PauseCo = StartCoroutine(CinematicLoad(File.Dialogue[DialStage]));
+                    }
                     break;
-
                 // Pause
                 case "@@@":
                     // Pauses dialogue for a little bit (for dramatic effect..............................................)
@@ -140,6 +150,7 @@ public class DialogueScript : MonoBehaviour
                 // Play Animation
                 case "^^^":
                     // Put code to play animation
+                    AnimToPlay.Play(File.Dialogue[DialStage], -1);
                     break;
 
                 // End Dialogue
@@ -227,5 +238,26 @@ public class DialogueScript : MonoBehaviour
     {
         yield return new WaitForSeconds(Delay);
         ++DialStage;
+    }
+
+    private IEnumerator CinematicFinish(string cinematic)
+    {
+        Debug.Log("Wait for cinematic end");
+        Scene s = SceneManager.GetSceneByName(cinematic);
+        //Scene is unloaded in the CutsceneStateHandler script
+        yield return new WaitWhile(()=>s.isLoaded);
+        Debug.Log("Cinematic finished");
+        DialStage++;
+        PauseCo = null;
+    }
+
+    private IEnumerator CinematicLoad(string cinematic)
+    {
+        Debug.Log("Load cinematic");
+        SceneManager.LoadSceneAsync(cinematic, LoadSceneMode.Additive);
+        Scene s = SceneManager.GetSceneByName(cinematic);
+        //Only start coroutine after the scene has fully loaded otherwise it will finish prematurely
+        yield return new WaitWhile(()=>!s.isLoaded);
+        PauseCo = StartCoroutine(CinematicFinish(cinematic));
     }
 }

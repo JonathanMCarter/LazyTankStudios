@@ -10,7 +10,7 @@ public class TalkScript : MonoBehaviour
  *  <<Enter Description Here>>
  *
  * Owner: Toby Wishart
- * Last Edit : 12/10/19
+ * Last Edit : 29/10/19
  * 
  * Also Edited by : Lewis Cleminson
  * Last Edit: 07.10.19
@@ -47,7 +47,8 @@ public class TalkScript : MonoBehaviour
         Debug.Log("Talk Called");
         panel.SetActive(true);
 
-        //ds.ChangeFile(dialogue);
+        //Toby: Need this to change the dialogue each time you talk otherwise every NPC will have the same dialogue
+        ds.ChangeFile(dialogue);
 
        // ds.Reset();
         talking = true;
