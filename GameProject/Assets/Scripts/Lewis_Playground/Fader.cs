@@ -17,7 +17,12 @@ public class Fader : MonoBehaviour
 {
     private Image myImage;
     private Text myText;
-   
+
+    private void Awake()
+    {
+        gameObject.AddComponent<DoNotDes>();
+        this.gameObject.SetActive(false);
+    }
     // Start is called before the first frame update
     void Start()
     {

@@ -186,8 +186,8 @@ namespace AI
         private void OnTriggerExit2D(Collider2D other)
         {
             //Cache States someday
-            
 
+            if (!gameObject.activeInHierarchy) return; //Added by LC
             if (Fix == null)
                 Fix = StartCoroutine(StopBug());
 
