@@ -13,19 +13,22 @@ public class Quest : MonoBehaviour
     public DialogueFile Dialogue;
     public DialogueFile QuestCompleted;
 
-    public bool KillRequest, CollectRequest, DeliverRequest, ToPos;
+    public bool KillRequest, CollectRequest, DeliverRequest;
 
+    [Space(20)]
     [SerializeField]
     public List<GameObject> Kills = new List<GameObject>();
-    public GameObject[] Collectible;
-    public int[] CollectibleAmmount;
-    public int DeliverGold;
 
-    public enum Reward { Items, Gold }
-    public Reward reward;
-    public GameObject[] Items;
-    public Sprite[] ItemsSprites;
-    public int GoldReceived;
+    [Space(10)]
+    public Sprite[] ItemsToBeCollected;
+    public int[] ItemsQuantities;
+    //public int DeliverGold;
+
+    //public enum Reward { Items, Gold }
+    //public Reward reward;
+    //public GameObject[] Items;
+    //public Sprite[] ItemsSprites;
+    //public int GoldReceived;
     public enum Status { NotAvailable, Available, OnGoing, Completed };
 
     
@@ -35,7 +38,9 @@ public class Quest : MonoBehaviour
 
     Collider2D[] colliders = new Collider2D[10];
     ContactFilter2D contactFilter = new ContactFilter2D();
-    Quest[] quests;
+
+
+
 
     private void Awake()
     {
@@ -46,13 +51,15 @@ public class Quest : MonoBehaviour
     }
     private void Start()
     {
-        quests = GameObject.FindObjectsOfType<Quest>();
+;
+
         //for (int i = 0; i < Items.Length; i++)
         //    Items[i].GetComponent<SpriteRenderer>().sprite = ItemsSprites[i];
     }
 
     private void Update()
     {
+
         if (NPCToReturnTo)
         {
             if (NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 1
@@ -109,6 +116,8 @@ public class Quest : MonoBehaviour
 
     public void findNextQuest()
     {
+        Quest[] quests = GameObject.FindObjectsOfType<Quest>();
+
         bool lastQuest = true;
 
         foreach (Quest component in quests)
