@@ -35,18 +35,18 @@ public class DialogueBoxManager : MonoBehaviour
             //Place panel at the top of the screen
             if (panel.anchorMax.y != 1)
             {
-                panel.position = new Vector3(panel.position.x, -panel.position.y, panel.position.z);
-                panel.anchorMin = new Vector2(panel.anchorMin.x, 1);
-                panel.anchorMax = new Vector2(panel.anchorMax.x, 1);
+                //panel.position = new Vector3(panel.position.x, -panel.position.y, panel.position.z);
+                //panel.anchorMin = new Vector2(panel.anchorMin.x, 1);
+                //panel.anchorMax = new Vector2(panel.anchorMax.x, 1);
             }
         } else
         {
             //Place panel at the bottom of the screen
             if (panel.anchorMax.y != 0)
             {
-                panel.anchorMin = new Vector2(panel.anchorMin.x, 0);
-                panel.anchorMax = new Vector2(panel.anchorMax.x, 0);
-                panel.position = new Vector3(panel.position.x, -panel.position.y, panel.position.z);
+                //panel.anchorMin = new Vector2(panel.anchorMin.x, 0);
+                //panel.anchorMax = new Vector2(panel.anchorMax.x, 0);
+                //panel.position = new Vector3(panel.position.x, -panel.position.y, panel.position.z);
             }
         }
     }
