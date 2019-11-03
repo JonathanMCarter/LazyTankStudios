@@ -13,7 +13,10 @@ using UnityEditor;
 
     Made by: Jonathan Carter
     Last Edited By: Jonathan Carter
-    Date Edited Last: 27/10/19 - finished window ready for use
+    Date Edited Last: 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
+
+    History:
+    - 27/10/19 - finished window ready for use
 
     This script adds an editor window which is opened by a button on the Shader Editor GUI inspector override.
 

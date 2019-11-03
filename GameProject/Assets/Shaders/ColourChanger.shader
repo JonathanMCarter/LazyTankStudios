@@ -8,10 +8,11 @@
 
 	Made by: Jonathan Carter
 	Last Edited By: Jonathan Carter
-	Date Edited Last: 27/10/19 - Added fields to store colour options
+	Date Edited Last: 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
 
 	Edit History:
-	12/10/19 - Added option for transparency on all selected colours, not jsut the 4th colour.
+	- 27/10/19 - Added fields to store colour options
+	- 12/10/19 - Added option for transparency on all selected colours, not jsut the 4th colour.
 								 Also removed some old commented code that isn't going to be used anymore.
 	- 6/10/19 - To add this comment bit in (nothing else was changed)
 
@@ -55,6 +56,7 @@ Shader "Custom/ColourChanger"
 		[HideInInspector]_StoreTrans4("StoreTrans4", Color) = (0,0,0,1)
 		[HideInInspector][MaterialToggle]_IsInstance("IsInstance", Float) = 0
 		[HideInInspector][MaterialToggle]_UseTrans("UseTrans", Float) = 1
+		[HideInInspector]_PaletteSelected("PaletteSelected", Float) = 1
     }
     SubShader
     {
@@ -75,7 +77,6 @@ Shader "Custom/ColourChanger"
 
 
 			sampler2D _MainTex;
-			sampler2D _Palette;
 
 			// Defines the GPU instanced variables - still not sure this does anythig helpful in a 2D game but I've kept it in for now
 			UNITY_INSTANCING_BUFFER_START(Props)

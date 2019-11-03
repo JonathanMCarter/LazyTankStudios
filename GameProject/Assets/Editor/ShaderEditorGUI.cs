@@ -14,9 +14,10 @@ using System;
 
     Made by: Jonathan Carter
     Last Edited By: Jonathan Carter
-    Date Edited Last: 28/10/19 - Added option to edit 4th colour in palette as well as instance again so not to effect all versions of the material
+    Date Edited Last: 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
 
     Edit History:
+    - 28/10/19 - Added option to edit 4th colour in palette as well as instance again so not to effect all versions of the material
     - 27/10/19 - added 4 palette restriction
     - 12/10/19 - added labels for help users understand the tool
     - 6/10/19 - To add this comment bit in (nothing else was changed)
@@ -56,10 +57,10 @@ public class ShaderEditorGUI : ShaderGUI
     /// Overrides the default GUI to show the custom inspector, param are passed in by default from the ShaderGUI editor type
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
-        ChangeString();
-
         Mat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
 
+        ChangeString();
+        SetPalette();
 
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button(EditSelectionString))
@@ -131,6 +132,11 @@ public class ShaderEditorGUI : ShaderGUI
                     Mat.SetColor("_PalCol4", Color.clear);
                 }
 
+                if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                {
+                    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                }
+
                     break;
             case Palettes.Palette2:
                 EditorGUILayout.BeginHorizontal();
@@ -160,6 +166,11 @@ public class ShaderEditorGUI : ShaderGUI
                 else
                 {
                     Mat.SetColor("_PalCol4", Color.clear);
+                }
+
+                if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                {
+                    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
                 }
 
                 break;
@@ -193,6 +204,11 @@ public class ShaderEditorGUI : ShaderGUI
                     Mat.SetColor("_PalCol4", Color.clear);
                 }
 
+                if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                {
+                    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                }
+
                 break;
             case Palettes.Palette4:
                 EditorGUILayout.BeginHorizontal();
@@ -224,6 +240,11 @@ public class ShaderEditorGUI : ShaderGUI
                     Mat.SetColor("_PalCol4", Color.clear);
                 }
 
+                if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                {
+                    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                }
+
                 break;
             default:
                 break;
@@ -253,5 +274,30 @@ public class ShaderEditorGUI : ShaderGUI
     {
         if (EditSelection) { EditSelectionString = "Hide Selection"; }
         else { EditSelectionString = "Show Selection"; }
+    }
+
+
+    // Sets the palette to the right palette when selected - simple problem as the enum is reset, so I've added a float to the material which saves said info
+    private void SetPalette()
+    {
+        int Palette = (int)Mat.GetFloat("_PaletteSelected");
+
+        switch (Palette)
+        {
+            case 1:
+                Pal = Palettes.Palette1;
+                break;
+            case 2:
+                Pal = Palettes.Palette2;
+                break;
+            case 3:
+                Pal = Palettes.Palette3;
+                break;
+            case 4:
+                Pal = Palettes.Palette4;
+                break;
+            default:
+                break;
+        }
     }
 }
