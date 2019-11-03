@@ -8,9 +8,10 @@
 
 	Made by: Jonathan Carter
 	Last Edited By: Jonathan Carter
-	Date Edited Last: 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
+	Date Edited Last: 03/11/19 - Added useage of Perm Palette instead of the stores colours in the shader
 
 	Edit History:
+	- 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
 	- 27/10/19 - Added fields to store colour options
 	- 12/10/19 - Added option for transparency on all selected colours, not jsut the 4th colour.
 								 Also removed some old commented code that isn't going to be used anymore.
@@ -38,18 +39,18 @@ Shader "Custom/ColourChanger"
 		[HideInInspector]_PalCol3("Palette 3", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol4("Palette 4", Color) = (0,0,0,1)
 
-		[HideInInspector]_StoreCol1("Store1", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol2("Store2", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol3("Store3", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol4("Store4", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol5("Store5", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol6("Store6", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol7("Store7", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol8("Store8", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol9("Store9", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol10("Store10", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol11("Store11", Color) = (0,0,0,1)
-		[HideInInspector]_StoreCol12("Store12", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol1("Store1", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol2("Store2", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol3("Store3", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol4("Store4", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol5("Store5", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol6("Store6", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol7("Store7", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol8("Store8", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol9("Store9", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol10("Store10", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol11("Store11", Color) = (0,0,0,1)
+		//[HideInInspector]_StoreCol12("Store12", Color) = (0,0,0,1)
 		[HideInInspector]_StoreTrans1("StoreTrans1", Color) = (0,0,0,1)
 		[HideInInspector]_StoreTrans2("StoreTrans2", Color) = (0,0,0,1)
 		[HideInInspector]_StoreTrans3("StoreTrans3", Color) = (0,0,0,1)
