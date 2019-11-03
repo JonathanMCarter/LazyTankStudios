@@ -4,7 +4,7 @@ using UnityEngine;
 
 /**
  * Created by Toby Wishart
- * Last edit: 20/10/19
+ * Last edit: 03/11/19
  * 
  * Script for fading in and out with the gate
  */
@@ -12,7 +12,7 @@ public class ZoneTransition : MonoBehaviour
 {
 
     Animator a;
-    public Transform destination;
+    public string destination;
     GameObject player;
 
     void Start()
@@ -25,7 +25,8 @@ public class ZoneTransition : MonoBehaviour
     {
         player.GetComponent<PlayerMovement>().enabled = false;
         player.GetComponent<PlayerZoneTransition>().Destination = destination;
-        Camera.main.GetComponent<CameraMove>().enabled = false;
+        //Camera.main does not work here
+        GameObject.Find("Main Camera").GetComponent<CameraMove>().enabled = false;
         a.SetBool("in", false);
         a.SetBool("out", true);
     }

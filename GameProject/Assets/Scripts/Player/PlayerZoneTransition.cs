@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /**
  * Owner: Toby Wishart
- * Last edit: 20/10/19
+ * Last edit: 03/11/19
  * 
  * Script for moving the player to the destination of the gate and move the player across the screen
  *
@@ -21,10 +22,12 @@ public class PlayerZoneTransition : MonoBehaviour
     BoxCollider2D cameraBox;
 
     Animator pAnim;
+    AsyncOperation asyncLoad;
 
     float sX, sY;
 
-    public Transform Destination;
+    public string Destination;
+    string[] destSplit;
     bool transitioning = false;
 
     private AudioManager audioManager;
@@ -36,17 +39,21 @@ public class PlayerZoneTransition : MonoBehaviour
 
     public void StartTransition()
     {
-        cameraBox = Camera.main.GetComponent<BoxCollider2D>();
+        destSplit = Destination.Split(':');
+        //Camera.main does not work here
+        cameraBox = GameObject.Find("Main Camera").GetComponent<BoxCollider2D>();
         pAnim = GetComponent<Animator>();
         sX = pAnim.GetFloat("SpeedX");
         sY = pAnim.GetFloat("SpeedY");
-        transform.position = new Vector3(cameraBox.bounds.min.x - 5, cameraBox.bounds.center.y);
+        transform.position = new Vector3(cameraBox.bounds.min.x - 5, cameraBox.bounds.center.y, transform.position.z);
         foreach (BoxCollider2D box in GetComponents<BoxCollider2D>())
         {
             box.enabled = false;
         }
         transitioning = true;
-        audioManager.Play("Door");
+        //audioManager.Play("Door");
+        asyncLoad = SceneManager.LoadSceneAsync(destSplit[0]);
+        asyncLoad.allowSceneActivation = false;
     }
 
     private void Update()
@@ -65,16 +72,28 @@ public class PlayerZoneTransition : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         transitioning = false;
-        transform.position = Destination.position;
+        //transform.position = Destination.position;
         pAnim.SetFloat("SpeedX", sX);
         pAnim.SetFloat("SpeedY", sY);
-        Camera.main.GetComponent<CameraMove>().enabled = true;
-        Animator a = GameObject.Find("ZoneFadeScreen").GetComponent<Animator>();
-        a.SetBool("out", false);
-        a.SetBool("in", true);
+        //Camera.main does not work here
+        GameObject.Find("Main Camera").GetComponent<CameraMove>().enabled = true;
         foreach (BoxCollider2D box in GetComponents<BoxCollider2D>())
         {
             box.enabled = true;
         }
+        asyncLoad.allowSceneActivation = true;
+        StartCoroutine(waitUntilLoaded());
+
+    }
+
+    private IEnumerator waitUntilLoaded()
+    {
+        yield return new WaitUntil(() => asyncLoad.isDone);
+        Vector3 newPos = GameObject.Find(destSplit[1]).transform.position;
+        //Preserve the player's Z position
+        transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
+        Animator a = GameObject.Find("ZoneFadeScreen").GetComponent<Animator>();
+        a.SetBool("out", false);
+        a.SetBool("in", true);
     }
 }
