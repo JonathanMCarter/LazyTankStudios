@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 /**
  * Created by: Toby Wishart
- * Last edit: 29/10/19
+ * Last edit: 03/11/19
  */
 public class CutsceneStateHandler : MonoBehaviour
 {
+    public bool useTimer;
+    public float duration;
 
     void Start()
     {
-        StartCoroutine(placeholderCutsceneTimer(5));
+        if (useTimer) StartCoroutine(placeholderCutsceneTimer(duration));
     }
 
     void Update()
