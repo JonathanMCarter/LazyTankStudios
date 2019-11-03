@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/// This script adds an editor window which is opened by a button on the Shader Editor GUI inspector override.
+/// This script does the majority of the work when it comes to changing the colours in the palette. 
+
 /*
     You shouldn't be here.....
     If something throws an error that stops you working then let me know...
@@ -25,14 +28,24 @@ using UnityEditor;
 
 public class PaletteEditor : EditorWindow
 {
+    /// This is used to hold a referance to the ShaderEditorGUI that called it, this is the only way I've found to refer to it. 
+    /// @attention This has to be set otherwise it wil not display anything other than the tabs and will throw errors in the console!
     public ShaderEditorGUI Version;
 
-    public Palette PermColours;
+    /// This holds the value for the Palette Scriptable Object, its used to allow you to change the colours.
+    /// @note This should reference automatically, as long as the palettes object that it uses is not renamed / moved
+    [SerializeField]
+    public Palette PermColours; 
 
+    // used for the tabs only
     private int ToolBarValue;
 
+
+    /// The function the runs all the visuals for the editor, it runs like update but only when you touch that part of the editor.
     public void OnGUI()
     {
+        PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Palette/Palettes.asset", typeof(Palette));
+
         if (Version == null)
         {
             Close();
@@ -50,11 +63,6 @@ public class PaletteEditor : EditorWindow
                     PermColours.Pal1[1] = EditorGUILayout.ColorField(PermColours.Pal1[1]);
                     PermColours.Pal1[2] = EditorGUILayout.ColorField(PermColours.Pal1[2]);
 
-
-                    //Version.Mat.SetColor("_StoreCol1", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol1")));
-                    //Version.Mat.SetColor("_StoreCol2", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol2")));
-                    //Version.Mat.SetColor("_StoreCol3", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol3")));
-
                     if (Version.Mat.GetFloat("_IsInstance") > 0)
                     {
                         Version.Mat.SetColor("_StoreTrans1", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans1")));
@@ -67,10 +75,6 @@ public class PaletteEditor : EditorWindow
                     PermColours.Pal2[0] = EditorGUILayout.ColorField(PermColours.Pal2[0]);
                     PermColours.Pal2[1] = EditorGUILayout.ColorField(PermColours.Pal2[1]);
                     PermColours.Pal2[2] = EditorGUILayout.ColorField(PermColours.Pal2[2]);
-
-                    //Version.Mat.SetColor("_StoreCol4", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol4")));
-                    //Version.Mat.SetColor("_StoreCol5", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol5")));
-                    //Version.Mat.SetColor("_StoreCol6", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol6")));
 
                     if (Version.Mat.GetFloat("_IsInstance") > 0)
                     {
@@ -85,10 +89,6 @@ public class PaletteEditor : EditorWindow
                     PermColours.Pal3[1] = EditorGUILayout.ColorField(PermColours.Pal3[1]);
                     PermColours.Pal3[2] = EditorGUILayout.ColorField(PermColours.Pal3[2]);
 
-                    //Version.Mat.SetColor("_StoreCol7", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol7")));
-                    //Version.Mat.SetColor("_StoreCol8", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol8")));
-                    //Version.Mat.SetColor("_StoreCol9", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol9")));
-
                     if (Version.Mat.GetFloat("_IsInstance") > 0)
                     {
                         Version.Mat.SetColor("_StoreTrans3", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans3")));
@@ -101,10 +101,6 @@ public class PaletteEditor : EditorWindow
                     PermColours.Pal4[0] = EditorGUILayout.ColorField(PermColours.Pal4[0]);
                     PermColours.Pal4[1] = EditorGUILayout.ColorField(PermColours.Pal4[1]);
                     PermColours.Pal4[2] = EditorGUILayout.ColorField(PermColours.Pal4[2]);
-
-                    //Version.Mat.SetColor("_StoreCol10", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol10")));
-                    //Version.Mat.SetColor("_StoreCol11", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol11")));
-                    //Version.Mat.SetColor("_StoreCol12", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreCol12")));
 
                     if (Version.Mat.GetFloat("_IsInstance") > 0)
                     {
