@@ -12219,7 +12219,7 @@ PrefabInstance:
     - target: {fileID: 8044519269397466832, guid: a6961194dcb39d7419341a28c9b99c97,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8044519269397466832, guid: a6961194dcb39d7419341a28c9b99c97,
         type: 3}
@@ -12429,6 +12429,59 @@ Material:
     - _TexCol1: {r: 0.8313726, g: 0.8313726, b: 0.8313726, a: 1}
     - _TexCol2: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
     - _TexCol3: {r: 0.5647059, g: 0.5647059, b: 0.5647059, a: 1}
+    - _TexCol4: {r: 0, g: 0, b: 0, a: 1}
+--- !u!21 &154989534
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ColourChanger_MAT (Instance) (Instance)
+  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _IsInstance: 0
+    - _PaletteSelected: 1
+    - _UseTrans: 1
+    m_Colors:
+    - _PalCol1: {r: 0.38039216, g: 0.7647059, b: 0.4117647, a: 1}
+    - _PalCol2: {r: 0.1764706, g: 0.6313726, b: 0.12941177, a: 1}
+    - _PalCol3: {r: 0.09019608, g: 0.4509804, b: 0.07058824, a: 1}
+    - _PalCol4: {r: 0, g: 0, b: 0, a: 0}
+    - _StoreCol1: {r: 0.378471, g: 0.764151, b: 0.41118476, a: 1}
+    - _StoreCol10: {r: 0.5180096, g: 0.7264151, b: 0.42145783, a: 1}
+    - _StoreCol11: {r: 0.27886704, g: 0.5188679, b: 0.15908687, a: 1}
+    - _StoreCol12: {r: 0.10913957, g: 0.3301887, b: 0, a: 1}
+    - _StoreCol2: {r: 0.1755029, g: 0.6320754, b: 0.12820399, a: 1}
+    - _StoreCol3: {r: 0.08895643, g: 0.4528302, b: 0.07048772, a: 1}
+    - _StoreCol4: {r: 1, g: 1, b: 1, a: 1}
+    - _StoreCol5: {r: 0.52331793, g: 0.7451673, b: 0.754717, a: 1}
+    - _StoreCol6: {r: 0.22067462, g: 0.5204535, b: 0.5377358, a: 1}
+    - _StoreCol7: {r: 0.9392329, g: 0.9811321, b: 0.8191527, a: 1}
+    - _StoreCol8: {r: 0.83956844, g: 0.8773585, b: 0.45937166, a: 1}
+    - _StoreCol9: {r: 0.5943396, g: 0.5816952, b: 0.23829654, a: 1}
+    - _StoreTrans: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreTrans1: {r: 0.046298858, g: 0.38679248, b: 0, a: 0}
+    - _StoreTrans2: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreTrans3: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreTrans4: {r: 0, g: 0, b: 0, a: 1}
+    - _TexCol1: {r: 0.7254902, g: 0.7254902, b: 0.7254902, a: 1}
+    - _TexCol2: {r: 0.43529415, g: 0.43529415, b: 0.43529415, a: 1}
+    - _TexCol3: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 1}
     - _TexCol4: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &275687075
 GameObject:
@@ -25425,6 +25478,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275821479}
   m_CullTransparentMesh: 0
+--- !u!21 &279706542
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ColourChanger_MAT(Clone) (Instance)
+  m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _IsInstance: 1
+    - _PaletteSelected: 1
+    - _UseTrans: 1
+    m_Colors:
+    - _PalCol1: {r: 0.38039216, g: 0.7647059, b: 0.4117647, a: 1}
+    - _PalCol2: {r: 0.1764706, g: 0.6313726, b: 0.12941177, a: 1}
+    - _PalCol3: {r: 0.09019608, g: 0.4509804, b: 0.07058824, a: 1}
+    - _PalCol4: {r: 0, g: 0, b: 0, a: 0}
+    - _StoreCol1: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol10: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol11: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol12: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol2: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol3: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol4: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol5: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol6: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol7: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol8: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreCol9: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreTrans1: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreTrans2: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreTrans3: {r: 0, g: 0, b: 0, a: 1}
+    - _StoreTrans4: {r: 0, g: 0, b: 0, a: 1}
+    - _TexCol1: {r: 0, g: 0, b: 0, a: 1}
+    - _TexCol2: {r: 0, g: 0, b: 0, a: 1}
+    - _TexCol3: {r: 0, g: 0, b: 0, a: 1}
+    - _TexCol4: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &290582092 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3600421684178635264, guid: 3d24c9b808a370b4594273d37d357b67,
@@ -25769,6 +25874,7 @@ GameObject:
   - component: {fileID: 452771546}
   - component: {fileID: 452771545}
   - component: {fileID: 452771544}
+  - component: {fileID: 452771548}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -25852,13 +25958,37 @@ RectTransform:
   - {fileID: 920837513}
   - {fileID: 591396801}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &452771548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452771543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d047d3433a76347a7c5fa09766069e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 0
+  type: 0
+  NPCToReturnTo: {fileID: 0}
+  Dialogue: {fileID: 0}
+  QuestCompleted: {fileID: 0}
+  KillRequest: 0
+  CollectRequest: 0
+  DeliverRequest: 0
+  Kills: []
+  ItemsToBeCollected: []
+  ItemsQuantities: 
+  status: 0
 --- !u!1 &491056375 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2157942289200346300, guid: 3d24c9b808a370b4594273d37d357b67,
@@ -26247,9 +26377,9 @@ Material:
     - _PaletteSelected: 1
     - _UseTrans: 1
     m_Colors:
-    - _PalCol1: {r: 0.93819284, g: 1, b: 0, a: 1}
-    - _PalCol2: {r: 0.6039216, g: 0.53119534, b: 0, a: 1}
-    - _PalCol3: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
+    - _PalCol1: {r: 0.38039216, g: 0.7647059, b: 0.4117647, a: 1}
+    - _PalCol2: {r: 0.1764706, g: 0.6313726, b: 0.12941177, a: 1}
+    - _PalCol3: {r: 0.09019608, g: 0.4509804, b: 0.07058824, a: 1}
     - _PalCol4: {r: 0, g: 0, b: 0, a: 0}
     - _StoreCol1: {r: 0, g: 0, b: 0, a: 1}
     - _StoreCol10: {r: 0, g: 0, b: 0, a: 1}
@@ -29117,7 +29247,7 @@ PrefabInstance:
     - target: {fileID: 5082341285862644729, guid: 344c6128b8dea2f408857f39029e6e8f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5082341285862644729, guid: 344c6128b8dea2f408857f39029e6e8f,
         type: 3}
@@ -32383,7 +32513,7 @@ PrefabInstance:
     - target: {fileID: 5678945526099878414, guid: 70deb63141af1964b8aec9f7f062f1d2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5678945526099878414, guid: 70deb63141af1964b8aec9f7f062f1d2,
         type: 3}
@@ -38932,7 +39062,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1803864848}
+  - {fileID: 279706542}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -61684,12 +61814,12 @@ PrefabInstance:
     - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.13
+      value: 2.38
       objectReference: {fileID: 0}
     - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.52
+      value: -17.08
       objectReference: {fileID: 0}
     - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
         type: 3}
@@ -61978,7 +62108,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.1509836, y: 3.8137805}
   m_EdgeRadius: 0
---- !u!21 &1803864848
+--- !u!21 &1890027881
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -62004,60 +62134,23 @@ Material:
     m_Floats:
     - _IsInstance: 0
     - _PaletteSelected: 1
+    - _Shininess: 0.078125
     - _UseTrans: 1
     m_Colors:
-    - _PalCol1: {r: 0, g: 0, b: 0, a: 1}
-    - _PalCol2: {r: 0, g: 0, b: 0, a: 1}
-    - _PalCol3: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _PalCol1: {r: 0.38039216, g: 0.7647059, b: 0.4117647, a: 1}
+    - _PalCol2: {r: 0.1764706, g: 0.6313726, b: 0.12941177, a: 1}
+    - _PalCol3: {r: 0.09019608, g: 0.4509804, b: 0.07058824, a: 1}
     - _PalCol4: {r: 0, g: 0, b: 0, a: 0}
-    - _StoreCol1: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol10: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol11: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol12: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol2: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol3: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol4: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol5: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol6: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol7: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol8: {r: 0, g: 0, b: 0, a: 1}
-    - _StoreCol9: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _StoreTrans1: {r: 0, g: 0, b: 0, a: 1}
     - _StoreTrans2: {r: 0, g: 0, b: 0, a: 1}
     - _StoreTrans3: {r: 0, g: 0, b: 0, a: 1}
     - _StoreTrans4: {r: 0, g: 0, b: 0, a: 1}
-    - _TexCol1: {r: 0, g: 0, b: 0, a: 1}
+    - _TexCol1: {r: 0.21568628, g: 0.21568628, b: 0.21568628, a: 0}
     - _TexCol2: {r: 0, g: 0, b: 0, a: 1}
     - _TexCol3: {r: 0, g: 0, b: 0, a: 1}
     - _TexCol4: {r: 0, g: 0, b: 0, a: 1}
---- !u!21 &1890027881
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ColourChanger_MAT(Clone)
-  m_Shader: {fileID: 10620, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _Shininess: 0.078125
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &2007581864
 GameObject:
   m_ObjectHideFlags: 0
@@ -62136,6 +62229,91 @@ Transform:
   m_Father: {fileID: 409339063}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2091478670
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 925690232879521424, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_Name
+      value: New Item (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -18.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536286341743844498, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555211445184071330, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 154989534}
+    - target: {fileID: 8555211445184071330, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7113731144131599020, guid: 6b3c80e9b07556e4ba772ef37f38ea99,
+        type: 3}
+    - target: {fileID: 8555211445184071330, guid: 900480f529d8d454788ec9c127c018de,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 900480f529d8d454788ec9c127c018de, type: 3}
 --- !u!1 &2095523132
 GameObject:
   m_ObjectHideFlags: 0
@@ -62214,13 +62392,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _IsInstance: 1
-    - _PaletteSelected: 2
+    - _IsInstance: 0
+    - _PaletteSelected: 1
     - _UseTrans: 1
     m_Colors:
-    - _PalCol1: {r: 1, g: 1, b: 1, a: 1}
-    - _PalCol2: {r: 0.52331793, g: 0.7451673, b: 0.754717, a: 1}
-    - _PalCol3: {r: 0.22067462, g: 0.5204535, b: 0.5377358, a: 1}
+    - _PalCol1: {r: 0.38039216, g: 0.7647059, b: 0.4117647, a: 1}
+    - _PalCol2: {r: 0.1764706, g: 0.6313726, b: 0.12941177, a: 1}
+    - _PalCol3: {r: 0.09019608, g: 0.4509804, b: 0.07058824, a: 1}
     - _PalCol4: {r: 0, g: 0, b: 0, a: 0}
     - _StoreCol1: {r: 0.378471, g: 0.764151, b: 0.41118476, a: 1}
     - _StoreCol10: {r: 0.5180096, g: 0.7264151, b: 0.42145783, a: 1}

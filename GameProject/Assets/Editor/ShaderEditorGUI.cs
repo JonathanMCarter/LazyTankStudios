@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using System;
+
+/// Changes the Shader Editor so it is more user friendly 
 
 /*
     You shouldn't be here.....
@@ -33,7 +34,7 @@ using System;
 /// Editor script for the coliur changer shader. This script alters the inspector appearance of the shader values so that it is easier for the user to understand.
 public class ShaderEditorGUI : ShaderGUI
 {
-    /// Definition: An enum for the Palettes the user can choose between
+    /// Definition An enum for the Palettes the user can choose between
     public enum Palettes
     {
         Palette1,
@@ -42,10 +43,10 @@ public class ShaderEditorGUI : ShaderGUI
         Palette4,
     };
 
-    /// Variable: variable that the user edits 
+    /// Variable variable that the user edits 
     public Palettes Pal;
 
-    /// Palette: The main and only palette that is needed for the game, it hold 4 lists of 3 colours that are used in the shader.
+    /// Palette The main and only palette that is needed for the game, it hold 4 lists of 3 colours that are used in the shader.
     public Palette PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Palette/Palettes.asset", typeof(Palette));
 
     /// Boolean that controls whether or not the material is instanced. This inturn controls whether or not the user has acced to edit the 4th colour in each palette.
@@ -62,7 +63,7 @@ public class ShaderEditorGUI : ShaderGUI
     /// Overrides the default GUI to show the custom inspector, param are passed in by default from the ShaderGUI editor type
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
-        //PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Palette/Palettes.asset", typeof(Palette));
+        PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Palette/Palettes.asset", typeof(Palette));
         Mat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
 
         ChangeString();
@@ -74,11 +75,12 @@ public class ShaderEditorGUI : ShaderGUI
             EditSelection = !EditSelection;
         }
 
-        if (GUILayout.Button("Open Editor"))
-        {
-            PaletteEditor Test = EditorWindow.GetWindow<PaletteEditor>();
-            Test.Version = this;
-        }
+        // This is broken currently, don't know why atm, still working on this...
+        //if (GUILayout.Button("Open Editor"))
+        //{
+        //    PaletteEditor Test = EditorWindow.GetWindow<PaletteEditor>();
+        //    Test.Version = this;
+        //}
 
         if (Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.GetFloat("_IsInstance") == 0)
         {
@@ -93,6 +95,7 @@ public class ShaderEditorGUI : ShaderGUI
             if (GUILayout.Button("Revert Instance"))
             {
                 var Test = new MaterialPropertyBlock();
+                Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.name = "ColourChanger_MAT";
                 Selection.gameObjects[0].GetComponent<Renderer>().GetPropertyBlock(Test);
                 Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 0);
             }

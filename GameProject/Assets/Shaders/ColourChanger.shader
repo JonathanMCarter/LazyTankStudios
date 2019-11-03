@@ -29,9 +29,9 @@ Shader "Custom/ColourChanger"
     {
 		[HideInInspector]_MainTex("Sprite", 2D) = "white" {}
 
-		[HideInInspector]_TexCol1("Colour 1", Color) = (0,0,0,1)
-		[HideInInspector]_TexCol2("Colour 2", Color) = (0,0,0,1)
-		[HideInInspector]_TexCol3("Colour 3", Color) = (0,0,0,1)
+		[HideInInspector]_TexCol1("Colour 1", Color) = (185, 185, 185, 1)
+		[HideInInspector]_TexCol2("Colour 2", Color) = (111, 111, 111, 1)
+		[HideInInspector]_TexCol3("Colour 3", Color) = (55, 55, 55, 1)
 		[HideInInspector]_TexCol4("Colour 4", Color) = (0,0,0,1)
 
 		[HideInInspector]_PalCol1("Palette 1", Color) = (0,0,0,1)
@@ -39,18 +39,6 @@ Shader "Custom/ColourChanger"
 		[HideInInspector]_PalCol3("Palette 3", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol4("Palette 4", Color) = (0,0,0,1)
 
-		//[HideInInspector]_StoreCol1("Store1", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol2("Store2", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol3("Store3", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol4("Store4", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol5("Store5", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol6("Store6", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol7("Store7", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol8("Store8", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol9("Store9", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol10("Store10", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol11("Store11", Color) = (0,0,0,1)
-		//[HideInInspector]_StoreCol12("Store12", Color) = (0,0,0,1)
 		[HideInInspector]_StoreTrans1("StoreTrans1", Color) = (0,0,0,1)
 		[HideInInspector]_StoreTrans2("StoreTrans2", Color) = (0,0,0,1)
 		[HideInInspector]_StoreTrans3("StoreTrans3", Color) = (0,0,0,1)
