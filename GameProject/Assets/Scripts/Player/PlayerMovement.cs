@@ -279,7 +279,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void FireProjectile() //Fires off player facing certain direction
     {
-        GameObject Go = Instantiate(DamageBulletThingy, attackRotater.GetChild(0).transform.position, transform.rotation);
+        //                                                                                          Tony - Rotate Arrow propperly
+        GameObject Go = Instantiate(DamageBulletThingy, attackRotater.GetChild(0).transform.position, attackRotater.rotation * Quaternion.Euler(0, 0, -45));
         Vector2 Dir = new Vector2(0, 0);
         switch (ImFacing)
         {
