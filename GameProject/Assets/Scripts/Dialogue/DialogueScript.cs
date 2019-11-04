@@ -221,7 +221,8 @@ public class DialogueScript : MonoBehaviour
 
     public void Input()
     {
-        if (!InputPressed) { InputPressed = true; }
+       // if (!InputPressed) { InputPressed = true; }
+        DisplayNextLine();
     }
 
 
