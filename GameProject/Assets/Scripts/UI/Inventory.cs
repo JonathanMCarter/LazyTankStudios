@@ -162,7 +162,8 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        GameObject.Find("CoinUI").transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<Text>().text = "0";
+        //GameObject.Find("CoinUI").transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<Text>().text = "0";
+        GameObject.Find("Coins").GetComponentInChildren<Text>().text = "0"; //changed by LC to match UI hierarchy 
         items = new bool[transform.childCount];
         VendorMode = false;
         IM = GameObject.FindObjectOfType<InputManager>();
