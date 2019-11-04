@@ -16,6 +16,9 @@ public class TalkScript : MonoBehaviour
  * Last Edit: 07.10.19
  * Reason: Optimize finding object
  * 
+ * Also Edited by : Andreas Kraemer
+ * Last Edit: 04.11.19
+ * Reason: Dialogue sound effect
  * */
 
     public GameObject panel;
@@ -24,10 +27,16 @@ public class TalkScript : MonoBehaviour
     public PlayerMovement movement;
     DialogueScript ds;
     //QuestScript qs;
+    //Andreas edit --
+    private AudioManager audioManager;
+    //Andreas edit end--
 
     void Awake()
     {
         ds = FindObjectOfType<DialogueScript>(); //added by LC
+        //Andreas edit --
+         audioManager=FindObjectOfType<AudioManager>();
+        //Andreas edit end--
         //panel = FindObjectOfType<DialogueBoxManager>().gameObject;
         //qs = FindObjectOfType<QuestScript>();
         //ds = GameObject.Find("DialogueHandler").GetComponent<DialogueScript>();
@@ -60,7 +69,13 @@ public class TalkScript : MonoBehaviour
     {
         if (talking)
         {
-            if (Input.GetButtonDown("Fire1")) ds.Input();
+            if (Input.GetButtonDown("Fire1"))
+            { 
+                ds.Input();
+                //Andreas edit --
+                audioManager.Play("Dialogue1");
+                //Andreas edit end--
+            }
             talking = !ds.FileHasEnded;
             panel.SetActive(talking);
             movement.enabled = !talking;
