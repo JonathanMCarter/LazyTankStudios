@@ -1,54 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-[CreateAssetMenu]
-public class ActionSequence : ActionOverTime
-{
-    public List<Action> SubActions = new List<Action>();
-    new public bool CanInterrupt => currentAction.CanInterrupt;
+//[CreateAssetMenu]
+//public class ActionSequence : ActionOverTime
+//{
+//    public List<Action> SubActions = new List<Action>();
+//    new public bool CanInterrupt => currentAction.CanInterrupt;
 
-    private Queue<Action> subActions;
-    private Action currentAction;
+//    private Queue<Action> subActions;
+//    private Action currentAction;
 
-    public override IEnumerator Execute(Entity entity)
-    {
-        Debug.Log(loop);
-        if (loop != null && !ISCOMPLETE) yield break;
-        Debug.Log("Start Loop");
-        loop = Loop(entity);
-        yield return entity.StartCoroutine(loop);
+//    public override IEnumerator Execute(Entity entity)
+//    {
+//        Debug.Log(loop);
+//        if (loop != null && !ISCOMPLETE) yield break;
+//        Debug.Log("Start Loop");
+//        loop = Loop(entity);
+//        yield return entity.StartCoroutine(loop);
 
-    }
+//    }
 
-    private IEnumerator Loop(Entity entity)
-    {
-        subActions = new Queue<Action>(SubActions);
+//    private IEnumerator Loop(Entity entity)
+//    {
+//        subActions = new Queue<Action>(SubActions);
 
-        while(subActions.Count != 0)
-        {
-            currentAction = subActions.Dequeue();
+//        while(subActions.Count != 0)
+//        {
+//            currentAction = subActions.Dequeue();
 
-            while(!currentAction.IsComplete())
-            {
-                yield return currentAction.Execute(entity);
-            }
-        }
-    }
+//            while(!currentAction.IsComplete())
+//            {
+//                yield return currentAction.Execute(entity);
+//            }
+//        }
+//    }
 
-    public override bool IsComplete()
-    {
-        return ISCOMPLETE && Reset();
-    }
+//    public override bool IsComplete()
+//    {
+//        return ISCOMPLETE && Reset();
+//    }
 
-    public override bool CanDoBoth()
-    {
-        throw new System.NotImplementedException();
-    }
+//    public override bool CanDoBoth()
+//    {
+//        throw new System.NotImplementedException();
+//    }
 
-    protected override bool Reset()
-    {
-        loop = null;
-        return true;
-    }
-}
+//    protected override bool Reset()
+//    {
+//        loop = null;
+//        return true;
+//    }
+//}

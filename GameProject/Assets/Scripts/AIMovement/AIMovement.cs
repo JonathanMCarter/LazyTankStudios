@@ -55,7 +55,6 @@ namespace AI
         {
             Debug.Log("Collison");
             tot.Stop();
-            StartCoroutine(actions[0].Execute(GetComponent<Entity>()));
 
         }
 

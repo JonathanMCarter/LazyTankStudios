@@ -27,12 +27,9 @@ namespace AI
         [SerializeField] float movementSpeed = 2f;
         [SerializeField] float maxIdleTime = 2f;
         [SerializeField] Vector2 awarnessSize = Vector2.one;
-        
+        [SerializeField] protected PlayerVariable player;
 
-        public List<Action> Actions;
-
-        private Action currentAction;
-        private IEnumerator currentActionLoop;
+        protected IEnumerator currentAction;
         private FiniteStateMachine fsm;
         private TaskOverTime tot;
         private Vector2 rootPos;
@@ -59,7 +56,7 @@ namespace AI
         }
 
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
             fsm.ExecuteCurrentState();
         }
@@ -78,21 +75,13 @@ namespace AI
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             tot.Stop();
-
-            if (collision.tag == "Player")
-            {
-                currentAction = Actions[Random.Range(0, Actions.Count)];
-                currentAction.IsComplete();
-                currentActionLoop = currentAction.Execute(GetComponent<Entity>());
-                StartCoroutine(currentActionLoop);
-            }
+            fsm.ChangeState(null);
         }
 
         protected virtual void OnTriggerExit2D(Collider2D other)
         {
             //Cache States someday
             tot.Stop();
-            StopAllCoroutines();
             fsm.ChangeState(new TestRandomWanderState(this));
 
         }
