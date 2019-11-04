@@ -59,7 +59,7 @@ public class TalkScript : MonoBehaviour
         //Toby: Need this to change the dialogue each time you talk otherwise every NPC will have the same dialogue
         ds.ChangeFile(dialogue);
         ds.Input();
-        if (!ds.FileHasEnded) audioManager.Play("Dialogue1");
+       // if (!ds.FileHasEnded) audioManager.Play("Dialogue1");
         // ds.Reset();
         talking = true;
         movement.enabled = !talking;

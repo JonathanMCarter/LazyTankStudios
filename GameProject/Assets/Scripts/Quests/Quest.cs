@@ -45,8 +45,8 @@ public class Quest : MonoBehaviour
     private void Awake()
     {
         ds = GameObject.Find("DialogueHandler").GetComponent<DialogueScript>();
-        status = Status.NotAvailable;
-        if (ID == 0)
+        //status = Status.NotAvailable;
+        //if (ID == 0)
             status = Status.Available;
     }
     private void Start()
