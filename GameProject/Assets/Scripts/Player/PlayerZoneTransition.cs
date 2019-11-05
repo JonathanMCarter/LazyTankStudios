@@ -40,6 +40,7 @@ public class PlayerZoneTransition : MonoBehaviour
     public void StartTransition()
     {
         destSplit = Destination.Split(':');
+        GetComponent<SpriteRenderer>().flipX = false;
         //Camera.main does not work here
         cameraBox = GameObject.Find("Main Camera").GetComponent<BoxCollider2D>();
         pAnim = GetComponent<Animator>();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;//added by LC
 
 /**
  * Created by Toby Wishart
@@ -19,6 +20,7 @@ public class ZoneTransition : MonoBehaviour
     {
         a = GameObject.Find("ZoneFadeScreen").GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,6 +37,7 @@ public class ZoneTransition : MonoBehaviour
     public void FadeOutEnd()
     {
         player.GetComponent<PlayerZoneTransition>().StartTransition();
+
     }
 
     //Function for fade in animation event
@@ -43,5 +46,7 @@ public class ZoneTransition : MonoBehaviour
         a.SetBool("in", false);
         a.SetBool("out", false);
         player.GetComponent<PlayerMovement>().enabled = true;
+
     }
+
 }

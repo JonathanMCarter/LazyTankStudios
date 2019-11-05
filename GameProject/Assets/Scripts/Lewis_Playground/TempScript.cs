@@ -26,7 +26,11 @@ public class TempScript : MonoBehaviour
 
     IEnumerator GameReset() //added temp by LC
     {
+        DoNotDes.Created = false; //temp added by LC
+        print(DoNotDes.Created);
         yield return new WaitForSeconds(1);
+
+        
         SceneManager.LoadScene("Main Menu");
         DoNotDes[] Gos = GameObject.FindObjectsOfType<DoNotDes>();
         foreach (DoNotDes go in Gos) if (go.gameObject != this.gameObject) Destroy(go.gameObject);
