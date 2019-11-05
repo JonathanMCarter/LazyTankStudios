@@ -8,6 +8,7 @@ namespace Final
     {
         public PlayerVariable Player;
         public float ExpiryTime = 0f;
+        public Animation AnimationClip;
         public abstract IEnumerator Use();
     } 
 }

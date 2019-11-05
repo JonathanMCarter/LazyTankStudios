@@ -18,6 +18,7 @@ namespace Final
 
         public override IEnumerator Use()
         {
+            if (AnimationClip != null) AnimationClip.Play();
             yield return aot.Use();
         }
 

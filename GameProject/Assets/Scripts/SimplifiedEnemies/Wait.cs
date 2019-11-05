@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Final
 {
-    public class Spin : Ability
+    public class Wait : Ability
     {
         private ActionOverTime aot;
 
@@ -17,6 +17,7 @@ namespace Final
 
         public override IEnumerator Use()
         {
+            if (AnimationClip != null) AnimationClip.Play();
             yield return aot.Use();
         }
     }

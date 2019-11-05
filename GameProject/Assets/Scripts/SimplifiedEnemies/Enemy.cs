@@ -17,7 +17,8 @@ namespace Final
 
         private Vector2 rootPos;
         private Ability[] abilities;
-        private IEnumerator currentAbility;
+        private Ability currentAbility;
+        private IEnumerator abilityCoroutine;
         private float abilityExpiryTime;
         private float time;
         private ActionOverTime aot;
@@ -52,12 +53,12 @@ namespace Final
                     player.Value.transform.position.y >= (-maxChasingArea.y + rootPos.y) && player.Value.transform.position.y <= (maxChasingArea.y + rootPos.y)))
                 {
                     Debug.Log("Stopping");
-                    StopCoroutine(currentAbility);
+                    StopCoroutine(abilityCoroutine);
                     isPatrolling = true;
                     isReadyToMove = true;
                     return;
                 }
-                if (time >= abilityExpiryTime)
+                if (time > abilityExpiryTime)
                 {
                     UseAbility();
                 }
@@ -80,9 +81,7 @@ namespace Final
         {
             if (collision.tag == "Player")
             {
-                StopAllCoroutines();
                 isPatrolling = false;
-                time = 10f;
             }
 
         }
@@ -91,7 +90,12 @@ namespace Final
         {
             if (collision.transform.tag == "Player")
             {
-                player.Value.Health--;
+                player.Value.Health--;                
+            }
+            if (currentAbility is Charge)
+            {
+                StopCoroutine(abilityCoroutine);
+                time = 10f;
             }
         }
         private void OnCollisionStay2D(Collision2D collision)
@@ -131,12 +135,12 @@ namespace Final
 
         private void UseAbility()
         {
-            Debug.Log(abilities.Length);
             int r = Random.Range(0, abilities.Length);
-            currentAbility = abilities[r].Use();
+            currentAbility = abilities[r];
+            abilityCoroutine = currentAbility.Use();
             abilityExpiryTime = abilities[r].ExpiryTime;
             time = 0f;
-            StartCoroutine(currentAbility);
+            StartCoroutine(abilityCoroutine);
         }
     }
 }
