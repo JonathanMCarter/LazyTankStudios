@@ -74,6 +74,7 @@ namespace Final
                 }
                 if (time > abilityExpiryTime)
                 {
+                    Debug.Log("Use Ability");
                     UseAbility();
                 }
             }
@@ -99,6 +100,7 @@ namespace Final
         {
             if (collision.tag == "Player")
             {
+                Debug.Log("Detected");
                 isPatrolling = false;
             }
 
@@ -128,36 +130,22 @@ namespace Final
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.transform.tag == "Player")
+            if (collision.gameObject.GetComponent<PlayerMovement>() != null)
             {
-                player.health--;                
+                player.TakeDamage(1);               
             }
             if (currentAbility is Charge)
             {
                 StopCoroutine(abilityCoroutine);
                 time = 10f;
             }
-        }
-        private void OnTriggerStay2D(Collider2D collision)
-        {
-            //if (collision.tag == "Player") //Need to get gameObject of collision. Comment added by LC
-            if (collision.gameObject.CompareTag("Player"))
+            if (!HeartsCoRunning)
             {
-                collision.GetComponent<PlayerMovement>().TakeDamage(1); //added by LC temp for prototype until abilities working
-
-
-                //Tony Edit
-                //for (int i = 0; i < Health; ++i)
-                //    Hearts[i].gameObject.SetActive(true);
-                //end of edit
-
-                if (!HeartsCoRunning)
-                {
-                    HeartsShowing = false;
-                    StartCoroutine(HeartsCo());
-                }
+                HeartsShowing = false;
+                StartCoroutine(HeartsCo());
             }
         }
+
         private void OnTriggerExit2D(Collider2D other)
         {
             //Cache States someday
