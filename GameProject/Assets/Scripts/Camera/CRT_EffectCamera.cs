@@ -19,24 +19,20 @@ public class CRT_EffectCamera : MonoBehaviour
 {
     public Material EffectMaterial;
     public bool m_CRTShaderOn=true;
-    public float scanlineCount=500.0f;
-    public float scanlineBrightness=1f;
-    public float vignetteStrenght=0.3f;
     private float time;
-    public float scanlineSpeed=10.0f;
-    public float noiseSize=5;
-    public float noiseAmount=1f;
-    public float flickerEffectStrenght=5;
+
+    public CRT_Preset preset;
+
 
 void OnRenderImage(RenderTexture src,RenderTexture dst)
     {
-        EffectMaterial.SetFloat("scanlineCount",scanlineCount);
-        EffectMaterial.SetFloat("scanlineIntensity",scanlineBrightness);
-        EffectMaterial.SetFloat("scanlineSpeed",scanlineSpeed);
-        EffectMaterial.SetFloat("vignetteStrenght",vignetteStrenght);
-        EffectMaterial.SetFloat("noiseSize",noiseSize);
-        EffectMaterial.SetFloat("noiseAmount",noiseAmount);
-        EffectMaterial.SetFloat("interlaceStrenght",flickerEffectStrenght);
+        EffectMaterial.SetFloat("scanlineCount",preset.scanlineCount);
+        EffectMaterial.SetFloat("scanlineIntensity",preset.scanlineBrightness);
+        EffectMaterial.SetFloat("scanlineSpeed",preset.scanlineSpeed);
+        EffectMaterial.SetFloat("vignetteStrenght",preset.vignetteStrenght);
+        EffectMaterial.SetFloat("noiseSize",preset.noiseSize);
+        EffectMaterial.SetFloat("noiseAmount",preset.noiseAmount);
+        EffectMaterial.SetFloat("interlaceStrenght",preset.flickerEffectStrenght);
         EffectMaterial.SetFloat("time",Time.fixedTime);
         if(m_CRTShaderOn)Graphics.Blit(src,dst,EffectMaterial);
         else Graphics.Blit(src,dst);

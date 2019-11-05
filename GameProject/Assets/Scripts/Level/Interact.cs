@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /**
+ * Created by: Toby Wishart
 *Edit by: Andreas Kraemer
 
 *
@@ -17,14 +18,17 @@ using UnityEngine.Events;
 
 public class Interact : MonoBehaviour
 {
-
+    public bool Enabled = true;
     public UnityEvent interact;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag=="Player")
+        if(Enabled)
         {
-            interact.Invoke();
+            if (collision.gameObject.tag == "Player")
+            {
+                interact.Invoke();
+            }
         }
     }
 

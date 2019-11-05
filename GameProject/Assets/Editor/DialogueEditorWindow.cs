@@ -13,7 +13,11 @@ using UnityEditor;
 
     Made by: Jonathan Carter
     Last Edited By: Jonathan Carter
-    Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+    Date Edited Last: 15/10/19 - Allowed for options when adding an event into the file line
+
+    Edit History:
+    - 13/10/19 - Added buttons for events, these are only placeholder for now, but will do stuff once the option for events are implemented
+    - 6/10/19 - To add this comment bit in (nothing else was changed)
 
     This script adds a new editor tab / window into the editor. This can be found under "Tools/Dialogue Editor" if it is not already open.
     The entire script makes that window work, allowing you to make and edit dialogue files in a nicer way,
@@ -43,13 +47,22 @@ public class DialogueEditorWindow : EditorWindow
 
     public Rect DeselectWindow;
     Vector2 ScrollPos;
-    //GUIStyle Style;
 
+    public enum EventOptions
+    {
+        None,
+        Cinematic,
+        Pause,
+        ExitDial,
+        Animation
+    };
 
-    [MenuItem("Tools/Dialogue Editor")]
+    public EventOptions EventChoice;
+
+    [MenuItem("Tools/Dialogue Editor Window", priority = 20)]
     public static void ShowWindow()
     {
-        GetWindow<DialogueEditorWindow>("Dialogue Editor");
+        GetWindow<DialogueEditorWindow>("Dialogue Editor Window");
     }
 
 
@@ -90,7 +103,8 @@ public class DialogueEditorWindow : EditorWindow
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("No:", GUILayout.MaxWidth(30f));
                 EditorGUILayout.LabelField("Character:", GUILayout.MaxWidth(200f));
-                EditorGUILayout.LabelField("Dialogue:");
+                EditorGUILayout.LabelField("Dialogue:", GUILayout.MinWidth(100f));
+                EventChoice = (EventOptions)EditorGUILayout.EnumPopup(EventChoice, GUILayout.MaxWidth(75f));
                 EditorGUILayout.EndHorizontal();
 
                 ScrollPos = EditorGUILayout.BeginScrollView(ScrollPos, GUILayout.Width(position.width), GUILayout.ExpandHeight(true));
@@ -105,6 +119,39 @@ public class DialogueEditorWindow : EditorWindow
 
                     GUILayout.Space(10f);
 
+                    GUI.backgroundColor = Color.yellow;
+
+                    if (GUILayout.Button("~", GUILayout.Width(25)))
+                    {
+                        string Choice;
+
+                        switch (EventChoice)
+                        {
+                            case EventOptions.None:
+                                Choice = "";
+                                break;
+                            case EventOptions.Cinematic:
+                                Choice = "###";
+                                break;
+                            case EventOptions.Pause:
+                                Choice = "@@@";
+                                break;
+                            case EventOptions.ExitDial:
+                                Choice = "***";
+                                break;
+                            case EventOptions.Animation:
+                                Choice = "^^^";
+                                break;
+                            default:
+                                Choice = "";
+                                break;
+                        }
+
+                        // this is where the event would be set, might make a enum to select a tye of event in the future...
+                        NewNames.Insert(i, Choice);
+                        NewDialogue.Insert(i, Choice);
+                    }
+
                     GUI.backgroundColor = Color.green;
                     if (GUILayout.Button("+", GUILayout.Width(25)))
                     {
@@ -112,6 +159,7 @@ public class DialogueEditorWindow : EditorWindow
                         NewNames.Insert(i + 1, "");
                         NewDialogue.Insert(i + 1, "");
                     }
+
                     GUI.backgroundColor = Color.red;
                     if (GUILayout.Button("-", GUILayout.Width(25)))
                     {
@@ -188,6 +236,7 @@ public class DialogueEditorWindow : EditorWindow
                     EditorGUILayout.LabelField("No:", GUILayout.MaxWidth(30f));
                     EditorGUILayout.LabelField("Character:", GUILayout.MaxWidth(200f));
                     EditorGUILayout.LabelField("Dialogue:");
+                    EventChoice = (EventOptions)EditorGUILayout.EnumPopup(EventChoice, GUILayout.MaxWidth(75f));
                     EditorGUILayout.EndHorizontal();
 
                     ScrollPos = EditorGUILayout.BeginScrollView(ScrollPos, GUILayout.Width(position.width), GUILayout.ExpandHeight(true));
@@ -200,6 +249,39 @@ public class DialogueEditorWindow : EditorWindow
                         CurrentFile.Names[i] = EditorGUILayout.TextField(CurrentFile.Names[i], GUILayout.MaxWidth(200f));
                         CurrentFile.Dialogue[i] = EditorGUILayout.TextField(CurrentFile.Dialogue[i]);
                         GUILayout.Space(10);
+
+                        GUI.backgroundColor = Color.yellow;
+
+                        if (GUILayout.Button("~", GUILayout.Width(25)))
+                        {
+                            string Choice;
+
+                            switch (EventChoice)
+                            {
+                                case EventOptions.None:
+                                    Choice = "";
+                                    break;
+                                case EventOptions.Cinematic:
+                                    Choice = "###";
+                                    break;
+                                case EventOptions.Pause:
+                                    Choice = "@@@";
+                                    break;
+                                case EventOptions.ExitDial:
+                                    Choice = "***";
+                                    break;
+                                case EventOptions.Animation:
+                                    Choice = "^^^";
+                                    break;
+                                default:
+                                    Choice = "";
+                                    break;
+                            }
+
+                            // this is where the event would be set, might make a enum to select a tye of event in the future...
+                            NewNames.Insert(i, Choice);
+                            NewDialogue.Insert(i, Choice);
+                        }
 
                         GUI.backgroundColor = Color.green;
                         if (GUILayout.Button("+", GUILayout.Width(25)))
@@ -285,6 +367,7 @@ public class DialogueEditorWindow : EditorWindow
         NumberOfLines = 1;
         NewNames.Add("");
         NewDialogue.Add("");
+        EventChoice = EventOptions.None;
     }
 
     // Old Function : Checked to see if the window size was too small to display stuff correctly, however as I got a scroll view working this isn't needed

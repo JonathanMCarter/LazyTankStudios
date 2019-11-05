@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 {
     private PlayerMovement Player;
     private GameObject Menu;
+    private bool isPaused=false;
 
 
     private void Start()
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void QuitGame()
     {
-        Application.Quit();
+        Application.Quit(); //Need to hide the Exit button on WebGL build (and possibly mobile)
     }
 
     /// <summary>
@@ -45,6 +46,21 @@ public class GameManager : MonoBehaviour
     {
         TogglePlayerMovement();
         Menu.SetActive(false); //hides the menu
+    }
+
+    /// <summary>
+    /// Pauses/UnPauses the Game
+    /// </summary>
+    public void PauseGame()
+    {
+        if(!isPaused)Time.timeScale=0;
+        else Time.timeScale=1;
+    }
+
+    public void PauseGame(bool pause)
+    {
+        if(pause)Time.timeScale=0;
+        else Time.timeScale=1;
     }
 
     /// <summary>

@@ -8,7 +8,14 @@
 
 	Made by: Jonathan Carter
 	Last Edited By: Jonathan Carter
-	Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
+	Date Edited Last: 03/11/19 - Added useage of Perm Palette instead of the stores colours in the shader
+
+	Edit History:
+	- 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
+	- 27/10/19 - Added fields to store colour options
+	- 12/10/19 - Added option for transparency on all selected colours, not jsut the 4th colour.
+								 Also removed some old commented code that isn't going to be used anymore.
+	- 6/10/19 - To add this comment bit in (nothing else was changed)
 
 	This script makes the colour changing happen, note that there is no intellisense on this script which makes mistakes easy
 
@@ -21,24 +28,29 @@ Shader "Custom/ColourChanger"
     Properties
     {
 		[HideInInspector]_MainTex("Sprite", 2D) = "white" {}
-        //_Palette("Palette", 2D) = "white" {}
 
-
-		[HideInInspector]_TexCol1("Colour 1", Color) = (0,0,0,1)
-		[HideInInspector]_TexCol2("Colour 2", Color) = (0,0,0,1)
-	    [HideInInspector]_TexCol3("Colour 3", Color) = (0,0,0,1)
-
-		[MaterialToggle] _UseTrans("4th Colour is Transparent?", float) = 0
-
+		[HideInInspector]_TexCol1("Colour 1", Color) = (185, 185, 185, 1)
+		[HideInInspector]_TexCol2("Colour 2", Color) = (111, 111, 111, 1)
+		[HideInInspector]_TexCol3("Colour 3", Color) = (55, 55, 55, 1)
 		[HideInInspector]_TexCol4("Colour 4", Color) = (0,0,0,1)
 
 		[HideInInspector]_PalCol1("Palette 1", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol2("Palette 2", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol3("Palette 3", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol4("Palette 4", Color) = (0,0,0,1)
+
+		[HideInInspector]_StoreTrans1("StoreTrans1", Color) = (0,0,0,1)
+		[HideInInspector]_StoreTrans2("StoreTrans2", Color) = (0,0,0,1)
+		[HideInInspector]_StoreTrans3("StoreTrans3", Color) = (0,0,0,1)
+		[HideInInspector]_StoreTrans4("StoreTrans4", Color) = (0,0,0,1)
+		[HideInInspector][MaterialToggle]_IsInstance("IsInstance", Float) = 0
+		[HideInInspector][MaterialToggle]_UseTrans("UseTrans", Float) = 1
+		[HideInInspector]_PaletteSelected("PaletteSelected", Float) = 1
     }
     SubShader
     {
+		Cull Off
+
         Pass
         {
 
@@ -53,23 +65,21 @@ Shader "Custom/ColourChanger"
 
 
 
-        sampler2D _MainTex;
-        sampler2D _Palette;
+			sampler2D _MainTex;
+
+			// Defines the GPU instanced variables - still not sure this does anythig helpful in a 2D game but I've kept it in for now
+			UNITY_INSTANCING_BUFFER_START(Props)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol1)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol2)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol3)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol4)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol1)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol2)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol3)
+				UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol4)
+			UNITY_INSTANCING_BUFFER_END(Props)
 
 
-
-		UNITY_INSTANCING_BUFFER_START(Props)
-			//UNITY_DEFINE_INSTANCED_PROP(sampler2D, _Palette)
-			UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol1)
-			UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol2)
-			UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol3)
-			UNITY_DEFINE_INSTANCED_PROP(float4, _TexCol4)
-			UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol1)
-			UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol2)
-			UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol3)
-			UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol4)
-			UNITY_DEFINE_INSTANCED_PROP(float, _UseTrans)
-		UNITY_INSTANCING_BUFFER_END(Props)
 
 		// Vertex
         struct Appdata
@@ -112,19 +122,6 @@ Shader "Custom/ColourChanger"
 
             float4 c = tex2D(_MainTex, IN.uv_MainTex);
 
-
-			//half4 Pal1 = tex2D(UNITY_ACCESS_INSTANCED_PROP(Props, _Palette), float2(0, 1));
-			//half4 Pal2 = tex2D(UNITY_ACCESS_INSTANCED_PROP(Props, _Palette), float2(1, 1));
-			//half4 Pal3 = tex2D(UNITY_ACCESS_INSTANCED_PROP(Props, _Palette), float2(0, 0));
-			//half4 Pal4 = tex2D(UNITY_ACCESS_INSTANCED_PROP(Props, _Palette), float2(1, 0));
-
-			//half4 Pal1 = tex2D(_Palette, float2(0, 1));
-			//half4 Pal2 = tex2D(_Palette, float2(1, 1));
-			//half4 Pal3 = tex2D(_Palette, float2(0, 0));
-			//half4 Pal4 = tex2D(_Palette, float2(1, 0));
-
-
-
 			float4 _TestCol1 = UNITY_ACCESS_INSTANCED_PROP(Props, _TexCol1);
 			float4 _TestCol2 = UNITY_ACCESS_INSTANCED_PROP(Props, _TexCol2);
 			float4 _TestCol3 = UNITY_ACCESS_INSTANCED_PROP(Props, _TexCol3);
@@ -143,8 +140,14 @@ Shader "Custom/ColourChanger"
 				c.a >= _TestCol1.a - 0.001 && c.a <= _TestCol1.a + 0.001
 			)
 			{
-				if (!Pal1 == 0, 0, 0, 1)
+				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol1.a) == 0)
 				{
+					// essentially gets rid of the pixels entirely if they are meant to be transparent
+					discard;
+				}
+				else
+				{
+					// If there is no transparency on this sprite then the 4th colour will be used instead
 					return Pal1;
 				}
             }
@@ -157,8 +160,14 @@ Shader "Custom/ColourChanger"
 				c.a >= _TestCol2.a - 0.001 && c.a <= _TestCol2.a + 0.001
 			)
 			{
-				if (!Pal2 == 0, 0, 0, 1)
+				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol2.a) == 0)
 				{
+					// essentially gets rid of the pixels entirely if they are meant to be transparent
+					discard;
+				}
+				else
+				{
+					// If there is no transparency on this sprite then the 4th colour will be used instead
 					return Pal2;
 				}
 			}
@@ -171,8 +180,14 @@ Shader "Custom/ColourChanger"
 				c.a >= _TestCol3.a - 0.001 && c.a <= _TestCol3.a + 0.001
 			)
 			{
-				if (!Pal3 == 0, 0, 0, 1)
+				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol3.a) == 0)
 				{
+					// essentially gets rid of the pixels entirely if they are meant to be transparent
+					discard;
+				}
+				else
+				{
+					// If there is no transparency on this sprite then the 4th colour will be used instead
 					return Pal3;
 				}
 			}
@@ -185,18 +200,15 @@ Shader "Custom/ColourChanger"
 				c.a >= _TestCol4.a - 0.001 && c.a <= _TestCol4.a + 0.001
 			)
 			{
-				if (UNITY_ACCESS_INSTANCED_PROP(Props, _UseTrans) > 0)
+				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol4.a) == 0)
 				{
 					// essentially gets rid of the pixels entirely if they are meant to be transparent
 					discard;
 				}
 				else
 				{
-					if (!Pal1 == 0, 0, 0, 1)
-					{
-						// If there is no transparency on this sprite then the 4th colour will be used instead
-						return Pal4;
-					}
+					// If there is no transparency on this sprite then the 4th colour will be used instead
+					return Pal4;
 				}
 			}
 

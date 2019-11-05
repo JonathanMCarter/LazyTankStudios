@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /*
     You shouldn't be here.....
@@ -18,6 +19,10 @@ using UnityEngine.UI;
     This script handles the dialouge manager, its not finished as I put it into the project as this was a summer project I didn't finish.
     So, some things may not work...
 
+    Also edited by: Toby Wishart
+    Last edit: 29/10/19
+    Reason: Cinematics can be played
+
 */
 
 public enum Styles
@@ -29,6 +34,7 @@ public enum Styles
 
 public class DialogueScript : MonoBehaviour
 {
+    public bool InCinematic = false; //temp added by LC
     // The Active Text File - This is used to populate the list when updated
     [Header("Current Dialouge File")]
     [Tooltip("This is the current dialouge text file selected by the script, if this isn't the file you called then something has gone wrong.")]
@@ -65,6 +71,10 @@ public class DialogueScript : MonoBehaviour
 	[Header("Type Writer Settings")]
 	public int TypeWriterCount = 1;
 
+
+    // Stuff for events 'n' stuff 
+    private Coroutine PauseCo;
+    public Animator AnimToPlay;
 
     private void Update()
     {
@@ -114,12 +124,50 @@ public class DialogueScript : MonoBehaviour
     // Reads the next line of the dialogue sequence
     public void DisplayNextLine()
     {
+
         if (DialStage < File.Names.Count)
         {
-            DialName.text = File.Names[DialStage];
-            DialText.text = File.Dialogue[DialStage];
-            DialStage++;
-            InputPressed = false;
+            switch (File.Names[DialStage])
+            {
+                // Cinematic
+                case "###":
+                    // Put code here to run cinematic
+                    DialName.text = "";
+                    DialText.text = "";
+                    if (PauseCo == null)
+                    {
+                        PauseCo = StartCoroutine(CinematicLoad(File.Dialogue[DialStage]));
+                    }
+                    break;
+                // Pause
+                case "@@@":
+                    // Pauses dialogue for a little bit (for dramatic effect..............................................)
+                    if (PauseCo == null)
+                    {
+                        PauseCo = StartCoroutine(PauseDial(3));
+                    }
+                    break;
+
+                // Play Animation
+                case "^^^":
+                    // Put code to play animation
+                    AnimToPlay.Play(File.Dialogue[DialStage], -1);
+                    break;
+
+                // End Dialogue
+                case "***":
+                    DialStage = 0;
+                    FileHasEnded = true;
+                    break;
+
+                // Read Dial as normal
+                default:
+                    DialName.text = File.Names[DialStage];
+                    DialText.text = File.Dialogue[DialStage];
+                    DialStage++;
+                    InputPressed = false;
+                    break;
+            }
         }
         else
         {
@@ -174,7 +222,8 @@ public class DialogueScript : MonoBehaviour
 
     public void Input()
     {
-        if (!InputPressed) { InputPressed = true; }
+       // if (!InputPressed) { InputPressed = true; }
+        DisplayNextLine();
     }
 
 
@@ -184,5 +233,35 @@ public class DialogueScript : MonoBehaviour
         if (InputPressed) { InputPressed = false; }
         if (FileHasEnded) { FileHasEnded = false; }
         DialStage = 0;
+    }
+
+
+    private IEnumerator PauseDial(float Delay)
+    {
+        yield return new WaitForSeconds(Delay);
+        ++DialStage;
+    }
+
+    private IEnumerator CinematicFinish(string cinematic)
+    {
+        InCinematic = true; //temp added by LC;
+        Debug.Log("Wait for cinematic end");
+        Scene s = SceneManager.GetSceneByName(cinematic);
+        //Scene is unloaded in the CutsceneStateHandler script
+        yield return new WaitWhile(()=>s.isLoaded);
+        InCinematic = false; //temp added by LC
+        Debug.Log("Cinematic finished");
+        DialStage++;
+        PauseCo = null;
+    }
+
+    private IEnumerator CinematicLoad(string cinematic)
+    {
+        Debug.Log("Load cinematic");
+        SceneManager.LoadSceneAsync(cinematic, LoadSceneMode.Additive);
+        Scene s = SceneManager.GetSceneByName(cinematic);
+        //Only start coroutine after the scene has fully loaded otherwise it will finish prematurely
+        yield return new WaitWhile(()=>!s.isLoaded);
+        PauseCo = StartCoroutine(CinematicFinish(cinematic));
     }
 }
