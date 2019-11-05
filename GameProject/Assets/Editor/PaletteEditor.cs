@@ -41,6 +41,12 @@ public class PaletteEditor : EditorWindow
     private int ToolBarValue;
 
 
+    [MenuItem("Tools/Palette Editor", priority = 20)]
+    public static void ShowWindow()
+    {
+        GetWindow<PaletteEditor>("dfjdkjfdkjfkdfkj");
+    }
+
     /// The function the runs all the visuals for the editor, it runs like update but only when you touch that part of the editor.
     public void OnGUI()
     {
