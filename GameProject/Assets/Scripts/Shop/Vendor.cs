@@ -16,8 +16,8 @@ public class Vendor : MonoBehaviour
      * Opens the inventories
 
         Also Edited by: Lewis Cleminson
-        Last Edit: 21.10.19
-        Reason: Change start function to awake to get reference on object earlier.
+        Last Edit: 05.11.19
+        Reason: Change start function to awake to get reference on object earlier. Changed controls to use input manager, added reference to panel to avoid constantly calling GameObject.Find
     */
     //File to get Dialgoue
     public DialogueFile VendorSpeech;
@@ -43,19 +43,28 @@ public class Vendor : MonoBehaviour
     //Andreas edit
     private AudioManager audioManager;
 
+    //Lewis edit
+    private InputManager IM;
+    private GameObject Panel;
+    private bool TempWaitBool = false; //temp add by LC
+
     private void Awake()//changed to awake so can get reference before Inventory panel is deactived
     {
         //Andreas edit
         audioManager = FindObjectOfType<AudioManager>();
 
-        // Jonathan Edit
-        inventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(2).GetComponent<Inventory>();
-        VendorInventory = GameObject.Find("SellOrBuyPanel").transform.GetChild(3).GetComponent<Inventory>();
+        //Lewis Edit
+        IM = FindObjectOfType<InputManager>();
 
-        if (GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.activeInHierarchy)
+        Panel = GameObject.Find("SellOrBuyPanel");
+        // Jonathan Edit
+        inventory = Panel.transform.GetChild(2).GetComponent<Inventory>();
+        VendorInventory = Panel.transform.GetChild(3).GetComponent<Inventory>();
+
+        if (Panel.transform.GetChild(0).gameObject.activeInHierarchy)
         {
-            GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.SetActive(false);
-            GameObject.Find("SellOrBuyPanel").transform.GetChild(1).gameObject.SetActive(false);
+            Panel.transform.GetChild(0).gameObject.SetActive(false);
+            Panel.transform.GetChild(1).gameObject.SetActive(false);
         }
 
         DS = FindObjectOfType<DialogueScript>();
@@ -67,7 +76,7 @@ public class Vendor : MonoBehaviour
     }
 
 
-    private void Update()
+    private void Update() //Update is run every frame. A lot of what is currently in update only needs to run once and so should go in a seperate function rather than running all the time. Comment added by LC
     {
         if (!inventory.gameObject.activeInHierarchy)
         {
@@ -81,31 +90,31 @@ public class Vendor : MonoBehaviour
 
         playerInventorySlot = inventory.transform.GetChild(inventory.selected).GetComponent<InvSlot>();
         VendorInventorySlot = VendorInventory.transform.GetChild(VendorInventory.selected).GetComponent<InvSlot>();
-        StartCoroutine(delay());
+        StartCoroutine(delay());//Check note on delat
 
         if (isSellOrBuyPanelOpened())
         {
-            GameObject.Find("SellOrBuyPanel").transform.GetChild(selected).GetComponent<Image>().color = new Color(0.745283f, 0.745283f, 0.745283f);
+            Panel.transform.GetChild(selected).GetComponent<Image>().color = new Color(0.745283f, 0.745283f, 0.745283f);
 
-            if (Input.GetAxisRaw("Vertical") == 1 && selected < 2 && selected > 0)
+            if (IM.Y_Axis() == 1 && selected < 2 && selected > 0) //edited by LC for input controls
             {
-                StartCoroutine(delay());
+                StartCoroutine(delay()); //check note on delay
                 selected--;
 
             }
-            else if (Input.GetAxisRaw("Vertical") == -1 && selected >= 0 && selected < 1)
+            else if (IM.Y_Axis() == -1 && selected >= 0 && selected < 1) //edited by LC for input controls
             {
-                StartCoroutine(delay());
+                StartCoroutine(delay()); //check note on delay
                 selected++;
 
             }
-            GameObject.Find("SellOrBuyPanel").transform.GetChild(selected).GetComponent<Image>().color = new Color(1, 1, 1);
+            Panel.transform.GetChild(selected).GetComponent<Image>().color = new Color(1, 1, 1);
 
         }
 
         if (IsUsingVendor)
         {
-            if (Input.GetKeyDown(KeyCode.Return) && inventory.isOpen)
+            if ( IM.Button_A() && inventory.isOpen) //edited by LC for input controls
             {
                 if (playerInventorySlot.hasItem && Sell)
                 {
@@ -158,10 +167,10 @@ public class Vendor : MonoBehaviour
                 IsUsingVendor = true;
 
                 // Jonathan Edit - Makes it so it enables the sell / buy buttons again after they are disabled the first time
-                if (!GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.activeInHierarchy)
+                if (!Panel.transform.GetChild(0).gameObject.activeInHierarchy)
                 {
-                    GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.SetActive(true);
-                    GameObject.Find("SellOrBuyPanel").transform.GetChild(1).gameObject.SetActive(true);
+                    Panel.transform.GetChild(0).gameObject.SetActive(true);
+                    Panel.transform.GetChild(1).gameObject.SetActive(true);
                 }
 
                 VendorInventory.gameObject.SetActive(false);
@@ -174,15 +183,18 @@ public class Vendor : MonoBehaviour
                 }
 
 
-                if (Input.GetKeyDown(KeyCode.Return))
+                // if (Input.GetKeyDown(KeyCode.Return)) //currently gets a key that is coded in, does not work on Mobile controls, or easily changed by updating input manager without having to delve into individual scripts. Updated to go off input manager
+                if (IM.Button_A() && TempWaitBool) //Changed by LC
                 {
                     switch (selected)
                     {
                         case 0:
                             SellOrBuy(true);
+                            TempWaitBool = false;
                             break;
                         case 1:
                             SellOrBuy(false);
+                            TempWaitBool = false;
                             break;
                     }
 
@@ -190,12 +202,14 @@ public class Vendor : MonoBehaviour
                     happened = !happened;
 
                 }
+                else if (IM.Button_A() && !TempWaitBool) TempWaitBool = true;
 
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
+       // if (Input.GetKeyDown(KeyCode.Space))//changed by LC
+       if (IM.Button_Menu())
+            {
             if (!VendorInventory.gameObject.activeInHierarchy) VendorInventory.gameObject.SetActive(true); //added by LC
             VendorInventory.StartCoroutine(VendorInventory.ToogleSlots(Sell)); //could not start co-routine as VendorInventory is Inactive
             Sell = !Sell;
@@ -260,8 +274,8 @@ public class Vendor : MonoBehaviour
         VendorInventory.VendorMode = true;
 
         // Jonathan Edit - Makes it so it disables the sell / buy buttons
-        GameObject.Find("SellOrBuyPanel").transform.GetChild(0).gameObject.SetActive(false);
-        GameObject.Find("SellOrBuyPanel").transform.GetChild(1).gameObject.SetActive(false);
+        Panel.transform.GetChild(0).gameObject.SetActive(false);
+        Panel.transform.GetChild(1).gameObject.SetActive(false);
         IsUsingVendor = true;
 
         //ToogleSellorBuyPanel(0);
@@ -270,17 +284,19 @@ public class Vendor : MonoBehaviour
 
     void ToogleSellorBuyPanel(int state)
     {
-        GameObject.Find("SellOrBuyPanel").GetComponent<CanvasGroup>().alpha = state;
+        Panel.GetComponent<CanvasGroup>().alpha = state;
     }
 
     bool isSellOrBuyPanelOpened()
     {
-        return GameObject.Find("SellOrBuyPanel").GetComponent<CanvasGroup>().alpha == 1 ? true : false;
+        return Panel.GetComponent<CanvasGroup>().alpha == 1 ? true : false;
 
     }
-    IEnumerator delay()
+    IEnumerator delay() 
+        //Ienumerators create a seperate threat seperate from the main Update / code being run in Unity. This means that when a coroutine (ienumerator) is called, the function is carried out in parallel to the function it was called from, and the original function carried on as usual. 
+        //This is seperate to calling a normal function, which will run that function and then go back to the function it was called from. This means the delay being called here does not pause the function the coroutine is created in.
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f); //due to code above this waits but does nothing after that. Comments added by LC
     }
 
 

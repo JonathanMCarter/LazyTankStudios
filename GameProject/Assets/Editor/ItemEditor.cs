@@ -25,6 +25,7 @@ using System.IO;
 
 */
 
+/// Depreciated Tool - Item Editor. This was designed to help make items but became depreciated after the item scripts were changed. 
 public class ItemEditor : EditorWindow
 {
 
@@ -54,7 +55,7 @@ public class ItemEditor : EditorWindow
     ////private readonly List<Item> Read = new List<Item>();
     //private Rect DeselectWindow;
 
-
+    /// Shows the window when called, it also adds the option into the Tools menu
     [MenuItem("Tools/Depreciated/Item Editor", priority = 50)]
     public static void ShowWindow()
     {

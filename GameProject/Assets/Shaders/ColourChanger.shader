@@ -8,10 +8,13 @@
 
 	Made by: Jonathan Carter
 	Last Edited By: Jonathan Carter
-	Date Edited Last: 12/10/19 - Added option for transparency on all selected colours, not jsut the 4th colour.
-								 Also removed some old commented code that isn't going to be used anymore.
+	Date Edited Last: 03/11/19 - Added useage of Perm Palette instead of the stores colours in the shader
 
 	Edit History:
+	- 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
+	- 27/10/19 - Added fields to store colour options
+	- 12/10/19 - Added option for transparency on all selected colours, not jsut the 4th colour.
+								 Also removed some old commented code that isn't going to be used anymore.
 	- 6/10/19 - To add this comment bit in (nothing else was changed)
 
 	This script makes the colour changing happen, note that there is no intellisense on this script which makes mistakes easy
@@ -26,15 +29,23 @@ Shader "Custom/ColourChanger"
     {
 		[HideInInspector]_MainTex("Sprite", 2D) = "white" {}
 
-		[HideInInspector]_TexCol1("Colour 1", Color) = (0,0,0,1)
-		[HideInInspector]_TexCol2("Colour 2", Color) = (0,0,0,1)
-	    [HideInInspector]_TexCol3("Colour 3", Color) = (0,0,0,1)
+		[HideInInspector]_TexCol1("Colour 1", Color) = (185, 185, 185, 1)
+		[HideInInspector]_TexCol2("Colour 2", Color) = (111, 111, 111, 1)
+		[HideInInspector]_TexCol3("Colour 3", Color) = (55, 55, 55, 1)
 		[HideInInspector]_TexCol4("Colour 4", Color) = (0,0,0,1)
 
 		[HideInInspector]_PalCol1("Palette 1", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol2("Palette 2", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol3("Palette 3", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol4("Palette 4", Color) = (0,0,0,1)
+
+		[HideInInspector]_StoreTrans1("StoreTrans1", Color) = (0,0,0,1)
+		[HideInInspector]_StoreTrans2("StoreTrans2", Color) = (0,0,0,1)
+		[HideInInspector]_StoreTrans3("StoreTrans3", Color) = (0,0,0,1)
+		[HideInInspector]_StoreTrans4("StoreTrans4", Color) = (0,0,0,1)
+		[HideInInspector][MaterialToggle]_IsInstance("IsInstance", Float) = 0
+		[HideInInspector][MaterialToggle]_UseTrans("UseTrans", Float) = 1
+		[HideInInspector]_PaletteSelected("PaletteSelected", Float) = 1
     }
     SubShader
     {
@@ -55,8 +66,6 @@ Shader "Custom/ColourChanger"
 
 
 			sampler2D _MainTex;
-			sampler2D _Palette;
-
 
 			// Defines the GPU instanced variables - still not sure this does anythig helpful in a 2D game but I've kept it in for now
 			UNITY_INSTANCING_BUFFER_START(Props)
@@ -69,6 +78,8 @@ Shader "Custom/ColourChanger"
 				UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol3)
 				UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol4)
 			UNITY_INSTANCING_BUFFER_END(Props)
+
+
 
 		// Vertex
         struct Appdata

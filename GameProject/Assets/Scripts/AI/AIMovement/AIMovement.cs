@@ -164,7 +164,7 @@ namespace AI
 
                // Debug.Log("********** Enemy Should Be Taking Damage Now...");
 
-                Hearts[Health - 1].gameObject.SetActive(false);
+               if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
                 --Health;
                 //if (Health <= 0)
                 //    this.gameObject.SetActive(false);
@@ -186,8 +186,8 @@ namespace AI
         private void OnTriggerExit2D(Collider2D other)
         {
             //Cache States someday
-            
 
+            if (!gameObject.activeInHierarchy) return; //Added by LC
             if (Fix == null)
                 Fix = StartCoroutine(StopBug());
 

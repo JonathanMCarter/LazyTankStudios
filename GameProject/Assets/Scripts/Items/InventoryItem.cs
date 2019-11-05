@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 /**
  * Created by Toby Wishart
+ * Last edit: 27/10/19
+ * Reason: Fixed adding items to the inventory when running a build
  * 
  * Last Edit: Jonathan Carter
  * Last edit: 21/10/19
@@ -40,9 +42,10 @@ public class InventoryItem : MonoBehaviour
                 // Jonathan - Making sure the ref is always to the player inv
                 for (int i = 0; i < FindObjectsOfType<Inventory>().Length; i++)
                 {
-                    if (FindObjectsOfType<Inventory>()[i].gameObject.name.Contains("Player"))
+                    //Toby: Only player inventoy has tag
+                    if (GameObject.FindGameObjectWithTag("Inv"))
                     {
-                        FindObjectsOfType<Inventory>()[1].addItem(ID, quantity, false);
+                        GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>().addItem(ID, quantity, false);
                         //GameObject.Find("InventoryHotbar").GetComponent<Inventory>().addItem(ID, quantity, false);
                         Destroy(gameObject);
                     }

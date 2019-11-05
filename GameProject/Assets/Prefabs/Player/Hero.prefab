@@ -77,7 +77,7 @@ SpriteRenderer:
   m_Size: {x: 0.09, y: 0.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1258924023
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_Size: {x: 0.09, y: 0.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1743666069
@@ -268,7 +268,7 @@ SpriteRenderer:
   m_Size: {x: 0.09, y: 0.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &869701090104365028
@@ -422,9 +422,9 @@ GameObject:
   - component: {fileID: 538079848}
   - component: {fileID: 8285090126079130940}
   - component: {fileID: 3257857658046344169}
-  - component: {fileID: 1588376678948720048}
   - component: {fileID: 1504255640}
   - component: {fileID: 3658642044943807306}
+  - component: {fileID: 4860131975732831303}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -584,12 +584,12 @@ MonoBehaviour:
   WeaponStats: {fileID: 0}
   TakeDamageCD: 0
   DeathCanvas: {fileID: 0}
-  healthUI: {fileID: 0}
   health: 5
   attackHitBox: {fileID: 0}
   attackRotater: {fileID: 0}
-  AbilityDuration: 0
+  RangedAttackDuration: 0
   dashSpeedMultiplier: 0
+  DashDuration: 0
 --- !u!114 &3257857658046344169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,18 +603,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushStrenght: 1
---- !u!114 &1588376678948720048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9166002442120698622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9ab56339011ac145959996df597b225, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1504255640
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -658,3 +646,16 @@ MonoBehaviour:
   Active: 0
   Damage: 0
   time: 0
+--- !u!114 &4860131975732831303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166002442120698622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2129213e5d5134a920f82e26bb851d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Destination: 

@@ -14,8 +14,8 @@ using UnityEngine.SceneManagement;
  * Reason: Integrated items
  * 
  * Also Edited by : Tony Parsons
- * Last Edit: 13.10.19
- * Reason: Combat
+ * Last Edit: 03.11.19
+ * Reason: See Items when used
  * 
  * Also Edited by : Andreas Kraemer
  * Last Edit: 21.10.19
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Edit by Andreas--
     //public SpriteRenderer[] Hearts;
-    public HealthUI healthUI;
+    private HealthUI healthUI;
     private AudioManager audioManager;
     //Andreas edit end--
 
@@ -60,12 +60,12 @@ public class PlayerMovement : MonoBehaviour
     public int health;
     public BoxCollider2D attackHitBox;//atach to attackrotater
     public Transform attackRotater;//make a new transform as a child of the hero, make the attackHitBox a child of this transform
-    private bool attacking;
-    public float AbilityDuration;
+    private bool attacking, dashing, shieldUp, Shooting;
+    public float RangedAttackDuration;
     private float countdown;
     public float dashSpeedMultiplier;
-    private bool dashing;
-    private bool shieldUp;
+    public float DashDuration;
+    public float blockTIme;
     //end of Tony variables
 
     //Items enum, should matchup with the item IDs i.e. Sword is in slot 0 and has ID 0 therefore SWORD is 0 here
@@ -76,23 +76,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        if (DeathCanvas != null) DontDestroyOnLoad(DeathCanvas.gameObject); //Added by LC
         ImFacing = Direction.Down; //Added by LC
         myRigid = GetComponent<Rigidbody2D>();
         myAnim = GetComponent<Animator>();
         myRenderer = GetComponent<SpriteRenderer>();
         IM = FindObjectOfType<InputManager>();
 
-        attackHitBox = attackRotater.GetChild(0).GetComponent<BoxCollider2D>(); //added by LC
-        //Tony Was here
-        attackRotater.gameObject.SetActive(true);
-        attackHitBox.gameObject.SetActive(false);
-        attacking = false;
-        baseSpeed = speed;
-        //Tony Left Start
-
-        if (healthUI == null) healthUI = FindObjectOfType<HealthUI>(); //Added by LC
-
+        
         //Andreas edit--
+         healthUI = FindObjectOfType<HealthUI>();
         healthUI.maxHealth=health;
         healthUI.currentHealth=health;
         healthUI.ShowHearts();//tony addition
@@ -101,6 +94,15 @@ public class PlayerMovement : MonoBehaviour
         //Andreas edit--
         audioManager=GameObject.FindObjectOfType<AudioManager>();
         //Andreas edit end--
+
+        attackHitBox = attackRotater.GetChild(0).GetComponent<BoxCollider2D>(); //added by LC
+        //Tony Was here
+        attackRotater.gameObject.SetActive(true);
+        attackHitBox.gameObject.SetActive(false);
+        attacking = false; shieldUp = false; dashing = false; Shooting = false;
+        baseSpeed = speed;
+        //Tony Left Start
+
     }
 
     private void FixedUpdate()
@@ -136,7 +138,6 @@ public class PlayerMovement : MonoBehaviour
         //Toby: A and B item actions
         if (IM.Button_A() && !myInventory.isOpen)
         {
-            print("asdf");
            // Debug.Log("Test"); //commented out by LC to help clear debug log
             useItem(myInventory.equippedA);
         }
@@ -148,7 +149,8 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Tony action stuff
-        if (attacking || dashing || shieldUp)
+        //Tony action stuff
+        if (attacking || dashing || shieldUp || Shooting)
         {
             countdown -= Time.deltaTime;
             if (countdown <= 0)
@@ -160,11 +162,20 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (dashing)
                 {
+                    attackRotater.transform.GetChild((int)ITEMS.BLAZBOOTS).gameObject.SetActive(false);
                     speed = baseSpeed;
                     dashing = false;
                 }
                 if (shieldUp)
+                {
+                    attackRotater.GetChild((int)ITEMS.SHIELDSHARPTON).gameObject.SetActive(false);
                     shieldUp = false;
+                }
+                if (Shooting)
+                {
+                    attackRotater.GetChild((int)ITEMS.ICEBOW).gameObject.SetActive(false);
+                    Shooting = false;
+                }
             }
         }
         //To here
@@ -173,65 +184,58 @@ public class PlayerMovement : MonoBehaviour
     //Toby: Function for using an item of a given ID
     void useItem(int ID)
     {
-        //setup countdown
-        countdown = AbilityDuration;
 
-
-        //Debug.Log(ID.ToString());//commented out by LC to help clear debug log
-        switch (ID)
+        if (!(attacking || dashing || shieldUp || Shooting))
         {
-            case (int)ITEMS.SWORD:
-                //Andreas edit
-                //PlayKickAnimation();
-                PlayAttackAnimation();
-                //Andreas edit end
-                attackHitBox.gameObject.SetActive(true);
-                attacking = true;
+            //Debug.Log(ID.ToString());//commented out by LC to help clear debug log
+            switch (ID)
+            {
+                case (int)ITEMS.SWORD:
+                    //Andreas edit
+                    //PlayKickAnimation();
+                    PlayAttackAnimation();
+                    countdown = 1; // length of animation
+                    //Andreas edit end
+                    attackRotater.GetChild((int)ITEMS.SWORD).gameObject.SetActive(true);
+                    attacking = true;
 
-                // Jonathan Added This function
-                //FireProjectile();
-                break;
+                    // Jonathan Added This function
+                    //FireProjectile();
+                    break;
 
-            //Tony Stuff
-            case (int)ITEMS.BLAZBOOTS:
-                //animation here
+                //Tony Stuff
+                case (int)ITEMS.BLAZBOOTS:
+                    //animation here
 
-                //-----------
-                if (!dashing)
-                {
+                    //-----------
+                    attackRotater.GetChild((int)ITEMS.BLAZBOOTS).gameObject.SetActive(true);
                     speed *= dashSpeedMultiplier;
+                    countdown = DashDuration;
                     dashing = true;
-                }
-                break;
-            case (int)ITEMS.SHIELDSHARPTON:
-                //animation
-                //---------
-                shieldUp = true;
-                break;
-            // Temp - just so the axe or anything with the ID of 1 works for now.....
-            case 4:
-                //Andreas edit
-                //PlayKickAnimation();
-                PlayAttackAnimation();
-                //Andreas edit end
-                attackHitBox.gameObject.SetActive(true);
-                attacking = true;
-
-                // Jonathan Added This function
-                FireProjectile();
-                break;
-            case -1:
-            default:
-                //nothing or invalid item equipped
-                if (!attacking)
-                {
-                    FireProjectile(); //Added by LC for testing purposes
-                }
-                //Debug.Log("Trying to use nothing");
-                break;
+                    break;
+                case (int)ITEMS.ICEBOW:
+                    //Andreas edit
+                    //PlayKickAnimation();
+                    //Andreas edit end
+                    attackRotater.GetChild((int)ITEMS.ICEBOW).gameObject.SetActive(true);
+                    Shooting = true;
+                    countdown = RangedAttackDuration;
+                    countdown = 0.3f;
+                    // Jonathan Added This function
+                    FireProjectile();
+                    break;
+                case (int)ITEMS.SHIELDSHARPTON:
+                    //animation
+                    //---------
+                    countdown = blockTIme;
+                    attackRotater.GetChild((int)ITEMS.SHIELDSHARPTON).gameObject.SetActive(true);
+                    shieldUp = true;
+                    break;
+                case -1:
+                    break;
+            }
         }
     }
-
 
     //Andreas edit --Animation has been removed
     /* 
@@ -275,7 +279,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void FireProjectile() //Fires off player facing certain direction
     {
-        GameObject Go = Instantiate(DamageBulletThingy, attackRotater.GetChild(0).transform.position, transform.rotation);
+        //                                                                                          Tony - Rotate Arrow propperly
+        GameObject Go = Instantiate(DamageBulletThingy, attackRotater.GetChild(0).transform.position, attackRotater.rotation * Quaternion.Euler(0, 0, -45));
         Vector2 Dir = new Vector2(0, 0);
         switch (ImFacing)
         {
@@ -302,7 +307,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        myRigid.velocity = new Vector2(0, 0);
+       //if (this.isActiveAndEnabled)
+            if (myRigid != null) myRigid.velocity = new Vector2(0, 0); //added If check - LC
+        if (myAnim != null) //added by LC
+        {
+            myAnim.SetFloat("SpeedX", 0);
+            myAnim.SetFloat("SpeedY", 0);
+        }
     }
 
     
@@ -388,6 +399,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Main Menu");
         DoNotDes [] Gos = GameObject.FindObjectsOfType<DoNotDes>();
+        DoNotDes.Created = false;
         foreach (DoNotDes go in Gos) if (go.gameObject != this.gameObject) Destroy(go.gameObject);
         yield return new WaitForSeconds(0);
         Destroy(this.gameObject);
