@@ -9,6 +9,7 @@ public class ButtonPuzzleSingleButton : MonoBehaviour
     public ButtonDoor Hit;
     public bool[] ColourArray;
     public bool ColourPuzzle;
+    SpriteRenderer MySprite;
     // Start is called before the first frame update
 
 
@@ -16,6 +17,7 @@ public class ButtonPuzzleSingleButton : MonoBehaviour
     void Start()
     {
         hit = false;
+        MySprite = GetComponent<SpriteRenderer>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -27,10 +29,12 @@ public class ButtonPuzzleSingleButton : MonoBehaviour
                 Hit.Buttons++;
                 hit = true;
                 spriteChange();
+                
             }
             else
             {
                 Hit.Buttons = 0;
+                MySprite.sprite = OldSprite;
             }
         }
         else
@@ -42,7 +46,7 @@ public class ButtonPuzzleSingleButton : MonoBehaviour
     }
     private void spriteChange()
     {
-        GetComponent<SpriteRenderer>().sprite = newSprite;
+        MySprite.sprite = newSprite;
         if (ColourPuzzle)
         {
             GetComponent<BoxCollider2D>().enabled = false;
