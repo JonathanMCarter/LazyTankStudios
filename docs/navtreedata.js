@@ -23,12 +23,6 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "Tales or Orelia", "index.html", [
-    [ "Homepage", "index.html", [
-      [ "Introduction", "index.html#tutorial1", null ],
-      [ "How to Setup Doxygen", "index.html#turotial2", null ],
-      [ "How do I format my scripts with content that comes up here?", "index.html#tutorial3", null ],
-      [ "How to publish changes to this site?", "index.html#tutorial4", null ]
-    ] ],
     [ "Packages", "namespaces.html", [
       [ "Packages", "namespaces.html", "namespaces_dup" ],
       [ "Package Functions", "namespacemembers.html", [
@@ -61,8 +55,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_a_i_movement_8cs.html",
-"class_dialogue_file.html#a04210aa7065ea6e78ae64addc8956a0c",
-"class_spin.html#ae226a991785bfcaf92193d2f9c63baa8"
+"class_c_r_t___dropdown_switch.html#ad981296c646ba4657f984353bc2ead01",
+"class_palette.html#abd69ee078da0786c0d3e4e5a574ce89c",
+"class_tile_light.html#aedce3a0f59ad693e13a302bd52bc80b7"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

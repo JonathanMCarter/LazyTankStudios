@@ -33,10 +33,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="lts logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tales or Orelia
-   &#160;<span id="projectnumber">Pre-Alpha</span>
+   &#160;<span id="projectnumber">Alpha</span>
    </div>
    <div id="projectbrief">Documentation for programmers scripts in the tales of orelia project</div>
   </td>
@@ -100,40 +100,38 @@ $(document).ready(function(){initNavTree('class_palette_editor.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_palette_editor-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">PaletteEditor Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>This script adds an editor window which is opened by a button on the Shader Editor GUI inspector override.  
+ <a href="class_palette_editor.html#details">More...</a></p>
+
 <p>Inherits EditorWindow.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8b69ea005fc217d965561c0157a671e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_palette_editor.html#a8b69ea005fc217d965561c0157a671e4">OnGUI</a> ()</td></tr>
+<tr class="memdesc:a8b69ea005fc217d965561c0157a671e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function the runs all the visuals for the editor, it runs like update but only when you touch that part of the editor.  <a href="class_palette_editor.html#a8b69ea005fc217d965561c0157a671e4">More...</a><br /></td></tr>
 <tr class="separator:a8b69ea005fc217d965561c0157a671e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aae6f96dbafeee39b8c72493e4cea5cd3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_palette_editor.html#aae6f96dbafeee39b8c72493e4cea5cd3">ShowWindow</a> ()</td></tr>
-<tr class="separator:aae6f96dbafeee39b8c72493e4cea5cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a3a01313aa4888ddefab464005409bf38"><td class="memItemLeft" align="right" valign="top">List&lt; Color &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_palette_editor.html#a3a01313aa4888ddefab464005409bf38">Colours</a> = new List&lt;Color&gt;()</td></tr>
-<tr class="separator:a3a01313aa4888ddefab464005409bf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa93cad2000585c964120bbb334008768"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_palette_editor.html#aa93cad2000585c964120bbb334008768">AreDisplayed</a> = false</td></tr>
-<tr class="separator:aa93cad2000585c964120bbb334008768"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:a0c07ce9aad3a798e4a7575b691d24110"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_palette_editor.html#a0c07ce9aad3a798e4a7575b691d24110">NumberofColours</a> = 12</td></tr>
-<tr class="separator:a0c07ce9aad3a798e4a7575b691d24110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab29f5aa8584e8e996d33cf4beeaff80c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_shader_editor_g_u_i.html">ShaderEditorGUI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_palette_editor.html#ab29f5aa8584e8e996d33cf4beeaff80c">Version</a></td></tr>
+<tr class="memdesc:ab29f5aa8584e8e996d33cf4beeaff80c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used to hold a referance to the <a class="el" href="class_shader_editor_g_u_i.html" title="Changes the Shader Editor so it is more user friendly.">ShaderEditorGUI</a> that called it, this is the only way I've found to refer to it.  <a href="class_palette_editor.html#ab29f5aa8584e8e996d33cf4beeaff80c">More...</a><br /></td></tr>
+<tr class="separator:ab29f5aa8584e8e996d33cf4beeaff80c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c47b96aed65ef09a7c9ec8e80c42b55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_palette.html">Palette</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_palette_editor.html#a6c47b96aed65ef09a7c9ec8e80c42b55">PermColours</a></td></tr>
+<tr class="memdesc:a6c47b96aed65ef09a7c9ec8e80c42b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">This holds the value for the <a class="el" href="class_palette.html" title="Palette Scriptable object used for the palettes in the game.">Palette</a> Scriptable Object, its used to allow you to change the colours.  <a href="class_palette_editor.html#a6c47b96aed65ef09a7c9ec8e80c42b55">More...</a><br /></td></tr>
+<tr class="separator:a6c47b96aed65ef09a7c9ec8e80c42b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This script adds an editor window which is opened by a button on the Shader Editor GUI inspector override. </p>
+<p>This script does the majority of the work when it comes to changing the colours in the palette. <br  />
+ </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8b69ea005fc217d965561c0157a671e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b69ea005fc217d965561c0157a671e4">&#9670;&nbsp;</a></span>OnGUI()</h2>
 
@@ -149,81 +147,42 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="aae6f96dbafeee39b8c72493e4cea5cd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae6f96dbafeee39b8c72493e4cea5cd3">&#9670;&nbsp;</a></span>ShowWindow()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void PaletteEditor.ShowWindow </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>The function the runs all the visuals for the editor, it runs like update but only when you touch that part of the editor. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="aa93cad2000585c964120bbb334008768"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa93cad2000585c964120bbb334008768">&#9670;&nbsp;</a></span>AreDisplayed</h2>
+<a id="a6c47b96aed65ef09a7c9ec8e80c42b55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c47b96aed65ef09a7c9ec8e80c42b55">&#9670;&nbsp;</a></span>PermColours</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool PaletteEditor.AreDisplayed = false</td>
+          <td class="memname"><a class="el" href="class_palette.html">Palette</a> PaletteEditor.PermColours</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>This holds the value for the <a class="el" href="class_palette.html" title="Palette Scriptable object used for the palettes in the game.">Palette</a> Scriptable Object, its used to allow you to change the colours. </p>
+<dl class="section note"><dt>Note</dt><dd>This should reference automatically, as long as the palettes object that it uses is not renamed / moved </dd></dl>
+
 </div>
 </div>
-<a id="a3a01313aa4888ddefab464005409bf38"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a01313aa4888ddefab464005409bf38">&#9670;&nbsp;</a></span>Colours</h2>
+<a id="ab29f5aa8584e8e996d33cf4beeaff80c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab29f5aa8584e8e996d33cf4beeaff80c">&#9670;&nbsp;</a></span>Version</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">List&lt;Color&gt; PaletteEditor.Colours = new List&lt;Color&gt;()</td>
+          <td class="memname"><a class="el" href="class_shader_editor_g_u_i.html">ShaderEditorGUI</a> PaletteEditor.Version</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a0c07ce9aad3a798e4a7575b691d24110"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c07ce9aad3a798e4a7575b691d24110">&#9670;&nbsp;</a></span>NumberofColours</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int PaletteEditor.NumberofColours = 12</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>This is used to hold a referance to the <a class="el" href="class_shader_editor_g_u_i.html" title="Changes the Shader Editor so it is more user friendly.">ShaderEditorGUI</a> that called it, this is the only way I've found to refer to it. </p>
+<dl class="section attention"><dt>Attention</dt><dd>This has to be set otherwise it wil not display anything other than the tabs and will throw errors in the console! </dd></dl>
 
 </div>
 </div>

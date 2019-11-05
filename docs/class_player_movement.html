@@ -33,10 +33,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="lts logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tales or Orelia
-   &#160;<span id="projectnumber">Pre-Alpha</span>
+   &#160;<span id="projectnumber">Alpha</span>
    </div>
    <div id="projectbrief">Documentation for programmers scripts in the tales of orelia project</div>
   </td>
@@ -135,18 +135,20 @@ Public Attributes</h2></td></tr>
 <tr class="separator:abdbfc2bd0c22fe811b98d6d36f607f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16bf718c21922493f9e47c928d0d38c2"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_movement.html#a16bf718c21922493f9e47c928d0d38c2">DeathCanvas</a></td></tr>
 <tr class="separator:a16bf718c21922493f9e47c928d0d38c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b5649cbe0b6bd4593b2b46b793c7f9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_health_u_i.html">HealthUI</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_movement.html#a0b5649cbe0b6bd4593b2b46b793c7f9b">healthUI</a></td></tr>
-<tr class="separator:a0b5649cbe0b6bd4593b2b46b793c7f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7441b20af54a6ca35db34726660df988"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_movement.html#a7441b20af54a6ca35db34726660df988">health</a></td></tr>
 <tr class="separator:a7441b20af54a6ca35db34726660df988"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1b52d5b3287fc022c6915fac12cd2a6"><td class="memItemLeft" align="right" valign="top">BoxCollider2D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_movement.html#ae1b52d5b3287fc022c6915fac12cd2a6">attackHitBox</a></td></tr>
 <tr class="separator:ae1b52d5b3287fc022c6915fac12cd2a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49cd903efd22fcb1b500338a418925b6"><td class="memItemLeft" align="right" valign="top">Transform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_movement.html#a49cd903efd22fcb1b500338a418925b6">attackRotater</a></td></tr>
 <tr class="separator:a49cd903efd22fcb1b500338a418925b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae48e7e763a4c185b4b6ccdaa44ee3da3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_movement.html#ae48e7e763a4c185b4b6ccdaa44ee3da3">AbilityDuration</a></td></tr>
-<tr class="separator:ae48e7e763a4c185b4b6ccdaa44ee3da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49720c4897f16cd47e67f3918539383a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_movement.html#a49720c4897f16cd47e67f3918539383a">RangedAttackDuration</a></td></tr>
+<tr class="separator:a49720c4897f16cd47e67f3918539383a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ce848b573666d7c64898961ab6690b6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_movement.html#a4ce848b573666d7c64898961ab6690b6">dashSpeedMultiplier</a></td></tr>
 <tr class="separator:a4ce848b573666d7c64898961ab6690b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae746f8d7c5a8a2a11b38a108012365bd"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_movement.html#ae746f8d7c5a8a2a11b38a108012365bd">DashDuration</a></td></tr>
+<tr class="separator:ae746f8d7c5a8a2a11b38a108012365bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab911e67d2117de2ca18870dd04755d0c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player_movement.html#ab911e67d2117de2ca18870dd04755d0c">blockTIme</a></td></tr>
+<tr class="separator:ab911e67d2117de2ca18870dd04755d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="af8285d5ea56b4072252a410ff1f3d720"></a>
@@ -222,20 +224,6 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="ae48e7e763a4c185b4b6ccdaa44ee3da3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae48e7e763a4c185b4b6ccdaa44ee3da3">&#9670;&nbsp;</a></span>AbilityDuration</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float PlayerMovement.AbilityDuration</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ae1b52d5b3287fc022c6915fac12cd2a6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1b52d5b3287fc022c6915fac12cd2a6">&#9670;&nbsp;</a></span>attackHitBox</h2>
 
@@ -264,6 +252,20 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ab911e67d2117de2ca18870dd04755d0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab911e67d2117de2ca18870dd04755d0c">&#9670;&nbsp;</a></span>blockTIme</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PlayerMovement.blockTIme</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ab493cc4ecff8b90bb2f290c502cd93fd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab493cc4ecff8b90bb2f290c502cd93fd">&#9670;&nbsp;</a></span>DamageBulletThingy</h2>
 
@@ -272,6 +274,20 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">GameObject PlayerMovement.DamageBulletThingy</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae746f8d7c5a8a2a11b38a108012365bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae746f8d7c5a8a2a11b38a108012365bd">&#9670;&nbsp;</a></span>DashDuration</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PlayerMovement.DashDuration</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -320,20 +336,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0b5649cbe0b6bd4593b2b46b793c7f9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b5649cbe0b6bd4593b2b46b793c7f9b">&#9670;&nbsp;</a></span>healthUI</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_health_u_i.html">HealthUI</a> PlayerMovement.healthUI</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a9e786361ee7407ccfb9ea69e50e4f8b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e786361ee7407ccfb9ea69e50e4f8b3">&#9670;&nbsp;</a></span>myInventory</h2>
 
@@ -342,6 +344,20 @@ Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_inventory.html">Inventory</a> PlayerMovement.myInventory</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a49720c4897f16cd47e67f3918539383a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49720c4897f16cd47e67f3918539383a">&#9670;&nbsp;</a></span>RangedAttackDuration</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PlayerMovement.RangedAttackDuration</td>
         </tr>
       </table>
 </div><div class="memdoc">

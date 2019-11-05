@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['unselectedcolourapplied_771',['UnselectedColourApplied',['../class_inv_slot.html#a43d4cd2d5dcefa5f59d96da4f2f984c9',1,'InvSlot']]],
-  ['update_772',['Update',['../class_damage_collider.html#a6f24e9cf324ed1faba799f1478ddc85d',1,'DamageCollider']]],
-  ['updateicon_773',['updateIcon',['../class_inv_slot.html#a26765eafee1d2b766120358eee2ad2ef',1,'InvSlot']]]
+  ['takedamage_999',['TakeDamage',['../class_player_movement.html#a6c18a1481759ad097dfe77de96dcb55d',1,'PlayerMovement']]],
+  ['talk_1000',['talk',['../class_talk_script.html#a99b9d3ab60c09f0a0d9537d5a2923cbe',1,'TalkScript']]],
+  ['taskovertime_1001',['TaskOverTime',['../class_a_i_1_1_task_over_time.html#a8825ade7cac0b8845e601667f3322343',1,'AI::TaskOverTime']]],
+  ['toggleplayermovement_1002',['TogglePlayerMovement',['../class_game_manager.html#a60786ffd2ec14e94f53c549a1385f8b3',1,'GameManager']]],
+  ['toogleslots_1003',['ToogleSlots',['../class_inventory.html#a3e7fd7bfe580534af93559e939a9aec3',1,'Inventory']]]
 ];

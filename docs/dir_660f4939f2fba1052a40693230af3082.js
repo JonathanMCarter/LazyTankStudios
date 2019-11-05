@@ -12,6 +12,9 @@ var dir_660f4939f2fba1052a40693230af3082 =
     [ "ItemEditor.cs", "_item_editor_8cs.html", [
       [ "ItemEditor", "class_item_editor.html", null ]
     ] ],
+    [ "Palette.cs", "_palette_8cs.html", [
+      [ "Palette", "class_palette.html", "class_palette" ]
+    ] ],
     [ "PaletteEditor.cs", "_palette_editor_8cs.html", [
       [ "PaletteEditor", "class_palette_editor.html", "class_palette_editor" ]
     ] ],

@@ -1,25 +1,15 @@
 var dir_7b724fac0f7824384ce683275055c42a =
 [
-    [ "BoulderScript.cs", "_boulder_script_8cs.html", [
-      [ "BoulderScript", "class_boulder_script.html", "class_boulder_script" ]
-    ] ],
-    [ "ButtonPuzzle.cs", "_button_puzzle_8cs.html", [
-      [ "ButtonPuzzle", "class_button_puzzle.html", "class_button_puzzle" ]
-    ] ],
-    [ "ButtonPuzzleSingleButton.cs", "_button_puzzle_single_button_8cs.html", [
-      [ "ButtonPuzzleSingleButton", "class_button_puzzle_single_button.html", "class_button_puzzle_single_button" ]
-    ] ],
+    [ "Boulder Puzzle", "dir_dd7e867c0ef8fad05ea8bdc8ee74043b.html", "dir_dd7e867c0ef8fad05ea8bdc8ee74043b" ],
+    [ "ButtonPuzzle", "dir_8c192a0d85c5402b86e1a7567074945a.html", "dir_8c192a0d85c5402b86e1a7567074945a" ],
+    [ "Damage Puzzle", "dir_4425892773944aad70464f7fd1eec60e.html", "dir_4425892773944aad70464f7fd1eec60e" ],
+    [ "FirePuzzle", "dir_19f3ece14399143c9bccac1be0d8d905.html", "dir_19f3ece14399143c9bccac1be0d8d905" ],
+    [ "LightingUpPlatform", "dir_bf107fdc235c08509c0705c1a8d796ee.html", "dir_bf107fdc235c08509c0705c1a8d796ee" ],
     [ "GateScript.cs", "_gate_script_8cs.html", [
       [ "GateScript", "class_gate_script.html", "class_gate_script" ]
     ] ],
-    [ "PlayerPuzzleDamage.cs", "_player_puzzle_damage_8cs.html", [
-      [ "PlayerPuzzleDamage", "class_player_puzzle_damage.html", "class_player_puzzle_damage" ]
-    ] ],
     [ "PuzzleGateScript.cs", "_puzzle_gate_script_8cs.html", [
       [ "PuzzleGateScript", "class_puzzle_gate_script.html", "class_puzzle_gate_script" ]
-    ] ],
-    [ "PuzzleHoldingValues.cs", "_puzzle_holding_values_8cs.html", [
-      [ "PuzzleHoldingValues", "class_puzzle_holding_values.html", null ]
     ] ],
     [ "StatuePuzzleThingy.cs", "_statue_puzzle_thingy_8cs.html", [
       [ "StatuePuzzleThingy", "class_statue_puzzle_thingy.html", "class_statue_puzzle_thingy" ]

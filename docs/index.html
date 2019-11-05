@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Tales or Orelia: Homepage</title>
+<title>Tales or Orelia: Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -33,10 +33,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="lts logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tales or Orelia
-   &#160;<span id="projectnumber">Pre-Alpha</span>
+   &#160;<span id="projectnumber">Alpha</span>
    </div>
    <div id="projectbrief">Documentation for programmers scripts in the tales of orelia project</div>
   </td>
@@ -97,60 +97,27 @@ $(document).ready(function(){initNavTree('index.html','');});
 </iframe>
 </div>
 
-<div class="PageDoc"><div class="header">
+<div class="header">
   <div class="headertitle">
-<div class="title">Homepage </div>  </div>
+<div class="title">Tales or Orelia Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Welcome to the Tales of Orelia Code Documentation!</p>
-<h1><a class="anchor" id="tutorial1"></a>
-Introduction</h1>
-<p>You will firstly need to download Doxygen .exe and install it on your system. Get it from here: <a href="http://www.doxygen.nl/download.html">http://www.doxygen.nl/download.html</a></p>
-<p>Once installed you will need to run the Doxygen Wizard and set it up for the project. There are a few things to note here. The documentation you are seeing right now is in the master branch of the github repo under the /docs directory. This is where github pages generates the webpage that you are currently on. any updates you make will go into a different directory which you define. You will need to push any documentation updates into the master branch otherwise it will not update. However! Your scripts do not need to be here for this to work as Doxygen makes a html page with all the info on it. Hope that makes sense...</p>
-<h1><a class="anchor" id="turotial2"></a>
-How to Setup Doxygen</h1>
-<p>Once you've downloaded and installed Doxygen you'll need to run the doxygen wizard program.</p>
-<p>Once open you'll need to follow the following steps:</p><ol type="1">
-<li>In the <b>Step 1</b> directory, set it to be where the GameProject is. the directory should end with "\GameProject" if setup right.</li>
-<li>Download the file "Doxyfile" from discord and open it in Doxygen under File -&gt; Open, this will update the details for the webpage.</li>
-<li>Setup the source code directory, This should be setup to go to the "\Assets\Scripts" folder in the GameProject. Make sure it has the C:/... otherwise it may not work! You can also do this step with Editor or Shaders if needed under Expert tab -&gt; Input -&gt; INPUT.</li>
-<li>Tick the scan recursiley box (if you don't it won't find anything but whats in the directory).</li>
-<li>Set an output location for the documentation, this can legit be anywhere you like, as long as it you can access it.</li>
-</ol>
-<p>Once all thats done your ready to test it out. Go to the Run tab and press Run Doxygen, after a few seconds it should produce a "***Doxygen has finished" line in the console. Once that has happened you can either go the output director and open the index.html or just press the Show HTML Output button.</p>
-<h1><a class="anchor" id="tutorial3"></a>
-How do I format my scripts with content that comes up here?</h1>
-<p>To edit the pages you need to add comments with the "///" in front of it. This will mark it as a comment for Doxygen to use.</p>
-<p>To make a quick description of a class, just use the /// and write a sentance, as soon as you use a full stop it will end the quick description. to just write stuff. just use the /// and type away, if typing after the quick description, the text your write will display undernear as the detailed description.</p>
-<p>Below as a few handy things you can add</p>
-<p><code>###&lt;text&gt;</code> //This will make a H3 header, add or remove #'s to make bigger or smaller headers. </p>
-<h3><a class="anchor" id="autotoc_md0"></a>
-This is a header H3</h3>
-<p><code>///@param &lt;param&gt; &lt;text&gt;</code> //Will let you describe the params of a function. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Hi</td><td>This is a param.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p><code>///@return &lt;param&gt; &lt;text&gt;</code> //Will let you describe the returns of a function. </p><dl class="section return"><dt>Returns</dt><dd>Hi This is returned</dd></dl>
-<p><code>///@see &lt;function&gt;</code> //Will let you link to another function in the same script </p><dl class="section see"><dt>See also</dt><dd>DocumentationCheatSheet</dd></dl>
-<p><code>///@see &lt;class::function&gt;</code> //Will let you link to another function in another class </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="class_dialogue_script.html#a993b0897cb622935cf91012e07205d2f">DialogueScript::ChangeFile()</a></dd></dl>
-<p><code>///@note &lt;text&gt;</code> //Will let you add a note into an area </p><dl class="section note"><dt>Note</dt><dd>This is a note</dd></dl>
-<p><code>///@attention &lt;text&gt;</code> //Will let you add a more servere note into an area </p><dl class="section attention"><dt>Attention</dt><dd>This is a attention note</dd></dl>
-<p><code>///@warning &lt;text&gt;</code> //Will let you add a really servere note into an area </p><dl class="section warning"><dt>Warning</dt><dd>This is a warning</dd></dl>
-<p>``` ///~~~.cpp bool TestBool = true; ~~~ // This will allow you to show code in its normal form, doesn't work or markdown the same as it does in c# so see example on cheat sheet.</p>
-<p>There is a lot more than what I've just shown, but this should help you get started.</p>
-<h1><a class="anchor" id="tutorial4"></a>
-How to publish changes to this site?</h1>
-<p>Once you've got some changes you would like to publish on here then:</p><ol type="1">
-<li>open the github repo</li>
-<li>switch to the master branch</li>
-<li>place the files in the /docs folder, note to make sure you put the files directly in there not in the html folder.</li>
-<li>push to the repo</li>
-<li>wait about a min for github pages to update</li>
-<li>Done :) </li>
-</ol>
-</div></div><!-- PageDoc -->
+<ul><li><a href="index.html"><span>Main&#160;Page</span></a>
+</li><li><a href="namespaces.html"><span>Packages</span></a>
+<ul><li><a href="namespaces.html"><span>Packages</span></a>
+</li><li><a href="namespacemembers.html"><span>Package&#160;Functions</span></a>
+</li></ul>
+</li><li><a href="annotated.html"><span>Classes</span></a>
+<ul><li><a href="annotated.html"><span>Class&#160;List</span></a>
+</li><li><a href="classes.html"><span>Class&#160;Index</span></a>
+</li><li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a>
+</li><li><a href="functions.html"><span>Class&#160;Members</span></a>
+</li></ul>
+</li><li><a href="files.html"><span>Files</span></a>
+<ul><li><a href="files.html"><span>File&#160;List</span></a>
+</li><li><a href="globals.html"><span>File&#160;Members</span></a>
+</li></ul>
+</li></ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

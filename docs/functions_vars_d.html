@@ -33,10 +33,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="lts logo.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo2.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Tales or Orelia
-   &#160;<span id="projectnumber">Pre-Alpha</span>
+   &#160;<span id="projectnumber">Alpha</span>
    </div>
    <div id="projectbrief">Documentation for programmers scripts in the tales of orelia project</div>
   </td>
@@ -102,7 +102,9 @@ $(document).ready(function(){initNavTree('functions_vars_d.html','');});
 
 <h3><a id="index_d"></a>- d -</h3><ul>
 <li>Damage
-: <a class="el" href="class_player_puzzle_damage.html#af876bce2467ba2b8102418440384a7e8">PlayerPuzzleDamage</a>
+: <a class="el" href="class_bullet.html#a2fc893c0d251773016366356704ec612">Bullet</a>
+, <a class="el" href="class_fire.html#ad9e262a175c5d5f222c1291cd6e659b6">Fire</a>
+, <a class="el" href="class_player_puzzle_damage.html#af876bce2467ba2b8102418440384a7e8">PlayerPuzzleDamage</a>
 , <a class="el" href="class_projectile_stats.html#a4ddac65f4d51345430a996fdd7fb2cfb">ProjectileStats</a>
 </li>
 <li>DamageBulletThingy
@@ -111,20 +113,26 @@ $(document).ready(function(){initNavTree('functions_vars_d.html','');});
 <li>DamageCooldown
 : <a class="el" href="class_spin.html#a28b8613935f325ab589cb6bba8366c22">Spin</a>
 </li>
+<li>damageTime
+: <a class="el" href="class_fire.html#a44de7ee5947e898d4daca85c48c24506">Fire</a>
+</li>
 <li>DamageTimer
 : <a class="el" href="class_player_puzzle_damage.html#a38edfe1894369c4f3c75d7697d62f2ec">PlayerPuzzleDamage</a>
 </li>
+<li>DashDuration
+: <a class="el" href="class_player_movement.html#ae746f8d7c5a8a2a11b38a108012365bd">PlayerMovement</a>
+</li>
 <li>dashSpeedMultiplier
 : <a class="el" href="class_player_movement.html#a4ce848b573666d7c64898961ab6690b6">PlayerMovement</a>
+</li>
+<li>Data
+: <a class="el" href="class_audio_data_gather.html#a980ec778b40418ca18499eb39987148f">AudioDataGather</a>
 </li>
 <li>DeathCanvas
 : <a class="el" href="class_player_movement.html#a16bf718c21922493f9e47c928d0d38c2">PlayerMovement</a>
 </li>
 <li>DefendButton
 : <a class="el" href="class_combat.html#acd8c0b43a16216a8b376d9cbcd55f399">Combat</a>
-</li>
-<li>DeliverGold
-: <a class="el" href="class_quest.html#a67ca19aa43873d31e58dcfe04a47a537">Quest</a>
 </li>
 <li>DeselectWindow
 : <a class="el" href="class_dialogue_editor_window.html#a6b93b57cf5b05782a6ac567784142c97">DialogueEditorWindow</a>
@@ -134,10 +142,10 @@ $(document).ready(function(){initNavTree('functions_vars_d.html','');});
 : <a class="el" href="class_interior_script.html#a29f3d30ea13fd18c627c7a241d17fce8">InteriorScript</a>
 </li>
 <li>Destination
-: <a class="el" href="class_player_zone_transition.html#a95d41d57f0b924289564003eeb2f4fb3">PlayerZoneTransition</a>
+: <a class="el" href="class_player_zone_transition.html#a295b101bef0b87ce9c03e0032ee7d2f5">PlayerZoneTransition</a>
 </li>
 <li>destination
-: <a class="el" href="class_zone_transition.html#a1ede4ca1f5f2b7707dce5b5b36e921ed">ZoneTransition</a>
+: <a class="el" href="class_zone_transition.html#a50fca4808371942b4574ec60ef7a5d3e">ZoneTransition</a>
 </li>
 <li>DialName
 : <a class="el" href="class_dialogue_script.html#ac610580316cd5bd3d045586865398f91">DialogueScript</a>
@@ -155,6 +163,9 @@ $(document).ready(function(){initNavTree('functions_vars_d.html','');});
 <li>dir
 : <a class="el" href="class_projectile.html#ab6f0469ac5de75bcb8aefdd1f67f7b00">Projectile</a>
 </li>
+<li>direction
+: <a class="el" href="class_basic_attack_collider.html#a38e7a12e9886c16e6d1c0b910340cae7">BasicAttackCollider</a>
+</li>
 <li>DisplayStyle
 : <a class="el" href="class_dialogue_script.html#a03629ab5bd3b017cb13f4b932a8caa08">DialogueScript</a>
 </li>
@@ -162,10 +173,12 @@ $(document).ready(function(){initNavTree('functions_vars_d.html','');});
 : <a class="el" href="class_quest_script.html#a4f03dbd21acaa55f1f3c0954bb14c06b">QuestScript</a>
 </li>
 <li>Door
-: <a class="el" href="class_statue_puzzle_thingy.html#ae5d25eb7211c3da830a566f67bd86bd7">StatuePuzzleThingy</a>
+: <a class="el" href="class_light_door.html#ae2999c18fd4f0d8390e8c69f871108df">LightDoor</a>
+, <a class="el" href="class_statue_puzzle_thingy.html#ae5d25eb7211c3da830a566f67bd86bd7">StatuePuzzleThingy</a>
+, <a class="el" href="class_tile_light.html#aedce3a0f59ad693e13a302bd52bc80b7">TileLight</a>
 </li>
-<li>DS
-: <a class="el" href="class_quest_end_test.html#a71d04bc2b67188c5a97ac6e41de2a45e">QuestEndTest</a>
+<li>duration
+: <a class="el" href="class_cutscene_state_handler.html#aeb0fa854a2cc4f97e110e41aac233509">CutsceneStateHandler</a>
 </li>
 </ul>
 </div><!-- contents -->

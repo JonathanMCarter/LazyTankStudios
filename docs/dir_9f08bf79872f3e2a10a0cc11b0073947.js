@@ -15,6 +15,9 @@ var dir_9f08bf79872f3e2a10a0cc11b0073947 =
     [ "InvSlot.cs", "_inv_slot_8cs.html", [
       [ "InvSlot", "class_inv_slot.html", "class_inv_slot" ]
     ] ],
+    [ "ItemInfoHandler.cs", "_item_info_handler_8cs.html", [
+      [ "ItemInfoHandler", "class_item_info_handler.html", "class_item_info_handler" ]
+    ] ],
     [ "Menu.cs", "_menu_8cs.html", [
       [ "Menu", "class_menu.html", "class_menu" ]
     ] ]
