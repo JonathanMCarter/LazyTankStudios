@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 /**
  * Created by Toby Wishart
- * Last edit: 27/10/19
- * Reason: Fixed adding items to the inventory when running a build
+ * Last edit: 05/11/19
+ * Reason: Added gold pickup
  * 
  * Last Edit: Jonathan Carter
  * Last edit: 21/10/19
@@ -45,9 +45,19 @@ public class InventoryItem : MonoBehaviour
                     //Toby: Only player inventoy has tag
                     if (GameObject.FindGameObjectWithTag("Inv"))
                     {
-                        GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>().addItem(ID, quantity, false);
+                        Inventory inv = GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>();
+                        //Special exception for gold
+                        if (ID == 1024)
+                        {
+                            inv.addCoins(quantity);
+                        }
+                        else
+                        {
+                            inv.addItem(ID, quantity, false);
+                        }
                         //GameObject.Find("InventoryHotbar").GetComponent<Inventory>().addItem(ID, quantity, false);
                         Destroy(gameObject);
+                        break;
                     }
                 }
             }

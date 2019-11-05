@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 /*
  * Created by Toby Wishart
- * Last edit: 19/10/19
+ * Last edit: 05/11/19
+ * Reason: Fixed coin value setting
  * Also edited: Gabriel Potamianos
  * Last edit: 14/10/19
  * 
@@ -153,7 +154,8 @@ public class Inventory : MonoBehaviour
     public void addCoins(int coinsToBeAdded)
     {
         Coins += coinsToBeAdded;
-        GameObject.Find("CoinUI").transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<Text>().text = Coins.ToString();
+        //Toby: "CoinUI" has been renamed to "Coins" and child panel has been removed
+        GameObject.Find("Coins").transform.GetChild(1).gameObject.GetComponent<Text>().text = Coins.ToString();
 
     }
 
