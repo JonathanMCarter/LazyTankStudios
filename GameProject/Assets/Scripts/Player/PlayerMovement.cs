@@ -307,7 +307,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        myRigid.velocity = new Vector2(0, 0);
+       //if (this.isActiveAndEnabled)
+            if (myRigid != null) myRigid.velocity = new Vector2(0, 0); //added If check - LC
+        if (myAnim != null) //added by LC
+        {
+            myAnim.SetFloat("SpeedX", 0);
+            myAnim.SetFloat("SpeedY", 0);
+        }
     }
 
     
@@ -393,6 +399,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Main Menu");
         DoNotDes [] Gos = GameObject.FindObjectsOfType<DoNotDes>();
+        DoNotDes.Created = false;
         foreach (DoNotDes go in Gos) if (go.gameObject != this.gameObject) Destroy(go.gameObject);
         yield return new WaitForSeconds(0);
         Destroy(this.gameObject);

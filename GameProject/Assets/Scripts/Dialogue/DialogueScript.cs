@@ -34,6 +34,7 @@ public enum Styles
 
 public class DialogueScript : MonoBehaviour
 {
+    public bool InCinematic = false; //temp added by LC
     // The Active Text File - This is used to populate the list when updated
     [Header("Current Dialouge File")]
     [Tooltip("This is the current dialouge text file selected by the script, if this isn't the file you called then something has gone wrong.")]
@@ -243,10 +244,12 @@ public class DialogueScript : MonoBehaviour
 
     private IEnumerator CinematicFinish(string cinematic)
     {
+        InCinematic = true; //temp added by LC;
         Debug.Log("Wait for cinematic end");
         Scene s = SceneManager.GetSceneByName(cinematic);
         //Scene is unloaded in the CutsceneStateHandler script
         yield return new WaitWhile(()=>s.isLoaded);
+        InCinematic = false; //temp added by LC
         Debug.Log("Cinematic finished");
         DialStage++;
         PauseCo = null;
