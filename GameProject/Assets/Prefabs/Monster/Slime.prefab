@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 6840027318512830127}
   - component: {fileID: 814724491229640865}
   - component: {fileID: 1725393338023736608}
-  - component: {fileID: 1074133210803646376}
   - component: {fileID: 1826195708}
+  - component: {fileID: 6348127994344455666}
+  - component: {fileID: 493764457334866663}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -54,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,12 +75,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: e0d1de15b58c8984abe9dcf3fc5d391b, type: 3}
+  m_Sprite: {fileID: 7284965478338028617, guid: f7d73e9042e8ee64f9676490f30e7211,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.08, y: 0.08}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -103,7 +105,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 0.08, y: 0.08}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -127,28 +129,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1074133210803646376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771426926775624626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65cb0aa0ced42a045a40d4b277d398b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xRange: 4
-  yRange: 4
-  showGizmos: 0
-  movementSpeed: 1
-  maxIdleTime: 1
-  awarnessSize: {x: 1, y: 1}
-  Hearts:
-  - {fileID: 8557797702141540260}
-  - {fileID: 821933171660352130}
-  Health: 2
 --- !u!95 &1826195708
 Animator:
   serializedVersion: 3
@@ -168,6 +148,43 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6348127994344455666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771426926775624626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8746f1927e62b748bba0abcbb90e34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xRange: 2
+  yRange: 2
+  showGizmos: 0
+  movementSpeed: 2
+  maxIdleTime: 2
+  maxChasingArea: {x: 1, y: 1}
+  Hearts:
+  - {fileID: 8557797702141540260}
+  - {fileID: 821933171660352130}
+  Health: 2
+--- !u!114 &493764457334866663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771426926775624626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5648aaa556d28f4c8763dd79debaa32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpiryTime: 1
+  AnimationClip: {fileID: 0}
+  chaseSpeed: 2
 --- !u!1 &6009749303298793487
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6009749303298793487}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.164, y: 0.73, z: 0}
+  m_LocalPosition: {x: -0.164, y: 0.5, z: 0}
   m_LocalScale: {x: 0.3357704, y: 0.3357704, z: 0.069952175}
   m_Children: []
   m_Father: {fileID: 7266312070471349925}
@@ -273,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6997753432054117924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.257, y: 0.73, z: 0}
+  m_LocalPosition: {x: 0.257, y: 0.5, z: 0}
   m_LocalScale: {x: 0.3357704, y: 0.3357704, z: 0.069952175}
   m_Children: []
   m_Father: {fileID: 7266312070471349925}

@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 106852320974651961}
   - component: {fileID: 6114004410575076407}
   - component: {fileID: 5217104732829053366}
-  - component: {fileID: 5872451417311324990}
+  - component: {fileID: 4864750116155968587}
+  - component: {fileID: 533761624584408581}
   m_Layer: 0
   m_Name: Eidolon
   m_TagString: Untagged
@@ -102,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.08, y: 0.08}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.08, y: 0.08}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -127,7 +128,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &5872451417311324990
+--- !u!114 &4864750116155968587
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,19 +137,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 2134906914390402852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65cb0aa0ced42a045a40d4b277d398b3, type: 3}
+  m_Script: {fileID: 11500000, guid: a8746f1927e62b748bba0abcbb90e34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xRange: 0
-  yRange: 0
+  xRange: 2
+  yRange: 2
   showGizmos: 0
   movementSpeed: 2
   maxIdleTime: 2
-  awarnessSize: {x: 1, y: 1}
+  maxChasingArea: {x: 1, y: 1}
   Hearts:
   - {fileID: 8517786809548046973}
   - {fileID: 5230632553665631950}
   Health: 2
+--- !u!114 &533761624584408581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134906914390402852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5648aaa556d28f4c8763dd79debaa32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpiryTime: 5
+  AnimationClip: {fileID: 0}
+  chaseSpeed: 2
 --- !u!1 &5179088455035794191
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +242,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8245834617030850461
@@ -306,6 +322,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

@@ -172,8 +172,10 @@ GameObject:
   - component: {fileID: 8373924555221499258}
   - component: {fileID: 2419834896643294068}
   - component: {fileID: 4407709596000702197}
-  - component: {fileID: 2608313065488225405}
   - component: {fileID: 196436672}
+  - component: {fileID: 4166419493658396298}
+  - component: {fileID: 5120015368392774856}
+  - component: {fileID: 2886482775676627677}
   m_Layer: 0
   m_Name: Torpid
   m_TagString: Untagged
@@ -288,28 +290,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2608313065488225405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7560702775571044455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65cb0aa0ced42a045a40d4b277d398b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xRange: 0
-  yRange: 0
-  showGizmos: 0
-  movementSpeed: 2
-  maxIdleTime: 2
-  awarnessSize: {x: 1, y: 1}
-  Hearts:
-  - {fileID: 2746953000878250006}
-  - {fileID: 7550389231351227807}
-  Health: 2
 --- !u!95 &196436672
 Animator:
   serializedVersion: 3
@@ -329,3 +309,54 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4166419493658396298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560702775571044455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8746f1927e62b748bba0abcbb90e34d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xRange: 2
+  yRange: 2
+  showGizmos: 0
+  movementSpeed: 2
+  maxIdleTime: 2
+  maxChasingArea: {x: 1, y: 1}
+  Hearts:
+  - {fileID: 2746953000878250006}
+  - {fileID: 7550389231351227807}
+  Health: 2
+--- !u!114 &5120015368392774856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560702775571044455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e19956be4e95c4fab49e65d0d1746c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpiryTime: 3
+  AnimationClip: {fileID: 0}
+--- !u!114 &2886482775676627677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560702775571044455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5648aaa556d28f4c8763dd79debaa32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpiryTime: 5
+  AnimationClip: {fileID: 0}
+  chaseSpeed: 2
