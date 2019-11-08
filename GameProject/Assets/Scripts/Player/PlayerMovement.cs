@@ -18,8 +18,9 @@ using UnityEngine.SceneManagement;
  * Reason: See Items when used
  * 
  * Also Edited by : Andreas Kraemer
- * Last Edit: 21.10.19
- * Reason: Call Sound Effects
+ * Last Edit: 05.11.19
+ * Reason: opening select menu
+ * 
  * 
  * Also Edited by: Lewis Cleminson
  * Last Edit: 21.10.19
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     //public SpriteRenderer[] Hearts;
     private HealthUI healthUI;
     private AudioManager audioManager;
+    private GameObject optionsMenu;
     //Andreas edit end--
 
     //Tony's Variables
@@ -89,6 +91,8 @@ public class PlayerMovement : MonoBehaviour
         healthUI.maxHealth=health;
         healthUI.currentHealth=health;
         healthUI.ShowHearts();//tony addition
+        optionsMenu=GameObject.FindGameObjectWithTag("OptionsMenu");
+        optionsMenu.SetActive(false);
         //Andreas edit end--
 
         //Andreas edit--
@@ -132,7 +136,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (IM.Button_Menu())
         {
-            myInventory.open();
+            //Andreas edit--
+            //myInventory.open();
+            optionsMenu.SetActive(true);
+            //Andreas edit end --
             this.enabled = false;
         }
         //Toby: A and B item actions

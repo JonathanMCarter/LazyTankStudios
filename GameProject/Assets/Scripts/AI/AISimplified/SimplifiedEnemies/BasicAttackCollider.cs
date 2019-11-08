@@ -7,7 +7,7 @@ using UnityEngine;
 public class BasicAttackCollider : MonoBehaviour
 {
     public Vector2 colliderSize;
-    public BoxCollider2D collider;
+    public BoxCollider2D myCollider;
     public float projectileSpeed;
     public float projectileRange;
     public Vector2 direction;
@@ -34,9 +34,9 @@ public class BasicAttackCollider : MonoBehaviour
     public void Init(Vector2 startPos, Vector2 colliderSize, float speed, float range, Vector2 dir, Sprite sprite)
     {
         transform.position = startPos;
-        collider = GetComponent<BoxCollider2D>();
-        collider.isTrigger = true;
-        collider.size = colliderSize;
+        myCollider = GetComponent<BoxCollider2D>();
+        myCollider.isTrigger = true;
+        myCollider.size = colliderSize;
         GetComponent<SpriteRenderer>().sprite = sprite;
         projectileSpeed = speed;
         projectileRange = range;

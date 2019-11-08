@@ -353,9 +353,10 @@ public class InputManager : MonoBehaviour
 
 #if UNITY_ANDROID
         return fire1Clicked;
-#endif
-        
+
+        #else
         return Input.GetButtonDown("Fire1");
+        #endif
     }
 
     /// <summary>
@@ -366,9 +367,10 @@ public class InputManager : MonoBehaviour
     {
 #if UNITY_ANDROID
             return fire2Clicked;
-#endif
+#else
         
         return Input.GetButtonDown("Fire2");
+        #endif
     }
 
     /// <summary>
@@ -379,9 +381,10 @@ public class InputManager : MonoBehaviour
     {
 #if UNITY_ANDROID
             return fire3Clicked;
-#endif
+#else
 
         return Input.GetButtonDown("Fire3");
+        #endif
     }
 
 

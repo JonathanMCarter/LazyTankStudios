@@ -21,14 +21,12 @@ public class CRT_DropdownSwitch : MonoBehaviour
 {
     [Tooltip("Array of CRT_Presets needs to be in the same order as the Dropdown options")]
     public CRT_Preset[] presets;
-    [Tooltip("Your Camera with a CRT_EffectCamera Script")]
-    public GameObject Camera;
     private CRT_EffectCamera effectCamera;
     private Dropdown dropdown;
 
     public void Start()
     {
-        effectCamera=Camera.GetComponent<CRT_EffectCamera>();
+        effectCamera=FindObjectOfType<CRT_EffectCamera>();
         dropdown=GetComponent<Dropdown>();
     }
 
