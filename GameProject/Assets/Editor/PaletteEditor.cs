@@ -40,10 +40,14 @@ public class PaletteEditor : EditorWindow
     // used for the tabs only
     private int ToolBarValue;
 
+    public Rect DeselectWindow;
+    Vector2 ScrollPos;
 
     /// The function the runs all the visuals for the editor, it runs like update but only when you touch that part of the editor.
     public void OnGUI()
     {
+        DeselectWindow = new Rect(0, 0, position.width, position.height);
+
         PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Palette/Palettes.asset", typeof(Palette));
 
         if (Version == null)
@@ -52,66 +56,158 @@ public class PaletteEditor : EditorWindow
         }
         else
         {
+            ScrollPos = EditorGUILayout.BeginScrollView(ScrollPos, GUILayout.Width(position.width), GUILayout.ExpandHeight(true));
 
-            ToolBarValue = GUILayout.Toolbar(ToolBarValue, new string[] { "Palette 1", "Palette 2", "Palette 3", "Palette 4" });
+            EditorGUILayout.LabelField("Palette 1 Colours:");
 
-            switch (ToolBarValue)
+            EditorGUILayout.BeginHorizontal();
+
+            PermColours.Pal1[0] = EditorGUILayout.ColorField(PermColours.Pal1[0]);
+            PermColours.Pal1[1] = EditorGUILayout.ColorField(PermColours.Pal1[1]);
+            PermColours.Pal1[2] = EditorGUILayout.ColorField(PermColours.Pal1[2]);
+
+            if (Version.Mat.GetFloat("_IsInstance") > 0)
             {
-                case 0:
-                    EditorGUILayout.BeginHorizontal();
-                    PermColours.Pal1[0] = EditorGUILayout.ColorField(PermColours.Pal1[0]);
-                    PermColours.Pal1[1] = EditorGUILayout.ColorField(PermColours.Pal1[1]);
-                    PermColours.Pal1[2] = EditorGUILayout.ColorField(PermColours.Pal1[2]);
-
-                    if (Version.Mat.GetFloat("_IsInstance") > 0)
-                    {
-                        Version.Mat.SetColor("_StoreTrans1", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans1")));
-                    }
-
-                    EditorGUILayout.EndHorizontal();
-                    break;
-                case 1:
-                    EditorGUILayout.BeginHorizontal();
-                    PermColours.Pal2[0] = EditorGUILayout.ColorField(PermColours.Pal2[0]);
-                    PermColours.Pal2[1] = EditorGUILayout.ColorField(PermColours.Pal2[1]);
-                    PermColours.Pal2[2] = EditorGUILayout.ColorField(PermColours.Pal2[2]);
-
-                    if (Version.Mat.GetFloat("_IsInstance") > 0)
-                    {
-                        Version.Mat.SetColor("_StoreTrans2", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans2")));
-                    }
-
-                    EditorGUILayout.EndHorizontal();
-                    break;
-                case 2:
-                    EditorGUILayout.BeginHorizontal();
-                    PermColours.Pal3[0] = EditorGUILayout.ColorField(PermColours.Pal3[0]);
-                    PermColours.Pal3[1] = EditorGUILayout.ColorField(PermColours.Pal3[1]);
-                    PermColours.Pal3[2] = EditorGUILayout.ColorField(PermColours.Pal3[2]);
-
-                    if (Version.Mat.GetFloat("_IsInstance") > 0)
-                    {
-                        Version.Mat.SetColor("_StoreTrans3", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans3")));
-                    }
-
-                    EditorGUILayout.EndHorizontal();
-                    break;
-                case 3:
-                    EditorGUILayout.BeginHorizontal();
-                    PermColours.Pal4[0] = EditorGUILayout.ColorField(PermColours.Pal4[0]);
-                    PermColours.Pal4[1] = EditorGUILayout.ColorField(PermColours.Pal4[1]);
-                    PermColours.Pal4[2] = EditorGUILayout.ColorField(PermColours.Pal4[2]);
-
-                    if (Version.Mat.GetFloat("_IsInstance") > 0)
-                    {
-                        Version.Mat.SetColor("_StoreTrans4", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans4")));
-                    }
-
-                    EditorGUILayout.EndHorizontal();
-                    break;
-                default:
-                    break;
+                Version.Mat.SetColor("_StoreTrans1", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans1")));
             }
+
+            EditorGUILayout.BeginVertical();
+            EditorGUILayout.BeginHorizontal();
+            GUI.color = PermColours.Pal1[0];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            GUI.color = PermColours.Pal1[1];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUI.color = PermColours.Pal1[2];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+
+            if (Version.Mat.GetFloat("_IsInstance") > 0)
+            {
+                GUI.color = Version.Mat.GetColor("_StoreTrans1");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            }
+
+            GUI.color = Color.white;
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+
+            GUILayout.Space(30);
+
+            EditorGUILayout.LabelField("Palette 2 Colours:");
+
+            EditorGUILayout.BeginHorizontal();
+
+            PermColours.Pal2[0] = EditorGUILayout.ColorField(PermColours.Pal2[0]);
+            PermColours.Pal2[1] = EditorGUILayout.ColorField(PermColours.Pal2[1]);
+            PermColours.Pal2[2] = EditorGUILayout.ColorField(PermColours.Pal2[2]);
+
+            if (Version.Mat.GetFloat("_IsInstance") > 0)
+            {
+                Version.Mat.SetColor("_StoreTrans2", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans2")));
+            }
+
+            EditorGUILayout.BeginVertical();
+            EditorGUILayout.BeginHorizontal();
+            GUI.color = PermColours.Pal2[0];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            GUI.color = PermColours.Pal2[1];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUI.color = PermColours.Pal2[2];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+
+            if (Version.Mat.GetFloat("_IsInstance") > 0)
+            {
+                GUI.color = Version.Mat.GetColor("_StoreTrans2");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            }
+
+            GUI.color = Color.white;
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+
+            GUILayout.Space(30);
+
+            EditorGUILayout.LabelField("Palette 3 Colours:");
+
+            EditorGUILayout.BeginHorizontal();
+
+            PermColours.Pal3[0] = EditorGUILayout.ColorField(PermColours.Pal3[0]);
+            PermColours.Pal3[1] = EditorGUILayout.ColorField(PermColours.Pal3[1]);
+            PermColours.Pal3[2] = EditorGUILayout.ColorField(PermColours.Pal3[2]);
+
+            if (Version.Mat.GetFloat("_IsInstance") > 0)
+            {
+                Version.Mat.SetColor("_StoreTrans3", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans3")));
+            }
+
+            EditorGUILayout.BeginVertical();
+            EditorGUILayout.BeginHorizontal();
+            GUI.color = PermColours.Pal3[0];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            GUI.color = PermColours.Pal3[1];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUI.color = PermColours.Pal3[2];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+
+            if (Version.Mat.GetFloat("_IsInstance") > 0)
+            {
+                GUI.color = Version.Mat.GetColor("_StoreTrans3");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            }
+
+            GUI.color = Color.white;
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+
+            GUILayout.Space(30);
+
+            EditorGUILayout.LabelField("Palette 4 Colours:");
+
+            EditorGUILayout.BeginHorizontal();
+
+            PermColours.Pal4[0] = EditorGUILayout.ColorField(PermColours.Pal4[0]);
+            PermColours.Pal4[1] = EditorGUILayout.ColorField(PermColours.Pal4[1]);
+            PermColours.Pal4[2] = EditorGUILayout.ColorField(PermColours.Pal4[2]);
+
+            if (Version.Mat.GetFloat("_IsInstance") > 0)
+            {
+                Version.Mat.SetColor("_StoreTrans4", EditorGUILayout.ColorField(Version.Mat.GetColor("_StoreTrans4")));
+            }
+
+            EditorGUILayout.BeginVertical();
+            EditorGUILayout.BeginHorizontal();
+            GUI.color = PermColours.Pal4[0];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            GUI.color = PermColours.Pal4[1];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.BeginHorizontal();
+            GUI.color = PermColours.Pal4[2];
+            GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+
+            if (Version.Mat.GetFloat("_IsInstance") > 0)
+            {
+                GUI.color = Version.Mat.GetColor("_StoreTrans4");
+                GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+            }
+
+            GUI.color = Color.white;
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndScrollView();
         }
     }
 }

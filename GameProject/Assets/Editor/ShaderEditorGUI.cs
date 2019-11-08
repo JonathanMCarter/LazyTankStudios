@@ -76,11 +76,11 @@ public class ShaderEditorGUI : ShaderGUI
         }
 
         // This is broken currently, don't know why atm, still working on this...
-        //if (GUILayout.Button("Open Editor"))
-        //{
-        //    PaletteEditor Test = EditorWindow.GetWindow<PaletteEditor>();
-        //    Test.Version = this;
-        //}
+        if (GUILayout.Button("Open Editor"))
+        {
+            PaletteEditor Test = EditorWindow.GetWindow<PaletteEditor>();
+            Test.Version = this;
+        }
 
         if (Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.GetFloat("_IsInstance") == 0)
         {
