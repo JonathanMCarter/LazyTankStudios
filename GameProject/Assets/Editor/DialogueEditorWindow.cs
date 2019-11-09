@@ -13,9 +13,10 @@ using UnityEditor;
 
     Made by: Jonathan Carter
     Last Edited By: Jonathan Carter
-    Date Edited Last: 15/10/19 - Allowed for options when adding an event into the file line
+    Date Edited Last: 09/11/19 - 
 
     Edit History:
+    - 15/10/19 - Allowed for options when adding an event into the file line
     - 13/10/19 - Added buttons for events, these are only placeholder for now, but will do stuff once the option for events are implemented
     - 6/10/19 - To add this comment bit in (nothing else was changed)
 
@@ -92,19 +93,23 @@ public class DialogueEditorWindow : EditorWindow
                 GUILayout.Space(20);
 
                 EditorGUILayout.BeginHorizontal();
+
                 EditorGUILayout.LabelField("File Name:", GUILayout.MaxWidth(65f));
                 FileName = EditorGUILayout.TextField(FileName);
                 GUILayout.FlexibleSpace();
+
                 EditorGUILayout.EndHorizontal();
 
                 GUILayout.Space(10f);
 
                 // Displays the table headers
                 EditorGUILayout.BeginHorizontal();
+
                 EditorGUILayout.LabelField("No:", GUILayout.MaxWidth(30f));
                 EditorGUILayout.LabelField("Character:", GUILayout.MaxWidth(200f));
                 EditorGUILayout.LabelField("Dialogue:", GUILayout.MinWidth(100f));
                 EventChoice = (EventOptions)EditorGUILayout.EnumPopup(EventChoice, GUILayout.MaxWidth(75f));
+
                 EditorGUILayout.EndHorizontal();
 
                 ScrollPos = EditorGUILayout.BeginScrollView(ScrollPos, GUILayout.Width(position.width), GUILayout.ExpandHeight(true));
@@ -235,7 +240,7 @@ public class DialogueEditorWindow : EditorWindow
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.LabelField("No:", GUILayout.MaxWidth(30f));
                     EditorGUILayout.LabelField("Character:", GUILayout.MaxWidth(200f));
-                    EditorGUILayout.LabelField("Dialogue:");
+                    EditorGUILayout.LabelField("Dialogue:", GUILayout.MinWidth(100f));
                     EventChoice = (EventOptions)EditorGUILayout.EnumPopup(EventChoice, GUILayout.MaxWidth(75f));
                     EditorGUILayout.EndHorizontal();
 
@@ -247,7 +252,7 @@ public class DialogueEditorWindow : EditorWindow
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.LabelField(i.ToString(), GUILayout.MaxWidth(30f));
                         CurrentFile.Names[i] = EditorGUILayout.TextField(CurrentFile.Names[i], GUILayout.MaxWidth(200f));
-                        CurrentFile.Dialogue[i] = EditorGUILayout.TextField(CurrentFile.Dialogue[i]);
+                        CurrentFile.Dialogue[i] = EditorGUILayout.TextField(CurrentFile.Dialogue[i], GUILayout.MaxWidth(400f));
                         GUILayout.Space(10);
 
                         GUI.backgroundColor = Color.yellow;

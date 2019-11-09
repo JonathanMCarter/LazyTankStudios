@@ -60,9 +60,13 @@ public class ShaderEditorGUI : ShaderGUI
     /// Holds the material for the gameobject it is on.
     public Material Mat;
 
+    private Palettes OldPal;
+
     /// Overrides the default GUI to show the custom inspector, param are passed in by default from the ShaderGUI editor type
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
+        OldPal = Pal;
+
         PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Palette/Palettes.asset", typeof(Palette));
         Mat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
 
@@ -122,6 +126,11 @@ public class ShaderEditorGUI : ShaderGUI
 
         Pal = (Palettes)EditorGUILayout.EnumPopup(Pal);
 
+        if ((Pal != OldPal) && (Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.GetFloat("_IsInstance") == 0))
+        {
+            Selection.gameObjects[0].GetComponent<Renderer>().material = Selection.gameObjects[0].GetComponent<Renderer>().material;
+            Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 1);
+        }
 
         switch (Pal)
         {
