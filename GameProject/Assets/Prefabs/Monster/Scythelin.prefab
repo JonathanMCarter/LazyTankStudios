@@ -415,6 +415,7 @@ GameObject:
   - component: {fileID: 8266275318076885640}
   - component: {fileID: 6544642727321774219}
   - component: {fileID: 2446559707983359527}
+  - component: {fileID: 8002547705403602160}
   m_Layer: 0
   m_Name: Scythelin
   m_TagString: Untagged
@@ -589,6 +590,25 @@ MonoBehaviour:
   ProjectileSpeed: 2
   ProjectileRange: 2
   ProjectileSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!95 &8002547705403602160
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7346692012035720865}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ff86662501b627e4f88f9a84b300891e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8435467352871471682
 GameObject:
   m_ObjectHideFlags: 0

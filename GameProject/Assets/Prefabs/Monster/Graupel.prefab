@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6903003391942267912}
   - component: {fileID: 2926669596317028674}
   - component: {fileID: 688123500983702693}
+  - component: {fileID: 3798425727637940808}
   m_Layer: 0
   m_Name: Graupel
   m_TagString: Untagged
@@ -124,6 +125,25 @@ MonoBehaviour:
   ProjectileSpeed: 3
   ProjectileRange: 4
   ProjectileSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!95 &3798425727637940808
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723446323201835674}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0c01499d435dc5544aeedb5a3344e228, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1307614085263044878
 GameObject:
   m_ObjectHideFlags: 0

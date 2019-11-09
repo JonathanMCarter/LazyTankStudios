@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2691623289975465872}
   - component: {fileID: 8420260936285543537}
   - component: {fileID: 3345739751450546243}
+  - component: {fileID: 3508582983454199914}
   m_Layer: 0
   m_Name: Kamaitachi
   m_TagString: Untagged
@@ -135,6 +136,25 @@ MonoBehaviour:
   ExpiryTime: 3
   AnimationClip: {fileID: 0}
   fleeSpeed: 2
+--- !u!95 &3508582983454199914
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730050316150766436}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5bae24fd55547fc4fb5aa8114c827570, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2458725878257625561
 GameObject:
   m_ObjectHideFlags: 0
