@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: CC_Plains
   m_Shader: {fileID: 4800000, guid: 7b50a859b94cd564a888eb93aafa74c6, type: 3}
-  m_ShaderKeywords: _USETRANS_ON
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _USETRANS_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -67,7 +67,7 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _PaletteSelected: 1
+    - _PaletteSelected: 4
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -78,15 +78,15 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PalCol1: {r: 0, g: 0, b: 0, a: 1}
-    - _PalCol2: {r: 0, g: 0, b: 0, a: 1}
-    - _PalCol3: {r: 0, g: 0, b: 0, a: 1}
-    - _PalCol4: {r: 0, g: 0, b: 0, a: 1}
+    - _PalCol1: {r: 0.5176471, g: 0.7254902, b: 0.41960785, a: 1}
+    - _PalCol2: {r: 0.2784314, g: 0.5176471, b: 0.16078432, a: 1}
+    - _PalCol3: {r: 0.10980392, g: 0.32941177, b: 0, a: 1}
+    - _PalCol4: {r: 0, g: 0, b: 0, a: 0}
     - _StoreTrans1: {r: 0, g: 0, b: 0, a: 1}
     - _StoreTrans2: {r: 0, g: 0, b: 0, a: 1}
     - _StoreTrans3: {r: 0, g: 0, b: 0, a: 1}
     - _StoreTrans4: {r: 0, g: 0, b: 0, a: 1}
-    - _TexCol1: {r: 185, g: 185, b: 185, a: 1}
-    - _TexCol2: {r: 111, g: 111, b: 111, a: 1}
-    - _TexCol3: {r: 55, g: 55, b: 55, a: 1}
-    - _TexCol4: {r: 0, g: 0, b: 0, a: 1}
+    - _TexCol1: {r: 0, g: 0, b: 0, a: 1}
+    - _TexCol2: {r: 83.68587, g: 83.68587, b: 83.68587, a: 1}
+    - _TexCol3: {r: 20.732985, g: 20.732985, b: 20.732985, a: 1}
+    - _TexCol4: {r: 0.7254902, g: 0.7254902, b: 0.7254902, a: 1}
