@@ -44,14 +44,14 @@ public class Quest : MonoBehaviour
 
     private void Awake()
     {
-        ds = GameObject.Find("DialogueHandler").GetComponent<DialogueScript>();
+        // Jonathan Edit - Better reference so not to cause errors (you shoudl use find of type pretty much all the time if you can)
+        ds = FindObjectOfType<DialogueScript>();
         //status = Status.NotAvailable;
         //if (ID == 0)
             status = Status.Available;
     }
     private void Start()
     {
-;
 
         //for (int i = 0; i < Items.Length; i++)
         //    Items[i].GetComponent<SpriteRenderer>().sprite = ItemsSprites[i];
@@ -60,26 +60,30 @@ public class Quest : MonoBehaviour
     private void Update()
     {
 
-        if (NPCToReturnTo)
+        // Jonathan Added this if statement
+        if (status != Status.NotAvailable)
         {
-            if (NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 1
-                && status.Equals(Status.Completed))
+
+            if (NPCToReturnTo)
+            {
+                if (NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 1
+                    && status.Equals(Status.Completed))
+                {
+                    displayQuestCompletedDialogue();
+                    findNextQuest();
+                }
+            }
+            else if (status.Equals(Status.Completed))
             {
                 displayQuestCompletedDialogue();
                 findNextQuest();
             }
+
+
+            if (status == Status.OnGoing)
+                if (checkKilledAllEnemies())
+                    status = Status.Completed;
         }
-        else if (status.Equals(Status.Completed))
-        {
-            displayQuestCompletedDialogue();
-            findNextQuest();
-        }
-
-
-        if (status == Status.OnGoing)
-            if (checkKilledAllEnemies())
-                status = Status.Completed;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -139,6 +143,20 @@ public class Quest : MonoBehaviour
         }
 
 
+    }
+
+
+    // Jonathan Added this
+    public bool CheckID(int Input)
+    {
+        if (Input == ID)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
 
