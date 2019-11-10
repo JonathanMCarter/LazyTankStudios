@@ -158,6 +158,29 @@ public class Quest : MonoBehaviour
             return false;
         }
     }
+
+
+    // Jonathan Also Added this - can be called to update the status of a quest!
+    public void UpdateStatus(int QuestID, Status NewStatus)
+    {
+        if (FindObjectsOfType<Quest>().Length > 1)
+        {
+            for (int i = 0; i < FindObjectsOfType<Quest>().Length; i++)
+            {
+                if (FindObjectsOfType<Quest>()[i].ID == QuestID)
+                {
+                    FindObjectsOfType<Quest>()[i].status = NewStatus;
+                }
+            }
+        }
+        else
+        {
+            if (FindObjectOfType<Quest>().ID == QuestID)
+            {
+                FindObjectOfType<Quest>().status = NewStatus;
+            }
+        }
+    }
 }
 
 
