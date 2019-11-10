@@ -115,10 +115,10 @@ public class ShaderEditorGUI : ShaderGUI
             GUILayout.Space(10);
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Sprite Colours:", GUILayout.MaxWidth(100));
-            Mat.SetColor("_TexCol1", EditorGUILayout.ColorField(properties[1].colorValue));
-            Mat.SetColor("_TexCol2", EditorGUILayout.ColorField(properties[2].colorValue));
-            Mat.SetColor("_TexCol3", EditorGUILayout.ColorField(properties[3].colorValue));
-            Mat.SetColor("_TexCol4", EditorGUILayout.ColorField(properties[4].colorValue));
+            Mat.SetColor("_TexCol1", EditorGUILayout.ColorField(new Color32(212, 212, 212, 255)));
+            Mat.SetColor("_TexCol2", EditorGUILayout.ColorField(new Color32(144, 144, 144, 255)));
+            Mat.SetColor("_TexCol3", EditorGUILayout.ColorField(new Color32(72, 72, 72, 255)));
+            Mat.SetColor("_TexCol4", EditorGUILayout.ColorField(new Color32(0, 0, 0, 255)));
             EditorGUILayout.EndHorizontal();
         }
 
