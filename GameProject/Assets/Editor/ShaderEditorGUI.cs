@@ -67,7 +67,7 @@ public class ShaderEditorGUI : ShaderGUI
     {
         //OldPal = Pal;
 
-        PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Palette/Palettes.asset", typeof(Palette));
+        PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Materials/Palette/Palettes.asset", typeof(Palette));
         Mat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
 
         ChangeString();
