@@ -7,13 +7,11 @@ public class ButtonPuzzleSingleButton : MonoBehaviour
     public Sprite newSprite;
     public Sprite OldSprite;
     public ButtonDoor Hit;
+    int MaxLeaverUses;
     public bool[] ColourArray;
     public bool ColourPuzzle;
     SpriteRenderer MySprite;
-    // Start is called before the first frame update
-
-
-        //Need to find a way to change all sprites of all switches back if the wrong one is pressed
+    GameObject MyObject;
     void Start()
     {
         hit = false;
@@ -21,33 +19,47 @@ public class ButtonPuzzleSingleButton : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if (ColourPuzzle)
+        if (MaxLeaverUses < ColourArray.Length)
         {
-            if (ColourArray[Hit.Buttons])
+            if (ColourPuzzle)
             {
-                Hit.Buttons++;
-                hit = true;
-                spriteChange();
-                
+                if (ColourArray[Hit.Buttons])
+                {
+                    GameObject[] Leaver = GameObject.FindGameObjectsWithTag("Leaver");
+                    for (int i = 0; i < Leaver.Length; i++)
+                    {
+                        Leaver[i].GetComponent<ButtonPuzzleSingleButton>().MaxLeaverUses++;
+                    }
+                    Hit.Buttons++;
+                    spriteChange();
+                }
+                else
+                {
+                    Hit.Buttons = 0;
+                    GameObject[] Sprites = GameObject.FindGameObjectsWithTag("Leaver");
+                    for (int i = 0; i < Sprites.Length; i++)
+                    {
+                        Sprites[i].GetComponent<ButtonPuzzleSingleButton>().RevertSprite();
+                        Sprites[i].GetComponent<ButtonPuzzleSingleButton>().MaxLeaverUses = 0;
+                    }
+                }
             }
             else
             {
-                Hit.Buttons = 0;
-                MySprite.sprite = OldSprite;
+                hit = true;
+                Hit.Buttons++;
+                spriteChange();
             }
         }
-        else
-        {
-            hit = true;
-            Hit.Buttons++;
-            spriteChange();
-        }
+    }
+    public void RevertSprite()
+    {
+        MySprite.sprite = OldSprite;
     }
     private void spriteChange()
     {
         MySprite.sprite = newSprite;
-        if (ColourPuzzle)
+        if (!ColourPuzzle)
         {
             GetComponent<BoxCollider2D>().enabled = false;
         }
