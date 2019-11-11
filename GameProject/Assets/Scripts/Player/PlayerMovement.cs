@@ -447,7 +447,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene("Main Menu");
         DoNotDes [] Gos = GameObject.FindObjectsOfType<DoNotDes>();
-        DoNotDes.Created = false;
+        //DoNotDes.Created = false;
         foreach (DoNotDes go in Gos) if (go.gameObject != this.gameObject) Destroy(go.gameObject);
         yield return new WaitForSeconds(0);
         Destroy(this.gameObject);
