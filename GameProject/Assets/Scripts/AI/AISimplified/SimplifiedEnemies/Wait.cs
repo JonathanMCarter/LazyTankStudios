@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Final
 {
+     /**
+        *Edit by Andreas Kraemer
+        *Last Edit: 11/11/19
+        *
+        *Set Animation Parameters
+        */
     public class Wait : Ability
     {
         private ActionOverTime aot;

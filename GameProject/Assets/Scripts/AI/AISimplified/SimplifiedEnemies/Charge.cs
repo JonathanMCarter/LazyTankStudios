@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace Final
 {
+     /**
+        *Edit by Andreas Kraemer
+        *Last Edit: 11/11/19
+        *
+        *Set Animation Parameters
+        */
     public class Charge : Ability
     {
         [SerializeField] private float chargeSpeed;
@@ -26,6 +32,10 @@ namespace Final
             Debug.Log("Start");
             if(AnimationClip != null) AnimationClip.Play();
             dir = (Player.transform.position - transform.position).normalized;
+            //Andreas edit--
+            myAnimator.SetFloat("SpeedX",dir.x);
+            myAnimator.SetFloat("SpeedY",dir.y);
+            //Andreas edit end--
             yield return Coroutine();
         }
 

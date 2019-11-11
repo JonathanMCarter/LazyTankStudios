@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Final
 {
+     /**
+        *Edit by Andreas Kraemer
+        *Last Edit: 11/11/19
+        *
+        *Set Animation Parameters
+        */
     public class Projectile : Ability
     {
         public GameObject projectilePrefab;
@@ -15,6 +21,7 @@ namespace Final
         {
             BasicAttackCollider bac = Instantiate(projectilePrefab).GetComponent<BasicAttackCollider>();
             bac.Init(transform.position, colliderSize, ProjectileSpeed, ProjectileRange, (Player.transform.position - transform.position).normalized, ProjectileSprite);
+            myAnimator.SetTrigger("Attack");
             yield return null;
         }
     }
