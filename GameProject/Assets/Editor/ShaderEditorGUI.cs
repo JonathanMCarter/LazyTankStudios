@@ -120,6 +120,18 @@ public class ShaderEditorGUI : ShaderGUI
             Mat.SetColor("_TexCol3", EditorGUILayout.ColorField(new Color32(72, 72, 72, 255)));
             Mat.SetColor("_TexCol4", EditorGUILayout.ColorField(new Color32(0, 0, 0, 255)));
             EditorGUILayout.EndHorizontal();
+
+            GUI.color = Color.white;
+
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.FlexibleSpace();
+            EditorGUILayout.LabelField("Hex Codes:", GUILayout.Width(75f));
+            EditorGUILayout.TextField(ConverToHexValue(new Color32(212, 212, 212, 255)), GUILayout.Width(54f));
+            EditorGUILayout.TextField(ConverToHexValue(new Color32(144, 144, 144, 255)), GUILayout.Width(54f));
+            EditorGUILayout.TextField(ConverToHexValue(new Color32(72, 72, 72, 255)), GUILayout.Width(54f));
+            EditorGUILayout.TextField(ConverToHexValue(new Color32(0, 0, 0, 255)), GUILayout.Width(54f));
+            GUILayout.FlexibleSpace();
+            EditorGUILayout.EndHorizontal();
         }
 
         EditorGUILayout.LabelField("Select Palette to change to...", EditorStyles.boldLabel);
@@ -150,6 +162,17 @@ public class ShaderEditorGUI : ShaderGUI
                 }
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
+
+                GUI.color = Color.white;
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal1[0]), GUILayout.Width(50f));
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal1[1]), GUILayout.Width(50f));
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal1[2]), GUILayout.Width(50f));
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
 
                 Mat.SetColor("_PalCol1", PermColours.Pal1[0]);
                 Mat.SetColor("_PalCol2", PermColours.Pal1[1]);
@@ -185,6 +208,16 @@ public class ShaderEditorGUI : ShaderGUI
                     GUI.color = Mat.GetColor("_StoreTrans2");
                     GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
                 }
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
+                GUI.color = Color.white;
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal2[0]), GUILayout.Width(50f));
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal2[1]), GUILayout.Width(50f));
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal2[2]), GUILayout.Width(50f));
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
 
@@ -224,6 +257,17 @@ public class ShaderEditorGUI : ShaderGUI
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
 
+                GUI.color = Color.white;
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal3[0]), GUILayout.Width(50f));
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal3[1]), GUILayout.Width(50f));
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal3[2]), GUILayout.Width(50f));
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
+
                 Mat.SetColor("_PalCol1", PermColours.Pal3[0]);
                 Mat.SetColor("_PalCol2", PermColours.Pal3[1]);
                 Mat.SetColor("_PalCol3", PermColours.Pal3[2]);
@@ -257,6 +301,17 @@ public class ShaderEditorGUI : ShaderGUI
                     GUI.color = Mat.GetColor("_StoreTrans4");
                     GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
                 }
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
+
+                GUI.color = Color.white;
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal4[0]), GUILayout.Width(50f));
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal4[1]), GUILayout.Width(50f));
+                EditorGUILayout.TextField(ConverToHexValue(PermColours.Pal4[2]), GUILayout.Width(50f));
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
 
@@ -332,5 +387,20 @@ public class ShaderEditorGUI : ShaderGUI
             default:
                 break;
         }
+    }
+
+
+    // Converts Color to Hex for display - totally for debug only
+    private string ConverToHexValue(Color32 Input)
+    {
+        return ColorUtility.ToHtmlStringRGB(Input).ToString();
+    }
+
+
+    // Converts RGB to Hex for display - totally for debug only
+    private string ConverToHexValue(byte r, byte g, byte b)
+    {
+        Color32 NewCol = new Color32(r, g, b, 255);
+        return ColorUtility.ToHtmlStringRGB(NewCol).ToString();
     }
 }

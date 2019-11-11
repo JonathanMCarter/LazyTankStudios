@@ -31,6 +31,9 @@ public class TalkScript : MonoBehaviour
     private AudioManager audioManager;
     //Andreas edit end--
 
+    bool talking = false;
+    //bool FileRead = false;
+
     void Awake()
     {
         ds = FindObjectOfType<DialogueScript>(); //added by LC
@@ -45,10 +48,6 @@ public class TalkScript : MonoBehaviour
         // Jonathan Edit
         movement = FindObjectOfType<PlayerMovement>();
     }
-
-    bool talking = false;
-    bool FileRead = false;
-
 
 
     public void talk()
@@ -81,7 +80,7 @@ public class TalkScript : MonoBehaviour
             talking = !ds.FileHasEnded;
             panel.SetActive(talking);
             movement.enabled = !talking;
-            FileRead = true;
+            //FileRead = true;
             //////////////////////
 
         }
