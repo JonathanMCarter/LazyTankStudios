@@ -22,6 +22,7 @@ namespace Final
         private Animator myAnim;
 
         private PlayerMovement player;
+        private Inventory playerInventory;
         private Vector2 rootPos;
         private Ability[] abilities;
         private Ability currentAbility;
@@ -37,6 +38,7 @@ namespace Final
         private void Awake()
         {
             player = FindObjectOfType<PlayerMovement>();
+            playerInventory = GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>();
             abilities = GetComponents<Ability>();
             rootPos = transform.position;
             aot = new ActionOverTime();
@@ -106,22 +108,29 @@ namespace Final
 
             if (collision.gameObject.tag == "Bullet")
             {
+                //Toby: get bullet damage instead of always 1
+                Bullet b = collision.gameObject.GetComponent<Bullet>();
+                int damage = b.Damage;
+                playerInventory.addXP(b.SourceItem, 1);
+                
                 Destroy(collision.gameObject);
 
                 // Debug.Log("********** Enemy Should Be Taking Damage Now...");
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
-                --Health;
+                Health -= damage;
                 //if (Health <= 0)
                 //    this.gameObject.SetActive(false);
             }
             if (collision.gameObject.tag == "Sword")
             {
-
+                Bullet b = collision.gameObject.GetComponent<Bullet>();
+                int damage = b.Damage;
+                playerInventory.addXP(b.SourceItem, 1);
                 // Debug.Log("********** Enemy Should Be Taking Damage Now...");
 
-                Hearts[Health - 1].gameObject.SetActive(false);
-                --Health;
+                if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
+                Health -= damage;
                 //if (Health <= 0)
                 //    this.gameObject.SetActive(false);
             }

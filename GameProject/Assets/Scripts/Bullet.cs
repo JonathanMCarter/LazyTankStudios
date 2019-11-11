@@ -10,7 +10,9 @@ using UnityEngine;
  * 
  * Didnt want to create this script. Currently storing bullet speed and damage information
  * 
- * 
+ * Also edited by: Toby Wishart
+ * Last edit: 11/10/19
+ * Reason: Store source item and allow for unlimited lifespan for sword
  * 
  * */
 
@@ -20,14 +22,19 @@ public class Bullet : MonoBehaviour
     public int Damage;
     public Vector2 Speed;
     public float Lifespan;
-    public void SetStats(int damage, Vector2 speed, float lifespan)
+    //The ID of the item used to spawn projectile set to -1 or any other invalid ID for no source
+    public int SourceItem = -1;
+
+    public void SetStats(int damage, Vector2 speed, float lifespan, int sourceItem)
     {
         Damage = damage;
         Speed = speed;
         Lifespan = lifespan;
+        SourceItem = sourceItem;
 
         GetComponent<Rigidbody2D>().AddForce(Speed, ForceMode2D.Impulse);
-        StartCoroutine(Destructor());
+        //Allow for unlimited lifespan
+        if (Lifespan >= 0) StartCoroutine(Destructor());
     }
 
     IEnumerator Destructor()

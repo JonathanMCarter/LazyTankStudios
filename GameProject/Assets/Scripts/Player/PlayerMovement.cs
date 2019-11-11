@@ -10,8 +10,8 @@ using UnityEngine.SceneManagement;
  * This script gets the input using the Unity Input manager for K/M and controller input, as well as touch data and outputs it using 3 public functions. This allows other scripts to access input data from across all platforms using one function.
  * 
  * Owner: Toby Wishart (but really is Lewis') 
- * Last Edit : 19/10/19
- * Reason: Integrated items
+ * Last Edit : 10/11/19
+ * Reason: Modify damage based on level
  * 
  * Also Edited by : Tony Parsons
  * Last Edit: 03.11.19
@@ -204,6 +204,7 @@ public class PlayerMovement : MonoBehaviour
                     countdown = 1; // length of animation
                     //Andreas edit end
                     attackRotater.GetChild((int)ITEMS.SWORD).gameObject.SetActive(true);
+                    attackRotater.GetChild((int)ITEMS.SWORD).gameObject.GetComponent<Bullet>().SetStats(myInventory.getLevel(ID), new Vector2(0, 0), -1, ID);
                     attacking = true;
 
                     // Jonathan Added This function
@@ -229,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
                     countdown = RangedAttackDuration;
                     countdown = 0.3f;
                     // Jonathan Added This function
-                    FireProjectile();
+                    FireProjectile(ID);
                     break;
                 case (int)ITEMS.SHIELDSHARPTON:
                     //animation
@@ -284,7 +285,7 @@ public class PlayerMovement : MonoBehaviour
     //LC remade function - Cant set force of bullet by mouse position, as this wont work with joystick input or mobile input. Instead need to find which way player is facing and fire in that direction
 
 
-    public void FireProjectile() //Fires off player facing certain direction
+    public void FireProjectile(int itemUsed) //Fires off player facing certain direction
     {
         //                                                                                          Tony - Rotate Arrow propperly
         GameObject Go = Instantiate(DamageBulletThingy, attackRotater.GetChild(0).transform.position, attackRotater.rotation * Quaternion.Euler(0, 0, -45));
@@ -308,7 +309,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
         };
        // Go.GetComponent<Rigidbody2D>().AddForce(Dir * WeaponStats.Speed, ForceMode2D.Impulse); //moving to bullet script
-        Go.GetComponent<Bullet>().SetStats((int)WeaponStats.Damage, (Dir * WeaponStats.Speed), WeaponStats.Lifetime);
+        Go.GetComponent<Bullet>().SetStats((int)WeaponStats.Damage * myInventory.getLevel(itemUsed), (Dir * WeaponStats.Speed), WeaponStats.Lifetime, itemUsed);
         //Destroy(Go, WeaponStats.Lifetime);
     }
 
@@ -397,7 +398,10 @@ public class PlayerMovement : MonoBehaviour
             //gameObject.SetActive(false); 
             this.enabled = false;
             
-        } 
+        }
+        //Toby: lose xp on hit
+        myInventory.addXP(myInventory.equippedA, -3);
+        myInventory.addXP(myInventory.equippedB, -3);
     }
 
     IEnumerator GameReset() //added temp by LC

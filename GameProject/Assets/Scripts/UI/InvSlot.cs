@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 /**
  * Owner: Toby Wishart
- * Last edit: 19/10/19
- * Reason: Equip icon displays A or B
+ * Last edit: 10/11/19
+ * Reason: Add option for levelling
  */
 
 public class InvSlot : MonoBehaviour
@@ -20,6 +20,8 @@ public class InvSlot : MonoBehaviour
     public bool selected = false;
     public int BuyingValue;
     public int SellingValue;
+    //Set to true if item can level up
+    public bool recievesXP = false;
 
     GameObject i;
     Text q, e;

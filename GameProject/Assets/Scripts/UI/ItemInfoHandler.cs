@@ -32,6 +32,7 @@ public class ItemInfoHandler : MonoBehaviour
         {
             //Set text using the lists and the selected ID as the index, set to blank if null which will hide the panel
             n.text = itemNames[i.selected] != null ? itemNames[i.selected] : "";
+            if (i.canItemRecieveXP(i.selected)) n.text += " Lv." + i.getLevel(i.selected);
             d.text = itemDescriptions[i.selected] != null ? itemDescriptions[i.selected] : "";
         } else
         {

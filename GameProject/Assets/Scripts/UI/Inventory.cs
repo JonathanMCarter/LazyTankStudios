@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 /*
  * Created by Toby Wishart
- * Last edit: 05/11/19
- * Reason: Fixed coin value setting
+ * Last edit: 10/11/19
+ * Reason: Added item levelling
  * Also edited: Gabriel Potamianos
  * Last edit: 14/10/19
  * 
@@ -28,6 +28,9 @@ public class Inventory : MonoBehaviour
     public int equippedA = -1;
     //ID for the item equipped with the B button
     public int equippedB = -1;
+
+    //array to store the xp for each item
+    public int[] itemXP;
 
     public bool isOpen;
 
@@ -122,6 +125,30 @@ public class Inventory : MonoBehaviour
         selected = 0;
     }
 
+    //Returns level based on the XP
+    public int getLevel(int ID)
+    {
+        if (!canItemRecieveXP(ID)) return 1;
+        return itemXP[ID] < 5 ? 1 : (itemXP[ID] < 20 ? 2 : 3);
+    } 
+
+    //Add(or subtract) XP to given item, limits the value between 0 and 20
+    public void addXP(int ID, int amount)
+    {
+        //Exit if the item can't level up
+        if (!canItemRecieveXP(ID)) return;
+        itemXP[ID] += amount;
+        //Cap xp
+        itemXP[ID] = itemXP[ID] < 0 ? 0 : itemXP[ID] > 20 ? 20 : itemXP[ID];
+    }
+
+    //Returns whether the item can level up 
+    public bool canItemRecieveXP(int ID)
+    {
+        if (ID < 0 || ID >= items.Length) return false;
+        return transform.GetChild(ID).GetComponent<InvSlot>().recievesXP;
+    }
+
     #endregion
 
     #region Gabriel Functions
@@ -167,6 +194,7 @@ public class Inventory : MonoBehaviour
         //GameObject.Find("CoinUI").transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<Text>().text = "0";
         GameObject.Find("Coins").GetComponentInChildren<Text>().text = "0"; //changed by LC to match UI hierarchy 
         items = new bool[transform.childCount];
+        itemXP = new int[items.Length];
         VendorMode = false;
         IM = GameObject.FindObjectOfType<InputManager>();
         audioManager=GameObject.FindObjectOfType<AudioManager>();
