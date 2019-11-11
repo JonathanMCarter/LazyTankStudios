@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 
 /// Changes the Shader Editor so it is more user friendly 
@@ -69,7 +70,15 @@ public class ShaderEditorGUI : ShaderGUI
         //OldPal = Pal;
 
         PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Materials/Palette/Palettes.asset", typeof(Palette));
-        Mat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
+
+        if (Selection.gameObjects[0].GetComponent<Renderer>())
+        {
+            Mat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
+        }
+        else if (Selection.gameObjects[0].GetComponent<Image>())
+        {
+            Mat = Selection.gameObjects[0].GetComponent<Image>().material;
+        }
 
         ChangeString();
         SetPalette();
@@ -87,24 +96,24 @@ public class ShaderEditorGUI : ShaderGUI
             Test.Version = this;
         }
 
-        if (Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.GetFloat("_IsInstance") == 0)
-        {
-            if (GUILayout.Button("Make Instance"))
-            {
-                Selection.gameObjects[0].GetComponent<Renderer>().material = Selection.gameObjects[0].GetComponent<Renderer>().material;
-                Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 1);
-            }
-        }
-        else
-        {
-            if (GUILayout.Button("Revert Instance"))
-            {
-                var Test = new MaterialPropertyBlock();
-                Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.name = "ColourChanger_MAT";
-                Selection.gameObjects[0].GetComponent<Renderer>().GetPropertyBlock(Test);
-                Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 0);
-            }
-        }
+        //if (Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.GetFloat("_IsInstance") == 0)
+        //{
+        //    if (GUILayout.Button("Make Instance"))
+        //    {
+        //        Selection.gameObjects[0].GetComponent<Renderer>().material = Selection.gameObjects[0].GetComponent<Renderer>().material;
+        //        Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 1);
+        //    }
+        //}
+        //else
+        //{
+        //    if (GUILayout.Button("Revert Instance"))
+        //    {
+        //        var Test = new MaterialPropertyBlock();
+        //        Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.name = "ColourChanger_MAT";
+        //        Selection.gameObjects[0].GetComponent<Renderer>().GetPropertyBlock(Test);
+        //        Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 0);
+        //    }
+        //}
 
 
         EditorGUILayout.EndHorizontal();
