@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Final
 {
+     /**
+        *Edit by Andreas Kraemer
+        *Last Edit: 11/11/19
+        *
+        *Set Animation Parameters
+        */
     public class Jump : Ability
     {
         [SerializeField] private float jumpSpeed;
@@ -29,6 +35,10 @@ namespace Final
             time = 0;
             start = transform.position;
             dest = start + ((Vector2)Player.transform.position - start).normalized * jumpDistance;
+             //Andreas edit--
+            myAnimator.SetFloat("SpeedX",dest.x);
+            myAnimator.SetFloat("SpeedY",dest.y);
+            //Andreas edit end--
             yield return aot.Use();
         }
 

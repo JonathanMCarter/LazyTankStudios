@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Final
 {
+     /**
+        *Edit by Andreas Kraemer
+        *Last Edit: 11/11/19
+        *
+        *Set Animation Parameters
+        */
     public class Flee : Ability
     {
         [SerializeField] private float fleeSpeed;
@@ -19,7 +25,7 @@ namespace Final
 
         public override IEnumerator Use()
         {
-            AnimationClip.Play();
+            if(AnimationClip!=null)AnimationClip.Play();
 
             yield return aot.Use();
         }
@@ -27,6 +33,10 @@ namespace Final
         public void FleeExecute()
         {
             Vector3 dest = -(Player.transform.position - transform.position);
+             //Andreas edit--
+            myAnimator.SetFloat("SpeedX",dest.x);
+            myAnimator.SetFloat("SpeedY",dest.y);
+            //Andreas edit end--
             transform.position += dest.magnitude > 5f ? Vector3.zero : dest.normalized * Time.deltaTime * fleeSpeed;
         }
     }
