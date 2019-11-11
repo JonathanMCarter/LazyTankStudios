@@ -19,11 +19,19 @@ public class Boundaries : MonoBehaviour
 
     void Update()
     {
-        //If outside the parent boundary the camera boundary is disabled
-        if (box.bounds.min.x < p.position.x && p.position.x < box.bounds.max.x && box.bounds.min.y < p.position.y && p.position.y < box.bounds.max.y)
-            transform.GetChild(0).gameObject.SetActive(true);
+        if (p)
+        {
+
+            //If outside the parent boundary the camera boundary is disabled
+            if (box.bounds.min.x < p.position.x && p.position.x < box.bounds.max.x && box.bounds.min.y < p.position.y && p.position.y < box.bounds.max.y)
+                transform.GetChild(0).gameObject.SetActive(true);
+            else
+                transform.GetChild(0).gameObject.SetActive(false);
+        }
         else
-            transform.GetChild(0).gameObject.SetActive(false);
+        {
+            p = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
     }
 
 }
