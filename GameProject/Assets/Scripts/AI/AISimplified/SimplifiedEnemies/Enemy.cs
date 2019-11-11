@@ -38,7 +38,8 @@ namespace Final
         private void Awake()
         {
             player = FindObjectOfType<PlayerMovement>();
-            playerInventory = GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>();
+            //playerInventory = GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>();
+            playerInventory = FindObjectOfType<Inventory>();
             abilities = GetComponents<Ability>();
             rootPos = transform.position;
             aot = new ActionOverTime();
