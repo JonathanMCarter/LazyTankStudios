@@ -70,6 +70,10 @@ public class PlayerMovement : MonoBehaviour
     public float blockTIme;
     //end of Tony variables
 
+
+    //Graham's variables needed for the ice sections;
+    public bool onIce;
+    public float SlideSpeed;
     //Items enum, should matchup with the item IDs i.e. Sword is in slot 0 and has ID 0 therefore SWORD is 0 here
     enum ITEMS
     {
@@ -111,14 +115,44 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * speed; //changed to fixedupdate as better for physics. Was also causing speed to fluxuate with framerate due to time.deltatime used incorrectly.
+        if (!onIce) //Added by Graham to determin if you are on ice or not
+        {
+            myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * speed; //changed to fixedupdate as better for physics. Was also causing speed to fluxuate with framerate due to time.deltatime used incorrectly.
+        }
+        else
+        {
+            switch (ImFacing)// Added by Graham to make sure you go in the correct direction when on ice
+            {
+                case Direction.Down:
+                    {
+                        myRigid.velocity = new Vector2(myRigid.velocity.x, (SlideSpeed * Time.deltaTime) * -1);
+                        break;
+                    }
+                case Direction.Up:
+                    {
+                        myRigid.velocity = new Vector2(myRigid.velocity.x, SlideSpeed * Time.deltaTime);
+                        break;
+                    }
+                case Direction.Left:
+                    {
+                        myRigid.velocity = new Vector2((SlideSpeed * Time.deltaTime) * -1, myRigid.velocity.y);
+                        break;
+                    }
+                case Direction.Right:
+                    {
+                        myRigid.velocity = new Vector2(SlideSpeed * Time.deltaTime, myRigid.velocity.y);
+                        break;
+                    }
+            }
+        }
     }
 
     void Update()
     {
         //Debug.DrawLine(transform.position, transform.right, Color.yellow);
 
-      //  myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed; //Changing a rigidbody should take place in FixedUpdate rather than Update as that is when the physics system runs, whereas update is when items are drawn on screen. comment added by LC
+        //  myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * Time.deltaTime * speed; //Changing a rigidbody should take place in FixedUpdate rather than Update as that is when the physics system runs, whereas update is when items are drawn on screen. comment added by LC
+
 
         //tony function
         SetRotater();//rotates the attack hit box
@@ -127,10 +161,13 @@ public class PlayerMovement : MonoBehaviour
         myAnim.SetFloat("SpeedY", IM.Y_Axis());
 
         /////////////////////Added by LC as temp for directions////////////////////
-        if (IM.X_Axis() > 0.1f) ImFacing = Direction.Right;
-        if (IM.X_Axis() < -0.1f) ImFacing = Direction.Left;
-        if (IM.Y_Axis() > 0.1f) ImFacing = Direction.Up;
-        if (IM.Y_Axis() < -0.1f) ImFacing = Direction.Down;
+        if (!onIce) //Added by Graham to stop you changing direction on ice
+        {
+            if (IM.X_Axis() > 0.1f) ImFacing = Direction.Right;
+            if (IM.X_Axis() < -0.1f) ImFacing = Direction.Left;
+            if (IM.Y_Axis() > 0.1f) ImFacing = Direction.Up;
+            if (IM.Y_Axis() < -0.1f) ImFacing = Direction.Down;
+        }
 
         ////////////////////////////////////////////////
 
@@ -328,22 +365,22 @@ public class PlayerMovement : MonoBehaviour
 
     //Tony Was Here too--------------------------------------
     //Edit Andreas--
-    /* 
-    void OnTriggerEnter2D(Collider2D other)
-    {
+     
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
 
-        if (other.gameObject.tag == "Enemy")
-        {
+        //if (other.gameObject.tag == "Enemy")
+        //{
             
-            for (int i = 0; i < health; ++i)
-            {      
-                Hearts[i].gameObject.SetActive(true);
-            }
+        //    for (int i = 0; i < health; ++i)
+        //    {      
+        //        Hearts[i].gameObject.SetActive(true);
+        //    }
 
-        }
+        //}
 
-    }
-    */
+   // }
+    
     /* 
     public void RemoveHeart()
     {
@@ -373,7 +410,7 @@ public class PlayerMovement : MonoBehaviour
             // other.gameObject.GetComponent<AIMovement>().Health = 0;
         }
     }
-
+   
     ///<summary>
     /// Cause the player to take desired amount of damage
     ///</summary>
@@ -460,17 +497,34 @@ public class PlayerMovement : MonoBehaviour
             if (attackRotater.rotation != new Quaternion(0, 0, -90, 0))
                 attackRotater.Rotate(Vector3.forward * -90);
     }
-    /* 
+    
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        //if (other.tag == "Enemy")
+        //{
+        //    Debug.Log("AI isn't my job");
+        //    for (int i = 0; i < health; ++i)
+        //        Hearts[i].gameObject.SetActive(false);
+        //}
+        if(other.gameObject.CompareTag("Ice"))
         {
-            Debug.Log("AI isn't my job");
-            for (int i = 0; i < health; ++i)
-                Hearts[i].gameObject.SetActive(false);
+            onIce = false;
         }
     }
-    */
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ice"))
+        {
+            if (myRigid.velocity.x < 0.1 && myRigid.velocity.x > -0.1 && myRigid.velocity.y < 0.1 && myRigid.velocity.y > -0.1)
+            {
+              onIce = false;
+            }
+            else
+             onIce = true;
+
+        }
+    }
+
     //Andreas edit end--
     //Tony Has left-----------------------------------
 
