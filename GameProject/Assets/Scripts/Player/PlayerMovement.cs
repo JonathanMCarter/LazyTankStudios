@@ -118,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         if (!onIce) //Added by Graham to determin if you are on ice or not
         {
             myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * speed; //changed to fixedupdate as better for physics. Was also causing speed to fluxuate with framerate due to time.deltatime used incorrectly.
+            Debug.Log("hi");
         }
         else
         {
@@ -511,19 +512,18 @@ public class PlayerMovement : MonoBehaviour
             onIce = false;
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ice"))
-        {
-            if (myRigid.velocity.x < 0.1 && myRigid.velocity.x > -0.1 && myRigid.velocity.y < 0.1 && myRigid.velocity.y > -0.1)
-            {
-              onIce = false;
-            }
-            else
-             onIce = true;
-
-        }
-    }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ice"))
+    //    {
+    //        if (myRigid.velocity.x < 0.1 && myRigid.velocity.x > -0.1 && myRigid.velocity.y < 0.1 && myRigid.velocity.y > -0.1)
+    //        {
+    //          onIce = false;
+    //        }
+    //        else
+    //         onIce = true;
+    //    }
+    //}
 
     //Andreas edit end--
     //Tony Has left-----------------------------------

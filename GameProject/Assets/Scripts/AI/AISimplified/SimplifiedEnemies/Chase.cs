@@ -33,8 +33,8 @@ namespace Final
         {
             Vector3 dest = (Player.transform.position - transform.position);
              //Andreas edit--
-            //myAnimator.SetFloat("SpeedX",dest.x);
-            //myAnimator.SetFloat("SpeedY",dest.y);
+            myAnimator.SetFloat("SpeedX",dest.x);
+            myAnimator.SetFloat("SpeedY",dest.y);
             //Andreas edit end--
             transform.position += dest.magnitude < 0.1f ? Vector3.zero : dest.normalized * Time.deltaTime * chaseSpeed;
         }

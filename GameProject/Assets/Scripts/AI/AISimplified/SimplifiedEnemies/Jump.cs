@@ -35,9 +35,9 @@ namespace Final
             time = 0;
             start = transform.position;
             dest = start + ((Vector2)Player.transform.position - start).normalized * jumpDistance;
-             //Andreas edit--
-            myAnimator.SetFloat("SpeedX",dest.x);
-            myAnimator.SetFloat("SpeedY",dest.y);
+            //Andreas edit--
+            myAnimator.SetFloat("SpeedX", dest.x);
+            myAnimator.SetFloat("SpeedY", dest.y);
             //Andreas edit end--
             yield return aot.Use();
         }

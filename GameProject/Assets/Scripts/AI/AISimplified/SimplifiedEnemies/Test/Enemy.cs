@@ -145,6 +145,10 @@ namespace Test
                 targetPos = rootPos + new Vector2(Random.Range(-patrollingRange.x / 2, patrollingRange.x / 2), Random.Range(-patrollingRange.y / 2, patrollingRange.y / 2));
             }
             transform.position += (targetPos - transform.position).normalized * Time.deltaTime * movementSpeed;
+            //Andreas edit--
+            myAnim.SetFloat("SpeedX", (targetPos - transform.position).normalized.x);
+            myAnim.SetFloat("SpeedY", (targetPos - transform.position).normalized.y);
+            //Andreas edit end--
             patrolTime += Time.deltaTime;
         }
 
