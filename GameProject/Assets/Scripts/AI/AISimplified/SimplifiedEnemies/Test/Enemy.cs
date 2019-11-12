@@ -67,11 +67,11 @@ namespace Test
             if (!showGizmos) return;
             Gizmos.color = Color.red;
 
-            Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, patrollingRange);
+            //Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, patrollingRange);
 
             Gizmos.color = Color.blue;
 
-            Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, maxChasingArea * 2);
+           // Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, maxChasingArea * 2);
         }
 
         protected virtual void OnTriggerEnter2D(Collider2D collision)
