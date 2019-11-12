@@ -39,8 +39,17 @@ public class SoundPlayer : MonoBehaviour
         }
     }
 
+    // Jonathan added this overload function so the clip volume could be changed
+    public void PlayClip(string audioName, float Volume = 1, bool Loop = false)
+    {
+        for (int i = 0; i < myNames.Count; i++)
+        {
+            if (myNames[i] == audioName) Playing(i, Volume);
+        }
+    }
+
     // Jonathan edited this function so the clip volume could be changed
-    private void Playing(int number, float Volume = 1)
+    private void Playing(int number, float Volume = 1, bool Loop = false)
     {
         for (int i = 0; i < aud.Length; i++)
         {
@@ -48,6 +57,7 @@ public class SoundPlayer : MonoBehaviour
             {
                 aud[i].clip = myClips[number];
                 aud[i].volume = Volume;
+                aud[i].loop = Loop;
                 aud[i].Play();
                 return;
 
