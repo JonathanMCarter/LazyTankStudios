@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashSpeedMultiplier;
     public float DashDuration;
     public float blockTIme;
+public float AttackTime;
     //end of Tony variables
 
 
@@ -239,7 +240,7 @@ public class PlayerMovement : MonoBehaviour
                     //Andreas edit
                     //PlayKickAnimation();
                     PlayAttackAnimation();
-                    countdown = 1; // length of animation
+                    countdown = AttackTime; // length of animation
                     //Andreas edit end
                     attackRotater.GetChild((int)ITEMS.SWORD).gameObject.SetActive(true);
                     attackRotater.GetChild((int)ITEMS.SWORD).gameObject.GetComponent<Bullet>().SetStats(myInventory.getLevel(ID), new Vector2(0, 0), -1, ID);
