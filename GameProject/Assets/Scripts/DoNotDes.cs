@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DoNotDes : MonoBehaviour
 {
-    public bool Created;
+    public static bool Created;
 
     private int TimesFound;
 
