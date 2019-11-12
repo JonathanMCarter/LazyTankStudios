@@ -27,6 +27,7 @@ public class BasicAttackCollider : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            collision.GetComponent<PlayerMovement>().TakeDamage(1);
             Destroy(gameObject);
         }
     }

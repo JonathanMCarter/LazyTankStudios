@@ -33,8 +33,8 @@ namespace Final
             if(AnimationClip != null) AnimationClip.Play();
             dir = (Player.transform.position - transform.position).normalized;
             //Andreas edit--
-            myAnimator.SetFloat("SpeedX",dir.x);
-            myAnimator.SetFloat("SpeedY",dir.y);
+            //myAnimator.SetFloat("SpeedX",dir.x);
+            //myAnimator.SetFloat("SpeedY",dir.y);
             //Andreas edit end--
             yield return Coroutine();
         }

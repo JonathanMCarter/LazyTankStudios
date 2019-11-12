@@ -70,6 +70,7 @@ namespace Final
                 if (!(player.transform.position.x >= (-maxChasingArea.x + rootPos.x) && player.transform.position.x <= (maxChasingArea.x + rootPos.x) &&
                     player.transform.position.y >= (-maxChasingArea.y + rootPos.y) && player.transform.position.y <= (maxChasingArea.y + rootPos.y)))
                 {
+
                     StopCoroutine(abilityCoroutine);
                     isPatrolling = true;
                     isReadyToMove = true;
@@ -92,11 +93,11 @@ namespace Final
             if (!showGizmos) return;
             Gizmos.color = Color.red;
 
-            //Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, new Vector3(xRange, yRange));
+            Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, new Vector3(xRange, yRange));
 
             Gizmos.color = Color.blue;
 
-            //Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, maxChasingArea * 2);
+            Gizmos.DrawWireCube(UnityEditor.EditorApplication.isPlaying ? (Vector3)rootPos : transform.position, maxChasingArea * 2);
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
