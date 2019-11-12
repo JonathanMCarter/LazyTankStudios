@@ -38,8 +38,9 @@ namespace Final
         private void Awake()
         {
             player = FindObjectOfType<PlayerMovement>();
-            //playerInventory = GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>();
-            playerInventory = FindObjectOfType<Inventory>();
+            //Tag used to distinguish the player inventory from the vendor inventory
+            playerInventory = GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>();
+            //Can't use this because the vendor inventory also is type Inventory: playerInventory = FindObjectOfType<Inventory>();
             abilities = GetComponents<Ability>();
             rootPos = transform.position;
             aot = new ActionOverTime();
@@ -113,14 +114,14 @@ namespace Final
                 //Toby: get bullet damage instead of always 1
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
-                playerInventory.addXP(b.SourceItem, 1);
-                
+
                 Destroy(collision.gameObject);
 
                 // Debug.Log("********** Enemy Should Be Taking Damage Now...");
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
-                Health -= damage;
+                Health -= damage;   
+                if (Health <= 0) playerInventory.addXP(b.SourceItem, 1);
                 //if (Health <= 0)
                 //    this.gameObject.SetActive(false);
             }
@@ -128,11 +129,11 @@ namespace Final
             {
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
-                playerInventory.addXP(b.SourceItem, 1);
                 // Debug.Log("********** Enemy Should Be Taking Damage Now...");
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
                 Health -= damage;
+                if (Health <= 0) playerInventory.addXP(b.SourceItem, 1);
                 //if (Health <= 0)
                 //    this.gameObject.SetActive(false);
             }

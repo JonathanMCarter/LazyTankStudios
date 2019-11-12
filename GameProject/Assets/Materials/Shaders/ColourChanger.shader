@@ -8,9 +8,10 @@
 
 	Made by: Jonathan Carter
 	Last Edited By: Jonathan Carter
-	Date Edited Last: 03/11/19 - Added useage of Perm Palette instead of the stores colours in the shader
+	Date Edited Last: 11/11/19 - Coded to work with UI...
 
 	Edit History:
+	- 03/11/19 - Added useage of Perm Palette instead of the stores colours in the shader
 	- 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
 	- 27/10/19 - Added fields to store colour options
 	- 12/10/19 - Added option for transparency on all selected colours, not jsut the 4th colour.

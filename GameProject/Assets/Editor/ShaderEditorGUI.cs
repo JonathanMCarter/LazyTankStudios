@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 
 /// Changes the Shader Editor so it is more user friendly 
@@ -15,9 +16,10 @@ using UnityEditor;
 
     Made by: Jonathan Carter
     Last Edited By: Jonathan Carter
-    Date Edited Last: 03/11/19 - Added useage of Perm Palette instead of the stores colours in the shader
+    Date Edited Last: 11/11/19 - coded to work with UI...
 
     Edit History:
+    - 03/11/19 - Added useage of Perm Palette instead of the stores colours in the shader
     - 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
     - 28/10/19 - Added option to edit 4th colour in palette as well as instance again so not to effect all versions of the material
     - 27/10/19 - added 4 palette restriction
@@ -68,7 +70,15 @@ public class ShaderEditorGUI : ShaderGUI
         //OldPal = Pal;
 
         PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Materials/Palette/Palettes.asset", typeof(Palette));
-        Mat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
+
+        if (Selection.gameObjects[0].GetComponent<Renderer>())
+        {
+            Mat = Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial;
+        }
+        else if (Selection.gameObjects[0].GetComponent<Image>())
+        {
+            Mat = Selection.gameObjects[0].GetComponent<Image>().material;
+        }
 
         ChangeString();
         SetPalette();
@@ -86,24 +96,24 @@ public class ShaderEditorGUI : ShaderGUI
             Test.Version = this;
         }
 
-        if (Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.GetFloat("_IsInstance") == 0)
-        {
-            if (GUILayout.Button("Make Instance"))
-            {
-                Selection.gameObjects[0].GetComponent<Renderer>().material = Selection.gameObjects[0].GetComponent<Renderer>().material;
-                Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 1);
-            }
-        }
-        else
-        {
-            if (GUILayout.Button("Revert Instance"))
-            {
-                var Test = new MaterialPropertyBlock();
-                Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.name = "ColourChanger_MAT";
-                Selection.gameObjects[0].GetComponent<Renderer>().GetPropertyBlock(Test);
-                Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 0);
-            }
-        }
+        //if (Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.GetFloat("_IsInstance") == 0)
+        //{
+        //    if (GUILayout.Button("Make Instance"))
+        //    {
+        //        Selection.gameObjects[0].GetComponent<Renderer>().material = Selection.gameObjects[0].GetComponent<Renderer>().material;
+        //        Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 1);
+        //    }
+        //}
+        //else
+        //{
+        //    if (GUILayout.Button("Revert Instance"))
+        //    {
+        //        var Test = new MaterialPropertyBlock();
+        //        Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.name = "ColourChanger_MAT";
+        //        Selection.gameObjects[0].GetComponent<Renderer>().GetPropertyBlock(Test);
+        //        Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 0);
+        //    }
+        //}
 
 
         EditorGUILayout.EndHorizontal();

@@ -38233,6 +38233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed476e75be7b65b4d8d27e053997c802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Created: 0
 --- !u!1 &1304639966
 GameObject:
   m_ObjectHideFlags: 0
@@ -49445,7 +49446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1508909836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49458,6 +49459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed476e75be7b65b4d8d27e053997c802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Created: 0
 --- !u!114 &1508909837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49527,6 +49529,8 @@ MonoBehaviour:
   dashSpeedMultiplier: 2
   DashDuration: 0.3
   blockTIme: 1
+  onIce: 0
+  SlideSpeed: 0
 --- !u!50 &1508909841
 Rigidbody2D:
   serializedVersion: 4
