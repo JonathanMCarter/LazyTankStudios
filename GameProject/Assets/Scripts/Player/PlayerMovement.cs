@@ -495,8 +495,11 @@ public class PlayerMovement : MonoBehaviour
                 attackRotater.Rotate(Vector3.forward * 90);
         }
         if (myRigid.velocity.y < -0.1)
+        {
+            attackRotater.SetPositionAndRotation(new Vector2(attackRotater.position.x, attackRotater.position.y), new Quaternion(0, 0, 180, 0));
             if (attackRotater.rotation != new Quaternion(0, 0, -90, 0))
-                attackRotater.Rotate(Vector3.forward * -90);
+                attackRotater.Rotate(Vector3.forward * 90);
+        }
     }
     
     void OnTriggerExit2D(Collider2D other)
