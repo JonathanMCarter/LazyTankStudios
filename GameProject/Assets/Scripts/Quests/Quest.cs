@@ -176,7 +176,7 @@ public class Quest : MonoBehaviour
         if (collision.gameObject.name == "Hero" && this.isActiveAndEnabled)
         {
             //Gathers the local TalkScript Component and assign the public Dialogue item
-            GetComponent<TalkScript>().dialogue = Dialogue;
+            GetComponent<TalkScript>().dialogueEnglish = Dialogue;
 
             //Checks if it is a deliver quest and status indicates the quest has not been taken yet
             if (DeliverRequest && status == Status.Available)
@@ -228,7 +228,7 @@ public class Quest : MonoBehaviour
             if (inv.getCoins() >= DeliverGold)
             {
                 inv.addCoins(-DeliverGold);
-                GameManagerTalk.dialogue = QuestCompleted;
+                GameManagerTalk.dialogueEnglish = QuestCompleted;
                 GameManagerTalk.talk();
                 offerReward(reward);
             }
@@ -240,7 +240,7 @@ public class Quest : MonoBehaviour
         else
         {
 
-            GameManagerTalk.dialogue = QuestCompleted;
+            GameManagerTalk.dialogueEnglish = QuestCompleted;
             GameManagerTalk.talk();
             offerReward(reward);
 
