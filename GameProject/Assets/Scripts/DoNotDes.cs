@@ -11,8 +11,8 @@ public class DoNotDes : MonoBehaviour
 
     private void Awake()
     {
-        //if (!Created) DontDestroyOnLoad(this); else Destroy(this.gameObject);
-        DontDestroyOnLoad(this);
+        if(!Created) DontDestroyOnLoad(this); else Destroy(this.gameObject);
+        //DontDestroyOnLoad(this);
 
     }
 
