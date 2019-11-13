@@ -22,7 +22,7 @@ public class TalkScript : MonoBehaviour
  * */
 
     public GameObject panel;
-    public DialogueFile dialogue;
+    public DialogueFile dialogueEnglish,dialogueGerman;
     public DialogueFile questdialogue;
     public PlayerMovement movement;
     DialogueScript ds;
@@ -39,11 +39,14 @@ public class TalkScript : MonoBehaviour
         ds = FindObjectOfType<DialogueScript>(); //added by LC
         //Andreas edit --
          audioManager=FindObjectOfType<AudioManager>();
-        //Andreas edit end--
+        
         //panel = FindObjectOfType<DialogueBoxManager>().gameObject;
         //qs = FindObjectOfType<QuestScript>();
         //ds = GameObject.Find("DialogueHandler").GetComponent<DialogueScript>();
-        ds.ChangeFile(dialogue);
+        if(LanguageSelect.isEnglish)ds.ChangeFile(dialogueEnglish);
+        else ds.ChangeFile(dialogueGerman);
+        //Andreas edit end--
+        
 
         // Jonathan Edit
         movement = FindObjectOfType<PlayerMovement>();
@@ -56,7 +59,9 @@ public class TalkScript : MonoBehaviour
         panel.SetActive(true);
 
         //Toby: Need this to change the dialogue each time you talk otherwise every NPC will have the same dialogue
-        ds.ChangeFile(dialogue);
+       
+        if(LanguageSelect.isEnglish)ds.ChangeFile(dialogueEnglish);
+        else ds.ChangeFile(dialogueGerman);
         ds.Input();
         // ds.Reset();
         talking = true;
