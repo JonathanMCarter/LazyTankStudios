@@ -71,6 +71,8 @@ public class DialogueScript : MonoBehaviour
 	[Header("Type Writer Settings")]
 	public int TypeWriterCount = 1;
 
+    public int TypeWriterCharactersToAdvanceBy = 1;
+
 
     // Stuff for events 'n' stuff 
     private Coroutine PauseCo;
@@ -210,7 +212,8 @@ public class DialogueScript : MonoBehaviour
             {
                 DialName.text = File.Names[DialStage];
                 DialText.text = Sentence;
-                TypeWriterCount++;
+                if (TypeWriterCount + TypeWriterCharactersToAdvanceBy > File.Dialogue[DialStage].Length) TypeWriterCount = File.Dialogue[DialStage].Length;
+                else TypeWriterCount += TypeWriterCharactersToAdvanceBy;
             }
         }
         else

@@ -118,7 +118,7 @@ public float AttackTime;
     {
         if (!onIce) //Added by Graham to determin if you are on ice or not
         {
-            myRigid.velocity = new Vector2(IM.X_Axis(), IM.Y_Axis()) * speed; //changed to fixedupdate as better for physics. Was also causing speed to fluxuate with framerate due to time.deltatime used incorrectly.
+            myRigid.velocity = (new Vector2(IM.X_Axis(), IM.Y_Axis())).normalized * speed; //changed to fixedupdate as better for physics. Was also causing speed to fluxuate with framerate due to time.deltatime used incorrectly.
         }
         else
         {
