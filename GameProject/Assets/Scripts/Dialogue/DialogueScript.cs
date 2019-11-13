@@ -76,6 +76,8 @@ public class DialogueScript : MonoBehaviour
     private Coroutine PauseCo;
     public Animator AnimToPlay;
 
+    AudioManager audioManager;
+
     private void Update()
     {
         if (RequireInput)
@@ -92,9 +94,10 @@ public class DialogueScript : MonoBehaviour
                     break;
                 case Styles.TypeWriter:
 
-                    if ((!IsCoRunning) && (InputPressed))
+                    if ((!IsCoRunning) && (InputPressed) && !FileHasEnded)
                     {
-                        StartCoroutine(TypeWriter(.005f));
+                        audioManager.Play("Dialogue1");
+                        StartCoroutine(TypeWriter(.00005f));
                     }
 
                     break;
@@ -112,6 +115,10 @@ public class DialogueScript : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
 
     // Changes the active file in the script
     public void ChangeFile(DialogueFile Input)
@@ -222,8 +229,8 @@ public class DialogueScript : MonoBehaviour
 
     public void Input()
     {
-       // if (!InputPressed) { InputPressed = true; }
-        DisplayNextLine();
+       if (!InputPressed) { InputPressed = true; }
+        //DisplayNextLine();
     }
 
 

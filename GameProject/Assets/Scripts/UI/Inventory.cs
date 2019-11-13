@@ -236,7 +236,7 @@ public class Inventory : MonoBehaviour
                 } else
                 {
                     selected++;
-                    if (selected == items.Length) selected = 0;
+                    if (selected == items.Length) selected--;
                 }
                 StartCoroutine(delay());
             }
@@ -250,7 +250,7 @@ public class Inventory : MonoBehaviour
                 } else
                 {
                     selected--;
-                    if (selected == -1) selected = items.Length - 1;
+                    if (selected == -1) selected++;
                 }
                 StartCoroutine(delay());
             }
@@ -305,7 +305,7 @@ public class Inventory : MonoBehaviour
     IEnumerator delay()
     {
         delayed = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         delayed = false;
     }
 }
