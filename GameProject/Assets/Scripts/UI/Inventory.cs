@@ -281,7 +281,18 @@ public class Inventory : MonoBehaviour
 
             //Emphasize the slot 
             for (int i = 0; i < items.Length; i++)
-                transform.GetChild(i).GetComponent<InvSlot>().selected = i == selected;
+            {
+            //Andreas edit
+            //transform.GetChild(i).GetComponent<InvSlot>().selected = i == selected;
+                if(i==selected)
+                {
+                    transform.GetChild(i).GetComponent<InvSlot>().selected=true;
+                    transform.GetChild(i).GetComponent<InvSlot>().SelectedColourApplied();
+                }
+                else transform.GetChild(i).GetComponent<InvSlot>().UnselectedColourApplied();
+            }
+
+                
 
             // Locks player until the inventory is closed 
             GameObject.Find("Hero").GetComponent<PlayerMovement>().enabled = !isOpen;
