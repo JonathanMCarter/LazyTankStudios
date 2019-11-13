@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2732102658492390453}
   - component: {fileID: 2812344429184245064}
   - component: {fileID: 6579784555464105001}
+  - component: {fileID: 1992442110589459111}
   m_Layer: 0
   m_Name: Eidolon
   m_TagString: Untagged
@@ -175,6 +176,25 @@ MonoBehaviour:
   CastTime: 0
   chaseSpeed: 2
   Target: {fileID: 0}
+--- !u!95 &1992442110589459111
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134906914390402852}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d6f535bd37d55854bb741823e9af8c88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5179088455035794191
 GameObject:
   m_ObjectHideFlags: 0
