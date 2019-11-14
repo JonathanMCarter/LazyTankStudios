@@ -37,7 +37,7 @@ public class InventoryItem : MonoBehaviour
         {
            // Debug.Log(collision.gameObject.name);
 
-            if (IM.Button_A())
+            if (IM.Button_B())
             {
                 // Jonathan - Making sure the ref is always to the player inv
                 for (int i = 0; i < FindObjectsOfType<Inventory>().Length; i++)
