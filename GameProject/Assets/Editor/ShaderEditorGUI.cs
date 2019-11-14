@@ -207,19 +207,19 @@ public class ShaderEditorGUI : ShaderGUI
 
 
 
-                if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
-                {
-                    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans1"));
-                }
-                else
-                {
-                    Mat.SetColor("_PalCol4", Color.clear);
-                }
+                //if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                //{
+                //    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans1"));
+                //}
+                //else
+                //{
+                //    Mat.SetColor("_PalCol4", Color.clear);
+                //}
 
-                if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
-                {
-                    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
-                }
+                //if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                //{
+                //    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                //}
 
                     break;
             case Palettes.Palette2:
@@ -253,19 +253,19 @@ public class ShaderEditorGUI : ShaderGUI
                 Mat.SetColor("_PalCol2", PermColours.Pal2[1]);
                 Mat.SetColor("_PalCol3", PermColours.Pal2[2]);
 
-                if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
-                {
-                    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans2"));
-                }
-                else
-                {
-                    Mat.SetColor("_PalCol4", Color.clear);
-                }
+                //if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                //{
+                //    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans2"));
+                //}
+                //else
+                //{
+                //    Mat.SetColor("_PalCol4", Color.clear);
+                //}
 
-                if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
-                {
-                    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
-                }
+                //if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                //{
+                //    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                //}
 
                 break;
             case Palettes.Palette3:
@@ -300,19 +300,19 @@ public class ShaderEditorGUI : ShaderGUI
                 Mat.SetColor("_PalCol2", PermColours.Pal3[1]);
                 Mat.SetColor("_PalCol3", PermColours.Pal3[2]);
 
-                if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
-                {
-                    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans3"));
-                }
-                else
-                {
-                    Mat.SetColor("_PalCol4", Color.clear);
-                }
+                //if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                //{
+                //    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans3"));
+                //}
+                //else
+                //{
+                //    Mat.SetColor("_PalCol4", Color.clear);
+                //}
 
-                if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
-                {
-                    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
-                }
+                //if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                //{
+                //    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                //}
 
                 break;
             case Palettes.Palette4:
@@ -347,19 +347,19 @@ public class ShaderEditorGUI : ShaderGUI
                 Mat.SetColor("_PalCol2", PermColours.Pal4[1]);
                 Mat.SetColor("_PalCol3", PermColours.Pal4[2]);
 
-                if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
-                {
-                    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans4"));
-                }
-                else
-                {
-                    Mat.SetColor("_PalCol4", Color.clear);
-                }
+                //if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                //{
+                //    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans4"));
+                //}
+                //else
+                //{
+                //    Mat.SetColor("_PalCol4", Color.clear);
+                //}
 
-                if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
-                {
-                    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
-                }
+                //if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                //{
+                //    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                //}
 
                 break;
             default:

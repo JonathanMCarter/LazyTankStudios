@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundPlayer : MonoBehaviour
 {
@@ -22,73 +23,28 @@ public class SoundPlayer : MonoBehaviour
         myNames.Add(audioName);
     }
 
-    public void PlayClip(string audioName)
+    public void PlayClip(string audioName, bool loopaudio)
     {
         for (int i = 0; i < myNames.Count; i++)
         {
-            if (myNames[i] == audioName) Playing(i);
+            Debug.Log("calling");
+            if (myNames[i] == audioName) Playing(i, loopaudio);
         }
     }
 
-    // Jonathan added this overload function so the clip volume could be changed
-    public void PlayClip(string audioName, float Volume = 1)
-    {
-        for (int i = 0; i < myNames.Count; i++)
-        {
-            if (myNames[i] == audioName) Playing(i, Volume);
-        }
-    }
 
-    // Jonathan added this overload function so the clip volume could be changed
-    public void PlayClip(string audioName, float Volume = 1, bool Loop = false)
-    {
-        for (int i = 0; i < myNames.Count; i++)
-        {
-            if (myNames[i] == audioName) Playing(i, Volume);
-        }
-    }
-
-    // Jonathan edited this function so the clip volume could be changed
-    private void Playing(int number, float Volume = 1, bool Loop = false)
+    // Jonathan edited this function so the clip could be looped for music
+    private void Playing(int number, bool Loop = false)
     {
         for (int i = 0; i < aud.Length; i++)
         {
             if (!aud[i].isPlaying)
             {
-                aud[i].clip = myClips[number];
-                aud[i].volume = Volume;
                 aud[i].loop = Loop;
+                aud[i].clip = myClips[number];
                 aud[i].Play();
                 return;
-
             }
         }
     }
-
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Alpha1))
-    //    {
-    //        aud.clip = myClips[0];
-    //        aud.Play();
-    //        print("Playing " + myNames[0]);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Alpha2))
-    //    {
-    //        aud.clip = myClips[1];
-    //        aud.Play();
-    //        print("Playing " + myNames[1]);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Alpha0))
-    //    {
-    //        aud.pitch += 0.1f;
-    //        print("Pitch up");
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Alpha9))
-    //    {
-    //        aud.pitch -= 0.1f;
-    //        print("Pitch Down");
-    //    }
-    //}
 }
