@@ -63,6 +63,7 @@ public class ShaderEditorGUI : ShaderGUI
     public Material Mat;
 
     //private Palettes OldPal;
+    private bool Forest;
 
     /// Overrides the default GUI to show the custom inspector, param are passed in by default from the ShaderGUI editor type
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
@@ -184,9 +185,26 @@ public class ShaderEditorGUI : ShaderGUI
                 EditorGUILayout.EndHorizontal();
 
 
-                Mat.SetColor("_PalCol1", PermColours.Pal1[0]);
-                Mat.SetColor("_PalCol2", PermColours.Pal1[1]);
-                Mat.SetColor("_PalCol3", PermColours.Pal1[2]);
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                Forest = EditorGUILayout.Toggle("Switch Plains/Forest?", Forest);
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+
+                if (Forest)
+                {
+                    Mat.SetColor("_PalCol1", PermColours.Pal1[1]);
+                    Mat.SetColor("_PalCol2", PermColours.Pal1[0]);
+                    Mat.SetColor("_PalCol3", PermColours.Pal1[2]);
+                }
+                else
+                {
+                    Mat.SetColor("_PalCol1", PermColours.Pal1[0]);
+                    Mat.SetColor("_PalCol2", PermColours.Pal1[1]);
+                    Mat.SetColor("_PalCol3", PermColours.Pal1[2]);
+                }
+
+
 
 
                 if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))

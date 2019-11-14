@@ -16,6 +16,7 @@ public class NewAIMove : MonoBehaviour
     bool Turn;
     bool TurnCount;
     bool ToggleDirection;
+    public bool Coridor;
     void Start()
     {
         TurnCount = true;
@@ -27,22 +28,29 @@ public class NewAIMove : MonoBehaviour
         me.transform.position = transform.position;
         if (SeenPlayer)
             RunToPlayer();
-        else
+        else if(!Coridor)
             RandomWander();
     }
     private void FixedUpdate()
     {
-            if(ToggleDirection || SeenPlayer)
-                MyRigid.velocity = transform.up * (MoveSpeed * Time.deltaTime);
-            else
-                MyRigid.velocity = transform.up * (-MoveSpeed * Time.deltaTime);
+        if (ToggleDirection || SeenPlayer || Coridor)
+        {
+            if (Coridor)
+                MyRigid.angularVelocity = 0;
+            Debug.Log("Should not be rotating");
+            MyRigid.velocity = transform.up * (MoveSpeed * Time.deltaTime);
+        }
+        else
+            MyRigid.velocity = transform.up * (-MoveSpeed * Time.deltaTime);
         if (Turn)
         {
             Debug.Log("Turning");
+            Debug.Log("Rotating");
             if (Direction < 50)
                 transform.Rotate(0, 0, RotateSpeed * Time.deltaTime);
-            else
+            else if(Direction >= 50)
                 transform.Rotate(0, 0, -RotateSpeed * Time.deltaTime);
+
         }
 
     }
@@ -79,7 +87,24 @@ public class NewAIMove : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-           SeenPlayer = true;
+            SeenPlayer = true;
+
+        if (collision.gameObject.CompareTag("Node"))
+        {
+
+            if (!Coridor)
+            {
+                GameObject MyObj = collision.gameObject;
+                transform.up = MyObj.GetComponent<AINode>().Directions();
+                Coridor = true;
+                ToggleDirection = true;
+            }
+        }
+        if (collision.gameObject.CompareTag("End") )
+        {
+            Coridor = false;
+        }
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
