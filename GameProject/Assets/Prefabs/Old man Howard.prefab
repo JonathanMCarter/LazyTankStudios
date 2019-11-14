@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: b8ce1703db0b34d48a85a7ca994fd708, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3297476793890213401, guid: c371ca0cf0865624cb9ecf98a076cbf3,
+  m_Sprite: {fileID: -8764926378464169742, guid: f7d73e9042e8ee64f9676490f30e7211,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -106,6 +106,11 @@ MonoBehaviour:
   Kills: []
   ItemsToBeCollected: []
   ItemsQuantities: 
+  DeliverGold: 0
+  reward: 0
+  rewardItems: []
+  rewardIdsAndQuantities: []
+  rewardGold: 0
   status: 0
 --- !u!61 &1076197130389972727
 BoxCollider2D:
@@ -190,6 +195,11 @@ MonoBehaviour:
   Kills: []
   ItemsToBeCollected: []
   ItemsQuantities: 
+  DeliverGold: 0
+  reward: 0
+  rewardItems: []
+  rewardIdsAndQuantities: []
+  rewardGold: 0
   status: 0
 --- !u!61 &9068766439883417986
 BoxCollider2D:
@@ -259,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 0}
-  dialogue: {fileID: 11400000, guid: fd5570201cd590d45887e0c0424003f0, type: 2}
+  dialogueEnglish: {fileID: 0}
+  dialogueGerman: {fileID: 0}
   questdialogue: {fileID: 0}
   movement: {fileID: 0}
