@@ -184,7 +184,12 @@ public class ShaderEditorGUI : ShaderGUI
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
 
-                Forest = EditorGUILayout.Toggle(Forest);
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                Forest = EditorGUILayout.Toggle("Switch Plains/Forest?", Forest);
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
 
                 if (Forest)
                 {
