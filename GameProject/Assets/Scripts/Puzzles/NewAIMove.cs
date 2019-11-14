@@ -5,13 +5,13 @@ public class NewAIMove : MonoBehaviour
 {
     public float MoveSpeed;
     public float RotateSpeed;
-    public Transform me;
     float WaitTime;
     float Direction;
+    float TurnTime;
+    public Transform me;
+    Rigidbody2D MyRigid;
     public Vector2 Paramiers;
     public Vector2 WaitVarables;
-    float TurnTime;
-    Rigidbody2D MyRigid;
     bool SeenPlayer;
     bool Turn;
     bool TurnCount;
@@ -32,15 +32,10 @@ public class NewAIMove : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(!SeenPlayer)
-        {
-            if(ToggleDirection)
+            if(ToggleDirection || SeenPlayer)
                 MyRigid.velocity = transform.up * (MoveSpeed * Time.deltaTime);
             else
                 MyRigid.velocity = transform.up * (-MoveSpeed * Time.deltaTime);
-        }
-        else
-         MyRigid.velocity = transform.up * (MoveSpeed * Time.deltaTime);
         if (Turn)
         {
             Debug.Log("Turning");
