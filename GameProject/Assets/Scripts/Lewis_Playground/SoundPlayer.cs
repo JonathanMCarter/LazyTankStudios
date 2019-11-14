@@ -23,6 +23,15 @@ public class SoundPlayer : MonoBehaviour
         myNames.Add(audioName);
     }
 
+    public void PlayClip(string audioName)
+    {
+        for (int i = 0; i < myNames.Count; i++)
+        {
+            Debug.Log("calling");
+            if (myNames[i] == audioName) Playing(i);
+        }
+    }
+
     public void PlayClip(string audioName, bool loopaudio)
     {
         for (int i = 0; i < myNames.Count; i++)
