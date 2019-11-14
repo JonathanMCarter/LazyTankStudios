@@ -1038,7 +1038,7 @@ MonoBehaviour:
   dashSpeedMultiplier: 2
   DashDuration: 0.3
   blockTIme: 1
-  AttackTime: 0
+  AttackTime: 0.3
   onIce: 0
   SlideSpeed: 100
 --- !u!114 &3257857658046344169
@@ -1107,11 +1107,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 7912010651862134246, guid: e040231afadd19b4d8ba5c98e526c491,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6908959419696246756, guid: e040231afadd19b4d8ba5c98e526c491,
         type: 3}
@@ -1187,7 +1182,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b8ce1703db0b34d48a85a7ca994fd708, type: 2}
+      objectReference: {fileID: 2100000, guid: 010395b9e4cc0b14e86bbc68e438d21b, type: 2}
     - target: {fileID: 1706753085508023764, guid: e040231afadd19b4d8ba5c98e526c491,
         type: 3}
       propertyPath: m_Sprite
