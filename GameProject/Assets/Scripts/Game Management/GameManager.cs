@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
  * Game Manager Script
@@ -46,6 +47,14 @@ public class GameManager : MonoBehaviour
     {
         TogglePlayerMovement();
         Menu.SetActive(false); //hides the menu
+    }
+
+    public void ExitToMenu()
+    {
+       SceneManager.LoadScene("Main Menu");
+        DoNotDes [] Gos = GameObject.FindObjectsOfType<DoNotDes>();
+        DoNotDes.Created = false;
+        foreach (DoNotDes go in Gos) if (go.gameObject != this.gameObject) Destroy(go.gameObject);
     }
 
     /// <summary>
