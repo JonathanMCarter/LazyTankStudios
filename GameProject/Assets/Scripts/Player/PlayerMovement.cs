@@ -55,7 +55,8 @@ public class PlayerMovement : MonoBehaviour
     //public SpriteRenderer[] Hearts;
     private HealthUI healthUI;
     private AudioManager audioManager;
-    private GameObject optionsMenu;
+    [HideInInspector]
+    public GameObject optionsMenu;
     //Andreas edit end--
 
     //Tony's Variables
