@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Tony - added hit bool
+
 namespace Test
 {
     public class Enemy : MonoBehaviour
@@ -18,6 +20,7 @@ namespace Test
         private bool HeartsCoRunning = false;
         //Andreas edit--
         private Animator myAnim;
+        private bool hit;
 
         private PlayerMovement player;
         private Inventory playerInventory;
@@ -33,6 +36,7 @@ namespace Test
 
         private void Awake()
         {
+            hit = false;
             player = FindObjectOfType<PlayerMovement>();
             playerInventory = FindObjectOfType<Inventory>();
             rootPos = transform.position;
@@ -82,8 +86,9 @@ namespace Test
                 playerInRange = true;
             }
 
-            if (collision.gameObject.tag == "Bullet")
+            if (collision.gameObject.tag == "Bullet" && !hit)
             {
+                hit = true;
                 //Toby: get bullet damage instead of always 1
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
@@ -95,11 +100,12 @@ namespace Test
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
                 Health -= damage;
-                //if (Health <= 0)
-                //    this.gameObject.SetActive(false);
+                if (Health <= 0)
+                    this.gameObject.SetActive(false);
             }
-            if (collision.gameObject.tag == "Sword")
+            if (collision.gameObject.tag == "Sword" && !hit)
             {
+                hit = true;
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
                 playerInventory.addXP(b.SourceItem, 1);
@@ -107,8 +113,8 @@ namespace Test
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
                 Health -= damage;
-                //if (Health <= 0)
-                //    this.gameObject.SetActive(false);
+                if (Health <= 0)
+                    this.gameObject.SetActive(false);
             }
         }
 
@@ -129,6 +135,8 @@ namespace Test
         private void OnTriggerExit2D(Collider2D other)
         {
             if (!gameObject.activeInHierarchy) return; //Added by LC
+
+            hit = false;
 
             if (!HeartsCoRunning)
             {

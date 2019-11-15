@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Tony - added hit bool
+
 namespace Final
 {
     [RequireComponent(typeof(BoxCollider2D))]
@@ -20,6 +23,7 @@ namespace Final
         private bool HeartsCoRunning = false;
         //Andreas edit--
         private Animator myAnim;
+        private bool hit;
 
         private PlayerMovement player;
         private Inventory playerInventory;
@@ -37,6 +41,7 @@ namespace Final
 
         private void Awake()
         {
+            hit = false;
             player = FindObjectOfType<PlayerMovement>();
             //Tag used to distinguish the player inventory from the vendor inventory
             playerInventory = GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>();
@@ -109,8 +114,9 @@ namespace Final
                 isPatrolling = false;
             }
 
-            if (collision.gameObject.tag == "Bullet")
+            if (collision.gameObject.tag == "Bullet" && !hit)
             {
+                hit = true;
                 //Toby: get bullet damage instead of always 1
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
@@ -122,11 +128,12 @@ namespace Final
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
                 Health -= damage;   
                 if (Health <= 0) playerInventory.addXP(b.SourceItem, 1);
-                //if (Health <= 0)
-                //    this.gameObject.SetActive(false);
+                if (Health <= 0)
+                    this.gameObject.SetActive(false);
             }
-            if (collision.gameObject.tag == "Sword")
+            if (collision.gameObject.tag == "Sword" && !hit)
             {
+                hit = true;
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
                 // Debug.Log("********** Enemy Should Be Taking Damage Now...");
@@ -134,8 +141,8 @@ namespace Final
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
                 Health -= damage;
                 if (Health <= 0) playerInventory.addXP(b.SourceItem, 1);
-                //if (Health <= 0)
-                //    this.gameObject.SetActive(false);
+                if (Health <= 0)
+                    this.gameObject.SetActive(false);
             }
 
         }
@@ -164,6 +171,7 @@ namespace Final
 
             if (!gameObject.activeInHierarchy) return; //Added by LC
 
+            hit = false;
 
             if (!HeartsCoRunning)
             {
