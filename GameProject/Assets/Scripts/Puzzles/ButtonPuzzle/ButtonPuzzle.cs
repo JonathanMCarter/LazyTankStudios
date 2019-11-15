@@ -7,8 +7,8 @@ public class ButtonPuzzle : MonoBehaviour
     public Sprite NewSprite;
     public ButtonPuzzle Button1;
     public ButtonPuzzle Button2;
-    public bool Pressed;
-    public bool Achieved;
+    bool Pressed;
+    bool Achieved;
     public ButtonDoor Hit;
     void Start()
     {
@@ -33,7 +33,7 @@ public class ButtonPuzzle : MonoBehaviour
             Achieved = true;
             gameObject.GetComponent<SpriteRenderer>().sprite = NewSprite;
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            Hit.Buttons++;
+            Hit._Buttons++;
         }
         else
         {

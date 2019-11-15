@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8621046974938356797}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.4239883, y: 1.4907112, z: 55.17427}
+  m_LocalPosition: {x: 3.4239883, y: 4.27, z: 55.17427}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 4170692436717858220}
@@ -125,7 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2b502af31c6a74499c76b26c7734b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Buttons: 0
+  buttons: 3
+  _Buttons: 0
 --- !u!61 &8621046974938356769
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164,7 +165,7 @@ GameObject:
   - component: {fileID: 8621046975712596671}
   - component: {fileID: 8621046975712596670}
   - component: {fileID: 8621046975712596669}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Leaver
   m_TagString: Leaver
   m_Icon: {fileID: 0}
@@ -179,7 +180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8621046975712596668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2639923, y: 1.5407143, z: 60.340275}
+  m_LocalPosition: {x: 3.44, y: 1.27, z: 60.340275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4170692436717858220}
@@ -277,6 +278,5 @@ MonoBehaviour:
   OldSprite: {fileID: 7590731814673968517, guid: 58e8b7c8f3afa404f807f8c53eee29fc,
     type: 3}
   Hit: {fileID: 8621046974938356798}
-  ColourArray: 01000100
-  NumberOfleavers: 4
+  ColourArray: 01000000
   ColourPuzzle: 1

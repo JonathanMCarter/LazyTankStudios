@@ -9,7 +9,7 @@ public class Switch : MonoBehaviour
     public Sprite ClosedSprite;
     public Sprite OpenSprite;
     public GameObject[] Doors;
-    public GameObject[] _MySwitch;
+    GameObject[] _MySwitch;
     // Start is called before the first frame update
 
     public enum SwitchType

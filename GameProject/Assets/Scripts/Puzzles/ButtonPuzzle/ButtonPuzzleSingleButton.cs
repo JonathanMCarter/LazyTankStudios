@@ -11,7 +11,6 @@ public class ButtonPuzzleSingleButton : MonoBehaviour
     public bool[] ColourArray;
     public bool ColourPuzzle;
     SpriteRenderer MySprite;
-    GameObject MyObject;
     void Start()
     {
         hit = false;
@@ -19,23 +18,23 @@ public class ButtonPuzzleSingleButton : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (MaxLeaverUses < ColourArray.Length)
+        if (ColourPuzzle)
         {
-            if (ColourPuzzle)
+            if (MaxLeaverUses < ColourArray.Length)
             {
-                if (ColourArray[Hit.Buttons])
+                if (ColourArray[Hit._Buttons])
                 {
                     GameObject[] Leaver = GameObject.FindGameObjectsWithTag("Leaver");
                     for (int i = 0; i < Leaver.Length; i++)
                     {
                         Leaver[i].GetComponent<ButtonPuzzleSingleButton>().MaxLeaverUses++;
                     }
-                    Hit.Buttons++;
+                    Hit._Buttons++;
                     spriteChange();
                 }
                 else
                 {
-                    Hit.Buttons = 0;
+                    Hit._Buttons = 0;
                     GameObject[] Sprites = GameObject.FindGameObjectsWithTag("Leaver");
                     for (int i = 0; i < Sprites.Length; i++)
                     {
@@ -44,12 +43,13 @@ public class ButtonPuzzleSingleButton : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                hit = true;
-                Hit.Buttons++;
-                spriteChange();
-            }
+        }
+        else
+        {
+            hit = true;
+            Hit._Buttons++;
+            spriteChange();
+            GetComponent<BoxCollider2D>().enabled = false;
         }
     }
     public void RevertSprite()

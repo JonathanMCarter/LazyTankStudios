@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PlayerPuzzleDamage : MonoBehaviour
 {
-    public float DamageTimer;
+    float DamageTimer;
     public float MaxTime;
-    public bool Active;
+    bool Active;
     public int Damage;
-    public float time;
     PlayerMovement Me;
     private void Start()
     {
@@ -19,14 +18,12 @@ public class PlayerPuzzleDamage : MonoBehaviour
         {
             if (DamageTimer >= MaxTime)
             {                              
-                Debug.Log("TakenDamage");
                 DamageTimer = 0;
                 Me.TakeDamage(Damage);
             }
             else
             {
-                time = Time.deltaTime;
-                DamageTimer += time;
+                DamageTimer = Time.deltaTime;
             }
         }       
     }

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 public class LightDoor : MonoBehaviour
 {
-    public int LitTiles;
+    
     public int TotalTiles;
     public BoxCollider2D Door;
     public Sprite Open;
     public Sprite Closed;
     public SpriteRenderer me;
+    [HideInInspector]
+    public int LitTiles;
     // Update is called once per frame
     private void Start()
     {
