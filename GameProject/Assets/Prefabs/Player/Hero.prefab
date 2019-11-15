@@ -677,7 +677,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3822497910915412742}
   - component: {fileID: 4643807344025198012}
-  - component: {fileID: 1856388433}
   - component: {fileID: 1856388434}
   - component: {fileID: 9191277529392257186}
   m_Layer: 0
@@ -728,22 +727,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1856388433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5206115320663918822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4625a95c20288458e58e249e75c7c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 0
-  Speed: {x: 0, y: 0}
-  Lifespan: 0
-  SourceItem: -1
 --- !u!50 &1856388434
 Rigidbody2D:
   serializedVersion: 4
@@ -1043,6 +1026,7 @@ MonoBehaviour:
   WeaponStats: {fileID: 11400000, guid: abcf959d57f979a4ba61b54708402f0d, type: 2}
   TakeDamageCD: 0
   DeathCanvas: {fileID: 0}
+  optionsMenu: {fileID: 0}
   health: 5
   attackHitBox: {fileID: 4643807344025198012}
   attackRotater: {fileID: 1743666071}
@@ -1223,15 +1207,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e040231afadd19b4d8ba5c98e526c491, type: 3}
---- !u!4 &6908959421032579267 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6908959419696246756, guid: e040231afadd19b4d8ba5c98e526c491,
-    type: 3}
-  m_PrefabInstance: {fileID: 1353264935}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7912010653214196417 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7912010651862134246, guid: e040231afadd19b4d8ba5c98e526c491,
+    type: 3}
+  m_PrefabInstance: {fileID: 1353264935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6908959421032579267 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6908959419696246756, guid: e040231afadd19b4d8ba5c98e526c491,
     type: 3}
   m_PrefabInstance: {fileID: 1353264935}
   m_PrefabAsset: {fileID: 0}
