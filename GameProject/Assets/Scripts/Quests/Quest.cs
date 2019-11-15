@@ -113,12 +113,16 @@ public class Quest : MonoBehaviour
     Inventory inv;
 
     static int currQuest = 0;
+
+    GameObject ActiveQuestSign;
     #endregion
 
     #endregion
 
     private void Awake()
     {
+        ActiveQuestSign = gameObject.transform.parent.GetChild(1).gameObject;
+
         //Get the reference to the new item prefab
         newItem = Resources.Load<GameObject>("New Item");
 
@@ -138,6 +142,7 @@ public class Quest : MonoBehaviour
         gameObject.transform.GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true : false;
         NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true :false;
         this.enabled = this.status == Status.Available;
+        ActiveQuestSign.SetActive(this.status == Status.Available);
     }
 
 
@@ -327,15 +332,21 @@ public class Quest : MonoBehaviour
                 this.enabled = this.gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
                 lastQuest = false;
                 currQuest++;
+                q.ActiveQuestSign.SetActive(true);
+                this.ActiveQuestSign.SetActive(false);
             }
             else if(SideQuest && currQuest>q.ID && q.status!=Status.Completed)
             {
-                q.enabled = q.gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
+                this.enabled = this.gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
+                this.ActiveQuestSign.SetActive(true);
             }
         }
 
         if (lastQuest)
+        {
             this.enabled = this.gameObject.transform.GetComponent<BoxCollider2D>().enabled = NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
+            this.ActiveQuestSign.SetActive(false);
+        }
     }
 
     //Offers rewards depending on the set up
