@@ -6,10 +6,10 @@ public class NewAIMove : MonoBehaviour
     public float MoveSpeed;
     public float RotateSpeed;
     float WaitTime;
-    float Direction;
+    public float Direction;
     float TurnTime;
     public Transform me;
-    //public Transform _me;
+    Transform Player;
     Rigidbody2D MyRigid;
     public Vector2 Paramiers;
     public Vector2 WaitVarables;
@@ -17,56 +17,38 @@ public class NewAIMove : MonoBehaviour
     bool Turn;
     bool TurnCount;
     bool ToggleDirection;
-    public bool Coridor;
     void Start()
     {
         TurnCount = true;
         MyRigid = GetComponent<Rigidbody2D>();
     }
-    // Update is called once per frame
     void Update()
-    { 
-         me.transform.position = transform.position;
-        //_me.transform.position = transform.position;
+    {
+        me.transform.position = transform.position;
         if (SeenPlayer)
             RunToPlayer();
-        else if(!Coridor)
+        else
             RandomWander();
     }
     private void FixedUpdate()
     {
-        if (ToggleDirection || SeenPlayer || Coridor)
+        if (ToggleDirection || SeenPlayer)
         {
-            if (Coridor)
+            ToggleDirection = true;
+            if (!SeenPlayer)
+
                 MyRigid.angularVelocity = 0;
-            Debug.Log("Should not be rotating");
             MyRigid.velocity = transform.up * (MoveSpeed * Time.deltaTime);
         }
         else
             MyRigid.velocity = transform.up * (-MoveSpeed * Time.deltaTime);
         if (Turn)
         {
-            Debug.Log("Turning");
-            Debug.Log("Rotating");
             if (Direction < 50)
                 transform.Rotate(0, 0, RotateSpeed * Time.deltaTime);
-            else if(Direction >= 50)
+            else if (Direction >= 50)
                 transform.Rotate(0, 0, -RotateSpeed * Time.deltaTime);
         }
-
-    }
-    public void Node(Vector2 Direction)
-    {
-        if (!Coridor)
-        {
-            transform.up = Direction;
-            Coridor = true;
-            ToggleDirection = true;
-        }
-    }
-    public void LeaveNode()
-    {
-        Coridor = false;
     }
     void RandomWander()
     {
@@ -101,28 +83,19 @@ public class NewAIMove : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            SeenPlayer = true;
-
-        //if (collision.gameObject.CompareTag("Node"))
-        //{
-
-        //    if (!Coridor)
-        //    {
-        //        GameObject MyObj = collision.gameObject;
-        //        transform.up = MyObj.GetComponent<AINode>().Directions();
-        //        Coridor = true;
-        //        ToggleDirection = true;
-        //    }
-        //}
-        //if (collision.gameObject.CompareTag("End") )
-        //{
-        //    Coridor = false;
-        //}
+        {
+            Player = collision.gameObject.transform;
+                SeenPlayer = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            SeenPlayer = false;
+        {
+                SeenPlayer = false;
+                ToggleDirection = false;
+                Player = null;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

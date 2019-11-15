@@ -125,7 +125,15 @@ public class DialogueScript : MonoBehaviour
     // Changes the active file in the script
     public void ChangeFile(DialogueFile Input)
     {
-        File = Input;
+        if (Input)
+        {
+            File = Input;
+        }
+        else
+        {
+            Debug.LogError("No File Found");
+        }
+
         Reset();
     }
 
