@@ -4,6 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
+
+
+
+//Created by Gabriel Potamianos
+//Date:
+//Last edit: 15th Nov 2019
+//Reason: Bug fixing throughout the script -SideQuests-
+//
+//
+//
+
 public class Quest : MonoBehaviour
 {
     #region Variables
@@ -15,6 +26,8 @@ public class Quest : MonoBehaviour
     //Type                 -   To define if the player has to return to someone in order to complete the quest
     public enum Type { Return, NonReturn };
     public Type type;
+
+    public bool SideQuest;
 
     //NPC                  -   To define the GameObject the player has to return to   
     public GameObject NPCToReturnTo;
@@ -76,7 +89,7 @@ public class Quest : MonoBehaviour
 
 
     //Items Status         -   Defines if a quest is completed/Ongoing/Available or Not Available
-    public enum Status { NotAvailable, Available, OnGoing, Completed };
+    public enum Status { NotAvailable, Available, OnGoing, ReadyToComplete, Completed };
 
     [Space(15)]
     public Status status;
@@ -98,6 +111,8 @@ public class Quest : MonoBehaviour
 
     //Inventory            -   Reference to the player inventory
     Inventory inv;
+
+    static int currQuest = 0;
     #endregion
 
     #endregion
@@ -121,28 +136,30 @@ public class Quest : MonoBehaviour
 
         //Disable all other quests within the game based on the its status 
         gameObject.transform.GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true : false;
+        NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true :false;
         this.enabled = this.status == Status.Available;
     }
 
 
     private void Update()
     {
+        print(gameObject.name + " THIS IS THE ID: " + this.ID);
+        print("CURRNET QUEST ID: " + currQuest);
         //Checks NPC gameObject availability and the type of the Quest
         if (NPCToReturnTo && type.Equals(Type.Return))
         {
             //Checks the number of colliders over the NPC (Starts from 1 because every NPC has an interaction zone with a BoxCollider2D attached)
             //Also checks for the status of the quest
             if (NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 1
-                && status.Equals(Status.Completed))
+                && status.Equals(Status.ReadyToComplete))
             {
                 //Display Quest Completed Dialogue and Enable Next Quest
                 displayQuestCompletedDialogue();
                 findNextQuest();
-
             }
         }
         //This means type is nonreturn and once it is completed display quest completed dialogue and enable next quest
-        else if (status.Equals(Status.Completed))
+        else if (status.Equals(Status.ReadyToComplete))
         {
             //Display Quest Completed Dialogue and Enable Next Quest
             displayQuestCompletedDialogue();
@@ -161,10 +178,11 @@ public class Quest : MonoBehaviour
             {
 
                 //Set status completed
-                status = Status.Completed;
-
-                //Enable NPC To Return To the BoxCollider2D component in order to be able to interact with its
-                NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled ? true : true;
+                status = Status.ReadyToComplete;
+                
+                if(type==Type.Return)
+                    //Enable NPC To Return To the BoxCollider2D component in order to be able to interact with its
+                    NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
             }
 
 
@@ -245,48 +263,79 @@ public class Quest : MonoBehaviour
             offerReward(reward);
 
         }
-
+        status = Status.Completed;
 
     }
+
 
     //Finds the next quest based on ID
     public void findNextQuest()
     {
-        bool lastQuest = true;
+        #region shitcode
+        //print("QUEST STARTS HERE ----------------------------------------------------------------");
+        //bool lastQuest = true;
+        //List<Quest> ActiveQuests=new List<Quest>();
+        //foreach (Quest component in quests)
+        //{
+        //    if(lastQuest && component!= this)
+        //        lastQuest = component.gameObject == gameObject ? false : true;
+        //    if (!lastQuest)
+        //        ActiveQuests.Add(component);
 
-        foreach (Quest component in quests)
+
+        //    //If there is a next quest enables it + its box collider
+        //    if (component.ID == this.ID + 1)
+        //    {
+        //        component.enabled = component.gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
+        //        component.status = Status.Available;
+
+        //        //Disable the current quest
+        //        this.enabled = component==this?true:false;
+
+        //        //If the next quest is on the same game object this is not the last quest
+
+        //    }
+        //    else if(lastQuest && component.status!=Status.Available)
+        //    {
+        //        //Secure check to maintain the completed quests disabled
+        //        component.enabled = component.gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
+        //        component.status = Status.NotAvailable;
+        //        this.enabled = false;
+
+        //    }
+        //}
+
+        ////If it is the last quest on this game object disable it and its box collider
+        //if (lastQuest)
+        //{
+        //    this.enabled = !lastQuest;
+        //    this.GetComponent<BoxCollider2D>().enabled = !lastQuest;
+        //}
+        //print("QUEST ENDS HERE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        //foreach (Quest q in ActiveQuests)
+        //{ 
+        //    q.enabled = q.gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
+        //    q.status = Status.Available;
+        //}
+        #endregion
+        bool lastQuest=true;
+        foreach (Quest q in quests)
         {
-            //If there is a next quest enables it + its box collider
-            if (component.ID == this.ID + 1)
+            if (q.ID == this.ID + 1 && !SideQuest)
             {
-                component.enabled = component.gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
-                component.status = Status.Available;
-
-                //Disable the current quest
-                this.enabled = false;
-
-                //If the next quest is on the same game object this is not the last quest
-                lastQuest = component.gameObject == gameObject ? false : true;
-
+                q.enabled = q.gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
+                this.enabled = this.gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
+                lastQuest = false;
+                currQuest++;
             }
-            else
+            else if(SideQuest && currQuest>q.ID && q.status!=Status.Completed)
             {
-                //Secure check to maintain the completed quests disabled
-                component.enabled = component.gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
-                component.status = Status.NotAvailable;
-                this.enabled = false;
-
+                q.enabled = q.gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
             }
         }
 
-        //If it is the last quest on this game object disable it and its box collider
         if (lastQuest)
-        {
-            this.enabled = false;
-            this.GetComponent<BoxCollider2D>().enabled = false;
-        }
-
-
+            this.enabled = this.gameObject.transform.GetComponent<BoxCollider2D>().enabled = NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
     }
 
     //Offers rewards depending on the set up

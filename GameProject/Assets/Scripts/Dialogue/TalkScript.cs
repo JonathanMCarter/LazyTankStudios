@@ -88,4 +88,9 @@ public class TalkScript : MonoBehaviour
 
         }
     }
+
+    public bool isItTalking()
+    {
+        return talking;
+    }
 }
