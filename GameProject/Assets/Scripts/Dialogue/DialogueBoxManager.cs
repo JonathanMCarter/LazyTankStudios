@@ -25,7 +25,7 @@ public class DialogueBoxManager : MonoBehaviour
 
     private void Start()
     {
-        gameObject.SetActive(false); //Added by LC. Start runs after Awake- allows other GO to get reference before disabling it.
+        gameObject.GetComponent<CanvasGroup>().alpha = 0; //Added by LC. Start runs after Awake- allows other GO to get reference before disabling it.
     }
     void OnEnable()
     {

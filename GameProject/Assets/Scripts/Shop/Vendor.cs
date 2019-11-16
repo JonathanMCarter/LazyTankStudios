@@ -48,6 +48,8 @@ public class Vendor : MonoBehaviour
     private GameObject Panel;
     private bool TempWaitBool = false; //temp add by LC
 
+    public List<int> itemsBeingSold;
+
     private void Awake()//changed to awake so can get reference before Inventory panel is deactived
     {
         //Andreas edit

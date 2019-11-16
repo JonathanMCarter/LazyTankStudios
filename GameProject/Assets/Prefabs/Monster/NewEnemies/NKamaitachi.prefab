@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1667148040340193284}
   m_Layer: 11
   m_Name: NewEnemyAI
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,8 +87,14 @@ MonoBehaviour:
   RotateSpeed: 100
   Direction: 0
   me: {fileID: 1389166425718903790}
+  MyRigid: {fileID: 0}
   Paramiers: {x: 0.2, y: 1}
   WaitVarables: {x: 0.2, y: 1}
+  Hearts:
+  - {fileID: 12384998974649211}
+  - {fileID: 1408229579897637557}
+  Health: 2
+  DamageCD: 0.3
 --- !u!58 &1667148040340193284
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -105,27 +111,6 @@ CircleCollider2D:
   m_Offset: {x: 0.018157959, y: -0.14831543}
   serializedVersion: 2
   m_Radius: 0.97275543
---- !u!50 &1667148040377290003
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090601145923021412}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!1 &1667148040515708720
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +123,7 @@ GameObject:
   - component: {fileID: 1667148040515708721}
   m_Layer: 0
   m_Name: NKamaitachi
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,6 +165,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!50 &1667148040377290003
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090601145923021412}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &1667148040929530112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,6 +197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Kamaitachi
+      objectReference: {fileID: 0}
+    - target: {fileID: 730050316150766436, guid: 9601121d7bbf12d44b53787dd46a20be,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 316846052727063278, guid: 9601121d7bbf12d44b53787dd46a20be,
         type: 3}
@@ -278,6 +289,18 @@ GameObject:
 --- !u!4 &1389166425718903790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 316846052727063278, guid: 9601121d7bbf12d44b53787dd46a20be,
+    type: 3}
+  m_PrefabInstance: {fileID: 1667148040929530112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &12384998974649211 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1661518578848539259, guid: 9601121d7bbf12d44b53787dd46a20be,
+    type: 3}
+  m_PrefabInstance: {fileID: 1667148040929530112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1408229579897637557 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 336062533849373621, guid: 9601121d7bbf12d44b53787dd46a20be,
     type: 3}
   m_PrefabInstance: {fileID: 1667148040929530112}
   m_PrefabAsset: {fileID: 0}

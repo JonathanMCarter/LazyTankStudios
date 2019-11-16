@@ -80,16 +80,19 @@ public class SoundCreator : MonoBehaviour
         A5,
         Bb5,
         B5,
+        whiteNoise,
 
 
     }
     public string AudioName;
-    public int AudioLength;
+    int AudioLength;
     public int BeatsPerSecond;
     int position = 0;
-    public int samplerate = 44100;
-    public float[] frequency;
+    int samplerate = 44100;
+    float[] frequency;
     float frequency_current;
+    public float Volumn, Pitch;
+
     public Notes[] MyTune;
 
 
@@ -106,17 +109,21 @@ public class SoundCreator : MonoBehaviour
         if (BeatsPerSecond == 0) BeatsPerSecond = 1;
         AudioLength = BeatsPerSecond;
         frequency_current = frequency[0];
-        AudioClip AClip = AudioClip.Create("MyClip", samplerate / AudioLength, 1, samplerate, false, OnAudioRead, OnAudioSetPosition);
+
+
+
+
+        AudioClip AClip = AudioClip.Create("a", samplerate / AudioLength, 1, samplerate, false, OnAudioRead, OnAudioSetPosition);
         AudioClip TheClip = null;
         for (int i = 1; i < frequency.Length; i++)
         {
             frequency_current = frequency[i];
-            AudioClip myClip = AudioClip.Create("MyClip", samplerate / AudioLength, 1, samplerate, false, OnAudioRead, OnAudioSetPosition);
+            AudioClip myClip = AudioClip.Create("a", samplerate / AudioLength, 1, samplerate, false, OnAudioRead, OnAudioSetPosition);
             TheClip = MergeClips(AClip, myClip);
             AClip = TheClip;
         }
 
-        GetComponentInParent<SoundPlayer>().AddSoundClip(TheClip, AudioName);
+        GetComponentInParent<SoundPlayer>().AddSoundClip(TheClip, Volumn, Pitch);
     }
 
     void OnAudioRead(float[] data)
@@ -124,7 +131,10 @@ public class SoundCreator : MonoBehaviour
         int count = 0;
         while (count < data.Length)
         {
-            data[count] = Mathf.Sign(Mathf.Sin(2 * Mathf.PI * frequency_current * position / samplerate));
+            if (frequency_current == 73) data[count] = Mathf.Sign(Mathf.Sin(2 * Mathf.PI * Random.Range(-1f, 1f) / samplerate));
+            else data[count] = Mathf.Sign(Mathf.Sin(2 * Mathf.PI * frequency_current * position / samplerate));
+
+
             position++;
             count++;
         }
@@ -151,17 +161,19 @@ public class SoundCreator : MonoBehaviour
         buffer2.CopyTo(data, length);
         length = clip1.samples + clip2.samples;
 
-        AudioClip newclip = AudioClip.Create("CombinedClip", length, 1, samplerate, false);
+        AudioClip newclip = AudioClip.Create(AudioName, length, 1, samplerate, false);
         newclip.SetData(data, 0);
         return newclip;
     }
 
     void CalculateFrequencies()
     {
-        float[] temp = frequency;
         for (int i = 0; i < frequency.Length; i++)
         {
-            if (frequency[i] != 0) frequency[i] = 65.41f * Mathf.Pow(1.05946f, frequency[i]);
+            //73 = whitenoise
+            if (frequency[i] != 0 && (frequency[i] != 73)) frequency[i] = 65.41f * Mathf.Pow(1.05946f, frequency[i]);
         }
     }
+
+
 }

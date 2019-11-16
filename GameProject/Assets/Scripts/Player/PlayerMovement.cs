@@ -79,7 +79,7 @@ public float AttackTime;
     //Items enum, should matchup with the item IDs i.e. Sword is in slot 0 and has ID 0 therefore SWORD is 0 here
     enum ITEMS
     {
-        SWORD, BLAZBOOTS, ICEBOW, SHIELDSHARPTON, TELERUNE, ELIXIRLIFE, ELIXIRSTR
+        SWORD, BLAZBOOTS, ICEBOW, SHIELDSHARPTON, TELERUNE, ELIXIRLIFE, ELIXIRSTR, ELIXIRHEARTS, WATERSKIN, FURCOAT, FORESTITEM
     }
 
     private void Start()
@@ -178,6 +178,7 @@ public float AttackTime;
             //Andreas edit--
             //myInventory.open();
             optionsMenu.SetActive(true);
+            FindObjectOfType<GameManager>().TogglePauseEnemies();
             //Andreas edit end --
             this.enabled = false;
         }
@@ -458,8 +459,10 @@ public float AttackTime;
     IEnumerator DamageCooldown() //temp add by LC
     {
         TakeDamageCD = !TakeDamageCD;
+        Physics2D.IgnoreLayerCollision(9,10,true);
         yield return new WaitForSeconds(0.5f);
         TakeDamageCD = !TakeDamageCD;
+        Physics2D.IgnoreLayerCollision(9,10,false);
     }
 
     ///<summary>

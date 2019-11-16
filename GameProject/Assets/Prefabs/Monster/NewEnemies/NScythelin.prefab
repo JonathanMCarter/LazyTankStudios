@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 334273615340872750}
   m_Layer: 0
   m_Name: NScythelin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,6 +86,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scythelin
+      objectReference: {fileID: 0}
+    - target: {fileID: 7346692012035720865, guid: bf9400638acce2d4eaf748da6301085b,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4833508792340894646, guid: bf9400638acce2d4eaf748da6301085b,
         type: 3}
@@ -175,6 +180,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 334273615986784821}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &6484132439581175940 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6728325119808096945, guid: bf9400638acce2d4eaf748da6301085b,
+    type: 3}
+  m_PrefabInstance: {fileID: 334273615986784821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2920498147113522678 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3180708478369804227, guid: bf9400638acce2d4eaf748da6301085b,
+    type: 3}
+  m_PrefabInstance: {fileID: 334273615986784821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &334273616692951608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,11 +259,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: me
-      value: 
-      objectReference: {fileID: 5167747213951609219}
     - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_Offset.y
@@ -257,6 +269,31 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 1.0224628
       objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Hearts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: me
+      value: 
+      objectReference: {fileID: 5167747213951609219}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Health
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Hearts.Array.data[0]
+      value: 
+      objectReference: {fileID: 6484132439581175940}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Hearts.Array.data[1]
+      value: 
+      objectReference: {fileID: 2920498147113522678}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
 --- !u!4 &4408907540248353203 stripped
