@@ -7,7 +7,6 @@ public class SoundPlayer : MonoBehaviour
 {
 
     public List<AudioClip> myClips;
-    public List<string> myNames;
     AudioSource[] aud;
     
 
@@ -20,24 +19,22 @@ public class SoundPlayer : MonoBehaviour
     public void AddSoundClip(AudioClip myAud, string audioName)
     {
         myClips.Add(myAud);
-        myNames.Add(audioName);
+        
     }
 
     public void PlayClip(string audioName)
     {
-        for (int i = 0; i < myNames.Count; i++)
+        for (int i = 0; i < myClips.Count; i++)
         {
-            Debug.Log("calling");
-            if (myNames[i] == audioName) Playing(i);
+           if (myClips[i] != null) if (myClips[i].name== audioName) Playing(i);
         }
     }
 
     public void PlayClip(string audioName, bool loopaudio)
     {
-        for (int i = 0; i < myNames.Count; i++)
+        for (int i = 0; i < myClips.Count; i++)
         {
-            Debug.Log("calling");
-            if (myNames[i] == audioName) Playing(i, loopaudio);
+            if (myClips[i].name == audioName) Playing(i, loopaudio);
         }
     }
 
