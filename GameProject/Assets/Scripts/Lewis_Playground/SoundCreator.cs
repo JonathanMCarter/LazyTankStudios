@@ -91,6 +91,8 @@ public class SoundCreator : MonoBehaviour
     int samplerate = 44100;
     float[] frequency;
     float frequency_current;
+    public float Volumn, Pitch;
+
     public Notes[] MyTune;
 
 
@@ -121,7 +123,7 @@ public class SoundCreator : MonoBehaviour
             AClip = TheClip;
         }
 
-        GetComponentInParent<SoundPlayer>().AddSoundClip(TheClip, AudioName);
+        GetComponentInParent<SoundPlayer>().AddSoundClip(TheClip, Volumn, Pitch);
     }
 
     void OnAudioRead(float[] data)
@@ -131,6 +133,8 @@ public class SoundCreator : MonoBehaviour
         {
             if (frequency_current == 73) data[count] = Mathf.Sign(Mathf.Sin(2 * Mathf.PI * Random.Range(-1f, 1f) / samplerate));
             else data[count] = Mathf.Sign(Mathf.Sin(2 * Mathf.PI * frequency_current * position / samplerate));
+
+
             position++;
             count++;
         }

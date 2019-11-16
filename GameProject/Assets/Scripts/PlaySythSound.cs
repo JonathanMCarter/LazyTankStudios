@@ -12,6 +12,5 @@ public class PlaySythSound : MonoBehaviour
     void Start()
     {
         SP = GetComponentInChildren<SoundPlayer>();
-        SP.PlayClip(ClipSound, true);
     }
 }
