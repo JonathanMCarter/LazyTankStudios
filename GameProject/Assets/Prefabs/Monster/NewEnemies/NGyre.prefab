@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5181888656151315788}
   m_Layer: 0
   m_Name: NGyre
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,6 +81,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gyre
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592886192079651103, guid: 4573b4f74e4c5be4d9487ea87a3d8d97,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5746586620119897096, guid: 4573b4f74e4c5be4d9487ea87a3d8d97,
         type: 3}
@@ -155,6 +160,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 709430083836934845}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &6382215300679319456 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5857575523598648605, guid: 4573b4f74e4c5be4d9487ea87a3d8d97,
+    type: 3}
+  m_PrefabInstance: {fileID: 709430083836934845}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &5659644109328270331 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5139590910777473350, guid: 4573b4f74e4c5be4d9487ea87a3d8d97,
+    type: 3}
+  m_PrefabInstance: {fileID: 709430083836934845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5366568073870605662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,9 +241,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
+      propertyPath: Hearts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
       propertyPath: me
       value: 
       objectReference: {fileID: 5073196071125069493}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Health
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Hearts.Array.data[0]
+      value: 
+      objectReference: {fileID: 6382215300679319456}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Hearts.Array.data[1]
+      value: 
+      objectReference: {fileID: 5659644109328270331}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
 --- !u!4 &8355834426991419093 stripped

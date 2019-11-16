@@ -178,6 +178,7 @@ public float AttackTime;
             //Andreas edit--
             //myInventory.open();
             optionsMenu.SetActive(true);
+            FindObjectOfType<GameManager>().TogglePauseEnemies();
             //Andreas edit end --
             this.enabled = false;
         }
@@ -458,8 +459,10 @@ public float AttackTime;
     IEnumerator DamageCooldown() //temp add by LC
     {
         TakeDamageCD = !TakeDamageCD;
+        Physics2D.IgnoreLayerCollision(9,10,true);
         yield return new WaitForSeconds(0.5f);
         TakeDamageCD = !TakeDamageCD;
+        Physics2D.IgnoreLayerCollision(9,10,false);
     }
 
     ///<summary>

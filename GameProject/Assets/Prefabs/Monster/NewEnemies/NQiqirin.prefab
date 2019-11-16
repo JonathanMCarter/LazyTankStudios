@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4476287505475842150}
   m_Layer: 0
   m_Name: NQiqirin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,6 +64,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Qiqirin
+      objectReference: {fileID: 0}
+    - target: {fileID: 6068560492472243840, guid: 2d36e85bf2253284eab855f2fe25cdb3,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7661148978780707487, guid: 2d36e85bf2253284eab855f2fe25cdb3,
         type: 3}
@@ -142,6 +147,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4476287505398346748}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &836264768185670260 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3856758745772599688, guid: 2d36e85bf2253284eab855f2fe25cdb3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4476287505398346748}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &3921445722672951690 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 609448156919022198, guid: 2d36e85bf2253284eab855f2fe25cdb3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4476287505398346748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4476287506035276571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -211,9 +228,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
+      propertyPath: Hearts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
       propertyPath: me
       value: 
       objectReference: {fileID: 6075120201670306147}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Health
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Hearts.Array.data[0]
+      value: 
+      objectReference: {fileID: 836264768185670260}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Hearts.Array.data[1]
+      value: 
+      objectReference: {fileID: 3921445722672951690}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
 --- !u!4 &545768830258878608 stripped

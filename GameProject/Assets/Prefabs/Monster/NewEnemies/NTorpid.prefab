@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3746700685741366332}
   m_Layer: 0
   m_Name: NTorpid
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,6 +86,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Torpid
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560702775571044455, guid: 736aa0b43dfb14e47914979bdb936a71,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5624328305266838896, guid: 736aa0b43dfb14e47914979bdb936a71,
         type: 3}
@@ -165,6 +170,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3746700685739434452}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &1576778149545163202 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2746953000878250006, guid: 736aa0b43dfb14e47914979bdb936a71,
+    type: 3}
+  m_PrefabInstance: {fileID: 3746700685739434452}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6572629189485773899 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7550389231351227807, guid: 736aa0b43dfb14e47914979bdb936a71,
+    type: 3}
+  m_PrefabInstance: {fileID: 3746700685739434452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3746700686006425249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -232,11 +249,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: me
-      value: 
-      objectReference: {fileID: 9075690751705017508}
     - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_Offset.y
@@ -247,6 +259,31 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.54293823
       objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Hearts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: me
+      value: 
+      objectReference: {fileID: 9075690751705017508}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Health
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Hearts.Array.data[0]
+      value: 
+      objectReference: {fileID: 1576778149545163202}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Hearts.Array.data[1]
+      value: 
+      objectReference: {fileID: 6572629189485773899}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
 --- !u!4 &752935072007451946 stripped

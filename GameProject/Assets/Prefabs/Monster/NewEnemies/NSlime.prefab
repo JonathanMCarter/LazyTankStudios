@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 5813514035140502283}
   m_Layer: 11
   m_Name: NewEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,8 +124,14 @@ MonoBehaviour:
   RotateSpeed: 100
   Direction: 0
   me: {fileID: 3781581551768258313}
+  MyRigid: {fileID: 0}
   Paramiers: {x: 0.2, y: 1}
   WaitVarables: {x: 0.2, y: 1}
+  Hearts:
+  - {fileID: 2769335117356615176}
+  - {fileID: 6612929034398358318}
+  Health: 2
+  DamageCD: 0.3
 --- !u!58 &5813514035140502283
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -154,7 +160,7 @@ GameObject:
   - component: {fileID: 5813514035298749839}
   m_Layer: 0
   m_Name: NSlime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,6 +289,18 @@ GameObject:
 --- !u!4 &3781581551768258313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7266312070471349925, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+    type: 3}
+  m_PrefabInstance: {fileID: 5813514035953578412}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2769335117356615176 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8557797702141540260, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+    type: 3}
+  m_PrefabInstance: {fileID: 5813514035953578412}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6612929034398358318 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 821933171660352130, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
     type: 3}
   m_PrefabInstance: {fileID: 5813514035953578412}
   m_PrefabAsset: {fileID: 0}

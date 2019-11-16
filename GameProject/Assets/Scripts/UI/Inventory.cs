@@ -122,6 +122,7 @@ public class Inventory : MonoBehaviour
         string effectToPlay = isOpen ? "Inventory_Open" : "Inventory_Close";
         if (audioManager != null) audioManager.Play(effectToPlay);
         if(!isOpen)GameObject.FindGameObjectWithTag("Map").SetActive(false);
+        if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
         //Andreas edit end--
         selected = 0;
     }

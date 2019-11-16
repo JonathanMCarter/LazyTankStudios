@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 7172440659452101106}
   m_Layer: 11
   m_Name: NewEnemyAI (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,8 +407,14 @@ MonoBehaviour:
   RotateSpeed: 100
   Direction: 0
   me: {fileID: 0}
+  MyRigid: {fileID: 0}
   Paramiers: {x: 0.2, y: 1}
   WaitVarables: {x: 0.2, y: 1}
+  Hearts:
+  - {fileID: 5383703316157745577}
+  - {fileID: 511389837942745062}
+  Health: 2
+  DamageCD: 0.3
 --- !u!58 &7172440659452101106
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -437,7 +443,7 @@ GameObject:
   - component: {fileID: 5309866376621160968}
   m_Layer: 0
   m_Name: NKelpie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
