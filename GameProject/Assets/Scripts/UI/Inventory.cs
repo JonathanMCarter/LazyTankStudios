@@ -32,17 +32,19 @@ public class Inventory : MonoBehaviour
     //array to store the xp for each item
     public int[] itemXP;
 
+    Dictionary<int, InvSlot> slots = new Dictionary<int, InvSlot>();
+
     public bool isOpen;
 
     InputManager IM;
 
-    int Coins=0;
+    static int Coins = 0;
 
     #region Gabriel Variables
 
     [HideInInspector]
-    public const int ROWS = 3;
     public const int COLUMN = 4;
+    public const int ROWS = 3;
     public int selected = 0;
     int column = 4;
     public bool VendorMode;
@@ -58,7 +60,7 @@ public class Inventory : MonoBehaviour
     public void addItem(int id, int quantity, bool remove)
     {
         items[id] = !remove;
-        InvSlot slot = transform.GetChild(id).GetComponent<InvSlot>();
+        InvSlot slot = slots[id];
         slot.hasItem = !remove;
         slot.quantity = remove ? 0 : quantity;
         slot.updateIcon();
@@ -71,7 +73,7 @@ public class Inventory : MonoBehaviour
     {
         quantity = Increase ? quantity += 1 : quantity -= 1;
         items[id] = !remove;
-        InvSlot slot = transform.GetChild(id).GetComponent<InvSlot>();
+        InvSlot slot = slots[id];
         slot.hasItem = !remove;
         slot.quantity = remove ? 0 : quantity;
         slot.updateIcon();
@@ -85,6 +87,11 @@ public class Inventory : MonoBehaviour
         return items[id];
     }
 
+    public int getSelectedID()
+    {
+        return transform.GetChild(selected).GetComponent<InvSlot>().ID;
+    }
+
     //Equip or unequip item as long as player has item
     //id = the item ID
     //equip = equipping or unequipping
@@ -93,7 +100,7 @@ public class Inventory : MonoBehaviour
     {
         if (items[id])
         {
-            InvSlot slot = transform.GetChild(id).GetComponent<InvSlot>();
+            InvSlot slot = slots[id];
             slot.equip(equip ? button : 0);
             switch (button) {
                 case 1:
@@ -105,13 +112,13 @@ public class Inventory : MonoBehaviour
                     equippedA = equippedA == equippedB ? -1 : equippedA;
                     break;
             }
-            for (int i = 0; i < items.Length; i++) transform.GetChild(i).GetComponent<InvSlot>().equip(i == equippedA ? 1 : i == equippedB ? 2 : 0);
+            for (int i = 0; i < items.Length; i++) slots[i].equip(i == equippedA ? 1 : i == equippedB ? 2 : 0);
         }
     }
 
     public bool isEquipped(int id, int button)
     {
-        return transform.GetChild(id).GetComponent<InvSlot>().equipped == button;
+        return slots[id].equipped == button;
     }
 
     //Open/close inventory
@@ -121,8 +128,10 @@ public class Inventory : MonoBehaviour
         //Andreas edit--
         string effectToPlay = isOpen ? "Inventory_Open" : "Inventory_Close";
         if (audioManager != null) audioManager.Play(effectToPlay);
-        if(!isOpen)GameObject.FindGameObjectWithTag("Map").SetActive(false);
+        //if(!isOpen)GameObject.FindGameObjectWithTag("Map").SetActive(false);
         if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
+        if(!isOpen && !VendorMode)GameObject.FindGameObjectWithTag("Map").SetActive(false);
+        VendorMode = false;
         //Andreas edit end--
         selected = 0;
     }
@@ -148,7 +157,7 @@ public class Inventory : MonoBehaviour
     public bool canItemRecieveXP(int ID)
     {
         if (ID < 0 || ID >= items.Length) return false;
-        return transform.GetChild(ID).GetComponent<InvSlot>().recievesXP;
+        return slots[ID].recievesXP;
     }
 
     #endregion
@@ -162,8 +171,8 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < items.Length; i++)
         {
             if (!state)
-                transform.GetChild(i).GetComponent<InvSlot>().UnselectedColourApplied();
-            transform.GetChild(i).GetComponent<InvSlot>().enabled = state;
+                slots[i].UnselectedColourApplied();
+            slots[i].enabled = state;
 
         }
     }
@@ -171,7 +180,7 @@ public class Inventory : MonoBehaviour
     //Changes position of the inventory panel while in vendor mode
     public void VendorPanelPosition(int value)
     {
-        gameObject.transform.position = new Vector3(transform.position.x - value, transform.position.y, transform.position.z);
+        //gameObject.transform.position = new Vector3(transform.position.x - value, transform.position.y, transform.position.z);
     }
 
 
@@ -184,7 +193,7 @@ public class Inventory : MonoBehaviour
     {
         Coins += coinsToBeAdded;
         //Toby: "CoinUI" has been renamed to "Coins" and child panel has been removed
-        GameObject.Find("Coins").transform.GetChild(1).gameObject.GetComponent<Text>().text = Coins.ToString();
+        GameObject.Find("Coins").GetComponentInChildren<Text>().text = Coins.ToString();
 
     }
 
@@ -195,11 +204,23 @@ public class Inventory : MonoBehaviour
     {
         //GameObject.Find("CoinUI").transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<Text>().text = "0";
         GameObject.Find("Coins").GetComponentInChildren<Text>().text = Coins.ToString(); //changed by LC to match UI hierarchy 
-        items = new bool[transform.childCount];
+        int count = 0;
+        foreach (Transform t in transform)
+        {
+            InvSlot slot = t.gameObject.GetComponent<InvSlot>();
+            if (slot.ID >= 0) slots.Add(slot.ID, slot);
+            if (t.gameObject.activeSelf) count++;
+        }
+        items = new bool[count];
         itemXP = new int[items.Length];
         VendorMode = false;
         IM = GameObject.FindObjectOfType<InputManager>();
         audioManager=GameObject.FindObjectOfType<AudioManager>();
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        addCoins(0);
     }
 
     private bool delayed = false;
@@ -217,13 +238,13 @@ public class Inventory : MonoBehaviour
             }
             if (IM.Button_A() && !VendorMode)
             {
-                equipItem(selected, !isEquipped(selected, 1), 1);
+                equipItem(getSelectedID(), !isEquipped(getSelectedID(), 1), 1);
                 StartCoroutine(delay());
             }
 
             if (IM.Button_B() && !VendorMode)
             {
-                equipItem(selected, !isEquipped(selected, 2), 2);
+                equipItem(getSelectedID(), !isEquipped(getSelectedID(), 2), 2);
                 StartCoroutine(delay());
             }
 
@@ -284,14 +305,19 @@ public class Inventory : MonoBehaviour
             //Emphasize the slot 
             for (int i = 0; i < items.Length; i++)
             {
-            //Andreas edit
-            //transform.GetChild(i).GetComponent<InvSlot>().selected = i == selected;
-                if(i==selected)
+                //Andreas edit
+                //transform.GetChild(i).GetComponent<InvSlot>().selected = i == selected;
+                InvSlot slot = transform.GetChild(i).GetComponent<InvSlot>();
+                if (i == selected)
                 {
-                    transform.GetChild(i).GetComponent<InvSlot>().selected=true;
-                    transform.GetChild(i).GetComponent<InvSlot>().SelectedColourApplied();
+                    slot.selected = true;
+                    slot.SelectedColourApplied();
                 }
-                else transform.GetChild(i).GetComponent<InvSlot>().UnselectedColourApplied();
+                else
+                {
+                    slot.selected = false;
+                    slot.UnselectedColourApplied();
+                }
             }
 
                 
