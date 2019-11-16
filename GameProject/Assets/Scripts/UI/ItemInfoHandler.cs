@@ -28,12 +28,13 @@ public class ItemInfoHandler : MonoBehaviour
     void Update()
     {
         //Check if player has item if not set the text to blank
-        if (i.hasItem(i.selected))
+        int ID = i.getSelectedID();
+        if (i.hasItem(ID))
         {
             //Set text using the lists and the selected ID as the index, set to blank if null which will hide the panel
-            n.text = itemNames[i.selected] != null ? itemNames[i.selected] : "";
-            if (i.canItemRecieveXP(i.selected)) n.text += " Lv." + i.getLevel(i.selected);
-            d.text = itemDescriptions[i.selected] != null ? itemDescriptions[i.selected] : "";
+            n.text = itemNames[ID] != null ? itemNames[ID] : "";
+            if (i.canItemRecieveXP(ID)) n.text += " Lv." + i.getLevel(ID);
+            d.text = itemDescriptions[ID] != null ? itemDescriptions[ID] : "";
         } else
         {
             n.text = "";

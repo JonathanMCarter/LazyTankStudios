@@ -13,6 +13,7 @@ public class InvSlot : MonoBehaviour
 {
 
     public bool hasItem = false;
+    public int ID = -1;
     public int quantity = 0;
     //0 = not equipped 1 = a equipped 2 = b equipped
     public int equipped = 0;
@@ -25,6 +26,11 @@ public class InvSlot : MonoBehaviour
 
     GameObject i;
     Text q, e;
+
+    private void Awake()
+    {
+        if (ID < 0) gameObject.SetActive(false);
+    }
 
     void Start()
     {

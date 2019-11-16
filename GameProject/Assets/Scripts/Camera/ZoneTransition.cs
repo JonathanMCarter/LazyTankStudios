@@ -25,12 +25,15 @@ public class ZoneTransition : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        player.GetComponent<PlayerMovement>().enabled = false;
-        player.GetComponent<PlayerZoneTransition>().Destination = destination;
-        //Camera.main does not work here
-        GameObject.Find("Main Camera").GetComponent<CameraMove>().enabled = false;
-        a.SetBool("in", false);
-        a.SetBool("out", true);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            player.GetComponent<PlayerMovement>().enabled = false;
+            player.GetComponent<PlayerZoneTransition>().Destination = destination;
+            //Camera.main does not work here
+            GameObject.Find("Main Camera").GetComponent<CameraMove>().enabled = false;
+            a.SetBool("in", false);
+            a.SetBool("out", true);
+        }
     }
 
     //Function for fade out animation event

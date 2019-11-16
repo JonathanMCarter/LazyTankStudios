@@ -21,7 +21,7 @@ public class TalkScript : MonoBehaviour
  * Reason: Dialogue sound effect
  * */
 
-    public GameObject panel;
+    CanvasGroup panel;
     public DialogueFile dialogueEnglish,dialogueGerman;
     public DialogueFile questdialogue;
     public PlayerMovement movement;
@@ -32,10 +32,14 @@ public class TalkScript : MonoBehaviour
     //Andreas edit end--
 
     bool talking = false;
+
+
     //bool FileRead = false;
 
     void Awake()
     {
+        panel = GameObject.Find("Dialogue Box").GetComponent<CanvasGroup>();
+
         ds = FindObjectOfType<DialogueScript>(); //added by LC
         //Andreas edit --
          audioManager=FindObjectOfType<AudioManager>();
@@ -56,7 +60,7 @@ public class TalkScript : MonoBehaviour
     public void talk()
     {
         Debug.Log("Talk Called");
-        panel.SetActive(true);
+        panel.alpha = 1;
 
         //Toby: Need this to change the dialogue each time you talk otherwise every NPC will have the same dialogue
        
@@ -81,7 +85,7 @@ public class TalkScript : MonoBehaviour
 
             ///////////////// comment from LC - This set of code is running every frame that the user is "talking". Does this need to happen every frame or should it happen once at start of dialog and again at end of dialog
             talking = !ds.FileHasEnded;
-            panel.SetActive(talking);
+            panel.alpha = talking ? 1 : 0;
             movement.enabled = !talking;
             //FileRead = true;
             //////////////////////
