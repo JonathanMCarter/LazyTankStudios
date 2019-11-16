@@ -89,7 +89,7 @@ public class Quest : MonoBehaviour
 
 
     //Items Status         -   Defines if a quest is completed/Ongoing/Available or Not Available
-    public enum Status { NotAvailable, Available, OnGoing, ReadyToComplete, Completed };
+    public enum Status { NotAvailable, Completed, Available, OnGoing, ReadyToComplete };
 
     [Space(15)]
     public Status status;
@@ -148,8 +148,6 @@ public class Quest : MonoBehaviour
 
     private void Update()
     {
-        print(gameObject.name + " THIS IS THE ID: " + this.ID);
-        print("CURRNET QUEST ID: " + currQuest);
         //Checks NPC gameObject availability and the type of the Quest
         if (NPCToReturnTo && type.Equals(Type.Return))
         {
@@ -273,6 +271,11 @@ public class Quest : MonoBehaviour
     }
 
 
+    //
+    //
+    //  IF THE DISABLED QUEST IS ON THE SAME GAMEOBJECT AS THE ACTIVATED ONE FIXXXXXX
+    //
+    //
     //Finds the next quest based on ID
     public void findNextQuest()
     {
@@ -334,11 +337,14 @@ public class Quest : MonoBehaviour
                 currQuest++;
                 q.ActiveQuestSign.SetActive(true);
                 this.ActiveQuestSign.SetActive(false);
+                q.status = Status.Available;
             }
-            else if(SideQuest && currQuest>q.ID && q.status!=Status.Completed)
+            else if(SideQuest && currQuest>=q.ID && q.status!=Status.Completed)
             {
                 this.enabled = this.gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
-                this.ActiveQuestSign.SetActive(true);
+                this.ActiveQuestSign.SetActive(false);
+                q.status = Status.Available;
+                lastQuest = false;
             }
         }
 
