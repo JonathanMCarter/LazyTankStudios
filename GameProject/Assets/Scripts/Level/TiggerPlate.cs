@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 /*
@@ -17,18 +15,22 @@ using UnityEngine.Events;
  * 
  * */
 
-public class TiggerPlate : MonoBehaviour
+public class TiggerPlate : A
 {
     public UnityEvent trigger;
 
     //
-    void  OnTriggerEnter2D(Collider2D otherCollider)
+
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if(otherCollider.gameObject.layer==8)
+                if(collision.gameObject.layer==8)
         {
             trigger.Invoke();
-            otherCollider.GetComponent<Rigidbody2D>().velocity=Vector2.zero;
-            Destroy(otherCollider.GetComponent<PushObject>());//Added by LC
+            collision.GetComponent<Rigidbody2D>().velocity=Vector2.zero;
+            Destroy(collision.GetComponent<PushObject>());//Added by LC
         }
     }
+
+
 }

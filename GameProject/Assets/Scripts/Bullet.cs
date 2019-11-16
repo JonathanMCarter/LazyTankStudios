@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 
@@ -17,7 +15,7 @@ using UnityEngine;
  * */
 
 
-public class Bullet : MonoBehaviour
+public class Bullet : A
 {
     public int Damage;
     public Vector2 Speed;
@@ -34,15 +32,10 @@ public class Bullet : MonoBehaviour
 
         GetComponent<Rigidbody2D>().AddForce(Speed, ForceMode2D.Impulse);
         //Allow for unlimited lifespan
-        if (Lifespan >= 0) StartCoroutine(Destructor());
+        if (Lifespan >= 0) Destroy(gameObject, Lifespan);
     }
 
-    IEnumerator Destructor()
-    {
-        yield return new WaitForSeconds(Lifespan);
-        //print("Destroyed Bullet with " + Speed + " Speed and " + Damage + " Damage" + ">>> UNCOMMENT ME IF YOU LIKE");
-        Destroy(this.gameObject);
-    }
+
 
     public void IncreaseSpeed()
     {
@@ -52,6 +45,6 @@ public class Bullet : MonoBehaviour
 
     public void IncreaseDamage(int damageChange)
     {
-        Damage = Damage * 2;
+        Damage = Damage * damageChange;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Vendor : MonoBehaviour
+public class Vendor : A
 {
     /* 
      * Vendor Script
@@ -23,10 +23,8 @@ public class Vendor : MonoBehaviour
     public DialogueFile VendorSpeech;
 
     //Inventories
-    public Inventory inventory;
-    public Inventory VendorInventory;
-    public InvSlot playerInventorySlot;
-    public InvSlot VendorInventorySlot;
+    public Inventory inventory, VendorInventory;
+    public InvSlot playerInventorySlot,VendorInventorySlot;
 
     //Do it once
     bool happened = false;
@@ -41,19 +39,19 @@ public class Vendor : MonoBehaviour
     public bool IsUsingVendor;
 
     //Andreas edit
-    private AudioManager audioManager;
+    SoundPlayer audioManager;
 
     //Lewis edit
-    private InputManager IM;
-    private GameObject Panel;
-    private bool TempWaitBool = false; //temp add by LC
+     InputManager IM;
+    GameObject Panel;
+    bool TempWaitBool = false; //temp add by LC
 
     public List<int> itemsBeingSold;
 
-    private void Awake()//changed to awake so can get reference before Inventory panel is deactived
+    void Awake()//changed to awake so can get reference before Inventory panel is deactived
     {
         //Andreas edit
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = FindObjectOfType<SoundPlayer>();
 
         //Lewis Edit
         IM = FindObjectOfType<InputManager>();
@@ -123,16 +121,16 @@ public class Vendor : MonoBehaviour
                     if (playerInventorySlot.quantity > 1)
                     {
                         //Remove item from player inventory in relation with the quantity we have 
-                        inventory.addItem(inventory.selected, playerInventorySlot.quantity, !Sell, 1, !Sell);
+                        inventory.addItem(inventory.selected, playerInventorySlot.quantity, !Sell, !Sell);
 
                         //Add a item into the vendor inventory 
-                        VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                        VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, Sell);
 
                     }
                     else if (playerInventorySlot.quantity == 1)
                     {
-                        inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
-                        VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                        inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, !Sell);
+                        VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, Sell);
                     }
                     inventory.addCoins(VendorInventorySlot.BuyingValue);
 
@@ -144,13 +142,13 @@ public class Vendor : MonoBehaviour
                     {
                         if (VendorInventorySlot.quantity > 1)
                         {
-                            inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
-                            VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, Sell, 1, Sell);
+                            inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, !Sell);
+                            VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, Sell, Sell);
                         }
                         else if (VendorInventorySlot.quantity == 1)
                         {
-                            inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, 1, !Sell);
-                            VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, 1, Sell);
+                            inventory.addItem(inventory.selected, playerInventorySlot.quantity, Sell, !Sell);
+                            VendorInventory.addItem(VendorInventory.selected, VendorInventorySlot.quantity, !Sell, Sell);
                         }
 
                         inventory.addCoins(-VendorInventorySlot.SellingValue);
@@ -233,24 +231,24 @@ public class Vendor : MonoBehaviour
             DS.ChangeFile(VendorSpeech);
 
             //Position the inventories
-            if (inventory.transform.localPosition.x > -PANEL_POSITION_VENDOR_ON)
-                inventory.VendorPanelPosition(PANEL_POSITION_VENDOR_ON);
+            //if (inventory.transform.localPosition.x > -PANEL_POSITION_VENDOR_ON)
+            //    inventory.VendorPanelPosition(PANEL_POSITION_VENDOR_ON);
 
-            if (VendorInventory.transform.localPosition.x < PANEL_POSITION_VENDOR_ON)
-                VendorInventory.VendorPanelPosition(-PANEL_POSITION_VENDOR_ON);
+            //if (VendorInventory.transform.localPosition.x < PANEL_POSITION_VENDOR_ON)
+            //    VendorInventory.VendorPanelPosition(-PANEL_POSITION_VENDOR_ON);
 
         }
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "Hero")
-        { 
-        //Reset the main inventory on leaving
-        inventory.VendorPanelPosition(-PANEL_POSITION_VENDOR_ON);
-        }
-    }
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.name == "Hero")
+    //    { 
+    //    //Reset the main inventory on leaving
+    //    //inventory.VendorPanelPosition(-PANEL_POSITION_VENDOR_ON);
+    //    }
+    //}
 
 
     public void SellOrBuy(bool action)

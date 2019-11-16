@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +12,7 @@ using UnityEngine.UI;
  * 
  * */
 
-public class Fader : MonoBehaviour
+public class Fader : A
 {
     private Image myImage;
     private Text myText;
@@ -21,7 +20,7 @@ public class Fader : MonoBehaviour
     private void Awake()
     {
         gameObject.AddComponent<DoNotDes>();
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()
@@ -32,10 +31,7 @@ public class Fader : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     IEnumerator Fade()
     {
@@ -47,7 +43,7 @@ public class Fader : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
          yield return new WaitForSeconds(4.5f);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
 
     }
 

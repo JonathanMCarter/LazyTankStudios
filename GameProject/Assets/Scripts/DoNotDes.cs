@@ -1,35 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public class DoNotDes : MonoBehaviour
+﻿public class DoNotDes : A
 {
     public static bool Created;
 
-    private int TimesFound;
+    int TimesFound;
 
-    private void Awake()
+    void Awake()
     {
-        if(!Created) DontDestroyOnLoad(this); else Destroy(this.gameObject);
+        if(!Created) DontDestroyOnLoad(this); else Destroy(gameObject);
         //DontDestroyOnLoad(this);
 
     }
 
-    private void Start()
+    void Start()
     {
-        if (gameObject.name != "AudioManager") Created = true; //temp added by LC. excludes AudioManager as temp fix
+       Created = true; //temp added by LC. excludes AudioManager as temp fix
     }
 
-    private void Update()
-    {
-        if (SceneManager.GetActiveScene().name == "Main Menu")
-        {
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            gameObject.SetActive(true);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (SceneManager.GetActiveScene().name == "Main Menu")
+    //    {
+    //        gameObject.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        gameObject.SetActive(true);
+    //    }
+    //}
 }

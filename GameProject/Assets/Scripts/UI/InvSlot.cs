@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /**
@@ -9,7 +7,7 @@ using UnityEngine.UI;
  * Reason: Add option for levelling
  */
 
-public class InvSlot : MonoBehaviour
+public class InvSlot : A
 {
 
     public bool hasItem = false;
@@ -19,21 +17,23 @@ public class InvSlot : MonoBehaviour
     public int equipped = 0;
     [HideInInspector]
     public bool selected = false;
-    public int BuyingValue;
-    public int SellingValue;
+    public int BuyingValue, SellingValue;
+    Image img;
     //Set to true if item can level up
     public bool recievesXP = false;
 
     GameObject i;
     Text q, e;
 
-    private void Awake()
-    {
-        if (ID < 0) gameObject.SetActive(false);
-    }
+    //void Awake()
+    //{
+       
+    //}
 
     void Start()
     {
+         if (ID < 0) gameObject.SetActive(false); //moved here from Awake function to reduce code. If game breaks now pop this back into awake
+        img = GetComponent<Image>();
         i = transform.GetChild(0).gameObject;
         q = transform.GetChild(1).gameObject.GetComponent<Text>();
         e = transform.GetChild(2).gameObject.GetComponent<Text>();
@@ -45,7 +45,7 @@ public class InvSlot : MonoBehaviour
     public void updateIcon()
     {
         i.SetActive(hasItem);
-        q.text = quantity > 0 ? quantity.ToString() : "";
+        q.text = quantity > 0 ? quantity+"" : "";
         e.text = equipped > 0 ? equipped == 1 ? "A" : "B" : "";
     }
 
@@ -57,16 +57,16 @@ public class InvSlot : MonoBehaviour
 
     void Update()
     {
-        GetComponent<Image>().color = selected ? new Color(0,0,1) : new Color(0.35f, 0.35f, 0.35f);
+       img.color = selected ? new Color(0,0,1) : new Color(0.35f, 0.35f, 0.35f);
     }
 
-    public void UnselectedColourApplied()
-    {
-        GetComponent<Image>().color =new Color(0.35f, 0.35f, 0.35f);
-    }
-    //Andreas edit
-    public void SelectedColourApplied()
-    {
-        GetComponent<Image>().color =new Color(0,0,1);
-    }
+    //public void UnselectedColourApplied()
+    //{
+    //    img.color =new Color(0.35f, 0.35f, 0.35f);
+    //}
+    ////Andreas edit
+    //public void SelectedColourApplied()
+    //{
+    //   img.color =new Color(0,0,1);
+    //}
 }

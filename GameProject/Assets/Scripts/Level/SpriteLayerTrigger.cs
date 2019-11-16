@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /*
  * Sprite Layer sort Script 
@@ -15,7 +13,7 @@ using UnityEngine;
  * 
  * */
 
-public class SpriteLayerTrigger : MonoBehaviour
+public class SpriteLayerTrigger : A
 {
     int OriginalSortingLayer=10;
 

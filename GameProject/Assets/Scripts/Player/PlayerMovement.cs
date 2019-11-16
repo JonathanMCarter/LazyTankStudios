@@ -1,6 +1,4 @@
-﻿using AI;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,16 +27,18 @@ using UnityEngine.SceneManagement;
  * 
  * */
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : A
 {
     private enum Direction {Up, Down, Left, Right };
     private Direction ImFacing;
+
     public float speed = 100;
+
     private float baseSpeed;//for when the speed needs to be changed temporarily
   //  public Inventory i; //please dont name variables as one letter. we need to be able to clearly know what something is atm. Comment added by LC
     public Inventory myInventory;
     // Added by Jonathan
-    public GameObject DamageBulletThingy;
+    public GameObject DamageBulletThingy, DeathCanvas, optionsMenu;
     public ProjectileStats WeaponStats;
     // end of edit here...
 
@@ -47,16 +47,13 @@ public class PlayerMovement : MonoBehaviour
     private Animator myAnim;
     private SpriteRenderer myRenderer;
     private InputManager IM;
-    public bool TakeDamageCD; //temp add by LC
-    public GameObject DeathCanvas;
-    //Tony Was Here
 
-    //Edit by Andreas--
-    //public SpriteRenderer[] Hearts;
+    public bool TakeDamageCD; //temp add by LC
+
+
     private HealthUI healthUI;
-    private AudioManager audioManager;
+    private SoundPlayer audioManager;
     [HideInInspector]
-    public GameObject optionsMenu;
     //Andreas edit end--
 
     //Tony's Variables
@@ -64,25 +61,23 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D attackHitBox;//atach to attackrotater
     public Transform attackRotater;//make a new transform as a child of the hero, make the attackHitBox a child of this transform
     private bool attacking, dashing, shieldUp, Shooting;
-    public float RangedAttackDuration;
+    public float RangedAttackDuration, dashSpeedMultiplier,DashDuration, blockTIme,AttackTime,SlideSpeed;
     private float countdown;
-    public float dashSpeedMultiplier;
-    public float DashDuration;
-    public float blockTIme;
-public float AttackTime;
+
     //end of Tony variables
 
 
     //Graham's variables needed for the ice sections;
     public bool onIce;
-    public float SlideSpeed;
     //Items enum, should matchup with the item IDs i.e. Sword is in slot 0 and has ID 0 therefore SWORD is 0 here
+
+
     enum ITEMS
     {
         SWORD, BLAZBOOTS, ICEBOW, SHIELDSHARPTON, TELERUNE, ELIXIRLIFE, ELIXIRSTR, ELIXIRHEARTS, WATERSKIN, FURCOAT, FORESTITEM
     }
 
-    private void Start()
+    void Start()
     {
         if (DeathCanvas != null) DontDestroyOnLoad(DeathCanvas.gameObject); //Added by LC
         ImFacing = Direction.Down; //Added by LC
@@ -102,7 +97,7 @@ public float AttackTime;
         //Andreas edit end--
 
         //Andreas edit--
-        audioManager=GameObject.FindObjectOfType<AudioManager>();
+        audioManager=FindObjectOfType<SoundPlayer>();
         //Andreas edit end--
 
         attackHitBox = attackRotater.GetChild(0).GetComponent<BoxCollider2D>(); //added by LC
@@ -115,7 +110,7 @@ public float AttackTime;
 
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (!onIce) //Added by Graham to determin if you are on ice or not
         {
@@ -353,7 +348,7 @@ public float AttackTime;
         //Destroy(Go, WeaponStats.Lifetime);
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
        //if (this.isActiveAndEnabled)
             if (myRigid != null) myRigid.velocity = new Vector2(0, 0); //added If check - LC
@@ -430,7 +425,7 @@ public float AttackTime;
         health-=damage;
         healthUI.currentHealth=health;
         healthUI.ShowHearts(); //update the display of hearts. LC
-        if(audioManager != null)        audioManager.Play("Damage");
+        audioManager.Play("Damage");
         if (health <= 0)
         {
             audioManager.Play("Death");
@@ -451,9 +446,9 @@ public float AttackTime;
         SceneManager.LoadScene("Main Menu");
         DoNotDes [] Gos = GameObject.FindObjectsOfType<DoNotDes>();
         DoNotDes.Created = false;
-        foreach (DoNotDes go in Gos) if (go.gameObject != this.gameObject) Destroy(go.gameObject);
+        foreach (DoNotDes go in Gos) if (go.gameObject != gameObject) Destroy(go.gameObject);
         yield return new WaitForSeconds(0);
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
     IEnumerator DamageCooldown() //temp add by LC

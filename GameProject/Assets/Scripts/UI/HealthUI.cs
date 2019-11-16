@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /*
@@ -19,13 +17,11 @@ using UnityEngine.UI;
  * */
 
 
-public class HealthUI : MonoBehaviour
+public class HealthUI : A
 {
-    public int currentHealth;
-    public int maxHealth;
+    public int currentHealth, maxHealth;
     public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
+    public Sprite fullHeart, emptyHeart;
 
 
     public void ShowHearts()
@@ -33,7 +29,7 @@ public class HealthUI : MonoBehaviour
         for (int i = 0; i < hearts.Length; i++)
         {
             //sets hearts to max health
-            hearts[i].enabled = i < maxHealth ? true : false;
+            hearts[i].enabled = (i < maxHealth);
 
             //switches heart sprites depending on the current health
             hearts[i].sprite = i < currentHealth ? fullHeart : emptyHeart;

@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
-public class SoundPlayer : MonoBehaviour
+public class SoundPlayer : A
 {
 
     public List<AudioClip> myClips;
@@ -14,6 +12,7 @@ public class SoundPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
         aud = GetComponentsInChildren<AudioSource>();
     }
 
@@ -25,7 +24,7 @@ public class SoundPlayer : MonoBehaviour
 
     }
 
-    public void PlayClip(string audioName)
+    public void Play(string audioName)
     {
         for (int i = 0; i < myClips.Count; i++)
         {

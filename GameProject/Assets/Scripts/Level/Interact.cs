@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 /**
@@ -16,20 +14,15 @@ using UnityEngine.Events;
 * changed triggerstay to collisionstay as the interactable objects use colliders
  */
 
-public class Interact : MonoBehaviour
+public class Interact : A
 {
     public bool Enabled = true;
     public UnityEvent interact;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(Enabled)
-        {
-            if (collision.gameObject.tag == "Player")
-            {
-                interact.Invoke();
-            }
-        }
+        if(Enabled) if (collision.gameObject.tag == "Player") interact.Invoke();
+
     }
 
 }

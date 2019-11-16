@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +15,7 @@ using UnityEngine.SceneManagement;
  * Added sound effects
  *
  */
-public class PlayerZoneTransition : MonoBehaviour
+public class PlayerZoneTransition : A
 {
 
     BoxCollider2D cameraBox;
@@ -30,11 +29,11 @@ public class PlayerZoneTransition : MonoBehaviour
     string[] destSplit;
     bool transitioning = false;
 
-    private AudioManager audioManager;
+    SoundPlayer audioManager;
 
-    public void Start()
+    void Start()
     {
-        audioManager=GameObject.FindObjectOfType<AudioManager>();
+        audioManager=FindObjectOfType<SoundPlayer>();
     }
 
     public void StartTransition()
@@ -55,7 +54,7 @@ public class PlayerZoneTransition : MonoBehaviour
         asyncLoad.allowSceneActivation = false;
     }
 
-    private void Update()
+    void Update()
     {
         if (transitioning)
         {

@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+
 
 /**
  * Created by Toby Wishart
@@ -20,18 +18,18 @@ using UnityEngine.UI;
  * Last Edit: 21.10.19
  * Reason: Updated controls to use Input Manager (Allows for cross platform input)
  */
-public class InventoryItem : MonoBehaviour
+public class InventoryItem : A
 {
     InputManager IM;
     public int ID;
     public int quantity = 1;
 
-    private void Start()
+    void Start()
     {
         IM = FindObjectOfType<InputManager>();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if ((collision.gameObject.name == "Hero"))
         {
@@ -47,14 +45,9 @@ public class InventoryItem : MonoBehaviour
                     {
                         Inventory inv = GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>();
                         //Special exception for gold
-                        if (ID == 1024)
-                        {
-                            inv.addCoins(quantity);
-                        }
-                        else
-                        {
-                            inv.addItem(ID, quantity, false);
-                        }
+                        if (ID == 1024)inv.addCoins(quantity);
+                        else inv.addItem(ID, quantity, false);
+
                         //GameObject.Find("InventoryHotbar").GetComponent<Inventory>().addItem(ID, quantity, false);
                         Destroy(gameObject);
                         break;

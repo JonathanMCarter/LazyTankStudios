@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [System.Serializable]
 
@@ -15,9 +14,9 @@ using UnityEngine.UI;
 //
 //
 
-public class Quest : MonoBehaviour
+public class Quest : A
 {
-    #region Variables
+
 
     #region Public Variables
     //ID                   -   To maintain the order of the Quests
@@ -117,9 +116,8 @@ public class Quest : MonoBehaviour
     GameObject ActiveQuestSign;
     #endregion
 
-    #endregion
 
-    private void Awake()
+    void Awake()
     {
         ActiveQuestSign = gameObject.transform.parent.GetChild(1).gameObject;
 
@@ -127,26 +125,26 @@ public class Quest : MonoBehaviour
         newItem = Resources.Load<GameObject>("New Item");
 
         //Get the reference to the Player inventory
-        inv = GameObject.FindObjectOfType<Inventory>();
+        inv = FindObjectOfType<Inventory>();
 
         //Catches all the quests in the game
-        quests = GameObject.FindObjectsOfType<Quest>();
+        quests = FindObjectsOfType<Quest>();
 
         //Catches the GameManager TalkScript Component
         GameManagerTalk = GameObject.Find("GameManager").GetComponent<TalkScript>();
 
         //Sets available just the first quest at the beginning of the game - Creating a sequence of quests
-        status = this.ID == 0 ? Status.Available : Status.NotAvailable;
+        status = ID == 0 ? Status.Available : Status.NotAvailable;
 
         //Disable all other quests within the game based on the its status 
         gameObject.transform.GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true : false;
         NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true :false;
-        this.enabled = this.status == Status.Available;
-        ActiveQuestSign.SetActive(this.status == Status.Available);
+        enabled = status == Status.Available;
+        ActiveQuestSign.SetActive(status == Status.Available);
     }
 
 
-    private void Update()
+    void Update()
     {
         //Checks NPC gameObject availability and the type of the Quest
         if (NPCToReturnTo && type.Equals(Type.Return))
@@ -191,10 +189,10 @@ public class Quest : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         //Check if player has collided with NPC that holds the quest and if the quest is active
-        if (collision.gameObject.name == "Hero" && this.isActiveAndEnabled)
+        if (collision.gameObject.name == "Hero" && isActiveAndEnabled)
         {
             //Gathers the local TalkScript Component and assign the public Dialogue item
             GetComponent<TalkScript>().dialogueEnglish = Dialogue;
@@ -212,7 +210,7 @@ public class Quest : MonoBehaviour
 
 
     //Checks if all enemies have been successfully killed for the completion of the quest
-    private bool checkKilledAllEnemies()
+   bool checkKilledAllEnemies()
     {
 
         bool state = false;
@@ -227,7 +225,7 @@ public class Quest : MonoBehaviour
     }
 
     //Check for all the items needed for the completion of the quest
-    private bool checkItemsCollected()
+    bool checkItemsCollected()
     {
         bool state = false;
 
@@ -254,7 +252,7 @@ public class Quest : MonoBehaviour
                 offerReward(reward);
             }
             else
-                Debug.LogError("This " + this.ID + " quest has failed because you spend all the money");
+                Debug.LogError("This " + ID + " quest has failed because you spend all the money");
         }
 
         //Quest is not deliver request and has been completed, therefore offer reward and display text
@@ -329,20 +327,20 @@ public class Quest : MonoBehaviour
         bool lastQuest=true;
         foreach (Quest q in quests)
         {
-            if (q.ID == this.ID + 1 && !SideQuest)
+            if (q.ID == ID + 1 && !SideQuest)
             {
                 q.enabled = q.gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
-                this.enabled = this.gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
+                enabled = gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
                 lastQuest = false;
                 currQuest++;
                 q.ActiveQuestSign.SetActive(true);
-                this.ActiveQuestSign.SetActive(false);
+                ActiveQuestSign.SetActive(false);
                 q.status = Status.Available;
             }
             else if(SideQuest && currQuest>=q.ID && q.status!=Status.Completed)
             {
-                this.enabled = this.gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
-                this.ActiveQuestSign.SetActive(false);
+                enabled = gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
+                ActiveQuestSign.SetActive(false);
                 q.status = Status.Available;
                 lastQuest = false;
             }
@@ -350,8 +348,8 @@ public class Quest : MonoBehaviour
 
         if (lastQuest)
         {
-            this.enabled = this.gameObject.transform.GetComponent<BoxCollider2D>().enabled = NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
-            this.ActiveQuestSign.SetActive(false);
+            enabled = gameObject.transform.GetComponent<BoxCollider2D>().enabled = NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = false;
+            ActiveQuestSign.SetActive(false);
         }
     }
 

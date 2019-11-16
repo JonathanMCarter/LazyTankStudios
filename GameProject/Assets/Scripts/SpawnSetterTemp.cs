@@ -1,25 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SpawnSetterTemp : MonoBehaviour
+public class SpawnSetterTemp : A
 {
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("Hero").transform.position = new Vector3(transform.position.x, transform.position.y, GameObject.Find("Hero").transform.position.z);
-        // Destroy(this.gameObject);
+       Transform go = GameObject.Find("Hero").transform;
+       go.position = new Vector3(transform.position.x, transform.position.y, go.position.z);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(0);
-        //GameObject.Find("Hero").GetComponent<Rigidbody2D>().MovePosition(new Vector2(transform.position.x, transform.position.y));
-    }
 }

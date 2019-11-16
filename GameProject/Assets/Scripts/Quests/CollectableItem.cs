@@ -1,19 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CollectableItem : MonoBehaviour
+public class CollectableItem : A
 {
     InputManager IM;
     Quest[] allQuests;
     Quest activeQuest;
-    private void Start()
+     void Start()
     {
         IM = FindObjectOfType<InputManager>();
-        allQuests = GameObject.FindObjectsOfType<Quest>();
+        allQuests = FindObjectsOfType<Quest>();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+   void OnTriggerStay2D(Collider2D collision)
     {
         if ((collision.gameObject.name == "Hero"))
         {

@@ -20,7 +20,7 @@ using UnityEngine.UI;
  *        - Bug fixed: Menu activates player movement when it is closed before inventory
  *  
  */
-public class Inventory : MonoBehaviour
+public class Inventory : A
 {
 
     public bool[] items;
@@ -40,170 +40,28 @@ public class Inventory : MonoBehaviour
 
     static int Coins = 0;
 
-    #region Gabriel Variables
+
 
     [HideInInspector]
     public const int COLUMN = 4;
     public const int ROWS = 3;
     public int selected = 0;
     int column = 4;
-    public bool VendorMode;
+    public bool VendorMode = false;
+    SoundPlayer audioManager;
+    Text cointext;
+    bool delayed = false;
 
-    #endregion
 
-    #region Andreas Variables
-    private AudioManager audioManager;
-    #endregion
-
-    #region Toby Functions
-    //Add item to inventory with quantity, bool to remove as well can also use this to increase quantity
-    public void addItem(int id, int quantity, bool remove)
+    private void Awake()
     {
-        items[id] = !remove;
-        InvSlot slot = slots[id];
-        slot.hasItem = !remove;
-        slot.quantity = remove ? 0 : quantity;
-        slot.updateIcon();
-        //print(slot.quantity);
-        //Andreas edit--
-        //audioManager.Play("Item_PickUp");
-        //Andreas edit end--
+        cointext = GameObject.Find("Coins").GetComponentInChildren<Text>();
     }
-    public void addItem(int id, int quantity, bool remove, int QuantityToBeChangedWith, bool Increase)
-    {
-        quantity = Increase ? quantity += 1 : quantity -= 1;
-        items[id] = !remove;
-        InvSlot slot = slots[id];
-        slot.hasItem = !remove;
-        slot.quantity = remove ? 0 : quantity;
-        slot.updateIcon();
-        //Andreas edit--
-        //audioManager.Play("Item_PickUp");
-        //Andreas edit end--
-    }
-
-    public bool hasItem(int id)
-    {
-        return items[id];
-    }
-
-    public int getSelectedID()
-    {
-        return transform.GetChild(selected).GetComponent<InvSlot>().ID;
-    }
-
-    //Equip or unequip item as long as player has item
-    //id = the item ID
-    //equip = equipping or unequipping
-    //button = the button pressed
-    public void equipItem(int id, bool equip, int button)
-    {
-        if (items[id])
-        {
-            InvSlot slot = slots[id];
-            slot.equip(equip ? button : 0);
-            switch (button) {
-                case 1:
-                    equippedA = equip ? id : -1;
-                    equippedB = equippedA == equippedB ? -1 : equippedB;
-                    break;
-                case 2:
-                    equippedB = equip ? id : -1;
-                    equippedA = equippedA == equippedB ? -1 : equippedA;
-                    break;
-            }
-            for (int i = 0; i < items.Length; i++) slots[i].equip(i == equippedA ? 1 : i == equippedB ? 2 : 0);
-        }
-    }
-
-    public bool isEquipped(int id, int button)
-    {
-        return slots[id].equipped == button;
-    }
-
-    //Open/close inventory
-    public void open()
-    {
-        isOpen = !isOpen;
-        //Andreas edit--
-        string effectToPlay = isOpen ? "Inventory_Open" : "Inventory_Close";
-        if (audioManager != null) audioManager.Play(effectToPlay);
-        //if(!isOpen)GameObject.FindGameObjectWithTag("Map").SetActive(false);
-        if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
-        if(!isOpen && !VendorMode)GameObject.FindGameObjectWithTag("Map").SetActive(false);
-        VendorMode = false;
-        //Andreas edit end--
-        selected = 0;
-    }
-
-    //Returns level based on the XP
-    public int getLevel(int ID)
-    {
-        if (!canItemRecieveXP(ID)) return 1;
-        return itemXP[ID] < 5 ? 1 : (itemXP[ID] < 20 ? 2 : 3);
-    } 
-
-    //Add(or subtract) XP to given item, limits the value between 0 and 20
-    public void addXP(int ID, int amount)
-    {
-        //Exit if the item can't level up
-        if (!canItemRecieveXP(ID)) return;
-        itemXP[ID] += amount;
-        //Cap xp
-        itemXP[ID] = itemXP[ID] < 0 ? 0 : itemXP[ID] > 20 ? 20 : itemXP[ID];
-    }
-
-    //Returns whether the item can level up 
-    public bool canItemRecieveXP(int ID)
-    {
-        if (ID < 0 || ID >= items.Length) return false;
-        return slots[ID].recievesXP;
-    }
-
-    #endregion
-
-    #region Gabriel Functions
-
-    //Toogles the slots and changes the colour while doing that
-    public IEnumerator ToogleSlots(bool state)
-    {
-        yield return new WaitForSeconds(0.1f);
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (!state)
-                slots[i].UnselectedColourApplied();
-            slots[i].enabled = state;
-
-        }
-    }
-
-    //Changes position of the inventory panel while in vendor mode
-    public void VendorPanelPosition(int value)
-    {
-        //gameObject.transform.position = new Vector3(transform.position.x - value, transform.position.y, transform.position.z);
-    }
-
-
-    public int getCoins()
-    {
-        return Coins;
-    }
-
-    public void addCoins(int coinsToBeAdded)
-    {
-        Coins += coinsToBeAdded;
-        //Toby: "CoinUI" has been renamed to "Coins" and child panel has been removed
-        GameObject.Find("Coins").GetComponentInChildren<Text>().text = Coins.ToString();
-
-    }
-
-
-    #endregion
 
     void Start()
     {
-        //GameObject.Find("CoinUI").transform.GetChild(0).transform.GetChild(1).gameObject.GetComponent<Text>().text = "0";
-        GameObject.Find("Coins").GetComponentInChildren<Text>().text = Coins.ToString(); //changed by LC to match UI hierarchy 
+        
+        addCoins(0);
         int count = 0;
         foreach (Transform t in transform)
         {
@@ -213,17 +71,16 @@ public class Inventory : MonoBehaviour
         }
         items = new bool[count];
         itemXP = new int[items.Length];
-        VendorMode = false;
-        IM = GameObject.FindObjectOfType<InputManager>();
-        audioManager=GameObject.FindObjectOfType<AudioManager>();
+        IM = FindObjectOfType<InputManager>();
+        audioManager=FindObjectOfType<SoundPlayer>();
     }
 
-    private void OnLevelWasLoaded(int level)
+    void OnLevelWasLoaded(int level)
     {
         addCoins(0);
     }
 
-    private bool delayed = false;
+
     void Update()
     {
         GetComponent<CanvasGroup>().alpha = isOpen ? 1 : 0;
@@ -311,12 +168,12 @@ public class Inventory : MonoBehaviour
                 if (i == selected)
                 {
                     slot.selected = true;
-                    slot.SelectedColourApplied();
+                    //slot.SelectedColourApplied();
                 }
                 else
                 {
                     slot.selected = false;
-                    slot.UnselectedColourApplied();
+                  //  slot.UnselectedColourApplied();
                 }
             }
 
@@ -330,10 +187,150 @@ public class Inventory : MonoBehaviour
         }
     }
 
+
+
+    //Add item to inventory with quantity, bool to remove as well can also use this to increase quantity
+    public void addItem(int id, int quantity, bool remove)
+    {
+        items[id] = !remove;
+        InvSlot slot = slots[id];
+        slot.hasItem = !remove;
+        slot.quantity = remove ? 0 : quantity;
+        slot.updateIcon();
+        //print(slot.quantity);
+        //Andreas edit--
+        //audioManager.Play("Item_PickUp");
+        //Andreas edit end--
+    }
+    public void addItem(int id, int quantity, bool remove, bool Increase)
+    {
+        quantity = Increase ? quantity += 1 : quantity -= 1;
+        items[id] = !remove;
+        slots[id].hasItem = !remove;
+        slots[id].quantity = remove ? 0 : quantity;
+        slots[id].updateIcon();
+        //Andreas edit--
+        audioManager.Play("Item_PickUp");
+        //Andreas edit end--
+    }
+
+    public bool hasItem(int id)
+    {
+        return items[id];
+    }
+
+    public int getSelectedID()
+    {
+        return transform.GetChild(selected).GetComponent<InvSlot>().ID;
+    }
+
+
+    public void equipItem(int id, bool equip, int button)
+    {
+        if (items[id])
+        {
+            InvSlot slot = slots[id];
+            slot.equip(equip ? button : 0);
+            switch (button) {
+                case 1:
+                    equippedA = equip ? id : -1;
+                    equippedB = equippedA == equippedB ? -1 : equippedB;
+                    break;
+                case 2:
+                    equippedB = equip ? id : -1;
+                    equippedA = equippedA == equippedB ? -1 : equippedA;
+                    break;
+            }
+            for (int i = 0; i < items.Length; i++) slots[i].equip(i == equippedA ? 1 : i == equippedB ? 2 : 0);
+        }
+    }
+
+    public bool isEquipped(int id, int button)
+    {
+        return slots[id].equipped == button;
+    }
+
+    ///Open/close inventory
+    public void open()
+    {
+        isOpen = !isOpen;
+        //Andreas edit--
+        string effectToPlay = isOpen ? "Open_Inventory_1" : "Close_Inventory_1";
+        audioManager.Play(effectToPlay);
+        if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
+        if(!isOpen && !VendorMode)GameObject.FindGameObjectWithTag("Map").SetActive(false);
+        VendorMode = false;
+        //Andreas edit end--
+        selected = 0;
+    }
+
+    //Returns level based on the XP
+    public int getLevel(int ID)
+    {
+        if (!canItemRecieveXP(ID)) return 1;
+        return itemXP[ID] < 5 ? 1 : (itemXP[ID] < 20 ? 2 : 3);
+    } 
+
+    //Add(or subtract) XP to given item, limits the value between 0 and 20
+    public void addXP(int ID, int amount)
+    {
+        //Exit if the item can't level up
+        if (!canItemRecieveXP(ID)) return;
+        itemXP[ID] += amount;
+        //Cap xp
+        itemXP[ID] = itemXP[ID] < 0 ? 0 : itemXP[ID] > 20 ? 20 : itemXP[ID];
+    }
+
+    //Returns whether the item can level up 
+    public bool canItemRecieveXP(int ID)
+    {
+        if (ID < 0 || ID >= items.Length) return false;
+        return slots[ID].recievesXP;
+    }
+
+
+
+
+    //Toogles the slots and changes the colour while doing that
+    public IEnumerator ToogleSlots(bool state)
+    {
+        yield return new WaitForSeconds(0.1f);
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (!state)
+                //slots[i].UnselectedColourApplied();
+            slots[i].enabled = state;
+
+        }
+    }
+
+    //Changes position of the inventory panel while in vendor mode
+    //public void VendorPanelPosition(int value)
+    //{
+    //    //gameObject.transform.position = new Vector3(transform.position.x - value, transform.position.y, transform.position.z);
+    //}
+
+
+    public int getCoins()
+    {
+        return Coins;
+    }
+
+    public void addCoins(int coinsToBeAdded)
+    {
+        Coins += coinsToBeAdded;
+        cointext.text = Coins+"";
+
+    }
+
+
     IEnumerator delay()
     {
         delayed = true;
         yield return new WaitForSeconds(0.2f);
         delayed = false;
     }
+
+
+
 }

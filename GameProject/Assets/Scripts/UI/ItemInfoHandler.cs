@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +6,7 @@ using UnityEngine.UI;
  * Created by: Toby Wishart
  * Last edit: 27/10/19
  */
-public class ItemInfoHandler : MonoBehaviour
+public class ItemInfoHandler : A
 {
     //Lists to store the names and descriptions
     public List<string> itemNames = new List<string>();

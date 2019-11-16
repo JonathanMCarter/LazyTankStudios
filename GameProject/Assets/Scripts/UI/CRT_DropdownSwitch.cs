@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,14 +16,14 @@ using UnityEngine.UI;
  * 
  * */
 
-public class CRT_DropdownSwitch : MonoBehaviour
+public class CRT_DropdownSwitch : A
 {
     [Tooltip("Array of CRT_Presets needs to be in the same order as the Dropdown options")]
     public CRT_Preset[] presets;
     private CRT_EffectCamera effectCamera;
     private Dropdown dropdown;
 
-    public void Start()
+    void Start()
     {
         effectCamera=FindObjectOfType<CRT_EffectCamera>();
         dropdown=GetComponent<Dropdown>();

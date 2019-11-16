@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 /*
@@ -18,11 +17,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CRT_Preset : ScriptableObject
 {
-    public float scanlineCount;
-    public float scanlineBrightness;
-    public float vignetteStrenght;
-    public float scanlineSpeed;
-    public float noiseSize;
-    public float noiseAmount;
-    public float flickerEffectStrenght;
+    public float scanlineCount,scanlineBrightness,vignetteStrenght,scanlineSpeed,noiseSize,noiseAmount,flickerEffectStrenght;
 }

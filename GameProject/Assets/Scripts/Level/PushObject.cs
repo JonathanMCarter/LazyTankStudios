@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 /*
@@ -17,7 +15,7 @@ using UnityEngine;
  * */
 
 
-public class PushObject : MonoBehaviour
+public class PushObject : A
 {
     public float pushStrenght;
     public void Push()

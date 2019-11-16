@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /*
  * Created by Toby Wishart
  * Last edit: 11/10/19
  */
-public class Boundaries : MonoBehaviour
+public class Boundaries : A
 {
     private Transform p;
     private BoxCollider2D box;

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /*
@@ -10,7 +8,7 @@ using UnityEngine.SceneManagement;
  * Last edit: Jonathan @ 14:07 ish - 21/10/19
  * added modes so the player can change scene
  */
-public class InteriorScript : MonoBehaviour
+public class InteriorScript : A
 {
     public enum Modes
     {
@@ -26,7 +24,7 @@ public class InteriorScript : MonoBehaviour
     [HideInInspector]
     public bool inside = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         switch (Type)
         {
@@ -49,7 +47,7 @@ public class InteriorScript : MonoBehaviour
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+     void OnTriggerExit2D(Collider2D collision)
     {
         inside = false;
     }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 /*
@@ -13,46 +11,41 @@ using UnityEngine;
  * */
 
 
-
-public class PuzzleComponent : MonoBehaviour
+public class PuzzleComponent : A
 {
-    private InputManager IM;
-    private bool IsCarried;
-    private GameObject Player;
+    InputManager IM;
+    bool IsCarried;
+    GameObject Player;
     static bool IsCarrying;
 
-    private void Start()
+    void Start()
     {
         IM = FindObjectOfType<InputManager>();
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(transform.gameObject.tag))//If tag matches that of the object
+        GameObject GO = collision.gameObject;
+        if (GO.CompareTag(transform.gameObject.tag))//If tag matches that of the object
         {
             FindObjectOfType<StatuePuzzleThingy>().ItemReturn();
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            collision.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+           GO.GetComponent<BoxCollider2D>().enabled = false;
+            GO.transform.GetChild(0).gameObject.SetActive(true);
             IsCarrying = false;
-            FindObjectOfType<AudioManager>().Play("Victory");
-            this.gameObject.SetActive(false);
+            FindObjectOfType<SoundPlayer>().Play("Victory");
+            gameObject.SetActive(false);
         }
         if (IsCarried) return;
-        if (collision.gameObject.CompareTag("Player") && IM.Button_A() && !IsCarrying)
+        if (GO.CompareTag("Player") && IM.Button_A() && !IsCarrying)
         {
             Player = collision.gameObject;
-            Collect();
+            IsCarried = true;
+            IsCarrying = true;
         }
     }
 
-    private void Update()
+    void Update()
     {
         if (IsCarried) transform.position = Player.transform.position + new Vector3(0, 1, 0);
     }
 
-    void Collect()
-    {
-        IsCarried = true;
-        IsCarrying = true;
-
-    }
 }
