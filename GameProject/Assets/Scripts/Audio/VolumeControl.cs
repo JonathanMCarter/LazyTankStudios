@@ -1,30 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class VolumeControl : MonoBehaviour
+public class VolumeControl : A
 {
     Slider slider;
-    AudioSource[] audioSources;
     // Start is called before the first frame update
     void Start()
     {
         slider=GetComponent<Slider>();
-        audioSources=FindObjectsOfType<AudioSource>();
+        //audioSources=FindObjectsOfType<AudioSource>();
         UpdateVolume();
     }
 
     // Update is called once per frame
     public void UpdateVolume()
     {
-        foreach(AudioSource a in audioSources) a.volume=slider.value;   
+        AudioListener.volume = slider.value;
+        
 
     }
 
     public void ToggleMute()
     {
-       foreach(AudioSource a in audioSources) a.mute=!a.mute;
+        AudioListener.pause = !AudioListener.pause;
     }
 
 }

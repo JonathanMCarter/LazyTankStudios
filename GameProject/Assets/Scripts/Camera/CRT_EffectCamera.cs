@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 /*
@@ -15,11 +14,11 @@ using UnityEngine;
  * 
  * */
 
-public class CRT_EffectCamera : MonoBehaviour
+public class CRT_EffectCamera : A
 {
     public Material EffectMaterial;
     public bool m_CRTShaderOn=true;
-    private float time;
+    float time;
 
     public CRT_Preset preset;
 

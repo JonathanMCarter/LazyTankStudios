@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
-public class PlayerIceDetection : MonoBehaviour
+public class PlayerIceDetection : A
 {
     PlayerMovement MyPlayer;
     Rigidbody2D myRigid;
@@ -11,17 +10,18 @@ public class PlayerIceDetection : MonoBehaviour
         MyPlayer = FindObjectOfType<PlayerMovement>();
         myRigid = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ice"))
         {
-            if (myRigid.velocity.x < 0.1 && myRigid.velocity.x > -0.1 && myRigid.velocity.y < 0.1 && myRigid.velocity.y > -0.1)
+           // if (myRigid.velocity.x < 0.1 && myRigid.velocity.x > -0.1 && myRigid.velocity.y < 0.1 && myRigid.velocity.y > -0.1)
+           if (myRigid.velocity.magnitude == 0) //temp added by LC, may do same thing as above line, or may not work
             {
                 MyPlayer.onIce = false;
             }
             else
                 MyPlayer.onIce = true;
-            Debug.Log("OnIce");
+          //  Debug.Log("OnIce");
         }
     }
 }

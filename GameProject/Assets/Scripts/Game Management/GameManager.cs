@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /*
@@ -17,13 +15,13 @@ using UnityEngine.SceneManagement;
  * 
  * */
 
-public class GameManager : MonoBehaviour
+public class GameManager : A
 {
-    private PlayerMovement Player;
-    private GameObject Menu;
+    PlayerMovement Player;
+     GameObject Menu;
     public bool isPaused=false;
 
-    private void Start()
+     void Start()
     {
         Player = FindObjectOfType<PlayerMovement>(); // Finds the player movement script. Added by LC
         Menu = GameObject.Find("MainMenu"); // Finds the main menu
@@ -51,9 +49,9 @@ public class GameManager : MonoBehaviour
     public void ExitToMenu()
     {
        SceneManager.LoadScene("Main Menu");
-        DoNotDes [] Gos = GameObject.FindObjectsOfType<DoNotDes>();
+        DoNotDes [] Gos = FindObjectsOfType<DoNotDes>();
         DoNotDes.Created = false;
-        foreach (DoNotDes go in Gos) if (go.gameObject != this.gameObject) Destroy(go.gameObject);
+        foreach (DoNotDes go in Gos) if (go.gameObject != gameObject) Destroy(go.gameObject);
     }
 
     /// <summary>

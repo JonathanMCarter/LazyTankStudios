@@ -1,31 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ButtonPuzzle : MonoBehaviour
+public class ButtonPuzzle : A
 {
     public Sprite NewSprite;
-    public ButtonPuzzle Button1;
-    public ButtonPuzzle Button2;
-    bool Pressed;
-    bool Achieved;
+    public ButtonPuzzle Button1,Button2;
+    bool Pressed = false, Achieved;
     public ButtonDoor Hit;
-    void Start()
-    {
-        Pressed = false;
-    }
+
+
+    //void Start()
+    //{
+    //    Pressed = false;
+    //}
+
     public bool ButtonPressed()
     {
-        if (Pressed)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return (Pressed);
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         Pressed = true;
         if (Button1.ButtonPressed() && Button2.ButtonPressed() && ButtonPressed())
@@ -42,9 +34,6 @@ public class ButtonPuzzle : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (!Achieved)
-        {
-            Pressed = false;
-        }
+        if (!Achieved)Pressed = false;
     }
 }

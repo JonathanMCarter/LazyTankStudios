@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
-public class Switch : MonoBehaviour
+public class Switch : A
 {
     bool active;
     SpriteRenderer MyRend;
-    public Sprite ClosedSprite;
-    public Sprite OpenSprite;
+    public Sprite ClosedSprite,OpenSprite;
     public GameObject[] Doors;
     GameObject[] _MySwitch;
     // Start is called before the first frame update
@@ -50,7 +48,7 @@ public class Switch : MonoBehaviour
               _MySwitch[j].GetComponent<Switch>().active = false;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if(MyRend.flipX)
           MyRend.flipX = false;

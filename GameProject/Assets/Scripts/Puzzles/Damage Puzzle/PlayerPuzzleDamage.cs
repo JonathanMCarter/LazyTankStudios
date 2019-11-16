@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-public class PlayerPuzzleDamage : MonoBehaviour
+public class PlayerPuzzleDamage : A
 {
     float DamageTimer;
     public float MaxTime;
     bool Active;
     public int Damage;
     PlayerMovement Me;
-    private void Start()
+    void Start()
     {
         Me = GetComponent<PlayerMovement>();
     }
@@ -21,13 +20,11 @@ public class PlayerPuzzleDamage : MonoBehaviour
                 DamageTimer = 0;
                 Me.TakeDamage(Damage);
             }
-            else
-            {
-                DamageTimer += Time.deltaTime;
-            }
+            else DamageTimer += Time.deltaTime;
         }       
     }
-    public void OnTriggerEnter2D(Collider2D collision)
+
+     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Fire"))
         {
@@ -35,12 +32,11 @@ public class PlayerPuzzleDamage : MonoBehaviour
             Active = true;
         }          
     }
-    public void OnTriggerExit2D(Collider2D other)
+
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Fire"))
-        {
-            Active = false;
-        }
+        if (other.gameObject.CompareTag("Fire")) Active = false;
+
     }
 }
 

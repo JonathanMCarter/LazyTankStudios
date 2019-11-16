@@ -1,17 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-public class TileLight : MonoBehaviour
+public class TileLight : A
 {
     public bool Lit;
     public LightDoor Door;
-    public Sprite On;
-    public Sprite Off;
-    private void Start()
+    public Sprite On, Off;
+
+    void Start()
     {
         Door = GameObject.FindGameObjectWithTag("Door").GetComponent<LightDoor>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {

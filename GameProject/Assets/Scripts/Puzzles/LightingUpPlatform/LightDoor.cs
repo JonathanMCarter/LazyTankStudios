@@ -1,18 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-public class LightDoor : MonoBehaviour
+﻿using UnityEngine;
+public class LightDoor : A
 {
     
     public int TotalTiles;
     public BoxCollider2D Door;
-    public Sprite Open;
-    public Sprite Closed;
+    public Sprite Open, Closed;
     public SpriteRenderer me;
-    [HideInInspector]
     public int LitTiles;
     // Update is called once per frame
-    private void Start()
+    void Start()
     {
         me = GetComponent<SpriteRenderer>();
     }

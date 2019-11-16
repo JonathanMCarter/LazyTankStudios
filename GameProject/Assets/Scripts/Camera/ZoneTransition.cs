@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.UI;//added by LC
+
 
 /**
  * Created by Toby Wishart
@@ -9,7 +8,7 @@ using UnityEngine.UI;//added by LC
  * 
  * Script for fading in and out with the gate
  */
-public class ZoneTransition : MonoBehaviour
+public class ZoneTransition : A
 {
 
     Animator a;
@@ -23,7 +22,7 @@ public class ZoneTransition : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

@@ -1,28 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class StatuePuzzleThingy : MonoBehaviour
+public class StatuePuzzleThingy : A
 {
 
-    public List<GameObject> Room1Em;
-    public List<GameObject> Room2Em;
-    public List<GameObject> Room3Em;
+    public List<GameObject> Room1Em,Room2Em,Room3Em,RoomItems;
 
-    public List<GameObject> RoomItems;
+
     public List<bool> ItemSpawned;
 
-    public GameObject Boundary;
+    public GameObject Boundary,Door;
 
-    public GameObject Door;
 
-    public PlayerMovement Player;
+    PlayerMovement Player;
 
-    public bool Rooms12Cleared;
-    public bool Em3Spawned;
-    private int ItemsReturned; //Added by LC as temp
+    public bool Rooms12Cleared, Em3Spawned,PuzzleComplete;
+    int ItemsReturned; //Added by LC as temp
 
-    public bool PuzzleComplete;
 
     // Start is called before the first frame update
     void Start()
@@ -43,10 +37,8 @@ public class StatuePuzzleThingy : MonoBehaviour
         {
             for (int i = 0; i < Room1Em.Count; i++)
             {
-                if (!Room1Em[i].activeInHierarchy)
-                {
-                    Room1Em.RemoveAt(i);
-                }
+                if (!Room1Em[i].activeInHierarchy) Room1Em.RemoveAt(i);
+
             }
         }
 
@@ -54,10 +46,8 @@ public class StatuePuzzleThingy : MonoBehaviour
         {
             for (int i = 0; i < Room2Em.Count; i++)
             {
-                if (!Room2Em[i].activeInHierarchy)
-                {
-                    Room2Em.RemoveAt(i);
-                }
+                if (!Room2Em[i].activeInHierarchy) Room2Em.RemoveAt(i);
+
             }
         }
 
@@ -67,10 +57,8 @@ public class StatuePuzzleThingy : MonoBehaviour
             {
                 for (int i = 0; i < Room3Em.Count; i++)
                 {
-                    if (!Room3Em[i].activeInHierarchy)
-                    {
-                        Room3Em.RemoveAt(i);
-                    }
+                    if (!Room3Em[i].activeInHierarchy) Room3Em.RemoveAt(i);
+
                 }
             }
         }
@@ -83,23 +71,19 @@ public class StatuePuzzleThingy : MonoBehaviour
         {
             Rooms12Cleared = true;
 
-            if (Em3Spawned)
-            {
-                Room3Cleared();
-            }
+            if (Em3Spawned)Room3Cleared();
+
         }
 
-        if (PuzzleComplete)
-        {
-            Door.SetActive(false);
-        }
+        if (PuzzleComplete) Door.SetActive(false);
+
     }
 
     public void Room1Cleared()
     {
         if ((Room1Em.Count == 0) && (!ItemSpawned[0]))
         {
-            Debug.Log("Room 1 Cleared");
+           // Debug.Log("Room 1 Cleared");
             Instantiate(RoomItems[0], Player.gameObject.transform.position, Player.gameObject.transform.rotation);
             ItemSpawned[0] = true;
         }
@@ -118,7 +102,7 @@ public class StatuePuzzleThingy : MonoBehaviour
     {
         if ((Room3Em.Count == 0) && (!ItemSpawned[2]))
         {
-            Debug.Log("Room 3 Cleared");
+           // Debug.Log("Room 3 Cleared");
             Instantiate(RoomItems[2], Player.gameObject.transform.position, Player.gameObject.transform.rotation);
             ItemSpawned[2] = true;
         }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -32,29 +31,29 @@ public enum Styles
     Custom,
 };
 
-public class DialogueScript : MonoBehaviour
+public class DialogueScript : A
 {
     public bool InCinematic = false; //temp added by LC
     // The Active Text File - This is used to populate the list when updated
-    [Header("Current Dialouge File")]
-    [Tooltip("This is the current dialouge text file selected by the script, if this isn't the file you called then something has gone wrong.")]
+    //[Header("Current Dialouge File")]
+   // [Tooltip("This is the current dialouge text file selected by the script, if this isn't the file you called then something has gone wrong.")]
     //public TextAsset InputText;
     public DialogueFile File;
 
 	// References to the displayed name and text area
-	[Header("UI Element For Story Character Name")]
-	[Tooltip("The UI Text element that is going to be used in your project to hold the Story Characters Name when they are talking.")]
+	//[Header("UI Element For Story Character Name")]
+	//[Tooltip("The UI Text element that is going to be used in your project to hold the Story Characters Name when they are talking.")]
 	public Text DialName;
 
-	[Header("UI Element that holds the character dialogue")]
-	[Tooltip("The UI Text element that is going to hold the lines of dialouge for you story charcters.")]
+//	[Header("UI Element that holds the character dialogue")]
+//	[Tooltip("The UI Text element that is going to hold the lines of dialouge for you story charcters.")]
 	public Text DialText;
 
 	// Int to check which element in the Dialogue list is next to be displayed
-	private int DialStage = 0;
+	int DialStage = 0;
 
 	// Checks is a courutine is running or not
-	private bool IsCoRunning;
+	bool IsCoRunning;
 
     public Styles DisplayStyle;
 
@@ -62,25 +61,25 @@ public class DialogueScript : MonoBehaviour
     public bool RequireInput = true;
     public bool FileHasEnded = false;
 
-	[Header("Characters used to define file read settings")]
-	[Tooltip("This should match what you inputted into the 'File Read Settings' char after name, which controls where a story character's name ends in the dialouge files the script reads.")]
+	//[Header("Characters used to define file read settings")]
+	//[Tooltip("This should match what you inputted into the 'File Read Settings' char after name, which controls where a story character's name ends in the dialouge files the script reads.")]
 	public string NameChar = ":";
-	[Tooltip("This should match what you inputted into the 'File Read Settings' char for new line, which controls where a story character's line of dialouge ends and a new one begins.")]
+	//[Tooltip("This should match what you inputted into the 'File Read Settings' char for new line, which controls where a story character's line of dialouge ends and a new one begins.")]
 	public string NewLineChar = "#";
 
-	[Header("Type Writer Settings")]
+//	[Header("Type Writer Settings")]
 	public int TypeWriterCount = 1;
 
     public int TypeWriterCharactersToAdvanceBy = 1;
 
 
     // Stuff for events 'n' stuff 
-    private Coroutine PauseCo;
+     Coroutine PauseCo;
     public Animator AnimToPlay;
 
-    AudioManager audioManager;
+   // SoundPlayer audioManager;
 
-    private void Update()
+    void Update()
     {
         if (RequireInput)
         {
@@ -98,7 +97,7 @@ public class DialogueScript : MonoBehaviour
 
                     if ((!IsCoRunning) && (InputPressed) && !FileHasEnded)
                     {
-                        audioManager.Play("Dialogue1");
+                        //audioManager.Play("Dialogue1");
                         StartCoroutine(TypeWriter(.00005f));
                     }
 
@@ -117,10 +116,10 @@ public class DialogueScript : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        audioManager = FindObjectOfType<AudioManager>();
-    }
+    //void Start()
+    //{
+    //    audioManager = FindObjectOfType<SoundPlayer>();
+    //}
 
     // Changes the active file in the script
     public void ChangeFile(DialogueFile Input)
@@ -129,10 +128,10 @@ public class DialogueScript : MonoBehaviour
         {
             File = Input;
         }
-        else
-        {
-            Debug.LogError("No File Found");
-        }
+        //else
+        //{
+        //    //Debug.LogError("No File Found");
+        //}
 
         Reset();
     }
@@ -263,19 +262,19 @@ public class DialogueScript : MonoBehaviour
     private IEnumerator CinematicFinish(string cinematic)
     {
         InCinematic = true; //temp added by LC;
-        Debug.Log("Wait for cinematic end");
+       // Debug.Log("Wait for cinematic end");
         Scene s = SceneManager.GetSceneByName(cinematic);
         //Scene is unloaded in the CutsceneStateHandler script
         yield return new WaitWhile(()=>s.isLoaded);
         InCinematic = false; //temp added by LC
-        Debug.Log("Cinematic finished");
+        //Debug.Log("Cinematic finished");
         DialStage++;
         PauseCo = null;
     }
 
     private IEnumerator CinematicLoad(string cinematic)
     {
-        Debug.Log("Load cinematic");
+       // Debug.Log("Load cinematic");
         SceneManager.LoadSceneAsync(cinematic, LoadSceneMode.Additive);
         Scene s = SceneManager.GetSceneByName(cinematic);
         //Only start coroutine after the scene has fully loaded otherwise it will finish prematurely

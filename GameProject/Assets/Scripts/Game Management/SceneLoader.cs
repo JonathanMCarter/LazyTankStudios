@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 
 /*
  * Scene Loader Script
@@ -14,7 +11,7 @@ using UnityEngine.SceneManagement;
  * */
 
 
-public class SceneLoader : MonoBehaviour
+public class SceneLoader : A
 {
     ///<summary>
     ///Loads a Scene with the Name in the SceneName variable

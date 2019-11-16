@@ -2,10 +2,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelChanger : MonoBehaviour
+public class LevelChanger : A
 {
 
     public Animator animator;
+
+    InputManager IM;
 
     public int levelToLoad;
 
@@ -25,5 +27,10 @@ public class LevelChanger : MonoBehaviour
     public void OnFadeComplete ()
     {
         SceneManager.LoadScene(levelToLoad);
+    }
+
+    void Start()
+    {
+        IM = FindObjectOfType<InputManager>();
     }
 }

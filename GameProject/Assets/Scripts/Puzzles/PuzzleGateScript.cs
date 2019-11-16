@@ -15,7 +15,7 @@ using UnityEngine;
  * LC Notes: Currently will not work, will keep scaling player damage up if it did work as intended. Need to move weapon damage onto projectile, and increase it on there. Would also allow a bool to be on that new bullet script to show if it can be affected by gates or not?
  * Can also use layers (player and enemy layers) to define if a gate is only for player or enemy or both
  */
-public class PuzzleGateScript : MonoBehaviour
+public class PuzzleGateScript : A
 {
     public float ScaleSize;
     public enum Effect
@@ -29,12 +29,12 @@ public class PuzzleGateScript : MonoBehaviour
     public Effect GateEffect;
     public PlayerMovement Player;
 
-    private void Awake()
+     void Awake()
     {
         Player = FindObjectOfType<PlayerMovement>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+     void OnTriggerEnter2D(Collider2D collision)
     {
         // if the object can pass through the gate (only the projectiles)
         if (collision.gameObject.tag == "Bullet")  //Will need to change identification of if can pass - As may need to use tags for another purpose later on (early warning to think about) comment added by LC

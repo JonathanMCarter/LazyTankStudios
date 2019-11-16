@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GateScript : MonoBehaviour
+﻿public class GateScript : A
 {
     public int BouldersPushed;
     void Start()
@@ -16,10 +12,8 @@ public class GateScript : MonoBehaviour
     }
     void Update()
     {
-        if(BouldersPushed == 2)
-        {
-            gameObject.SetActive(false);
-        }
+        if(BouldersPushed == 2) gameObject.SetActive(false);
+
              
     }
 }

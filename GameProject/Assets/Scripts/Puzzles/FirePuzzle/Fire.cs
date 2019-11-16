@@ -1,27 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class Fire : A
 {
     public int Damage;
-    public float ActiveSeconds;
-    public float WaitSeconds;
-    private float Timer;
-    public float damageTime;
-    private float damageTimer;
+    public float ActiveSeconds,WaitSeconds,damageTime;
+    public Sprite ActiveSprite,WaitSprite;
 
-    private bool Active;
-    private bool DamageTrigger;
+    float Timer,damageTimer;
 
 
-    private BoxCollider2D MyCol;
-    public Sprite ActiveSprite;
-    public Sprite WaitSprite;
-    private SpriteRenderer MyRend;
-    private PlayerMovement MyPlay;
 
-    private void Start()
+    bool Active,DamageTrigger;
+
+
+
+    BoxCollider2D MyCol;
+   
+    SpriteRenderer MyRend;
+    PlayerMovement MyPlay;
+
+    void Start()
     {
         Timer = 0f;
         Active = false;
@@ -61,7 +59,7 @@ public class Fire : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
@@ -69,7 +67,7 @@ public class Fire : MonoBehaviour
             MyPlay.TakeDamage(Damage);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

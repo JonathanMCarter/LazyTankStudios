@@ -1,22 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-public class ButtonPuzzleSingleButton : MonoBehaviour
+﻿using UnityEngine;
+public class ButtonPuzzleSingleButton : A
 {
-    private bool hit;
-    public Sprite newSprite;
-    public Sprite OldSprite;
+     bool hit = false;
+    public Sprite newSprite,OldSprite;
     public ButtonDoor Hit;
     int MaxLeaverUses;
     public bool[] ColourArray;
     public bool ColourPuzzle;
     SpriteRenderer MySprite;
+
     void Start()
     {
-        hit = false;
         MySprite = GetComponent<SpriteRenderer>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (ColourPuzzle)
         {
@@ -59,9 +57,7 @@ public class ButtonPuzzleSingleButton : MonoBehaviour
     private void spriteChange()
     {
         MySprite.sprite = newSprite;
-        if (!ColourPuzzle)
-        {
-            GetComponent<BoxCollider2D>().enabled = false;
-        }
+        if (!ColourPuzzle) GetComponent<BoxCollider2D>().enabled = false;
+
     }
 }

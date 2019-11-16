@@ -1,31 +1,27 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-public class NewAIMove : MonoBehaviour
+public class NewAIMove : A
 {
-    public float MoveSpeed;
-    public float RotateSpeed;
-    float WaitTime;
-    public float Direction;
-    float TurnTime;
+    public float MoveSpeed,RotateSpeed,Direction;
+
+    float WaitTime,TurnTime;
+
+
     public Transform me;
     Transform Player;
     public Rigidbody2D MyRigid;
-    public Vector2 Paramiers;
-    public Vector2 WaitVarables;
-    bool SeenPlayer;
-    bool Turn;
-    bool TurnCount;
-    bool ToggleDirection;
+    public Vector2 Paramiers,WaitVarables;
+
+    bool SeenPlayer,Turn,TurnCount,ToggleDirection, hit;
+
     public SpriteRenderer[] Hearts;
-    private bool hit;
     public int Health;
     public float DamageCD=0.3f;
 
-    private PlayerMovement player;
-    private Inventory playerInventory;
-    
-    [HideInInspector]
+    PlayerMovement player;
+    Inventory playerInventory;
+    Transform PlayerPos;
+
 
 
     void Start()
@@ -35,37 +31,36 @@ public class NewAIMove : MonoBehaviour
         hit = false;
         playerInventory = FindObjectOfType<Inventory>();
         Health=Hearts.Length;
+         PlayerPos = GameObject.FindGameObjectWithTag("Player").transform;
     }
     void Update()
     {
 
         me.transform.position = transform.position;
-        if (SeenPlayer)
-            RunToPlayer();
-        else
-            RandomWander();
+        if (SeenPlayer) RunToPlayer();
+           
+        else  RandomWander();
 
         
     }
-    private void FixedUpdate()
+    void FixedUpdate()
     {
 
         if (ToggleDirection || SeenPlayer)
         {
             ToggleDirection = true;
-            if (!SeenPlayer)
+            if (!SeenPlayer)   MyRigid.angularVelocity = 0;
 
-                MyRigid.angularVelocity = 0;
-            MyRigid.velocity = transform.up * (MoveSpeed * Time.deltaTime);
+            MyRigid.velocity = transform.up * (MoveSpeed * Time.deltaTime);//shouldnt use time.deltatime in fixed update as time between frames is not same as time between fixed update updates
+
         }
-        else
-            MyRigid.velocity = transform.up * (-MoveSpeed * Time.deltaTime);
+        else  MyRigid.velocity = transform.up * (-MoveSpeed * Time.deltaTime);
+           
         if (Turn)
         {
-            if (Direction < 50)
-                transform.Rotate(0, 0, RotateSpeed * Time.deltaTime);
-            else if (Direction >= 50)
-                transform.Rotate(0, 0, -RotateSpeed * Time.deltaTime);
+            if (Direction < 50) transform.Rotate(0, 0, RotateSpeed * Time.deltaTime);
+            else if (Direction >= 50)  transform.Rotate(0, 0, -RotateSpeed * Time.deltaTime);
+              
         }
         
     }
@@ -95,11 +90,11 @@ public class NewAIMove : MonoBehaviour
     }
     void RunToPlayer()
     {
-        Transform PlayerPosition = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        Vector2 Direction = new Vector2(PlayerPosition.position.x - transform.position.x, PlayerPosition.position.y - transform.position.y);
+       
+        Vector2 Direction = new Vector2(PlayerPos.position.x - transform.position.x, PlayerPos.position.y - transform.position.y);
         transform.up = Direction;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -108,7 +103,7 @@ public class NewAIMove : MonoBehaviour
         }
         
     }
-    private void OnTriggerExit2D(Collider2D collision)
+     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -117,7 +112,7 @@ public class NewAIMove : MonoBehaviour
                 Player = null;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (ToggleDirection)
             ToggleDirection = false;
@@ -139,8 +134,8 @@ public class NewAIMove : MonoBehaviour
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
                 Health -= damage;
-                if (Health <= 0)
-                    this.gameObject.SetActive(false);
+                if (Health <= 0)  gameObject.SetActive(false);
+                  
                 StartCoroutine(DamageCooldown());
             }
             if (collision.gameObject.tag == "Sword" && !hit)
@@ -154,8 +149,8 @@ public class NewAIMove : MonoBehaviour
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
                 Health -= damage;
                 StartCoroutine(DamageCooldown());
-                if (Health <= 0)
-                    this.gameObject.SetActive(false);
+                if (Health <= 0)  gameObject.SetActive(false);
+                  
                 
             }
        

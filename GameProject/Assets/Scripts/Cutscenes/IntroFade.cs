@@ -1,19 +1,17 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class IntroFade : MonoBehaviour
+public class IntroFade : A
 {
 
-    public Text titleText;
-    public Text companyText;
+    public Text titleText, companyText;
     public Image mapImage;
     public string loadLevel;
 
-    private IEnumerator Start()
+    IEnumerator Start()
     {
         titleText.canvasRenderer.SetAlpha(0.0f);
         companyText.canvasRenderer.SetAlpha(0.0f);

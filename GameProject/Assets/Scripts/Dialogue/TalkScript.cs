@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TalkScript : MonoBehaviour
+public class TalkScript : A
 {
     /*
  * Task Script
@@ -25,10 +23,11 @@ public class TalkScript : MonoBehaviour
     public DialogueFile dialogueEnglish,dialogueGerman;
     public DialogueFile questdialogue;
     public PlayerMovement movement;
+    InputManager IM;
     DialogueScript ds;
     //QuestScript qs;
     //Andreas edit --
-    private AudioManager audioManager;
+    //SoundPlayer audioManager;
     //Andreas edit end--
 
     bool talking = false;
@@ -38,11 +37,12 @@ public class TalkScript : MonoBehaviour
 
     void Awake()
     {
+        IM = FindObjectOfType<InputManager>();
         panel = GameObject.Find("Dialogue Box").GetComponent<CanvasGroup>();
 
         ds = FindObjectOfType<DialogueScript>(); //added by LC
         //Andreas edit --
-         audioManager=FindObjectOfType<AudioManager>();
+         //audioManager=FindObjectOfType<SoundPlayer>();
         
         //panel = FindObjectOfType<DialogueBoxManager>().gameObject;
         //qs = FindObjectOfType<QuestScript>();
@@ -59,7 +59,7 @@ public class TalkScript : MonoBehaviour
 
     public void talk()
     {
-        Debug.Log("Talk Called");
+        //Debug.Log("Talk Called");
         panel.alpha = 1;
 
         //Toby: Need this to change the dialogue each time you talk otherwise every NPC will have the same dialogue
@@ -76,7 +76,7 @@ public class TalkScript : MonoBehaviour
     {
         if (talking)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (IM.Button_A())
             { 
                 ds.Input();
                 //Andreas edit --

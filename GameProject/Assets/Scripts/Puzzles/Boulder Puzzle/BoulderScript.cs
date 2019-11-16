@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BoulderScript : MonoBehaviour
+public class BoulderScript : A
 {
-    public float MoveDistance;
-    public float MoveSpeed;
-    private bool Move;  
-    private float TotalDistance;
-    private Vector2 Temp;
+    public float MoveDistance,MoveSpeed;
+    bool Move;  
+    float TotalDistance;
+    Vector2 Temp;
     public GateScript Gate;
+
+
     void Start()
     {
         TotalDistance = 0;
@@ -17,7 +16,7 @@ public class BoulderScript : MonoBehaviour
         Temp = transform.position;
     }
 
-    private bool DistanceTraveled()
+    bool DistanceTraveled()
     {
         if(TotalDistance >= MoveDistance)
         {
@@ -26,6 +25,7 @@ public class BoulderScript : MonoBehaviour
         }
         return true;
     }
+
     void Update()
     {
         if(Move)
@@ -34,23 +34,20 @@ public class BoulderScript : MonoBehaviour
             TotalDistance += Time.deltaTime;
         }
     }
-    private void LateUpdate()
+
+    void LateUpdate()
     {
-        if (DistanceTraveled())
-        {
-            transform.position = Temp;
-        }   
+        if (DistanceTraveled()) transform.position = Temp; 
         else
         {
             Gate.AddBoulder();
             GetComponent<BoulderScript>().enabled = false;
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Player"))
-        {
-            Move = true;
-        }
+        if(other.gameObject.CompareTag("Player")) Move = true;
+
     }
 }

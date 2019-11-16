@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class NewAIPause : MonoBehaviour
+public class NewAIPause : A
 {
-    private NewAIMove me;
-    private GameManager manager;
+    NewAIMove me;
+    GameManager manager;
     // Start is called before the first frame update
     void Start()
     {

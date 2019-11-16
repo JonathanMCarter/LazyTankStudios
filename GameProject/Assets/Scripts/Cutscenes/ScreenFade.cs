@@ -1,18 +1,17 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class ScreenFade : MonoBehaviour
+public class ScreenFade : A
 {
 
     public Text titleText;
     public Image mapImage;
     public string loadLevel;
 
-    private IEnumerator Start()
+    IEnumerator Start()
     {
         titleText.canvasRenderer.SetAlpha(0.0f);
         mapImage.canvasRenderer.SetAlpha(0.0f);

@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 /*
  * Created by Toby Wishart
  * Last edit: 13/11/19
  * Reason: Fixing tears in the tilemap
  */
-public class CameraMove : MonoBehaviour
+public class CameraMove : A
 {
 
     private Transform p;
@@ -33,8 +31,8 @@ public class CameraMove : MonoBehaviour
             transform.position = new Vector3(Mathf.Clamp(p.position.x, b.bounds.min.x + camBox.size.x / 2, b.bounds.max.x - camBox.size.x / 2), Mathf.Clamp(p.position.y, b.bounds.min.y + camBox.size.y / 2, b.bounds.max.y - camBox.size.y / 2), transform.position.z);
         }
         //Units per pixel
-        float upp = 1.0F / scale;
+        float up = 1.0F / scale;
         //Snap camera movement to pixels
-        transform.position = new Vector3(Mathf.Round(transform.position.x / upp) * upp, Mathf.Round(transform.position.y / upp) * upp, transform.position.z);
+        transform.position = new Vector3(Mathf.Round(transform.position.x / up) * up, Mathf.Round(transform.position.y / up) * up, transform.position.z);
     }
 }
