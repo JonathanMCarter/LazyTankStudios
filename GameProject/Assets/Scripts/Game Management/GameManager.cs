@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour
 {
     private PlayerMovement Player;
     private GameObject Menu;
-    private bool isPaused=false;
-
+    public bool isPaused=false;
 
     private void Start()
     {
@@ -60,17 +59,11 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Pauses/UnPauses the Game
     /// </summary>
-    public void PauseGame()
+    public void TogglePauseEnemies()
     {
-        if(!isPaused)Time.timeScale=0;
-        else Time.timeScale=1;
+        isPaused=!isPaused;
     }
 
-    public void PauseGame(bool pause)
-    {
-        if(pause)Time.timeScale=0;
-        else Time.timeScale=1;
-    }
 
     /// <summary>
     /// Toggles the player movement script on and off
