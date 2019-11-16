@@ -8,9 +8,10 @@
 
 	Made by: Jonathan Carter
 	Last Edited By: Jonathan Carter
-	Date Edited Last: 11/11/19 - Coded to work with UI...
+	Date Edited Last: 16/11/19 - Made it so the bool runs in the shader rather than in the editor (so editor can be deleted without breaking the colour changer)
 
 	Edit History:
+	- 11/11/19 - Coded to work with UI...
 	- 03/11/19 - Added useage of Perm Palette instead of the stores colours in the shader
 	- 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
 	- 27/10/19 - Added fields to store colour options
@@ -40,13 +41,9 @@ Shader "Custom/ColourChanger"
 		[HideInInspector]_PalCol3("Palette 3", Color) = (0,0,0,1)
 		[HideInInspector]_PalCol4("Palette 4", Color) = (0,0,0,1)
 
-		[HideInInspector]_StoreTrans1("StoreTrans1", Color) = (0,0,0,1)
-		[HideInInspector]_StoreTrans2("StoreTrans2", Color) = (0,0,0,1)
-		[HideInInspector]_StoreTrans3("StoreTrans3", Color) = (0,0,0,1)
-		[HideInInspector]_StoreTrans4("StoreTrans4", Color) = (0,0,0,1)
-		[HideInInspector][MaterialToggle]_IsInstance("IsInstance", Float) = 0
-		[HideInInspector][MaterialToggle]_UseTrans("UseTrans", Float) = 1
-		[HideInInspector]_PaletteSelected("PaletteSelected", Float) = 1
+		_PaletteSelected("PaletteSelected", Float) = 1
+
+		[MaterialToggle]_SwitchPal1("SwitchPal1", Float) = 0
     }
     SubShader
     {
@@ -67,6 +64,7 @@ Shader "Custom/ColourChanger"
 
 
 			sampler2D _MainTex;
+			float _SwitchPal1;
 
 			// Defines the GPU instanced variables - still not sure this does anythig helpful in a 2D game but I've kept it in for now
 			UNITY_INSTANCING_BUFFER_START(Props)
@@ -79,7 +77,6 @@ Shader "Custom/ColourChanger"
 				UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol3)
 				UNITY_DEFINE_INSTANCED_PROP(float4, _PalCol4)
 			UNITY_INSTANCING_BUFFER_END(Props)
-
 
 
 		// Vertex
@@ -133,53 +130,98 @@ Shader "Custom/ColourChanger"
 			float4 Pal3 = UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol3);
 			float4 Pal4 = UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol4);
 
-			if 
-			(
-				c.r >= _TestCol1.r - 0.001 && c.r <= _TestCol1.r + 0.001 &&
-				c.g >= _TestCol1.g - 0.001 && c.g <= _TestCol1.g + 0.001 &&
-				c.b >= _TestCol1.b - 0.001 && c.b <= _TestCol1.b + 0.001 &&
-				c.a >= _TestCol1.a - 0.001 && c.a <= _TestCol1.a + 0.001
-			)
+			if (_SwitchPal1 == 0)
 			{
-				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol1.a) == 0)
+				if
+					(
+						c.r >= _TestCol1.r - 0.001 && c.r <= _TestCol1.r + 0.001 &&
+						c.g >= _TestCol1.g - 0.001 && c.g <= _TestCol1.g + 0.001 &&
+						c.b >= _TestCol1.b - 0.001 && c.b <= _TestCol1.b + 0.001 &&
+						c.a >= _TestCol1.a - 0.001 && c.a <= _TestCol1.a + 0.001
+						)
 				{
-					// essentially gets rid of the pixels entirely if they are meant to be transparent
-					discard;
+					if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol1.a) == 0)
+					{
+						// essentially gets rid of the pixels entirely if they are meant to be transparent
+						discard;
+					}
+					else
+					{
+						// If there is no transparency on this sprite then the 4th colour will be used instead
+						return Pal1;
+					}
 				}
-				else
-				{
-					// If there is no transparency on this sprite then the 4th colour will be used instead
-					return Pal1;
-				}
-            }
 
-			if 
-			(
-				c.r >= _TestCol2.r - 0.001 && c.r <= _TestCol2.r + 0.001 &&
-				c.g >= _TestCol2.g - 0.001 && c.g <= _TestCol2.g + 0.001 &&
-				c.b >= _TestCol2.b - 0.001 && c.b <= _TestCol2.b + 0.001 &&
-				c.a >= _TestCol2.a - 0.001 && c.a <= _TestCol2.a + 0.001
-			)
-			{
-				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol2.a) == 0)
+				if
+					(
+						c.r >= _TestCol2.r - 0.001 && c.r <= _TestCol2.r + 0.001 &&
+						c.g >= _TestCol2.g - 0.001 && c.g <= _TestCol2.g + 0.001 &&
+						c.b >= _TestCol2.b - 0.001 && c.b <= _TestCol2.b + 0.001 &&
+						c.a >= _TestCol2.a - 0.001 && c.a <= _TestCol2.a + 0.001
+						)
 				{
-					// essentially gets rid of the pixels entirely if they are meant to be transparent
-					discard;
+					if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol2.a) == 0)
+					{
+						// essentially gets rid of the pixels entirely if they are meant to be transparent
+						discard;
+					}
+					else
+					{
+						// If there is no transparency on this sprite then the 4th colour will be used instead
+						return Pal2;
+					}
 				}
-				else
+
+			}
+			else
+			{
+				if
+					(
+						c.r >= _TestCol1.r - 0.001 && c.r <= _TestCol1.r + 0.001 &&
+						c.g >= _TestCol1.g - 0.001 && c.g <= _TestCol1.g + 0.001 &&
+						c.b >= _TestCol1.b - 0.001 && c.b <= _TestCol1.b + 0.001 &&
+						c.a >= _TestCol1.a - 0.001 && c.a <= _TestCol1.a + 0.001
+						)
 				{
-					// If there is no transparency on this sprite then the 4th colour will be used instead
-					return Pal2;
+					if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol1.a) == 0)
+					{
+						// essentially gets rid of the pixels entirely if they are meant to be transparent
+						discard;
+					}
+					else
+					{
+						// If there is no transparency on this sprite then the 4th colour will be used instead
+						return Pal2;
+					}
+				}
+
+				if
+					(
+						c.r >= _TestCol2.r - 0.001 && c.r <= _TestCol2.r + 0.001 &&
+						c.g >= _TestCol2.g - 0.001 && c.g <= _TestCol2.g + 0.001 &&
+						c.b >= _TestCol2.b - 0.001 && c.b <= _TestCol2.b + 0.001 &&
+						c.a >= _TestCol2.a - 0.001 && c.a <= _TestCol2.a + 0.001
+						)
+				{
+					if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol2.a) == 0)
+					{
+						// essentially gets rid of the pixels entirely if they are meant to be transparent
+						discard;
+					}
+					else
+					{
+						// If there is no transparency on this sprite then the 4th colour will be used instead
+						return Pal1;
+					}
 				}
 			}
-
-			if 
-			(
-				c.r >= _TestCol3.r - 0.001 && c.r <= _TestCol3.r + 0.001 &&
-				c.g >= _TestCol3.g - 0.001 && c.g <= _TestCol3.g + 0.001 &&
-				c.b >= _TestCol3.b - 0.001 && c.b <= _TestCol3.b + 0.001 &&
-				c.a >= _TestCol3.a - 0.001 && c.a <= _TestCol3.a + 0.001
-			)
+			if
+				(
+					c.r >= _TestCol3.r - 0.001 && c.r <= _TestCol3.r + 0.001 &&
+					c.g >= _TestCol3.g - 0.001 && c.g <= _TestCol3.g + 0.001 &&
+					c.b >= _TestCol3.b - 0.001 && c.b <= _TestCol3.b + 0.001 &&
+					c.a >= _TestCol3.a - 0.001 && c.a <= _TestCol3.a + 0.001
+					)
 			{
 				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol3.a) == 0)
 				{
@@ -193,13 +235,13 @@ Shader "Custom/ColourChanger"
 				}
 			}
 
-			if 
-			(
-				c.r >= _TestCol4.r - 0.001 && c.r <= _TestCol4.r + 0.001 &&
-				c.g >= _TestCol4.g - 0.001 && c.g <= _TestCol4.g + 0.001 &&
-				c.b >= _TestCol4.b - 0.001 && c.b <= _TestCol4.b + 0.001 &&
-				c.a >= _TestCol4.a - 0.001 && c.a <= _TestCol4.a + 0.001
-			)
+			if
+				(
+					c.r >= _TestCol4.r - 0.001 && c.r <= _TestCol4.r + 0.001 &&
+					c.g >= _TestCol4.g - 0.001 && c.g <= _TestCol4.g + 0.001 &&
+					c.b >= _TestCol4.b - 0.001 && c.b <= _TestCol4.b + 0.001 &&
+					c.a >= _TestCol4.a - 0.001 && c.a <= _TestCol4.a + 0.001
+					)
 			{
 				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol4.a) == 0)
 				{
@@ -221,5 +263,6 @@ Shader "Custom/ColourChanger"
         }
     }
 
+	// This will throw a warning if the editor dosen't exsits!
 	CustomEditor "ShaderEditorGUI"
 }
