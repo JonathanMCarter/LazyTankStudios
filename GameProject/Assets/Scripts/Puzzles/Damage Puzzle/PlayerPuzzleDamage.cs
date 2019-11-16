@@ -23,7 +23,7 @@ public class PlayerPuzzleDamage : MonoBehaviour
             }
             else
             {
-                DamageTimer = Time.deltaTime;
+                DamageTimer += Time.deltaTime;
             }
         }       
     }
@@ -31,7 +31,7 @@ public class PlayerPuzzleDamage : MonoBehaviour
     {
         if (collision.CompareTag("Fire"))
         {
-            Me.TakeDamage(Damage);
+            DamageTimer = MaxTime;
             Active = true;
         }          
     }
