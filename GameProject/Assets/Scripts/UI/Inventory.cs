@@ -186,7 +186,7 @@ public class Inventory : A
         Slots[id].updateIcon();
         //print(slot.quantity);
         //Andreas edit--
-        //audioManager.Play("Item_PickUp");
+        audioManager.Play("Pick_Up_Item_1");
         //Andreas edit end--
     }
     public void addItem(int id, int quantity, bool remove, bool Increase)
@@ -243,7 +243,7 @@ public class Inventory : A
         //Andreas edit--
         string effectToPlay = isOpen ? "Open_Inventory_1" : "Close_Inventory_1";
         audioManager.Play(effectToPlay);
-       // if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
+        //if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
         if(!isOpen && !VendorMode)GameObject.FindGameObjectWithTag("Map").SetActive(false);
         VendorMode = false;
         // Locks player until the inventory is closed 	
