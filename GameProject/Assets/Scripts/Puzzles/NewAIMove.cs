@@ -19,7 +19,7 @@ public class NewAIMove : A
     public float DamageCD=0.3f;
 
     PlayerMovement player;
-    Inventory playerInventory;
+    //Inventory playerInventory;
     Transform PlayerPos;
 
 
@@ -28,10 +28,9 @@ public class NewAIMove : A
     {
         TurnCount = true;
         MyRigid = GetComponent<Rigidbody2D>();
-        hit = false;
-        playerInventory = FindObjectOfType<Inventory>();
+        //playerInventory = FindObjectOfType<Inventory>();
         Health=Hearts.Length;
-         PlayerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        PlayerPos = GameObject.FindGameObjectWithTag("Player").transform;
     }
     void Update()
     {
@@ -51,15 +50,15 @@ public class NewAIMove : A
             ToggleDirection = true;
             if (!SeenPlayer)   MyRigid.angularVelocity = 0;
 
-            MyRigid.velocity = transform.up * (MoveSpeed * Time.deltaTime);//shouldnt use time.deltatime in fixed update as time between frames is not same as time between fixed update updates
+            MyRigid.velocity = transform.up * MoveSpeed;//shouldnt use time.deltatime in fixed update as time between frames is not same as time between fixed update updates
 
         }
-        else  MyRigid.velocity = transform.up * (-MoveSpeed * Time.deltaTime);
+        else  MyRigid.velocity = transform.up * -MoveSpeed;
            
         if (Turn)
         {
-            if (Direction < 50) transform.Rotate(0, 0, RotateSpeed * Time.deltaTime);
-            else if (Direction >= 50)  transform.Rotate(0, 0, -RotateSpeed * Time.deltaTime);
+            if (Direction < 50) transform.Rotate(0, 0, RotateSpeed);
+            else if (Direction >= 50)  transform.Rotate(0, 0, -RotateSpeed);
               
         }
         
@@ -118,11 +117,9 @@ public class NewAIMove : A
             ToggleDirection = false;
         else
             ToggleDirection = true;
-
-            
-            if (collision.gameObject.tag == "Bullet" && !hit)
+            if (collision.gameObject.tag == "Bullet")// && !hit)
             {
-                hit = true;
+                //hit = true;
                 //Toby: get bullet damage instead of always 1
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
@@ -136,11 +133,11 @@ public class NewAIMove : A
                 Health -= damage;
                 if (Health <= 0)  gameObject.SetActive(false);
                   
-                StartCoroutine(DamageCooldown());
+                //StartCoroutine(DamageCooldown());
             }
-            if (collision.gameObject.tag == "Sword" && !hit)
+            if (collision.gameObject.tag == "Sword")// && !hit)
             {
-                hit = true;
+                //hit = true;
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
               //  playerInventory.addXP(b.SourceItem, 1);
@@ -148,22 +145,13 @@ public class NewAIMove : A
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
                 Health -= damage;
-                StartCoroutine(DamageCooldown());
+                //StartCoroutine(DamageCooldown());
                 if (Health <= 0)  gameObject.SetActive(false);
-                  
-                
             }
-       
-
     }
-
-     IEnumerator DamageCooldown() //temp add by LC
-    {
-        
-        yield return new WaitForSeconds(DamageCD);
-        hit=false;
-    }
-
-
-    
+    // IEnumerator DamageCooldown() //temp add by LC
+    //{
+    //    yield return new WaitForSeconds(DamageCD);
+    //    hit=false;
+    //}
 }

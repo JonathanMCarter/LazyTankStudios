@@ -84,14 +84,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 111822326a099a14b899db2bd5326981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 100
-  RotateSpeed: 100
+  MoveSpeed: 5
+  RotateSpeed: 5
   Direction: 0
   me: {fileID: 0}
+  MyRigid: {fileID: 0}
   Paramiers: {x: 0.2, y: 1}
   WaitVarables: {x: 0.2, y: 1}
   Hearts: []
   Health: 0
+  DamageCD: 0.3
 --- !u!58 &1353393902769897665
 CircleCollider2D:
   m_ObjectHideFlags: 0
