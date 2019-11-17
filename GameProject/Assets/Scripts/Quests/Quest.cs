@@ -14,8 +14,13 @@ using UnityEngine;
 //
 //
 
+   // Quest.boss[ID] = true;
+
 public class Quest : A
 {
+    [HideInInspector]
+    static public bool[] boss = new bool [8];
+
 
 
     #region Public Variables
@@ -111,14 +116,19 @@ public class Quest : A
     //Inventory            -   Reference to the player inventory
     Inventory inv;
 
-    static int currQuest = 0;
+    [HideInInspector]
+    static public int currQuest = 0;
 
     GameObject ActiveQuestSign;
+
+    private PlayerMovement HeroRef;
     #endregion
 
 
     void Awake()
     {
+        HeroRef = GameObject.FindObjectOfType<PlayerMovement>();
+        HeroRef.QuestActiveID = currQuest;
         ActiveQuestSign = gameObject.transform.parent.GetChild(1).gameObject;
 
         //Get the reference to the new item prefab
@@ -134,7 +144,7 @@ public class Quest : A
         GameManagerTalk = GameObject.Find("GameManager").GetComponent<TalkScript>();
 
         //Sets available just the first quest at the beginning of the game - Creating a sequence of quests
-        status = ID == 0 ? Status.Available : Status.NotAvailable;
+        status = ID == HeroRef.QuestActiveID ? Status.Available : Status.NotAvailable;
 
         //Disable all other quests within the game based on the its status 
         gameObject.transform.GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true : false;
@@ -143,7 +153,17 @@ public class Quest : A
         ActiveQuestSign.SetActive(status == Status.Available);
     }
 
+    private void Start()
+    {
+        status = ID == HeroRef.QuestActiveID ? Status.Available : Status.NotAvailable;
 
+        //Disable all other quests within the game based on the its status 
+        gameObject.transform.GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true : false;
+        NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true : false;
+        enabled = status == Status.Available;
+        ActiveQuestSign.SetActive(status == Status.Available);
+
+    }
     void Update()
     {
         //Checks NPC gameObject availability and the type of the Quest
@@ -219,6 +239,7 @@ public class Quest : A
         if (Kills.Count > 0)
             foreach (GameObject enemy in Kills)
                 state = enemy.activeInHierarchy ? false : true;
+        else state = boss[currQuest] == true;
 
         //If all the enemies are inactive checkKilledAllEnemies will return true
         return state;
@@ -335,6 +356,7 @@ public class Quest : A
                     gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
                 lastQuest = false;
                 currQuest++;
+                HeroRef.QuestActiveID = currQuest;
                 q.ActiveQuestSign.SetActive(true);
                 ActiveQuestSign.SetActive(false);
                 q.status = Status.Available;

@@ -9,8 +9,8 @@ public class PlayerMovement : A {
     public Inventory Inv;
     public GameObject Bullet, DeathCanvas, Menu;
     public ProjectileStats WeaponStats; Rigidbody2D myRigid; Animator myAnim; SpriteRenderer render; InputManager IM;
-    public bool dmgCD;   HealthUI UI; SoundPlayer audioManager;
-    public int health; GameObject aHB;
+    public bool dmgCD;   HealthUI UI; SoundPlayer audioManager, BossKilled;
+    public int health, QuestActiveID; GameObject aHB;
     public Transform aR;
     bool attacking, dashing, shieldUp, Shooting;
     public float RangedAttackDuration, dashSpeedMultiplier, DashDuration, blockTIme, AttackTime, SlideSpeed;

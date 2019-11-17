@@ -117,7 +117,7 @@ public class NewAIMove : A
             ToggleDirection = false;
         else
             ToggleDirection = true;
-            if (collision.gameObject.tag == "Bullet")// && !hit)
+        if (collision.gameObject.tag == "Bullet")// && !hit)
             {
                 //hit = true;
                 //Toby: get bullet damage instead of always 1
@@ -131,18 +131,17 @@ public class NewAIMove : A
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
                 Health -= damage;
-            if (Health <= 0)
-            {
-                if(boss)
-                {
-
-                }
-                gameObject.SetActive(false);
-            }
                   
                 //StartCoroutine(DamageCooldown());
             }
-            if (collision.gameObject.tag == "Sword")// && !hit)
+        if (Health <= 0)
+        {
+            if (boss)
+                Quest.boss[Quest.currQuest] = true;
+            gameObject.SetActive(false);
+        }
+
+        if (collision.gameObject.tag == "Sword")// && !hit)
             {
                 //hit = true;
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
