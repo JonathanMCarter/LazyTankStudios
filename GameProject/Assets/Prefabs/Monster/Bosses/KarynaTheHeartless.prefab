@@ -409,14 +409,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 856258209970189560}
-  - component: {fileID: 7240470443698076412}
   - component: {fileID: 8702359668831418237}
   - component: {fileID: 7469705393230010056}
-  - component: {fileID: 9013032260191296242}
-  - component: {fileID: 9013032260191296143}
-  - component: {fileID: 9013032260191296128}
-  - component: {fileID: 9013032260191296129}
-  - component: {fileID: 7703603938539823479}
   m_Layer: 0
   m_Name: KarynaTheHeartless
   m_TagString: Untagged
@@ -455,32 +449,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7240470443698076412
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3243341156002226671}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0023695081, y: 0.00000023841858}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
-    newSize: {x: 0.08, y: 0.08}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.0260353, y: 1.9650131}
-  m_EdgeRadius: 0
 --- !u!58 &8702359668831418237
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -491,7 +459,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -516,114 +484,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &9013032260191296242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3243341156002226671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8746f1927e62b748bba0abcbb90e34d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xRange: 2
-  yRange: 2
-  showGizmos: 0
-  movementSpeed: 2
-  maxIdleTime: 2
-  maxChasingArea: {x: 1, y: 1}
-  Hearts:
-  - {fileID: 1836190089586582134}
-  - {fileID: 6497483272730028409}
-  - {fileID: 4757816513358193885}
-  - {fileID: 7038786494287662321}
-  - {fileID: 5896065195734119419}
-  - {fileID: 8830974972310597948}
-  - {fileID: 4428778181317139191}
-  - {fileID: 8849425538117064728}
-  - {fileID: 905637757378622126}
-  - {fileID: 8844349163318676575}
-  - {fileID: 1342167420059003326}
-  - {fileID: 2405699104646369402}
-  - {fileID: 1375862970940117952}
-  - {fileID: 4786614258303889138}
-  - {fileID: 643465632466257342}
-  Health: 15
---- !u!114 &9013032260191296143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3243341156002226671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40075eec97d33404eaf780af3f2d85a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 2
-  AnimationClip: {fileID: 0}
-  projectilePrefab: {fileID: 7787238323924872088, guid: 4e43eae0d3bd3cf458ab50c8a88f9d8f,
-    type: 3}
-  colliderSize: {x: 0.5, y: 0.5}
-  ProjectileSpeed: 2
-  ProjectileRange: 1
-  ProjectileSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
---- !u!114 &9013032260191296128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3243341156002226671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c768627a4b9a974a9e6c5e888d11322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 5
-  AnimationClip: {fileID: 0}
-  SpawnObject: {fileID: 6068560492472243840, guid: 2d36e85bf2253284eab855f2fe25cdb3,
-    type: 3}
-  radius: 10
-  maxSpawns: 0
---- !u!114 &9013032260191296129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3243341156002226671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40075eec97d33404eaf780af3f2d85a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 3
-  AnimationClip: {fileID: 0}
-  projectilePrefab: {fileID: 7787238323924872088, guid: 4e43eae0d3bd3cf458ab50c8a88f9d8f,
-    type: 3}
-  colliderSize: {x: 0.5, y: 0.5}
-  ProjectileSpeed: 4
-  ProjectileRange: 3
-  ProjectileSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
---- !u!114 &7703603938539823479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3243341156002226671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d0fab5465d79a247ab3105e33b74b0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 2
-  AnimationClip: {fileID: 0}
-  fleeSpeed: 4
 --- !u!1 &3843560608524112459
 GameObject:
   m_ObjectHideFlags: 0

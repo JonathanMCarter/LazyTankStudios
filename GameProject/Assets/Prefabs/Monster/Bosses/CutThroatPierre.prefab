@@ -1209,14 +1209,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3756757159720744552}
-  - component: {fileID: 6610146758382139500}
   - component: {fileID: 5117315091987330541}
   - component: {fileID: 6370655648875336792}
-  - component: {fileID: 4815506765784356962}
-  - component: {fileID: 4815506765784356895}
-  - component: {fileID: 4815506765784356880}
-  - component: {fileID: 4815506765784356881}
-  - component: {fileID: 2438096968517648686}
   m_Layer: 0
   m_Name: CutThroatPierre
   m_TagString: Untagged
@@ -1255,32 +1249,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6610146758382139500
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351657601396204415}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0023695081, y: 0.00000023841858}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
-    newSize: {x: 0.08, y: 0.08}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.0260353, y: 1.9650131}
-  m_EdgeRadius: 0
 --- !u!58 &5117315091987330541
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1316,114 +1284,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4815506765784356962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351657601396204415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8746f1927e62b748bba0abcbb90e34d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xRange: 2
-  yRange: 2
-  showGizmos: 0
-  movementSpeed: 2
-  maxIdleTime: 2
-  maxChasingArea: {x: 1, y: 1}
-  Hearts:
-  - {fileID: 444544041}
-  - {fileID: 56493641}
-  - {fileID: 769834185}
-  - {fileID: 792668169}
-  - {fileID: 1680988843}
-  - {fileID: 1406156211}
-  - {fileID: 45822311}
-  - {fileID: 1194714932}
-  - {fileID: 292766198}
-  - {fileID: 1247240775}
-  - {fileID: 565406922}
-  - {fileID: 1087808741}
-  - {fileID: 2009600092}
-  - {fileID: 1864177897}
-  - {fileID: 1227921695}
-  Health: 15
---- !u!114 &4815506765784356895
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351657601396204415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40075eec97d33404eaf780af3f2d85a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 2
-  AnimationClip: {fileID: 0}
-  projectilePrefab: {fileID: 7787238323924872088, guid: 4e43eae0d3bd3cf458ab50c8a88f9d8f,
-    type: 3}
-  colliderSize: {x: 0.5, y: 0.5}
-  ProjectileSpeed: 3
-  ProjectileRange: 1
-  ProjectileSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
---- !u!114 &4815506765784356880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351657601396204415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c768627a4b9a974a9e6c5e888d11322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 5
-  AnimationClip: {fileID: 0}
-  SpawnObject: {fileID: 730050316150766436, guid: 9601121d7bbf12d44b53787dd46a20be,
-    type: 3}
-  radius: 10
-  maxSpawns: 0
---- !u!114 &4815506765784356881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351657601396204415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40075eec97d33404eaf780af3f2d85a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 3
-  AnimationClip: {fileID: 0}
-  projectilePrefab: {fileID: 7787238323924872088, guid: 4e43eae0d3bd3cf458ab50c8a88f9d8f,
-    type: 3}
-  colliderSize: {x: 0.5, y: 0.5}
-  ProjectileSpeed: 4
-  ProjectileRange: 1
-  ProjectileSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
---- !u!114 &2438096968517648686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351657601396204415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5648aaa556d28f4c8763dd79debaa32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 0
-  AnimationClip: {fileID: 0}
-  chaseSpeed: 2
 --- !u!1 &6320749487233348263
 GameObject:
   m_ObjectHideFlags: 0
