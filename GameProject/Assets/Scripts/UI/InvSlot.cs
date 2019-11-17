@@ -15,7 +15,7 @@ public class InvSlot : A
     public int quantity = 0;
     //0 = not equipped 1 = a equipped 2 = b equipped
     public int equipped = 0;
-    [HideInInspector]
+    //[HideInInspector]
     public bool selected = false;
     public int BuyingValue, SellingValue;
     Image img;
@@ -32,7 +32,7 @@ public class InvSlot : A
 
     void Start()
     {
-         if (ID < 0) gameObject.SetActive(false); //moved here from Awake function to reduce code. If game breaks now pop this back into awake
+         //if (ID < 0) gameObject.SetActive(false); //moved here from Awake function to reduce code. If game breaks now pop this back into awake
         img = GetComponent<Image>();
         i = transform.GetChild(0).gameObject;
         q = transform.GetChild(1).gameObject.GetComponent<Text>();
@@ -57,7 +57,7 @@ public class InvSlot : A
 
     void Update()
     {
-       img.color = selected ? new Color(0,0,1) : new Color(0.35f, 0.35f, 0.35f);
+        img.color = selected ? new Color(0,0,1) : new Color(0.35f, 0.35f, 0.35f);
     }
 
     //public void UnselectedColourApplied()
