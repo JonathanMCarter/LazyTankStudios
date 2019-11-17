@@ -102,15 +102,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 10
-    m_Bottom: 10
+    m_Left: 20
+    m_Right: 20
+    m_Top: 20
+    m_Bottom: 20
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 50, y: 50}
-  m_Spacing: {x: 10, y: 10}
+  m_CellSize: {x: 60, y: 60}
+  m_Spacing: {x: 20, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &6890487340200435675
@@ -128,7 +128,7 @@ MonoBehaviour:
   items: 
   equippedA: -1
   equippedB: -1
-  itemXP: 
+  Slots: []
   isOpen: 0
   selected: 0
   VendorMode: 0
@@ -281,6 +281,16 @@ PrefabInstance:
       propertyPath: ID
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: BuyingValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: SellingValue
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}
 --- !u!224 &3769244122053871235 stripped
@@ -425,6 +435,16 @@ PrefabInstance:
         type: 3}
       propertyPath: ID
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: BuyingValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: SellingValue
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}
@@ -571,6 +591,16 @@ PrefabInstance:
       propertyPath: ID
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: BuyingValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: SellingValue
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}
 --- !u!224 &3189488578356110577 stripped
@@ -715,6 +745,16 @@ PrefabInstance:
         type: 3}
       propertyPath: ID
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: BuyingValue
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: SellingValue
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}
@@ -861,6 +901,16 @@ PrefabInstance:
       propertyPath: ID
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: BuyingValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: SellingValue
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}
 --- !u!224 &1296450572489935319 stripped
@@ -1001,6 +1051,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3926279650751178953, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6347010502524109149, guid: fd0c6d67d68be124288dddb1bc748b41,
+        type: 3}
     - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
         type: 3}
       propertyPath: ID
@@ -1011,12 +1067,16 @@ PrefabInstance:
       propertyPath: recievesXP
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3926279650751178953, guid: b89ae267234bf664994e9b19eb39c2fa,
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 6347010502524109149, guid: fd0c6d67d68be124288dddb1bc748b41,
+      propertyPath: BuyingValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
         type: 3}
+      propertyPath: SellingValue
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}
 --- !u!224 &235857054854134582 stripped
@@ -1312,6 +1372,16 @@ PrefabInstance:
       propertyPath: recievesXP
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: BuyingValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: SellingValue
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}
 --- !u!224 &7323586829535949284 stripped
@@ -1462,6 +1532,16 @@ PrefabInstance:
       propertyPath: recievesXP
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: BuyingValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: SellingValue
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}
 --- !u!224 &6918662604514352473 stripped
@@ -1606,6 +1686,16 @@ PrefabInstance:
         type: 3}
       propertyPath: ID
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: BuyingValue
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: SellingValue
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}
@@ -1757,6 +1847,16 @@ PrefabInstance:
       propertyPath: recievesXP
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: BuyingValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: SellingValue
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}
 --- !u!224 &5025657740669688931 stripped
@@ -1906,6 +2006,16 @@ PrefabInstance:
         type: 3}
       propertyPath: recievesXP
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: BuyingValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3926279650137481428, guid: b89ae267234bf664994e9b19eb39c2fa,
+        type: 3}
+      propertyPath: SellingValue
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b89ae267234bf664994e9b19eb39c2fa, type: 3}

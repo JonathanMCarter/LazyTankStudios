@@ -33,7 +33,7 @@ public class Inventory : A
     //public int[] itemXP;
 
    // Dictionary<int, InvSlot> slots = new Dictionary<int, InvSlot>();
-    InvSlot[] Slots;
+    public InvSlot[] Slots;
     public bool isOpen;
 
     InputManager IM;
@@ -111,27 +111,29 @@ public class Inventory : A
             //Lock selector in horizontal depending on which row it is (RIGHT END)
             if (IM.X_Axis() == 1 )
             {
-                if (VendorMode)
-                {
+                //if (VendorMode)
+                //{
                     if (selected < column - 1) selected++;
-                } else
-                {
-                    selected++;
-                    if (selected == items.Length) selected--;
-                }
+                //} //else
+                //{
+                    //selected++;
+                    //if (selected == items.Length) selected--;
+                //}
                 StartCoroutine(delay());
             }
 
             //Lock selector on horizontal depending on which row it is (LEFT END)
             else if (IM.X_Axis() == -1 )
             {
-                if (VendorMode) if (selected > column - 1 - ROWS) selected--;
-
-                    else
-                {
-                    selected--;
-                    if (selected == -1) selected++;
-                }
+                //if (VendorMode)
+                //{
+                    if (selected > column - 1 - ROWS) selected--;
+                //}
+                //else
+                //{
+                    //selected--;
+                    //if (selected == -1) selected++;
+                //}
                 StartCoroutine(delay());
             }
 
@@ -168,11 +170,6 @@ public class Inventory : A
                 slot.selected = (i == selected);
 
             }
-
-                
-
-            
-
 
 
         }
@@ -247,10 +244,10 @@ public class Inventory : A
         string effectToPlay = isOpen ? "Open_Inventory_1" : "Close_Inventory_1";
         audioManager.Play(effectToPlay);
        // if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
-        if(!isOpen && !VendorMode)GameObject.FindGameObjectWithTag("Map").SetActive(false);
+        //if(!isOpen && !VendorMode)GameObject.FindGameObjectWithTag("Map").SetActive(false);
         VendorMode = false;
-        // Locks player until the inventory is closed 
-            FindObjectOfType<PlayerMovement>().enabled = !isOpen;
+        // Locks player until the inventory is closed 	
+        FindObjectOfType<PlayerMovement>().enabled = !isOpen;
         //Andreas edit end--
         selected = 0;
     }
@@ -282,8 +279,8 @@ public class Inventory : A
 
 
 
-    //Toogles the slots and changes the colour while doing that
-    public IEnumerator ToogleSlots(bool state)
+    //Toggles the slots and changes the colour while doing that
+    public IEnumerator ToggleSlots(bool state)
     {
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < items.Length; i++)
