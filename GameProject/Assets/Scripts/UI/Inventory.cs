@@ -244,7 +244,7 @@ public class Inventory : A
         string effectToPlay = isOpen ? "Open_Inventory_1" : "Close_Inventory_1";
         audioManager.Play(effectToPlay);
        // if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
-        //if(!isOpen && !VendorMode)GameObject.FindGameObjectWithTag("Map").SetActive(false);
+        if(!isOpen && !VendorMode)GameObject.FindGameObjectWithTag("Map").SetActive(false);
         VendorMode = false;
         // Locks player until the inventory is closed 	
         FindObjectOfType<PlayerMovement>().enabled = !isOpen;
