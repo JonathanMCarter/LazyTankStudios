@@ -33,36 +33,16 @@ public class StatuePuzzleThingy : A
     // Update is called once per frame
     void Update()
     {
-        if (Room1Em.Count != 0)
-        {
-            for (int i = 0; i < Room1Em.Count; i++)
-            {
-                if (!Room1Em[i].activeInHierarchy) Room1Em.RemoveAt(i);
 
-            }
-        }
+            for (int i = 0; i < Room1Em.Count; i++) if (!Room1Em[i].activeInHierarchy) Room1Em.RemoveAt(i);
 
-        if (Room2Em.Count != 0)
-        {
-            for (int i = 0; i < Room2Em.Count; i++)
-            {
-                if (!Room2Em[i].activeInHierarchy) Room2Em.RemoveAt(i);
 
-            }
-        }
+            for (int i = 0; i < Room2Em.Count; i++) if (!Room2Em[i].activeInHierarchy) Room2Em.RemoveAt(i);
 
-        if (Em3Spawned)
-        {
-            if (Room3Em.Count != 0)
-            {
-                for (int i = 0; i < Room3Em.Count; i++)
-                {
-                    if (!Room3Em[i].activeInHierarchy) Room3Em.RemoveAt(i);
 
-                }
-            }
-        }
-
+             for (int i = 0; i < Room3Em.Count; i++) if (!Room3Em[i].activeInHierarchy) Room3Em.RemoveAt(i);
+                
+                   
         Room1Cleared();
         Room2Cleared();
 
@@ -79,7 +59,7 @@ public class StatuePuzzleThingy : A
 
     }
 
-    public void Room1Cleared()
+     void Room1Cleared()
     {
         if ((Room1Em.Count == 0) && (!ItemSpawned[0]))
         {
@@ -89,7 +69,7 @@ public class StatuePuzzleThingy : A
         }
     }
 
-    public void Room2Cleared()
+    void Room2Cleared()
     {
         if ((Room2Em.Count == 0) && (!ItemSpawned[1]))
         {
@@ -98,7 +78,7 @@ public class StatuePuzzleThingy : A
         }
     }
 
-    public void Room3Cleared()
+     void Room3Cleared()
     {
         if ((Room3Em.Count == 0) && (!ItemSpawned[2]))
         {
@@ -121,7 +101,7 @@ public class StatuePuzzleThingy : A
 
                 Pos = new Vector3(Random.Range(-62.5f, -33.1f), Random.Range(-39.6f, -8f), -0.2f);//LC added Zaxis as was spawning behind floor
 
-                Debug.Log(Pos);
+                //Debug.Log(Pos);
 
                 GameObject Go = Instantiate(Room3Em[0], Pos, transform.rotation);
                 Room3Em[0] = Go;

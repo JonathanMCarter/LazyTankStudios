@@ -32,7 +32,7 @@ public class ItemInfoHandler : A
         {
             //Set text using the lists and the selected ID as the index, set to blank if null which will hide the panel
             n.text = itemNames[ID] != null ? itemNames[ID] : "";
-            if (i.canItemRecieveXP(ID)) n.text += " Lv." + i.getLevel(ID);
+          //  if (i.canItemRecieveXP(ID)) n.text += " Lv." + i.getLevel(ID);
             d.text = itemDescriptions[ID] != null ? itemDescriptions[ID] : "";
         } else
         {

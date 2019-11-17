@@ -84,7 +84,7 @@ namespace Final
                 }
                 if (time > abilityExpiryTime)
                 {
-                    Debug.Log("Use Ability");
+                   // Debug.Log("Use Ability");
                     UseAbility();
                 }
             }
@@ -110,7 +110,7 @@ namespace Final
         {
             if (collision.tag == "Player")
             {
-                Debug.Log("Detected");
+               // Debug.Log("Detected");
                 isPatrolling = false;
             }
 
@@ -127,9 +127,9 @@ namespace Final
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
                 Health -= damage;   
-                if (Health <= 0) playerInventory.addXP(b.SourceItem, 1);
+               // if (Health <= 0) playerInventory.addXP(b.SourceItem, 1);
                 if (Health <= 0)
-                    this.gameObject.SetActive(false);
+                    gameObject.SetActive(false);
             }
             if (collision.gameObject.tag == "Sword" && !hit)
             {
@@ -140,9 +140,9 @@ namespace Final
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
                 Health -= damage;
-                if (Health <= 0) playerInventory.addXP(b.SourceItem, 1);
+                //if (Health <= 0) playerInventory.addXP(b.SourceItem, 1);
                 if (Health <= 0)
-                    this.gameObject.SetActive(false);
+                    gameObject.SetActive(false);
             }
 
         }

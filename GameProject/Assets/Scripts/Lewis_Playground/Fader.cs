@@ -19,9 +19,13 @@ public class Fader : A
 
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+         gameObject.SetActive(false);
+    }
     void Start()
     {
-        gameObject.SetActive(false);
+       
         myImage = GetComponentInChildren<Image>();
         myText = GetComponentInChildren<Text>();
         StartCoroutine(Fade());

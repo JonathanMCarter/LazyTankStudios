@@ -126,7 +126,7 @@ public class NewAIMove : A
                 //Toby: get bullet damage instead of always 1
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
-                playerInventory.addXP(b.SourceItem, 1);
+               // playerInventory.addXP(b.SourceItem, 1);
 
                 Destroy(collision.gameObject);
 
@@ -143,7 +143,7 @@ public class NewAIMove : A
                 hit = true;
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
-                playerInventory.addXP(b.SourceItem, 1);
+              //  playerInventory.addXP(b.SourceItem, 1);
                 // Debug.Log("********** Enemy Should Be Taking Damage Now...");
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);

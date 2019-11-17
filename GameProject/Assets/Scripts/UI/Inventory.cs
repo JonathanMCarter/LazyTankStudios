@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 /*
@@ -30,10 +30,10 @@ public class Inventory : A
     public int equippedB = -1;
 
     //array to store the xp for each item
-    public int[] itemXP;
+    //public int[] itemXP;
 
-    Dictionary<int, InvSlot> slots = new Dictionary<int, InvSlot>();
-
+   // Dictionary<int, InvSlot> slots = new Dictionary<int, InvSlot>();
+    InvSlot[] Slots;
     public bool isOpen;
 
     InputManager IM;
@@ -53,8 +53,9 @@ public class Inventory : A
     bool delayed = false;
 
 
-    private void Awake()
+    void Awake()
     {
+        Slots = GetComponentsInChildren<InvSlot>();
         cointext = GameObject.Find("Coins").GetComponentInChildren<Text>();
     }
 
@@ -62,15 +63,15 @@ public class Inventory : A
     {
         
         addCoins(0);
-        int count = 0;
-        foreach (Transform t in transform)
-        {
-            InvSlot slot = t.gameObject.GetComponent<InvSlot>();
-            if (slot.ID >= 0) slots.Add(slot.ID, slot);
-            if (t.gameObject.activeSelf) count++;
-        }
-        items = new bool[count];
-        itemXP = new int[items.Length];
+       // int count = 0;
+        //foreach (Transform t in transform)
+        //{
+        //    InvSlot slot = t.gameObject.GetComponent<InvSlot>();
+        //    if (slot.ID >= 0) slots.Add(slot.ID, slot);
+        //    if (t.gameObject.activeSelf) count++;
+        //}
+        items = new bool[Slots.Length];
+        //itemXP = new int[items.Length];
         IM = FindObjectOfType<InputManager>();
         audioManager=FindObjectOfType<SoundPlayer>();
     }
@@ -105,7 +106,7 @@ public class Inventory : A
                 StartCoroutine(delay());
             }
 
-            #region Gabriel Edit Selector Movement
+
 
             //Lock selector in horizontal depending on which row it is (RIGHT END)
             if (IM.X_Axis() == 1 )
@@ -124,10 +125,9 @@ public class Inventory : A
             //Lock selector on horizontal depending on which row it is (LEFT END)
             else if (IM.X_Axis() == -1 )
             {
-                if (VendorMode)
-                {
-                    if (selected > column - 1 - ROWS) selected--;
-                } else
+                if (VendorMode) if (selected > column - 1 - ROWS) selected--;
+
+                    else
                 {
                     selected--;
                     if (selected == -1) selected++;
@@ -157,7 +157,7 @@ public class Inventory : A
                 StartCoroutine(delay());
             }
 
-            #endregion
+
 
             //Emphasize the slot 
             for (int i = 0; i < items.Length; i++)
@@ -165,22 +165,14 @@ public class Inventory : A
                 //Andreas edit
                 //transform.GetChild(i).GetComponent<InvSlot>().selected = i == selected;
                 InvSlot slot = transform.GetChild(i).GetComponent<InvSlot>();
-                if (i == selected)
-                {
-                    slot.selected = true;
-                    //slot.SelectedColourApplied();
-                }
-                else
-                {
-                    slot.selected = false;
-                  //  slot.UnselectedColourApplied();
-                }
+                slot.selected = (i == selected);
+
             }
 
                 
 
             // Locks player until the inventory is closed 
-            GameObject.Find("Hero").GetComponent<PlayerMovement>().enabled = !isOpen;
+            FindObjectOfType<PlayerMovement>().enabled = !isOpen;
 
 
 
@@ -193,10 +185,9 @@ public class Inventory : A
     public void addItem(int id, int quantity, bool remove)
     {
         items[id] = !remove;
-        InvSlot slot = slots[id];
-        slot.hasItem = !remove;
-        slot.quantity = remove ? 0 : quantity;
-        slot.updateIcon();
+        Slots[id].hasItem = !remove;
+        Slots[id].quantity = remove ? 0 : quantity;
+        Slots[id].updateIcon();
         //print(slot.quantity);
         //Andreas edit--
         //audioManager.Play("Item_PickUp");
@@ -206,9 +197,9 @@ public class Inventory : A
     {
         quantity = Increase ? quantity += 1 : quantity -= 1;
         items[id] = !remove;
-        slots[id].hasItem = !remove;
-        slots[id].quantity = remove ? 0 : quantity;
-        slots[id].updateIcon();
+        Slots[id].hasItem = !remove;
+        Slots[id].quantity = remove ? 0 : quantity;
+        Slots[id].updateIcon();
         //Andreas edit--
         audioManager.Play("Item_PickUp");
         //Andreas edit end--
@@ -221,7 +212,7 @@ public class Inventory : A
 
     public int getSelectedID()
     {
-        return transform.GetChild(selected).GetComponent<InvSlot>().ID;
+        return Slots[selected].ID;
     }
 
 
@@ -229,8 +220,7 @@ public class Inventory : A
     {
         if (items[id])
         {
-            InvSlot slot = slots[id];
-            slot.equip(equip ? button : 0);
+            Slots[id].equip(equip ? button : 0);
             switch (button) {
                 case 1:
                     equippedA = equip ? id : -1;
@@ -241,13 +231,13 @@ public class Inventory : A
                     equippedA = equippedA == equippedB ? -1 : equippedA;
                     break;
             }
-            for (int i = 0; i < items.Length; i++) slots[i].equip(i == equippedA ? 1 : i == equippedB ? 2 : 0);
+            for (int i = 0; i < items.Length; i++) Slots[i].equip(i == equippedA ? 1 : i == equippedB ? 2 : 0);
         }
     }
 
     public bool isEquipped(int id, int button)
     {
-        return slots[id].equipped == button;
+        return Slots[id].equipped == button;
     }
 
     ///Open/close inventory
@@ -257,7 +247,7 @@ public class Inventory : A
         //Andreas edit--
         string effectToPlay = isOpen ? "Open_Inventory_1" : "Close_Inventory_1";
         audioManager.Play(effectToPlay);
-        if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
+       // if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
         if(!isOpen && !VendorMode)GameObject.FindGameObjectWithTag("Map").SetActive(false);
         VendorMode = false;
         //Andreas edit end--
@@ -265,28 +255,28 @@ public class Inventory : A
     }
 
     //Returns level based on the XP
-    public int getLevel(int ID)
-    {
-        if (!canItemRecieveXP(ID)) return 1;
-        return itemXP[ID] < 5 ? 1 : (itemXP[ID] < 20 ? 2 : 3);
-    } 
+    //public int getLevel(int ID)
+    //{
+    //    if (!canItemRecieveXP(ID)) return 1;
+    //    return itemXP[ID] < 5 ? 1 : (itemXP[ID] < 20 ? 2 : 3);
+    //} 
 
     //Add(or subtract) XP to given item, limits the value between 0 and 20
-    public void addXP(int ID, int amount)
-    {
-        //Exit if the item can't level up
-        if (!canItemRecieveXP(ID)) return;
-        itemXP[ID] += amount;
-        //Cap xp
-        itemXP[ID] = itemXP[ID] < 0 ? 0 : itemXP[ID] > 20 ? 20 : itemXP[ID];
-    }
+    //public void addXP(int ID, int amount)
+    //{
+    //    //Exit if the item can't level up
+    //    if (!canItemRecieveXP(ID)) return;
+    //    itemXP[ID] += amount;
+    //    //Cap xp
+    //    itemXP[ID] = itemXP[ID] < 0 ? 0 : itemXP[ID] > 20 ? 20 : itemXP[ID];
+    //}
 
-    //Returns whether the item can level up 
-    public bool canItemRecieveXP(int ID)
-    {
-        if (ID < 0 || ID >= items.Length) return false;
-        return slots[ID].recievesXP;
-    }
+    ////Returns whether the item can level up 
+    //public bool canItemRecieveXP(int ID)
+    //{
+    //    if (ID < 0 || ID >= items.Length) return false;
+    //    return slots[ID].recievesXP;
+    //}
 
 
 
@@ -299,7 +289,7 @@ public class Inventory : A
         {
             if (!state)
                 //slots[i].UnselectedColourApplied();
-            slots[i].enabled = state;
+            Slots[i].enabled = state;
 
         }
     }

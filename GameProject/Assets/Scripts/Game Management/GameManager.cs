@@ -57,10 +57,10 @@ public class GameManager : A
     /// <summary>
     /// Pauses/UnPauses the Game
     /// </summary>
-    public void TogglePauseEnemies()
-    {
-        isPaused=!isPaused;
-    }
+    //public void TogglePauseEnemies()
+    //{
+    //    isPaused=!isPaused;
+    //}
 
 
     /// <summary>

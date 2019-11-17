@@ -38,76 +38,91 @@ public class PlayerMovement : A {
         }
         void FixedUpdate()
     {
-        myRigid.velocity = (new Vector2(IM.X_Axis(), IM.Y_Axis())).normalized * speed;
+        if (countdown > 0) myRigid.velocity = new Vector2(0, 0);
+        else myRigid.velocity = (new Vector2(IM.X_Axis(), IM.Y_Axis())).normalized * speed;
+        
     }
 
     void Update()
     {
         SetRotater();
-        myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
-        myAnim.SetFloat("SpeedY", IM.Y_Axis());
-        if (IM.X_Axis() > 0.1f) F = Dir.Right;
-        if (IM.X_Axis() < -0.1f) F = Dir.Left;
-        if (IM.Y_Axis() > 0.1f) F = Dir.Up;
-        if (IM.Y_Axis() < -0.1f) F = Dir.Down;
+
+            myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
+            myAnim.SetFloat("SpeedY", IM.Y_Axis());
+            if (IM.X_Axis() > 0.1f) F = Dir.Right;
+            if (IM.X_Axis() < -0.1f) F = Dir.Left;
+            if (IM.Y_Axis() > 0.1f) F = Dir.Up;
+            if (IM.Y_Axis() < -0.1f) F = Dir.Down;
+        
         if (IM.Button_Menu())
         {
             Menu.SetActive(true);
             enabled = false;
         }
+
         if (IM.Button_A() && !Inv.isOpen) useItem(Inv.equippedA);
         if (IM.Button_B() && !Inv.isOpen) useItem(Inv.equippedB);
-        if (attacking || dashing || shieldUp || Shooting)
+        if (countdown > 0)
         {
             countdown -= Time.deltaTime;
             if (countdown <= 0)
             {
-                if (attacking)
-                {
+
                     aHB.SetActive(false);
-                    attacking = false;
-                }
-                if (dashing)
-                {
                     aR.GetChild(1).gameObject.SetActive(false);
-                    speed = bS; dashing = false;
-                }
-                if (shieldUp)
-                {
+                    speed = bS;
                     aR.GetChild(3).gameObject.SetActive(false);
-                    shieldUp = false;
-                }
-                if (Shooting)
-                {
                     aR.GetChild(2).gameObject.SetActive(false);
-                    Shooting = false;
-                }
+                     myAnim.SetBool("Attack", false);
+
+                //if (attacking)
+                //{
+                //    aHB.SetActive(false);
+                //    attacking = false;
+                //}
+                //if (dashing)
+                //{
+                //    aR.GetChild(1).gameObject.SetActive(false);
+                //    speed = bS; dashing = false;
+                //}
+                //if (shieldUp)
+                //{
+                //    aR.GetChild(3).gameObject.SetActive(false);
+                //    shieldUp = false;
+                //}
+                //if (Shooting)
+                //{
+                //    aR.GetChild(2).gameObject.SetActive(false);
+                //    Shooting = false;
+                //}
             }
         }
     }
     void useItem(int ID)
     {
-        if (!(attacking || dashing || shieldUp || Shooting))
+        if (countdown <= 0)
         {
             switch (ID)
             {
                 case (0):
-                    PlayAttackAnimation();
+                    
+                    myRigid.velocity = new Vector2(0, 0);
+                    myAnim.SetBool("Attack", true);
                     countdown = AttackTime;
                     aR.GetChild(0).gameObject.SetActive(true);
-                    aR.GetChild(0).gameObject.GetComponent<Bullet>().SetStats(Inv.getLevel(ID), new Vector2(0, 0), -1, ID);
-                    attacking = true;
+                    aR.GetChild(0).gameObject.GetComponent<Bullet>().SetStats(1, new Vector2(0, 0), -1, ID);
+                    //attacking = true;
                     break;
 
                 case (1):
                     aR.GetChild(1).gameObject.SetActive(true);
                     speed *= dashSpeedMultiplier;
                     countdown = DashDuration;
-                    dashing = true;
+                    //dashing = true;
                     break;
 
                 case (2): aR.GetChild(2).gameObject.SetActive(true);
-                    Shooting = true;
+                   // Shooting = true;
                     countdown = RangedAttackDuration;
                     countdown = 0.3f;
                     FireProjectile(ID);
@@ -116,7 +131,7 @@ public class PlayerMovement : A {
                 case (3):
                     countdown = blockTIme;
                     aR.GetChild(3).gameObject.SetActive(true);
-                    shieldUp = true;
+                   // shieldUp = true;
                     break;
 
                 case -1:
@@ -124,37 +139,44 @@ public class PlayerMovement : A {
             }
         }
     }
-    public void PlayAttackAnimation()
-    {
-        myAnim.SetTrigger("Attack");
-    }
+    //public void PlayAttackAnimation()
+    //{
+    //    myAnim.SetTrigger("Attack");
+    //}
     public void FireProjectile(int itemUsed)
     {
         GameObject Go = Instantiate(Bullet, aR.GetChild(0).transform.position, aR.rotation * Quaternion.Euler(0, 0, -45));
         Vector2 Direc = new Vector2(0, 0);
-        switch (F)
-        {
-            case (Dir.Down):
-                Direc.y = -1f;
-                break;
+        if (F == 0) Direc.y = 1f;
+        if ((int)F == 1) Direc.y = -1f;
+        if ((int)F == 2) Direc.x = -1f;
+        if ((int)F == 3) Direc.x = 1f;
 
-            case (Dir.Left):
-                Direc.x = -1f;
-                break;
 
-            case (Dir.Right):
-                Direc.x = 1f;
-                break;
 
-            case (Dir.Up):
-                Direc.y = 1f;
-                break;
+        //switch (F)
+        //{
+        //    case (Dir.Down):
+        //        Direc.y = -1f;
+        //        break;
 
-            default: print("Direction Error - LC"); break;
+        //    case (Dir.Left):
+        //        Direc.x = -1f;
+        //        break;
 
-        };
+        //    case (Dir.Right):
+        //        Direc.x = 1f;
+        //        break;
 
-        Go.GetComponent<Bullet>().SetStats((int)WeaponStats.Damage * Inv.getLevel(itemUsed), (Direc * WeaponStats.Speed), WeaponStats.Lifetime, itemUsed);
+        //    case (Dir.Up):
+        //        Direc.y = 1f;
+        //        break;
+
+        //    default: print("Direction Error - LC"); break;
+
+        //};
+
+        Go.GetComponent<Bullet>().SetStats((int)WeaponStats.Damage, (Direc * WeaponStats.Speed), WeaponStats.Lifetime, itemUsed);
 
     }
 
@@ -188,8 +210,8 @@ public class PlayerMovement : A {
             enabled = false;
         }
 
-        Inv.addXP(Inv.equippedA, -3);
-        Inv.addXP(Inv.equippedB, -3);
+        //Inv.addXP(Inv.equippedA, -3);
+        //Inv.addXP(Inv.equippedB, -3);
     }
 
     IEnumerator GameReset()

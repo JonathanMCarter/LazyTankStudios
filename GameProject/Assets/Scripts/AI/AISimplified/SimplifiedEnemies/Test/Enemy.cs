@@ -92,7 +92,7 @@ namespace Test
                 //Toby: get bullet damage instead of always 1
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
-                playerInventory.addXP(b.SourceItem, 1);
+               // playerInventory.addXP(b.SourceItem, 1);
 
                 Destroy(collision.gameObject);
 
@@ -101,14 +101,14 @@ namespace Test
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
                 Health -= damage;
                 if (Health <= 0)
-                    this.gameObject.SetActive(false);
+                   gameObject.SetActive(false);
             }
             if (collision.gameObject.tag == "Sword" && !hit)
             {
                 hit = true;
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
-                playerInventory.addXP(b.SourceItem, 1);
+                //playerInventory.addXP(b.SourceItem, 1);
                 // Debug.Log("********** Enemy Should Be Taking Damage Now...");
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
