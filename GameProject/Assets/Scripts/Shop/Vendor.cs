@@ -43,7 +43,7 @@ public class Vendor : A
 
     //Lewis edit
      InputManager IM;
-    public GameObject[] Panel;
+    public List<GameObject> Panel = new List<GameObject>();
     bool TempWaitBool = false; //temp add by LC
 
     public List<int> itemsBeingSold;
@@ -55,8 +55,8 @@ public class Vendor : A
 
         //Lewis Edit
         IM = FindObjectOfType<InputManager>();
-
-        Panel = GameObject.Find("SellOrBuyPanel").GetComponentsInChildren<GameObject>();
+        Panel.Add(GameObject.Find("SellOrBuyPanel"));
+        foreach (Transform t in Panel[0].transform) Panel.Add(t.gameObject);
         // Jonathan Edit
         Pinv = Panel[3].GetComponent<Inventory>();
         VInv = Panel[4].GetComponent<Inventory>();
@@ -167,10 +167,10 @@ public class Vendor : A
                 IsUsingVendor = true;
 
                 // Jonathan Edit - Makes it so it enables the sell / buy buttons again after they are disabled the first time
-                if (!Panel[1].activeInHierarchy)
+                if (!Panel[0].activeInHierarchy)
                 {
-                    Panel[1].gameObject.SetActive(true);
-                    Panel[2].gameObject.SetActive(true);
+                    Panel[0].SetActive(true);
+                    Panel[1].SetActive(true);
                 }
 
                 Panel[4].SetActive(false); //vendor inventory
@@ -208,12 +208,12 @@ public class Vendor : A
         }
 
        // if (Input.GetKeyDown(KeyCode.Space))//changed by LC
-       if (IM.Button_Menu())
+       if (IM.Button_Menu() && Panel[4].GetComponent<CanvasGroup>().alpha == 1)
             {
-            if (!Panel[4].activeInHierarchy) Panel[4].SetActive(true); //added by LC
-            VInv.StartCoroutine(VInv.ToogleSlots(Sell)); //could not start co-routine as VendorInventory is Inactive
+            if (!Panel[3].activeInHierarchy) Panel[4].SetActive(true); //added by LC
+            VInv.StartCoroutine(VInv.ToggleSlots(Sell)); //could not start co-routine as VendorInventory is Inactive
             Sell = !Sell;
-            Pinv.StartCoroutine(Pinv.ToogleSlots(Sell));
+            Pinv.StartCoroutine(Pinv.ToggleSlots(Sell));
         }
 
 
@@ -229,7 +229,17 @@ public class Vendor : A
         {
             //Play speech - edited by jonathan to use findoftype
             DS.ChangeFile(VendorSpeech);
-
+            int i;
+            //RESET INVENTORY
+            for (i = 0; i < VInv.items.Length; i++)
+            {
+                VInv.items[i] = false;
+                VInv.Slots[i].hasItem = false;
+                VInv.Slots[i].quantity = 0;
+                //VInv.Slots[i].ID = -1;
+            }
+            //FILL INVENTORY
+            for (i = 0; i < itemsBeingSold.Count; i++) VInv.addItem(itemsBeingSold[i], 99, false);
             //Position the inventories
             //if (inventory.transform.localPosition.x > -PANEL_POSITION_VENDOR_ON)
             //    inventory.VendorPanelPosition(PANEL_POSITION_VENDOR_ON);
@@ -257,13 +267,13 @@ public class Vendor : A
         Sell = action;
         if (Sell)
         {
-            VInv.StartCoroutine(VInv.ToogleSlots(!Sell));
-            Pinv.StartCoroutine(Pinv.ToogleSlots(Sell));
+            VInv.StartCoroutine(VInv.ToggleSlots(!Sell));
+            Pinv.StartCoroutine(Pinv.ToggleSlots(Sell));
         }
         else
         {
-            Pinv.StartCoroutine(Pinv.ToogleSlots(Sell));
-            VInv.StartCoroutine(VInv.ToogleSlots(!Sell));
+            Pinv.StartCoroutine(Pinv.ToggleSlots(Sell));
+            VInv.StartCoroutine(VInv.ToggleSlots(!Sell));
         }
 
 

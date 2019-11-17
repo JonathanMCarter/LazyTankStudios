@@ -202,10 +202,10 @@ public class PlayerMovement : A {
         health -= damage;
         UI.currentHealth = health;
         UI.ShowHearts();
-        audioManager.Play("Damage");
+        audioManager.Play("Player_Take_Damage_1");
         if (health <= 0)
         {
-            audioManager.Play("Death");
+            audioManager.Play("Death_1");
             StartCoroutine(GameReset());
             enabled = false;
         }
@@ -242,7 +242,7 @@ public class PlayerMovement : A {
     {
         health = Mathf.Clamp(health + value, 0, UI.maxHealth);
         UI.currentHealth = health;
-        audioManager.Play("Heal");
+        audioManager.Play("Healing_1");
     }
 
 
