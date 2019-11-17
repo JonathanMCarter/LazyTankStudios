@@ -3,37 +3,32 @@
 public class CollectableItem : A
 {
     InputManager IM;
-    Quest[] allQuests;
-    Quest activeQuest;
+    Quest aQ;
      void Start()
     {
         IM = FindObjectOfType<InputManager>();
-        allQuests = FindObjectsOfType<Quest>();
     }
 
    void OnTriggerStay2D(Collider2D collision)
     {
-        if ((collision.gameObject.name == "Hero"))
+        if ((collision.gameObject.name == "Hero") && IM.Button_A())
         {
-            activeQuest = getActiveQuests();
-            if (IM.Button_A())
-            {
-                for(int i=0;i<activeQuest.ItemsToBeCollected.Length;i++)
+            aQ = getActiveQuests();
+                for(int i=0;i<aQ.ItemsToBeCollected.Length;i++)
                 {
-                    if (activeQuest.ItemsToBeCollected[i] == gameObject.GetComponent<SpriteRenderer>().sprite)
+                    if (aQ.ItemsToBeCollected[i] == GetComponent<SpriteRenderer>().sprite)
                     { 
-                        activeQuest.ItemsQuantities[i]--;
+                       aQ.ItemsQuantities[i]--;
                         Destroy(gameObject);
 
                     }
                 }
-            }
         }
     }
 
-    private Quest getActiveQuests()
+    Quest getActiveQuests()
     {
-        foreach (Quest quest in allQuests)
+        foreach (Quest quest in FindObjectsOfType<Quest>())
             if (quest.CollectRequest && quest.isActiveAndEnabled)
                 return quest; 
         return null;

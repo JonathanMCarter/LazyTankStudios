@@ -70,8 +70,8 @@ public class Quest : A
 
         status = ID == 0 ? Status.Available : Status.NotAvailable;
 
-        gameObject.transform.GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true : false;
-        NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true :false;
+        GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true : false;
+        NPCToReturnTo.GetComponentInChildren<BoxCollider2D>().enabled = status == Status.Available ? true :false;
         enabled = status == Status.Available;
         ActiveQuestSign.SetActive(status == Status.Available);
     }

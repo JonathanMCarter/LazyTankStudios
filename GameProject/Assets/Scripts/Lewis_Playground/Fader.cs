@@ -17,14 +17,11 @@ public class Fader : A
     private Image myImage;
     private Text myText;
 
-    private void Awake()
-    {
-        gameObject.AddComponent<DoNotDes>();
-        gameObject.SetActive(false);
-    }
+
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.SetActive(false);
         myImage = GetComponentInChildren<Image>();
         myText = GetComponentInChildren<Text>();
         StartCoroutine(Fade());
@@ -37,25 +34,22 @@ public class Fader : A
     {
         for (int i = 0; i < 10; i++)
         {
-
-
             UpdateColor();
             yield return new WaitForSeconds(0.1f);
         }
-         yield return new WaitForSeconds(4.5f);
-        Destroy(gameObject);
+        Destroy(gameObject, 4.5f);
 
     }
 
     void UpdateColor()
     {
-        Color mycolor = myImage.color;
-        mycolor.a += 0.1f;
-        myImage.color = mycolor;
+        Color c = myImage.color;
+        c.a += 0.1f;
+        myImage.color = c;
 
-        mycolor = myText.color;
-        mycolor.a += 0.1f;
-        myText.color = mycolor;
+        c = myText.color;
+        c.a += 0.1f;
+        myText.color =c;
        
     }
 }
