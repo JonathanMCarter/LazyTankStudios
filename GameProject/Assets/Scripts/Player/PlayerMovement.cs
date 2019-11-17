@@ -14,7 +14,7 @@ public class PlayerMovement : A {
     public Transform aR;
     bool attacking, dashing, shieldUp, Shooting;
     public float RangedAttackDuration, dashSpeedMultiplier, DashDuration, blockTIme, AttackTime, SlideSpeed;
-    float countdown,sfxCD;
+    float countdown;
     enum ITEMS { SWORD, BLAZBOOTS, ICEBOW, SHIELDSHARPTON, TELERUNE, ELIXIRLIFE, ELIXIRSTR, ELIXIRHEARTS, WATERSKIN, FURCOAT, FORESTITEM }
 
     private void Start()
@@ -40,8 +40,7 @@ public class PlayerMovement : A {
     {
         if (countdown > 0) myRigid.velocity = new Vector2(0, 0);
         else myRigid.velocity = (new Vector2(IM.X_Axis(), IM.Y_Axis())).normalized * speed;
-        if(myRigid.velocity!=Vector2.zero&&sfxCD<0){audioManager.Play("Footsteps_(Snow)");sfxCD=0.5f;}
-        sfxCD-=Time.fixedDeltaTime;
+        
         
     }
 
