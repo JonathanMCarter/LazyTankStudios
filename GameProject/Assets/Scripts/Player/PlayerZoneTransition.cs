@@ -37,7 +37,7 @@ public class PlayerZoneTransition : A
     {
        // SceneManager.LoadScene(Destination);
 
-
+    FindObjectOfType<SoundPlayer>().Play("Doors_1_(Normal)");
     destSplit = Destination.Split(':');
 
             asyncLoad = SceneManager.LoadSceneAsync(destSplit[0]);

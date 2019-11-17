@@ -15,6 +15,6 @@ public class NewAIPause : A
     void Update()
     {
         //if (manager.isPaused) me.MyRigid.velocity = Vector2.zero;
-        me.enabled = !manager.isPaused;
+        //me.enabled = !manager.isPaused;
     }
 }

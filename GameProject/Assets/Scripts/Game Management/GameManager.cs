@@ -19,7 +19,7 @@ public class GameManager : A
 {
     PlayerMovement Player;
      GameObject Menu;
-    public bool isPaused=false;
+    //public bool isPaused=false;
 
      void Start()
     {

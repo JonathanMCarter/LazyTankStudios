@@ -148,7 +148,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9084767315837921850, guid: fd0c6d67d68be124288dddb1bc748b41,
+  m_Sprite: {fileID: -6272375367753840513, guid: f7d73e9042e8ee64f9676490f30e7211,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -228,7 +228,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8878415039722896570, guid: fd0c6d67d68be124288dddb1bc748b41,
+  m_Sprite: {fileID: -2318500670263956747, guid: f7d73e9042e8ee64f9676490f30e7211,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -382,7 +382,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6691424551385516861, guid: fd0c6d67d68be124288dddb1bc748b41,
+  m_Sprite: {fileID: 6321983439944197530, guid: f7d73e9042e8ee64f9676490f30e7211,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1020,22 +1020,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  myInventory: {fileID: 0}
-  DamageBulletThingy: {fileID: 6827261557022495565, guid: 7ed083c1b15dd144d88161664ab05dc7,
-    type: 3}
-  WeaponStats: {fileID: 11400000, guid: abcf959d57f979a4ba61b54708402f0d, type: 2}
-  TakeDamageCD: 0
+  Inv: {fileID: 0}
+  Bullet: {fileID: 0}
   DeathCanvas: {fileID: 0}
-  optionsMenu: {fileID: 0}
+  Menu: {fileID: 0}
+  WeaponStats: {fileID: 11400000, guid: abcf959d57f979a4ba61b54708402f0d, type: 2}
+  dmgCD: 0
   health: 5
-  attackHitBox: {fileID: 4643807344025198012}
-  attackRotater: {fileID: 1743666071}
+  QuestActiveID: 0
+  aR: {fileID: 0}
   RangedAttackDuration: 0.5
   dashSpeedMultiplier: 2
   DashDuration: 0.3
   blockTIme: 1
   AttackTime: 0.3
-  onIce: 0
   SlideSpeed: 100
 --- !u!114 &3257857658046344169
 MonoBehaviour:
@@ -1062,11 +1060,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df3544e571d93b4e8aef3ddab7e85c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageTimer: 0
   MaxTime: 0
-  Active: 0
   Damage: 0
-  time: 0
 --- !u!114 &4860131975732831303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1188,7 +1183,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6347010502524109149, guid: fd0c6d67d68be124288dddb1bc748b41,
+      objectReference: {fileID: -6505822681978780186, guid: f7d73e9042e8ee64f9676490f30e7211,
         type: 3}
     - target: {fileID: 1706753085508023764, guid: e040231afadd19b4d8ba5c98e526c491,
         type: 3}

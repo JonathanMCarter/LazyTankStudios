@@ -22,6 +22,11 @@ public class NewAIMove : A
     //Inventory playerInventory;
     Transform PlayerPos;
 
+    //Gabriel added it
+    static int currBoss = 0;
+    //Gabriel end
+    //Andreas
+    SoundPlayer sp;
 
 
     void Start()
@@ -31,6 +36,7 @@ public class NewAIMove : A
         //playerInventory = FindObjectOfType<Inventory>();
         Health=Hearts.Length;
         PlayerPos = GameObject.FindGameObjectWithTag("Player").transform;
+        sp=FindObjectOfType<SoundPlayer>();
     }
     void Update()
     {
@@ -132,12 +138,16 @@ public class NewAIMove : A
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
                 Health -= damage;
                   
+                sp.Play("Take_Damage_3");
                 //StartCoroutine(DamageCooldown());
             }
         if (Health <= 0)
         {
             if (boss)
-                Quest.boss[Quest.currQuest] = true;
+            {
+                Quest.boss[currBoss] = true;
+                currBoss++;
+            }
             gameObject.SetActive(false);
         }
 
@@ -151,8 +161,15 @@ public class NewAIMove : A
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
                 Health -= damage;
+                 sp.Play("Take_Damage_3");
                 //StartCoroutine(DamageCooldown());
-                if (Health <= 0)  gameObject.SetActive(false);
+                
+                
+            }
+            if (Health <= 0) 
+            {
+                sp.Play("Death_3");
+                gameObject.SetActive(false);
             }
     }
     // IEnumerator DamageCooldown() //temp add by LC

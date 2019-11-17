@@ -123,8 +123,8 @@ MonoBehaviour:
   MoveSpeed: 100
   RotateSpeed: 100
   Direction: 0
+  boss: 0
   me: {fileID: 3781581551768258313}
-  MyRigid: {fileID: 0}
   Paramiers: {x: 0.2, y: 1}
   WaitVarables: {x: 0.2, y: 1}
   Hearts:
@@ -274,6 +274,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8557797702141540260, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7108379892750779322, guid: f7d73e9042e8ee64f9676490f30e7211,
+        type: 3}
+    - target: {fileID: 821933171660352130, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7108379892750779322, guid: f7d73e9042e8ee64f9676490f30e7211,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 9067695791811741945, guid: 6ac7e7853f9886a42a2f7fe6a70596af, type: 3}
     - {fileID: 9207610998230610106, guid: 6ac7e7853f9886a42a2f7fe6a70596af, type: 3}
