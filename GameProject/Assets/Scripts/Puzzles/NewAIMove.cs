@@ -6,7 +6,7 @@ public class NewAIMove : A
 
     float WaitTime,TurnTime;
 
-
+    public bool boss;
     public Transform me;
     Transform Player;
     Rigidbody2D MyRigid;
@@ -131,7 +131,14 @@ public class NewAIMove : A
 
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
                 Health -= damage;
-                if (Health <= 0)  gameObject.SetActive(false);
+            if (Health <= 0)
+            {
+                if(boss)
+                {
+
+                }
+                gameObject.SetActive(false);
+            }
                   
                 //StartCoroutine(DamageCooldown());
             }
