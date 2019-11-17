@@ -11,7 +11,7 @@ public class NewAIMove : A
     Transform Player;
     Rigidbody2D MyRigid;
     public Vector2 Paramiers,WaitVarables;
-
+    public Vector3 offset;
     bool SeenPlayer,Turn,TurnCount,ToggleDirection, hit;
 
     public SpriteRenderer[] Hearts;
@@ -35,7 +35,7 @@ public class NewAIMove : A
     void Update()
     {
 
-        me.transform.position = transform.position;
+        me.transform.position = transform.position + offset;
         if (SeenPlayer) RunToPlayer();
            
         else  RandomWander();

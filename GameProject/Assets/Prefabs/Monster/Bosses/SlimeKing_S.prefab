@@ -10,13 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3206855676616187498}
   - component: {fileID: 1637765382827159136}
-  - component: {fileID: 4834704293912727662}
   - component: {fileID: 6892757521963818479}
   - component: {fileID: 8069241420424871625}
-  - component: {fileID: 2725957163400538662}
-  - component: {fileID: 3629199059629395556}
-  - component: {fileID: 3629199059629395555}
-  - component: {fileID: 3629199059629395554}
   m_Layer: 0
   m_Name: SlimeKing_S
   m_TagString: Untagged
@@ -102,32 +97,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &4834704293912727662
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748065833779268477}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0023695081, y: 0.00000023841858}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.08, y: 0.08}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0041128, y: 1.0088521}
-  m_EdgeRadius: 0
 --- !u!58 &6892757521963818479
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -163,94 +132,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2725957163400538662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748065833779268477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8746f1927e62b748bba0abcbb90e34d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xRange: 2
-  yRange: 2
-  showGizmos: 0
-  movementSpeed: 2
-  maxIdleTime: 2
-  maxChasingArea: {x: 1, y: 1}
-  Hearts:
-  - {fileID: 1481459696323927374}
-  - {fileID: 7891204708246385847}
-  - {fileID: 6348480513225478778}
-  - {fileID: 9164492323116224809}
-  - {fileID: 4571769856424449371}
-  - {fileID: 2389154035285959926}
-  - {fileID: 2505437447623966991}
-  - {fileID: 6585639860967081015}
-  - {fileID: 7007610081212004170}
-  - {fileID: 4187667248135665592}
-  - {fileID: 1523606602707828708}
-  - {fileID: 3376522164028401632}
-  - {fileID: 8564518345342265507}
-  - {fileID: 5836682932098063363}
-  - {fileID: 7740703733817359065}
-  Health: 15
---- !u!114 &3629199059629395556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748065833779268477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d0fab5465d79a247ab3105e33b74b0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 0
-  AnimationClip: {fileID: 0}
-  fleeSpeed: 3
---- !u!114 &3629199059629395555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748065833779268477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40075eec97d33404eaf780af3f2d85a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 0
-  AnimationClip: {fileID: 0}
-  projectilePrefab: {fileID: 7787238323924872088, guid: 4e43eae0d3bd3cf458ab50c8a88f9d8f,
-    type: 3}
-  colliderSize: {x: 0.5, y: 0.5}
-  ProjectileSpeed: 4
-  ProjectileRange: 4
-  ProjectileSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
---- !u!114 &3629199059629395554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748065833779268477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c768627a4b9a974a9e6c5e888d11322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ExpiryTime: 5
-  AnimationClip: {fileID: 0}
-  SpawnObject: {fileID: 4771426926775624626, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
-    type: 3}
-  radius: 10
-  maxSpawns: 0
 --- !u!1 &1955285350075385775
 GameObject:
   m_ObjectHideFlags: 0
