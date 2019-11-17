@@ -13,7 +13,7 @@ public class UILanguageController : A
     }
     public void UpdateLanguage()
     {
-        try{ if(FindObjectOfType<PlayerMovement>().optionsMenu!=null)FindObjectOfType<PlayerMovement>().optionsMenu.SetActive(true);}
+        try{ if(FindObjectOfType<PlayerMovement>().Menu!=null)FindObjectOfType<PlayerMovement>().Menu.SetActive(true);}
        catch{}
         textObjects=FindObjectsOfType<Text>();   
         foreach(Text text in textObjects)
@@ -26,7 +26,7 @@ public class UILanguageController : A
             try
             {
             if(GameObject.FindGameObjectWithTag("Settings")!=null)GameObject.FindGameObjectWithTag("Settings").SetActive(false);
-            if(FindObjectOfType<PlayerMovement>().optionsMenu!=null)FindObjectOfType<PlayerMovement>().optionsMenu.SetActive(false);
+            if(FindObjectOfType<PlayerMovement>().Menu!=null)FindObjectOfType<PlayerMovement>().Menu.SetActive(false);
             }
             catch{}
         }
