@@ -5,7 +5,6 @@
     {
         BouldersPushed = 0;
     }
-
     public void AddBoulder()
     {
         BouldersPushed++;
@@ -13,7 +12,5 @@
     void Update()
     {
         if(BouldersPushed == 2) gameObject.SetActive(false);
-
-             
     }
 }

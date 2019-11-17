@@ -9,7 +9,7 @@ public class NewAIMove : A
 
     public Transform me;
     Transform Player;
-    public Rigidbody2D MyRigid;
+    Rigidbody2D MyRigid;
     public Vector2 Paramiers,WaitVarables;
 
     bool SeenPlayer,Turn,TurnCount,ToggleDirection, hit;
