@@ -22,6 +22,9 @@ public class NewAIMove : A
     //Inventory playerInventory;
     Transform PlayerPos;
 
+    //Gabriel added it
+    static int currBoss = 0;
+    //Gabriel end
 
 
     void Start()
@@ -137,7 +140,10 @@ public class NewAIMove : A
         if (Health <= 0)
         {
             if (boss)
-                Quest.boss[Quest.currQuest] = true;
+            {
+                Quest.boss[currBoss] = true;
+                currBoss++;
+            }
             gameObject.SetActive(false);
         }
 
