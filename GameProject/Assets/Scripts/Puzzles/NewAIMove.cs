@@ -23,7 +23,7 @@ public class NewAIMove : A
     Transform PlayerPos;
 
     //Gabriel added it
-    static int currBoss = 0;
+    static public int currBoss = 0;
     //Gabriel end
     //Andreas
     SoundPlayer sp;
@@ -144,10 +144,7 @@ public class NewAIMove : A
         if (Health <= 0)
         {
             if (boss)
-            {
                 Quest.boss[currBoss] = true;
-                currBoss++;
-            }
             gameObject.SetActive(false);
         }
 

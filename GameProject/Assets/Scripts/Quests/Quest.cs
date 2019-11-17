@@ -14,12 +14,12 @@ using UnityEngine;
 //
 //
 
-   // Quest.boss[ID] = true;
+// Quest.boss[ID] = true;
 
 public class Quest : A
 {
     [HideInInspector]
-    static public bool[] boss = new bool [8];
+    static public bool[] boss = new bool[8];
 
 
 
@@ -122,11 +122,14 @@ public class Quest : A
     GameObject ActiveQuestSign;
 
     private PlayerMovement HeroRef;
+
+    private DialogueScript ds;
     #endregion
 
 
     void Awake()
     {
+        ds = GameObject.FindObjectOfType<DialogueScript>();
         HeroRef = GameObject.FindObjectOfType<PlayerMovement>();
         HeroRef.QuestActiveID = currQuest;
         ActiveQuestSign = gameObject.transform.parent.GetChild(1).gameObject;
@@ -143,7 +146,7 @@ public class Quest : A
         //Catches the GameManager TalkScript Component
         GameManagerTalk = GameObject.Find("GameManager").GetComponent<TalkScript>();
 
-        //Sets available just the first quest at the beginning of the game - Creating a sequence of quests
+        ////Sets available just the first quest at the beginning of the game - Creating a sequence of quests
         status = ID == HeroRef.QuestActiveID ? Status.Available : Status.NotAvailable;
 
         //Disable all other quests within the game based on the its status 
@@ -155,17 +158,21 @@ public class Quest : A
 
     private void Start()
     {
-        status = ID == HeroRef.QuestActiveID ? Status.Available : Status.NotAvailable;
+        if (ID != 0)
+        {
+            status = ID == HeroRef.QuestActiveID ? Status.OnGoing : Status.NotAvailable;
 
-        //Disable all other quests within the game based on the its status 
-        gameObject.transform.GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true : false;
-        NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = status == Status.Available ? true : false;
-        enabled = status == Status.Available;
-        ActiveQuestSign.SetActive(status == Status.Available);
+            //Disable all other quests within the game based on the its status 
+            gameObject.transform.GetComponent<BoxCollider2D>().enabled = status == Status.OnGoing ? true : false;
+            NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = status == Status.OnGoing ? true : false;
+            enabled = status == Status.OnGoing;
+            ActiveQuestSign.SetActive(status == Status.OnGoing);
+        }
 
     }
     void Update()
     {
+
         //Checks NPC gameObject availability and the type of the Quest
         if (NPCToReturnTo && type.Equals(Type.Return))
         {
@@ -186,7 +193,6 @@ public class Quest : A
             displayQuestCompletedDialogue();
             findNextQuest();
         }
-
         //Check if the quest is ongoing
         if (status == Status.OnGoing)
 
@@ -197,7 +203,6 @@ public class Quest : A
                 ||
                 DeliverRequest && inv.getCoins() >= DeliverGold)
             {
-
                 //Set status completed
                 status = Status.ReadyToComplete;
 
@@ -211,20 +216,22 @@ public class Quest : A
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //Check if player has collided with NPC that holds the quest and if the quest is active
-        if (collision.gameObject.name == "Hero" && isActiveAndEnabled)
-        {
-            //Gathers the local TalkScript Component and assign the public Dialogue item
-            GetComponent<TalkScript>().dialogueEnglish = Dialogue;
+        if (status != Status.ReadyToComplete)
+        { //Check if player has collided with NPC that holds the quest and if the quest is active
+            if (collision.gameObject.name == "Hero" && isActiveAndEnabled)
+            {
+                //Gathers the local TalkScript Component and assign the public Dialogue item
+                GetComponent<TalkScript>().dialogueEnglish = Dialogue;
 
-            //Checks if it is a deliver quest and status indicates the quest has not been taken yet
-            if (DeliverRequest && status == Status.Available)
-                inv.addCoins(DeliverGold);
+                //Checks if it is a deliver quest and status indicates the quest has not been taken yet
+                if (DeliverRequest && status == Status.Available)
+                    inv.addCoins(DeliverGold);
 
-            //Set the quest as Ongoing
-            status = Status.OnGoing;
+                //Set the quest as Ongoing
+                status = Status.OnGoing;
 
 
+            }
         }
     }
 
@@ -239,7 +246,12 @@ public class Quest : A
         if (Kills.Count > 0)
             foreach (GameObject enemy in Kills)
                 state = enemy.activeInHierarchy ? false : true;
-        else state = boss[currQuest] == true;
+        else
+        {
+            state = boss[NewAIMove.currBoss] == true;
+            if (state)
+                NewAIMove.currBoss++;
+        }
 
         //If all the enemies are inactive checkKilledAllEnemies will return true
         return state;
@@ -352,7 +364,7 @@ public class Quest : A
             {
                 q.enabled = q.gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
                 enabled = false;
-                if(q.gameObject!=this.gameObject)
+                if (q.gameObject != this.gameObject)
                     gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
                 lastQuest = false;
                 currQuest++;
