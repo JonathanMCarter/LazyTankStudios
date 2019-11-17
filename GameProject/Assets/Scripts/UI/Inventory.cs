@@ -171,8 +171,7 @@ public class Inventory : A
 
                 
 
-            // Locks player until the inventory is closed 
-            FindObjectOfType<PlayerMovement>().enabled = !isOpen;
+            
 
 
 
@@ -201,7 +200,7 @@ public class Inventory : A
         Slots[id].quantity = remove ? 0 : quantity;
         Slots[id].updateIcon();
         //Andreas edit--
-        audioManager.Play("Item_PickUp");
+        audioManager.Play("Pick_Up_Item_1");
         //Andreas edit end--
     }
 
@@ -250,6 +249,8 @@ public class Inventory : A
        // if(!isOpen)FindObjectOfType<GameManager>().isPaused=false;
         if(!isOpen && !VendorMode)GameObject.FindGameObjectWithTag("Map").SetActive(false);
         VendorMode = false;
+        // Locks player until the inventory is closed 
+            FindObjectOfType<PlayerMovement>().enabled = !isOpen;
         //Andreas edit end--
         selected = 0;
     }
