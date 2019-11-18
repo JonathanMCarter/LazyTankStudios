@@ -1,28 +1,10 @@
-﻿
-using UnityEngine;
-
-/*
- * CRT Effect Script 
- * 
- *  Controls the effects of the CRT shader 
- *
- * Owner: Andreas Kraemer
- * Last Edit : 1/10/19
- * 
- * Also Edited by : <Enter name here if you edit this script>
- * Last Edit: <Date here if you edit this script>
- * 
- * */
-
+﻿using UnityEngine;
 public class CRT_EffectCamera : A
 {
     public Material EffectMaterial;
     public bool m_CRTShaderOn=true;
     float time;
-
     public CRT_Preset preset;
-
-
 void OnRenderImage(RenderTexture src,RenderTexture dst)
     {
         EffectMaterial.SetFloat("scanlineCount",preset.scanlineCount);
