@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class PlayerMovement : A {
     enum Dir { Up, Down, Left, Right };
     Dir F;
@@ -9,7 +10,7 @@ public class PlayerMovement : A {
     public Inventory Inv;
     public GameObject Bullet, DeathCanvas, Menu;
     Rigidbody2D myRigid; Animator myAnim; SpriteRenderer render; InputManager IM;
-    public bool dmgCD;   HealthUI UI; SoundPlayer audioManager, BossKilled;
+    public bool dmgCD; SoundPlayer audioManager, BossKilled;
     public int health, QuestActiveID; GameObject aHB;
     public Transform aR;
     bool attacking, dashing, shieldUp, Shooting;
@@ -17,6 +18,19 @@ public class PlayerMovement : A {
     float countdown;
     enum ITEMS { SWORD, BLAZBOOTS, ICEBOW, SHIELDSHARPTON, TELERUNE, ELIXIRLIFE, ELIXIRSTR, ELIXIRHEARTS, WATERSKIN, FURCOAT, FORESTITEM }
 
+    public int maxHealth;
+    public Image[] hearts;
+    public Sprite fullHeart, emptyHeart;
+
+    public void ShowHearts()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            Debug.Log("Hearts shown is" + hearts[i].ToString());
+            hearts[i].enabled = (i < maxHealth);
+            hearts[i].sprite = i < health ? fullHeart : emptyHeart;
+        }
+    }
     private void Start()
     {
         
@@ -25,10 +39,7 @@ public class PlayerMovement : A {
             myAnim = GetComponent<Animator>();
             render = GetComponent<SpriteRenderer>();
             IM = FindObjectOfType<InputManager>();
-            UI = FindObjectOfType<HealthUI>();
-            UI.maxHealth = health;
-            UI.currentHealth = health;
-            UI.ShowHearts();
+            ShowHearts();
             Menu = GameObject.FindGameObjectWithTag("OptionsMenu");
             Menu.SetActive(false);
             audioManager = FindObjectOfType<SoundPlayer>();
@@ -203,8 +214,7 @@ public class PlayerMovement : A {
         if (health <= 0) return;
         StartCoroutine(DamageCooldown());
         health -= damage;
-        UI.currentHealth = health;
-        UI.ShowHearts();
+        ShowHearts();
         audioManager.Play("Player_Take_Damage_1");
         if (health <= 0)
         {
@@ -243,8 +253,8 @@ public class PlayerMovement : A {
 
     public void Heal(int value)
     {
-        health = Mathf.Clamp(health + value, 0, UI.maxHealth);
-        UI.currentHealth = health;
+        health = Mathf.Clamp(health + value, 0, maxHealth);
+
         audioManager.Play("Healing_1");
     }
 
