@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 public class Inventory : A
@@ -8,19 +9,23 @@ public class Inventory : A
     public int equippedB = -1;
     public InvSlot[] Slots;
     public bool isOpen;
-    [HideInInspector]
     public bool active = true;
     InputManager IM;
     static int Coins = 0;
-    [HideInInspector]
-    public const int COLUMN = 4;
-    public const int ROWS = 3;
+    const int COLUMN = 4;
+    const int ROWS = 3;
     public int selected = 0;
     int column = 4;
-    public bool VendorMode = false;
+    public bool VendorMode;
     SoundPlayer audioManager;
     Text cointext;
-    bool delayed = false;
+    bool delayed;
+    public List<string> itemNames = new List<string>();
+    public List<string> itemDescriptions = new List<string>();
+    public CanvasGroup info;
+    public Text n, d;
+    Inventory activeI;
+    public Inventory vendor;
     void Awake()
     {
         Slots = GetComponentsInChildren<InvSlot>();
@@ -32,6 +37,7 @@ public class Inventory : A
         items = new bool[Slots.Length];       
         IM = FindObjectOfType<InputManager>();
         audioManager=FindObjectOfType<SoundPlayer>();
+        activeI = this;
     }
     void OnLevelWasLoaded(int level)
     {
@@ -39,35 +45,58 @@ public class Inventory : A
     }
     void Update()
     {
+        if (CompareTag("Inv"))
+        {
+            if (activeI.VendorMode)
+            {
+                activeI = active ? this : vendor;
+            }
+            int ID = activeI.selected;
+            if (activeI.hasItem(ID))
+            {
+                n.text = itemNames[ID] != null ? itemNames[ID] : "";
+                if (activeI.VendorMode) n.text += " " + activeI.Slots[ID].Value + "G";
+                d.text = itemDescriptions[ID] != null ? itemDescriptions[ID] : "";
+            }
+            else
+            {
+                n.text = "";
+                d.text = "";
+            }
+            info.alpha = activeI.isOpen ? n.text.Length == 0 ? 0 : 1 : 0;
+        }
         GetComponent<CanvasGroup>().alpha = isOpen ? 1 : 0;
         if (isOpen && !delayed)
         {
             if (IM.Button_Menu())
             {
                 open();
-                StartCoroutine(delay());
+                del();
             }
-            if (IM.Button_A() && !VendorMode)
+            if (!VendorMode)
             {
-                equipItem(getSelectedID(), !isEquipped(getSelectedID(), 1), 1);
-                StartCoroutine(delay());
-            }
-            if (IM.Button_B() && !VendorMode)
-            {
-                equipItem(getSelectedID(), !isEquipped(getSelectedID(), 2), 2);
-                StartCoroutine(delay());
+                if (IM.Button_A())
+                {
+                    equipItem(selected, !isEquipped(selected, 1), 1);
+                    del();
+                }
+                if (IM.Button_B())
+                {
+                    equipItem(selected, !isEquipped(selected, 2), 2);
+                    del();
+                }
             }
             if (active)
             {
                 if (IM.X_Axis() == 1)
                 {
                     if (selected < column - 1) selected++;
-                    StartCoroutine(delay());
+                    del();
                 }
                 else if (IM.X_Axis() == -1)
                 {
                     if (selected > column - 1 - ROWS) selected--;
-                    StartCoroutine(delay());
+                    del();
                 }
                 if (IM.Y_Axis() == 1)
                 {
@@ -76,7 +105,7 @@ public class Inventory : A
                         selected -= COLUMN;
                         column -= COLUMN;
                     }
-                    StartCoroutine(delay());
+                    del();
                 }
                 else if (IM.Y_Axis() == -1)
                 {
@@ -85,24 +114,17 @@ public class Inventory : A
                         selected += COLUMN;
                         column += COLUMN;
                     }
-                    StartCoroutine(delay());
+                    del();
                 }
             }
-            for (int i = 0; i < items.Length; i++)
+            
+            for (int i = 0; i < Slots.Length; i++)
             {
-                InvSlot slot = transform.GetChild(i).GetComponent<InvSlot>();
-                slot.selected = (i == selected);
+                Slots[i].selected = i == selected;
             }
         }
     }
-    public void addItem(int id, int quantity, bool remove)
-    {
-        items[id] = !remove;
-        Slots[id].hasItem = !remove;
-        Slots[id].quantity = remove ? 0 : quantity;
-        Slots[id].updateIcon();
-        audioManager.Play("Pick_Up_Item_1");
-    }
+
     public void addItem(int id, int quantity, bool remove, bool Increase)
     {
         quantity = Increase ? quantity += 1 : quantity -= 1;
@@ -116,11 +138,7 @@ public class Inventory : A
     {
         return items[id];
     }
-    public int getSelectedID()
-    {
-        return Slots[selected].ID;
-    }
-    public void equipItem(int id, bool equip, int button)
+    void equipItem(int id, bool equip, int button)
     {
         if (items[id])
         {
@@ -139,7 +157,7 @@ public class Inventory : A
         }
     }
 
-    public bool isEquipped(int id, int button)
+    bool isEquipped(int id, int button)
     {
         return Slots[id].equipped == button;
     }
@@ -162,6 +180,11 @@ public class Inventory : A
     {
         Coins += coinsToBeAdded;
         cointext.text = Coins+"";
+    }
+
+    void del()
+    {
+        StartCoroutine(delay());
     }
     IEnumerator delay()
     {

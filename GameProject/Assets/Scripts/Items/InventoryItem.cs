@@ -25,7 +25,7 @@ public class InventoryItem : A
                         Inventory inv = GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>();
                         
                         if (ID == 1024)inv.addCoins(quantity);
-                        else inv.addItem(ID, 1, false);
+                        else inv.addItem(ID, 0, false, true);
 
                         //GameObject.Find("InventoryHotbar").GetComponent<Inventory>().addItem(ID, quantity, false);
                         Destroy(gameObject);

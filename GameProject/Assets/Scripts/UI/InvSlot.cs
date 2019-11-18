@@ -3,21 +3,17 @@ using UnityEngine.UI;
 public class InvSlot : A
 {
     public bool hasItem = false;
-    public int ID = -1;
     public int quantity = 0;
     public int equipped = 0;
     public bool selected = false;
     public int Value;
     Image img;
     public bool recievesXP = false;
-    GameObject i;
-    Text q, e;
+    public GameObject i;
+    public Text q, e;
     void Start()
     {
         img = GetComponent<Image>();
-        i = transform.GetChild(0).gameObject;
-        q = transform.GetChild(1).gameObject.GetComponent<Text>();
-        e = transform.GetChild(2).gameObject.GetComponent<Text>();
         updateIcon();
         selected = false;
     }
