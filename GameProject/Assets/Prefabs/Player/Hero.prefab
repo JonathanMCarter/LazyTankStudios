@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 193307816}
   - component: {fileID: 193307815}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: hearts_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 200954683}
   - component: {fileID: 200954684}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Boots_PlaceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 602219292}
   - component: {fileID: 602219293}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shield?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ GameObject:
   m_Component:
   - component: {fileID: 745958928}
   - component: {fileID: 745958927}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MapCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1029713898}
   - component: {fileID: 1029713899}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1258924025}
   - component: {fileID: 1258924024}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: hearts_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1743666071}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2014029385}
   - component: {fileID: 2014029384}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: hearts_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4660076079675224805}
   - component: {fileID: 1846977823801097140}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MapLocator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -678,8 +678,7 @@ GameObject:
   - component: {fileID: 3822497910915412742}
   - component: {fileID: 4643807344025198012}
   - component: {fileID: 1856388434}
-  - component: {fileID: 9191277529392257186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackHitPos
   m_TagString: Sword
   m_Icon: {fileID: 0}
@@ -748,92 +747,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &9191277529392257186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5206115320663918822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4625a95c20288458e58e249e75c7c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 0
-  Speed: {x: 0, y: 0}
-  Lifespan: 0
-  SourceItem: -1
---- !u!1 &5824007162070762043
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6118132707478265734}
-  - component: {fileID: 2226674338683711718}
-  - component: {fileID: 5499221140239312386}
-  m_Layer: 0
-  m_Name: IceTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6118132707478265734
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824007162070762043}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 9166002442120698620}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2226674338683711718
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824007162070762043}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0042266846, y: -0.29745674}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.26889038, y: 0.22406387}
-  m_EdgeRadius: 0
---- !u!114 &5499221140239312386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5824007162070762043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22c5b47acc1091e4a953e190be4a5892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5199651971104847494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,11 +773,8 @@ GameObject:
   - component: {fileID: 9166002442120698599}
   - component: {fileID: 538079848}
   - component: {fileID: 8285090126079130940}
-  - component: {fileID: 3257857658046344169}
-  - component: {fileID: 3658642044943807306}
-  - component: {fileID: 4860131975732831303}
   - component: {fileID: 135518710}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hero
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -888,7 +798,6 @@ Transform:
   - {fileID: 193307816}
   - {fileID: 4660076079675224805}
   - {fileID: 745958928}
-  - {fileID: 6118132707478265734}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1021,60 +930,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   Inv: {fileID: 0}
-  Bullet: {fileID: 0}
+  Bullet: {fileID: 6827261557022495565, guid: 7ed083c1b15dd144d88161664ab05dc7, type: 3}
   DeathCanvas: {fileID: 0}
   Menu: {fileID: 0}
-  WeaponStats: {fileID: 11400000, guid: abcf959d57f979a4ba61b54708402f0d, type: 2}
   dmgCD: 0
   health: 5
   QuestActiveID: 0
-  aR: {fileID: 0}
+  aR: {fileID: 1743666071}
   RangedAttackDuration: 0.5
   dashSpeedMultiplier: 2
   DashDuration: 0.3
   blockTIme: 1
-  AttackTime: 0.3
+  AttackTime: 1
   SlideSpeed: 100
---- !u!114 &3257857658046344169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9166002442120698622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19daec4a202edbd40bcfc426b45b3925, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pushStrenght: 1
---- !u!114 &3658642044943807306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9166002442120698622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0df3544e571d93b4e8aef3ddab7e85c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxTime: 0
-  Damage: 0
---- !u!114 &4860131975732831303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9166002442120698622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2129213e5d5134a920f82e26bb851d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Destination: 
+  maxHealth: 0
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: -4278990690624964859, guid: f7d73e9042e8ee64f9676490f30e7211,
+    type: 3}
+  emptyHeart: {fileID: 1929873790896653017, guid: f7d73e9042e8ee64f9676490f30e7211,
+    type: 3}
 --- !u!114 &135518710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,6 +985,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 7912010651862134246, guid: e040231afadd19b4d8ba5c98e526c491,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6908959419696246756, guid: e040231afadd19b4d8ba5c98e526c491,
         type: 3}
@@ -1217,15 +1104,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e040231afadd19b4d8ba5c98e526c491, type: 3}
---- !u!1 &7912010653214196417 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7912010651862134246, guid: e040231afadd19b4d8ba5c98e526c491,
-    type: 3}
-  m_PrefabInstance: {fileID: 1353264935}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6908959421032579267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6908959419696246756, guid: e040231afadd19b4d8ba5c98e526c491,
+    type: 3}
+  m_PrefabInstance: {fileID: 1353264935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7912010653214196417 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7912010651862134246, guid: e040231afadd19b4d8ba5c98e526c491,
     type: 3}
   m_PrefabInstance: {fileID: 1353264935}
   m_PrefabAsset: {fileID: 0}
