@@ -91,18 +91,13 @@ public class PlayerMovement : A {
                     myAnim.SetBool("Attack", true);
                     countdown = AttackTime;
                     aR.GetChild(0).gameObject.SetActive(true);
-                    //aR.GetChild(0).gameObject.GetComponent<Bullet>().SetStats(1, new Vector2(0, 0), -1, ID);
                     audioManager.Play("Attacking_1_(Sword)");
-                    //attacking = true;
                     break;
-
                 case (1):
                     aR.GetChild(1).gameObject.SetActive(true);
                     speed *= dashSpeedMultiplier;
                     countdown = DashDuration;
-                    //dashing = true;
                     break;
-
                 case (2): aR.GetChild(2).gameObject.SetActive(true);
                    // Shooting = true;
                     countdown = RangedAttackDuration;
@@ -110,22 +105,15 @@ public class PlayerMovement : A {
                     FireProjectile(ID);
                     audioManager.Play("Attacking_1_(Bow)");
                     break;
-
                 case (3):
                     countdown = blockTIme;
                     aR.GetChild(3).gameObject.SetActive(true);
-                   //shieldUp = true;
                     break;
-
                 case -1:
                     break;
             }
         }
     }
-    //public void PlayAttackAnimation()
-    //{
-    //    myAnim.SetTrigger("Attack");
-    //}
     public void FireProjectile(int itemUsed)
     {
         GameObject Go = Instantiate(Bullet, aR.GetChild(0).transform.position, aR.rotation * Quaternion.Euler(0, 0, -45));
@@ -134,49 +122,16 @@ public class PlayerMovement : A {
         if ((int)F == 1) Direc.y = -1f;
         if ((int)F == 2) Direc.x = -1f;
         if ((int)F == 3) Direc.x = 1f;
-
-
-
-        //switch (F)
-        //{
-        //    case (Dir.Down):
-        //        Direc.y = -1f;
-        //        break;
-
-        //    case (Dir.Left):
-        //        Direc.x = -1f;
-        //        break;
-
-        //    case (Dir.Right):
-        //        Direc.x = 1f;
-        //        break;
-
-        //    case (Dir.Up):
-        //        Direc.y = 1f;
-        //        break;
-
-        //    default: print("Direction Error - LC"); break;
-
-        //};
-
-        //Go.GetComponent<Bullet>().SetStats((int)WeaponStats.Damage, (Direc * WeaponStats.Speed), WeaponStats.Lifetime, itemUsed);
-
     }
-
-
     void OnDisable()
     {
         if (myRigid != null) myRigid.velocity = new Vector2(0, 0);
         if (myAnim != null) myAnim.SetFloat("SpeedX", 0); myAnim.SetFloat("SpeedY", 0);
-
     }
-
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy") TakeDamage(1);
-        
+        if (other.gameObject.tag == "Enemy") TakeDamage(1);        
     }
-
     public void TakeDamage(int damage)
     {
         if (dmgCD) return;
@@ -191,11 +146,7 @@ public class PlayerMovement : A {
             StartCoroutine(GameReset());
             enabled = false;
         }
-
-        //Inv.addXP(Inv.equippedA, -3);
-        //Inv.addXP(Inv.equippedB, -3);
     }
-
     IEnumerator GameReset()
     {
         if (DeathCanvas != null) DeathCanvas.SetActive(true);
@@ -203,13 +154,9 @@ public class PlayerMovement : A {
         SceneManager.LoadScene("Main Menu");
         DoNotDes[] Gos = FindObjectsOfType<DoNotDes>();
         DoNotDes.Created = false;
-
         foreach (DoNotDes go in Gos) if (go.gameObject != gameObject) Destroy(go.gameObject);
-
         yield return new WaitForSeconds(0); Destroy(gameObject);
     }
-
-
     IEnumerator DamageCooldown()
     {
         dmgCD = !dmgCD;
@@ -218,16 +165,11 @@ public class PlayerMovement : A {
         dmgCD = !dmgCD;
         Physics2D.IgnoreLayerCollision(9, 10, false);
     }
-
-
     public void Heal(int value)
     {
         health = Mathf.Clamp(health + value, 0, maxHealth);
-
         audioManager.Play("Healing_1");
     }
-
-
      void SetRotater()
     {
         if (myRigid.velocity.x > 0.1)
@@ -251,16 +193,12 @@ public class PlayerMovement : A {
             if (aR.rotation != new Quaternion(0, 0, -90, 0))
                 aR.Rotate(Vector3.forward * 90);
         } 
-
     }
-
-    //Unfortunately need to start coroutine here as zonetransition object get destroyed on load
     public void load(string[] dest)
     {
         audioManager.Play("Doors_1_(Normal)");
         StartCoroutine(waitUntilLoaded(dest));
     }
-
     public IEnumerator waitUntilLoaded(string[] dest)
     {
         AsyncOperation l = SceneManager.LoadSceneAsync(dest[0]);
