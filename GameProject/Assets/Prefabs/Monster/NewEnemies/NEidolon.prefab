@@ -61,7 +61,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3804559212307686950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 85.76, y: 57.31, z: -1046.1016}
+  m_LocalPosition: {x: 85.76, y: 57.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3732747414796116614}
@@ -215,21 +215,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6554434984327433830}
     m_Modifications:
-    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: m_Name
-      value: NewEnemyAI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4146691664319079307, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -285,6 +270,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Name
+      value: NewEnemyAI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: Hearts.Array.size
@@ -310,7 +310,8 @@ PrefabInstance:
       propertyPath: Hearts.Array.data[1]
       value: 
       objectReference: {fileID: 4619431213979551355}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
 --- !u!4 &3752028947777869731 stripped
 Transform:

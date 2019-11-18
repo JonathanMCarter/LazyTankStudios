@@ -221,11 +221,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 334273615340872751}
     m_Modifications:
-    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: m_Name
-      value: NewEnemyAI
-      objectReference: {fileID: 0}
     - target: {fileID: 4146691664319079307, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -281,6 +276,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Name
+      value: NewEnemyAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: Hearts.Array.size
@@ -316,7 +316,8 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 1.0224628
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
 --- !u!4 &4408907540248353203 stripped
 Transform:

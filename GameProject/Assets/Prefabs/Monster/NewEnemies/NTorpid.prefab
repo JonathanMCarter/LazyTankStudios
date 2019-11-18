@@ -82,6 +82,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3746700685741366333}
     m_Modifications:
+    - target: {fileID: 2746953000878250006, guid: 736aa0b43dfb14e47914979bdb936a71,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4278990690624964859, guid: f7d73e9042e8ee64f9676490f30e7211,
+        type: 3}
+    - target: {fileID: 2746953000878250006, guid: 736aa0b43dfb14e47914979bdb936a71,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7560702775571044455, guid: 736aa0b43dfb14e47914979bdb936a71,
         type: 3}
       propertyPath: m_Name
@@ -152,17 +163,6 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2746953000878250006, guid: 736aa0b43dfb14e47914979bdb936a71,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -4278990690624964859, guid: f7d73e9042e8ee64f9676490f30e7211,
-        type: 3}
-    - target: {fileID: 2746953000878250006, guid: 736aa0b43dfb14e47914979bdb936a71,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7550389231351227807, guid: 736aa0b43dfb14e47914979bdb936a71,
         type: 3}
       propertyPath: m_Sprite
@@ -211,11 +211,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3746700685741366333}
     m_Modifications:
-    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: m_Name
-      value: NewEnemyAI
-      objectReference: {fileID: 0}
     - target: {fileID: 4146691664319079307, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -271,6 +266,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Name
+      value: NewEnemyAI
+      objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: Hearts.Array.size
@@ -306,7 +306,8 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.54293823
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
 --- !u!4 &752935072007451946 stripped
 Transform:
