@@ -13,7 +13,7 @@ public class SoundCreator : A
     int samplerate = 44100;
     float[] frequency;
     float frequency_current;
-    //public float Volumn, Pitch;
+    public float Volum, Pitch;
     public Notes[] MyTune;
     void Awake()
     {
@@ -35,7 +35,7 @@ public class SoundCreator : A
             TheClip = MergeClips(AClip, myClip);
             AClip = TheClip;
         }
-        GetComponentInParent<SoundPlayer>();
+        GetComponentInParent<SoundPlayer>().AddSoundClip(TheClip, Pitch);
     }
     void OnAudioRead(float[] data)
     {
