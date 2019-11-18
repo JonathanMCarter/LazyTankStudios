@@ -25,7 +25,7 @@ public class DialogueScript : A
         {
             if ((!IsCoRunning) && (InputPressed) && !FileHasEnded)
             {
-                StartCoroutine(TypeWriter(.00005f));
+                DisplayNextLine();
             }
         }
     }
@@ -82,47 +82,6 @@ public class DialogueScript : A
             FileHasEnded = true;
         }
     }
-
-    private IEnumerator TypeWriter(float Delay)
-    {
-        IsCoRunning = true;
-
-        string Sentence = "";
-
-        if (DialStage < File.Names.Count)
-        {
-            if (File.Dialogue[DialStage] != null)
-            {
-                Sentence = File.Dialogue[DialStage].ToString().Substring(0, TypeWriterCount);
-            }
-
-            if (Sentence.Length == File.Dialogue[DialStage].Length)
-            {
-                Sentence = File.Dialogue[DialStage].ToString();
-                DialText.text = Sentence;
-                InputPressed = false;
-                DialStage++;
-                TypeWriterCount = 0;
-            }
-            else
-            {
-                DialName.text = File.Names[DialStage];
-                DialText.text = Sentence;
-                if (TypeWriterCount + TypeWriterCharactersToAdvanceBy > File.Dialogue[DialStage].Length) TypeWriterCount = File.Dialogue[DialStage].Length;
-                else TypeWriterCount += TypeWriterCharactersToAdvanceBy;
-            }
-        }
-        else
-        {
-            DialName.text = "";
-            DialText.text = "";
-            FileHasEnded = true;
-        }
-
-        yield return new WaitForSeconds(Delay);
-        IsCoRunning = false;
-    }
-
 
     public void Input()
     {
