@@ -127,6 +127,7 @@ MonoBehaviour:
   me: {fileID: 3781581551768258313}
   Paramiers: {x: 0.2, y: 1}
   WaitVarables: {x: 0.2, y: 1}
+  offset: {x: 0, y: 0, z: 0}
   Hearts:
   - {fileID: 2769335117356615176}
   - {fileID: 6612929034398358318}
@@ -278,14 +279,24 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7108379892750779322, guid: f7d73e9042e8ee64f9676490f30e7211,
+      objectReference: {fileID: -4278990690624964859, guid: f7d73e9042e8ee64f9676490f30e7211,
         type: 3}
+    - target: {fileID: 8557797702141540260, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 821933171660352130, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7108379892750779322, guid: f7d73e9042e8ee64f9676490f30e7211,
+      objectReference: {fileID: -4278990690624964859, guid: f7d73e9042e8ee64f9676490f30e7211,
         type: 3}
+    - target: {fileID: 821933171660352130, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9067695791811741945, guid: 6ac7e7853f9886a42a2f7fe6a70596af, type: 3}
     - {fileID: 9207610998230610106, guid: 6ac7e7853f9886a42a2f7fe6a70596af, type: 3}
