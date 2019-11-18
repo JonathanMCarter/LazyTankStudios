@@ -10,10 +10,10 @@ public class SoundPlayer : A
         DontDestroyOnLoad(gameObject);
         aud = GetComponentsInChildren<AudioSource>();
     }
-    public void AddSoundClip(AudioClip myAud, float Volumn, float Pitch)
+    public void AddSoundClip(AudioClip myAud, /*float Volumn,*/ float Pitch)
     {
         myClips.Add(myAud);
-       volumns.Add(Volumn);
+       //volumns.Add(Volumn);
         pitch.Add(Pitch);
     }
     public void Play(string audioName)
@@ -30,7 +30,7 @@ public class SoundPlayer : A
             if (!aud[i].isPlaying)
             {
                 aud[i].clip = myClips[number];
-                aud[i].volume = volumns[number];
+                //aud[i].volume = volumns[number];
                 aud[i].pitch = pitch[number];
                 aud[i].Play();
                 return;
