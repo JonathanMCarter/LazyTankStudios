@@ -2,37 +2,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
-/*
- * Temp script added by LC
- * 
- * 
- * 
- * 
- * 
- * */
-
 public class Fader : A
 {
-    private Image myImage;
-    private Text myText;
+    private Image Img;
+    private Text Txt;
 
-
-    // Start is called before the first frame update
     private void Awake()
     {
          gameObject.SetActive(false);
     }
     void Start()
     {
-       
-        myImage = GetComponentInChildren<Image>();
-        myText = GetComponentInChildren<Text>();
+        Img = GetComponentInChildren<Image>();
+        Txt = GetComponentInChildren<Text>();
         StartCoroutine(Fade());
     }
-
-    // Update is called once per frame
-
 
     IEnumerator Fade()
     {
@@ -42,18 +26,17 @@ public class Fader : A
             yield return new WaitForSeconds(0.1f);
         }
         Destroy(gameObject, 4.5f);
-
     }
 
     void UpdateColor()
     {
-        Color c = myImage.color;
+        Color c = Img.color;
         c.a += 0.1f;
-        myImage.color = c;
+        Img.color = c;
 
-        c = myText.color;
+        c = Txt.color;
         c.a += 0.1f;
-        myText.color =c;
+        Txt.color =c;
        
     }
 }
