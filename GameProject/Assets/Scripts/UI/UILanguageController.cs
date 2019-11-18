@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
 public class UILanguageController : A
 {
     Text[] textObjects;
-    // Start is called before the first frame update
-
-
     void Awake()
     {
         UpdateLanguage();
@@ -19,10 +15,7 @@ public class UILanguageController : A
         foreach(Text text in textObjects)
         {
             text.enabled=true;
-
             if((text.CompareTag("TextEnglish")&&!LanguageSelect.isEnglish)||(text.CompareTag("TextGerman")&&LanguageSelect.isEnglish))text.enabled=false; 
-
-
             try
             {
             if(GameObject.FindGameObjectWithTag("Settings")!=null)GameObject.FindGameObjectWithTag("Settings").SetActive(false);
@@ -31,5 +24,4 @@ public class UILanguageController : A
             catch{}
         }
     }
-
 }
