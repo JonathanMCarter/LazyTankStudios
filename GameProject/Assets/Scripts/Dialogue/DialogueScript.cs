@@ -3,141 +3,42 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-/*
-    You shouldn't be here.....
-    If something throws an error that stops you working then let me know...
-
-
-    Dialouge Script
-    -=-=-=-=-=-=-=-=-=-=-=-
-
-    Made by: Jonathan Carter
-    Last Edited By: Jonathan Carter
-    Date Edited Last: 6/10/19 - To add this comment bit in (nothing else was changed)
-
-    This script handles the dialouge manager, its not finished as I put it into the project as this was a summer project I didn't finish.
-    So, some things may not work...
-
-    Also edited by: Toby Wishart
-    Last edit: 29/10/19
-    Reason: Cinematics can be played
-
-*/
-
-public enum Styles
-{
-    Default,
-    TypeWriter,
-    Custom,
-};
-
 public class DialogueScript : A
 {
-    public bool InCinematic = false; //temp added by LC
-    // The Active Text File - This is used to populate the list when updated
-    //[Header("Current Dialouge File")]
-   // [Tooltip("This is the current dialouge text file selected by the script, if this isn't the file you called then something has gone wrong.")]
-    //public TextAsset InputText;
+    public bool InCinematic = false;
     public DialogueFile File;
-
-	// References to the displayed name and text area
-	//[Header("UI Element For Story Character Name")]
-	//[Tooltip("The UI Text element that is going to be used in your project to hold the Story Characters Name when they are talking.")]
 	public Text DialName;
-
-//	[Header("UI Element that holds the character dialogue")]
-//	[Tooltip("The UI Text element that is going to hold the lines of dialouge for you story charcters.")]
 	public Text DialText;
-
-	// Int to check which element in the Dialogue list is next to be displayed
 	int DialStage = 0;
-
-	// Checks is a courutine is running or not
 	bool IsCoRunning;
-
-    public Styles DisplayStyle;
-
     public bool InputPressed;
     public bool RequireInput = true;
     public bool FileHasEnded = false;
-
-	//[Header("Characters used to define file read settings")]
-	//[Tooltip("This should match what you inputted into the 'File Read Settings' char after name, which controls where a story character's name ends in the dialouge files the script reads.")]
-	public string NameChar = ":";
-	//[Tooltip("This should match what you inputted into the 'File Read Settings' char for new line, which controls where a story character's line of dialouge ends and a new one begins.")]
-	public string NewLineChar = "#";
-
-//	[Header("Type Writer Settings")]
-	public int TypeWriterCount = 1;
-
+    public int TypeWriterCount = 1;
     public int TypeWriterCharactersToAdvanceBy = 1;
-
-
-    // Stuff for events 'n' stuff 
-     Coroutine PauseCo;
+    Coroutine PauseCo;
     public Animator AnimToPlay;
-
-   // SoundPlayer audioManager;
 
     void Update()
     {
         if (RequireInput)
         {
-            switch (DisplayStyle)
+            if ((!IsCoRunning) && (InputPressed) && !FileHasEnded)
             {
-                case Styles.Default:
-
-                    if (InputPressed)
-                    {
-                        DisplayNextLine();
-                    }
-
-                    break;
-                case Styles.TypeWriter:
-
-                    if ((!IsCoRunning) && (InputPressed) && !FileHasEnded)
-                    {
-                        //audioManager.Play("Dialogue1");
-                        StartCoroutine(TypeWriter(.00005f));
-                    }
-
-                    break;
-                case Styles.Custom:
-
-                    if (InputPressed)
-                    {
-                        // your function here
-                    }
-
-                    break;
-                default:
-                    break;
+                StartCoroutine(TypeWriter(.00005f));
             }
         }
     }
 
-    //void Start()
-    //{
-    //    audioManager = FindObjectOfType<SoundPlayer>();
-    //}
-
-    // Changes the active file in the script
     public void ChangeFile(DialogueFile Input)
     {
         if (Input)
         {
             File = Input;
         }
-        //else
-        //{
-        //    //Debug.LogError("No File Found");
-        //}
-
         Reset();
     }
 
-
-    // Reads the next line of the dialogue sequence
     public void DisplayNextLine()
     {
 
@@ -145,9 +46,7 @@ public class DialogueScript : A
         {
             switch (File.Names[DialStage])
             {
-                // Cinematic
                 case "###":
-                    // Put code here to run cinematic
                     DialName.text = "";
                     DialText.text = "";
                     if (PauseCo == null)
@@ -155,28 +54,19 @@ public class DialogueScript : A
                         PauseCo = StartCoroutine(CinematicLoad(File.Dialogue[DialStage]));
                     }
                     break;
-                // Pause
                 case "@@@":
-                    // Pauses dialogue for a little bit (for dramatic effect..............................................)
                     if (PauseCo == null)
                     {
                         PauseCo = StartCoroutine(PauseDial(3));
                     }
                     break;
-
-                // Play Animation
                 case "^^^":
-                    // Put code to play animation
                     AnimToPlay.Play(File.Dialogue[DialStage], -1);
                     break;
-
-                // End Dialogue
                 case "***":
                     DialStage = 0;
                     FileHasEnded = true;
                     break;
-
-                // Read Dial as normal
                 default:
                     DialName.text = File.Names[DialStage];
                     DialText.text = File.Dialogue[DialStage];
@@ -193,7 +83,6 @@ public class DialogueScript : A
         }
     }
 
-    // Display Option - Type Writer Style
     private IEnumerator TypeWriter(float Delay)
     {
         IsCoRunning = true;
@@ -231,19 +120,14 @@ public class DialogueScript : A
         }
 
         yield return new WaitForSeconds(Delay);
-
         IsCoRunning = false;
     }
-
 
 
     public void Input()
     {
        if (!InputPressed) { InputPressed = true; }
-        //DisplayNextLine();
     }
-
-
 
     public void Reset()
     {
@@ -261,23 +145,18 @@ public class DialogueScript : A
 
     private IEnumerator CinematicFinish(string cinematic)
     {
-        InCinematic = true; //temp added by LC;
-       // Debug.Log("Wait for cinematic end");
+        InCinematic = true;
         Scene s = SceneManager.GetSceneByName(cinematic);
-        //Scene is unloaded in the CutsceneStateHandler script
         yield return new WaitWhile(()=>s.isLoaded);
-        InCinematic = false; //temp added by LC
-        //Debug.Log("Cinematic finished");
+        InCinematic = false;
         DialStage++;
         PauseCo = null;
     }
 
     private IEnumerator CinematicLoad(string cinematic)
     {
-       // Debug.Log("Load cinematic");
         SceneManager.LoadSceneAsync(cinematic, LoadSceneMode.Additive);
         Scene s = SceneManager.GetSceneByName(cinematic);
-        //Only start coroutine after the scene has fully loaded otherwise it will finish prematurely
         yield return new WaitWhile(()=>!s.isLoaded);
         PauseCo = StartCoroutine(CinematicFinish(cinematic));
     }
