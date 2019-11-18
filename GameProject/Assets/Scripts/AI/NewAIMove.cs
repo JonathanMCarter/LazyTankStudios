@@ -3,9 +3,7 @@ using UnityEngine;
 public class NewAIMove : A
 {
     public float MoveSpeed,RotateSpeed,Direction;
-
     float WaitTime,TurnTime;
-
     public bool boss;
     public Transform me;
     Transform Player;
@@ -13,61 +11,41 @@ public class NewAIMove : A
     public Vector2 Paramiers,WaitVarables;
     public Vector3 offset;
     bool SeenPlayer,Turn,TurnCount,ToggleDirection, hit;
-
     public SpriteRenderer[] Hearts;
     public int Health;
     public float DamageCD=0.3f;
-
     PlayerMovement player;
-    //Inventory playerInventory;
     Transform PlayerPos;
-
-    //Gabriel added it
     static public int currBoss = 0;
-    //Gabriel end
-    //Andreas
     SoundPlayer sp;
-
-
     void Start()
     {
         TurnCount = true;
         MyRigid = GetComponent<Rigidbody2D>();
-        //playerInventory = FindObjectOfType<Inventory>();
         Health=Hearts.Length;
         PlayerPos = GameObject.FindGameObjectWithTag("Player").transform;
         sp=FindObjectOfType<SoundPlayer>();
     }
     void Update()
     {
-
         me.transform.position = transform.position + offset;
-        if (SeenPlayer) RunToPlayer();
-           
-        else  RandomWander();
-
-        
+        if (SeenPlayer) RunToPlayer();           
+        else  RandomWander();        
     }
     void FixedUpdate()
     {
-
         if (ToggleDirection || SeenPlayer)
         {
             ToggleDirection = true;
             if (!SeenPlayer)   MyRigid.angularVelocity = 0;
-
-            MyRigid.velocity = transform.up * MoveSpeed;//shouldnt use time.deltatime in fixed update as time between frames is not same as time between fixed update updates
-
+            MyRigid.velocity = transform.up * MoveSpeed;
         }
-        else  MyRigid.velocity = transform.up * -MoveSpeed;
-           
+        else  MyRigid.velocity = transform.up * -MoveSpeed;           
         if (Turn)
         {
             if (Direction < 50) transform.Rotate(0, 0, RotateSpeed);
-            else if (Direction >= 50)  transform.Rotate(0, 0, -RotateSpeed);
-              
-        }
-        
+            else if (Direction >= 50)  transform.Rotate(0, 0, -RotateSpeed);              
+        }        
     }
     void RandomWander()
     {
@@ -94,8 +72,7 @@ public class NewAIMove : A
         }
     }
     void RunToPlayer()
-    {
-       
+    {       
         Vector2 Direction = new Vector2(PlayerPos.position.x - transform.position.x, PlayerPos.position.y - transform.position.y);
         transform.up = Direction;
     }
@@ -105,8 +82,7 @@ public class NewAIMove : A
         {
             Player = collision.gameObject.transform;
                 SeenPlayer = true;
-        }
-        
+        }        
     }
      void OnTriggerExit2D(Collider2D collision)
     {
@@ -125,21 +101,12 @@ public class NewAIMove : A
             ToggleDirection = true;
         if (collision.gameObject.tag == "Bullet")// && !hit)
             {
-                //hit = true;
-                //Toby: get bullet damage instead of always 1
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
-               // playerInventory.addXP(b.SourceItem, 1);
-
                 Destroy(collision.gameObject);
-
-                // Debug.Log("********** Enemy Should Be Taking Damage Now...");
-
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
-                Health -= damage;
-                  
+                Health -= damage;                  
                 sp.Play("Take_Damage_3");
-                //StartCoroutine(DamageCooldown());
             }
         if (Health <= 0)
         {
@@ -147,21 +114,13 @@ public class NewAIMove : A
                 Quest.boss[currBoss] = true;
             gameObject.SetActive(false);
         }
-
         if (collision.gameObject.tag == "Sword")// && !hit)
             {
-                //hit = true;
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
                 int damage = b.Damage;
-              //  playerInventory.addXP(b.SourceItem, 1);
-                // Debug.Log("********** Enemy Should Be Taking Damage Now...");
-
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
                 Health -= damage;
                  sp.Play("Take_Damage_3");
-                //StartCoroutine(DamageCooldown());
-                
-                
             }
             if (Health <= 0) 
             {
@@ -169,9 +128,4 @@ public class NewAIMove : A
                 gameObject.SetActive(false);
             }
     }
-    // IEnumerator DamageCooldown() //temp add by LC
-    //{
-    //    yield return new WaitForSeconds(DamageCD);
-    //    hit=false;
-    //}
 }

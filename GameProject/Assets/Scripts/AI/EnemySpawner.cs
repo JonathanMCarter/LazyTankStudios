@@ -1,30 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
     [SerializeField] private float spawnCooldown;
     [SerializeField] private float radius;
     [SerializeField] private int maxSpawn;
-
     private float time;
     private Vector2 position;
     private Stack<GameObject> spawnedObjects;
-
-    // Start is called before the first frame update
     void Start()
     {
         time = spawnCooldown;
         spawnedObjects = new Stack<GameObject>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime;
-
         if (time < spawnCooldown) return;
         time = 0f;
         if (spawnedObjects.Count == maxSpawn) return;
