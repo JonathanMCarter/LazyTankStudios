@@ -216,11 +216,11 @@ GameObject:
   - component: {fileID: 850508658}
   m_Layer: 5
   m_Name: GermanTitleText
-  m_TagString: Untagged
+  m_TagString: TextGerman
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &850508657
 RectTransform:
   m_ObjectHideFlags: 0
@@ -295,11 +295,11 @@ GameObject:
   - component: {fileID: 1375374733}
   m_Layer: 5
   m_Name: GermanCompanyText
-  m_TagString: Untagged
+  m_TagString: TextGerman
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1375374732
 RectTransform:
   m_ObjectHideFlags: 0
@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 4346511014411168275}
   - component: {fileID: 4346511014411168274}
   - component: {fileID: 4346511014411168277}
+  - component: {fileID: 4346511014411168278}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -604,6 +605,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4346511014411168278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346511014411168276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47a5f844e0b7cb4eb0b25bcaef7283e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &4346511014549359994
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -678,7 +691,7 @@ GameObject:
   - component: {fileID: 4346511014549359997}
   m_Layer: 5
   m_Name: TitleText
-  m_TagString: Untagged
+  m_TagString: TextEnglish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -738,7 +751,7 @@ GameObject:
   - component: {fileID: 4346511014870214242}
   m_Layer: 5
   m_Name: CompanyText
-  m_TagString: Untagged
+  m_TagString: TextEnglish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
