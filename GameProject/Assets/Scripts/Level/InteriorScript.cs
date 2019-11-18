@@ -1,13 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-
-/*
- * Created by Toby Wishart
- * Last edit: 11/10/19
- * 
- * Last edit: Jonathan @ 14:07 ish - 21/10/19
- * added modes so the player can change scene
- */
 public class InteriorScript : A
 {
     public enum Modes
@@ -15,15 +7,11 @@ public class InteriorScript : A
         Internal,
         Scene,
     };
-
     public Modes Type;
-
     public string SceneName;
-
     public GameObject destination;
     [HideInInspector]
     public bool inside = false;
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         switch (Type)
@@ -44,12 +32,9 @@ public class InteriorScript : A
             default:
                 break;
         }
-
     }
-
      void OnTriggerExit2D(Collider2D collision)
     {
         inside = false;
     }
-
 }

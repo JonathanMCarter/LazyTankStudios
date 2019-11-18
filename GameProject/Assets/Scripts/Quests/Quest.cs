@@ -69,12 +69,12 @@ public class Quest : A
     {
         if (NPCToReturnTo && type.Equals(Type.Return))
         {
-            if (NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 1
-                && status.Equals(Status.ReadyToComplete))
-            {
-                displayQuestCompletedDialogue();
-                findNextQuest();
-            }
+            //if (NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 1
+            //    && status.Equals(Status.ReadyToComplete))
+            //{
+            //    displayQuestCompletedDialogue();
+            //    findNextQuest();
+            //}
         }
         else if (status.Equals(Status.ReadyToComplete))
         {
