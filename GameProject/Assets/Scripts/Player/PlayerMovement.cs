@@ -75,28 +75,7 @@ public class PlayerMovement : A {
                     speed = bS;
                     aR.GetChild(3).gameObject.SetActive(false);
                     aR.GetChild(2).gameObject.SetActive(false);
-                     myAnim.SetBool("Attack", false);
-
-                if (attacking)
-                {
-                    aHB.SetActive(false);
-                    attacking = false;
-                }
-                if (dashing)
-                {
-                    aR.GetChild(1).gameObject.SetActive(false);
-                    speed = bS; dashing = false;
-                }
-                if (shieldUp)
-                {
-                    aR.GetChild(3).gameObject.SetActive(false);
-                    shieldUp = false;
-                }
-                if (Shooting)
-                {
-                    aR.GetChild(2).gameObject.SetActive(false);
-                    Shooting = false;
-                }
+                     myAnim.SetBool("Attack", false);               
             }
         }
     }
