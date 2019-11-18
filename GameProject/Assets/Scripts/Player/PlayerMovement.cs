@@ -275,4 +275,18 @@ public class PlayerMovement : A {
 
     }
 
+    //Unfortunately need to start coroutine here as zonetransition object get destroyed on load
+    public void load(string[] dest)
+    {
+        audioManager.Play("Doors_1_(Normal)");
+        StartCoroutine(waitUntilLoaded(dest));
+    }
+
+    public IEnumerator waitUntilLoaded(string[] dest)
+    {
+        AsyncOperation l = SceneManager.LoadSceneAsync(dest[0]);
+        yield return new WaitUntil(() => l.isDone);
+        Vector3 newPos = GameObject.Find(dest[1]).transform.position;
+        transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
+    }
 }

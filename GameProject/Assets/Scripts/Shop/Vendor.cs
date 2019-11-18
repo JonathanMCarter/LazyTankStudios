@@ -24,30 +24,25 @@ public class Vendor : A
     public DialogueFile VendorSpeech;
 
     //Inventories
-    public Inventory Pinv, VInv;
-    public InvSlot pInvSlot,VInvSlot;
+    Inventory Pinv, VInv;
+    InvSlot pInvSlot,VInvSlot;
 
     //Do it once
-    bool happened = false;
-    bool Sell = false;
-    bool active = false;
-
-    //X position of the inventory 
-    const int PANEL_POSITION_VENDOR_ON = 250;
+    bool happened;
+    bool Sell;
+    bool active;
 
     // Jonathan Edit
-    private DialogueScript DS;
-    public bool IsUsingVendor;
+    DialogueScript DS;
+    bool IsUsingVendor;
 
     //Andreas edit
     SoundPlayer audioManager;
 
     //Lewis edit
-     InputManager IM;
-    public List<GameObject> Panel = new List<GameObject>();
-    bool TempWaitBool = false; //temp add by LC
+    InputManager IM;
 
-    public List<int> itemsBeingSold;
+    public List<int> itemsSold;
 
     void Awake()//changed to awake so can get reference before Inventory panel is deactived
     {
@@ -56,16 +51,15 @@ public class Vendor : A
 
         //Lewis Edit
         IM = FindObjectOfType<InputManager>();
-        Panel.Add(GameObject.Find("SellOrBuyPanel"));
-        foreach (Transform t in Panel[0].transform) Panel.Add(t.gameObject);
-        // Jonathan Edit
-        Pinv = Panel[3].GetComponent<Inventory>();
-        VInv = Panel[4].GetComponent<Inventory>();
+
+        Inventory[] i = GameObject.Find("SellOrBuyPanel").GetComponentsInChildren<Inventory>();
+        Pinv = i[0];
+        VInv = i[1];
 
         DS = FindObjectOfType<DialogueScript>();
 
     }
-    bool delayed = false;
+    bool delayed;
     IEnumerator delay()
     {
         delayed = true;
@@ -73,12 +67,10 @@ public class Vendor : A
         delayed = false;
     }
 
-    private void Update() //Update is run every frame. A lot of what is currently in update only needs to run once and so should go in a seperate function rather than running all the time. Comment added by LC
+    void Update() //Update is run every frame. A lot of what is currently in update only needs to run once and so should go in a seperate function rather than running all the time. Comment added by LC
     {
         if (active)
         {
-            FindObjectOfType<PlayerMovement>().enabled = !(Pinv.isOpen || VInv.isOpen);
-
             pInvSlot = Pinv.Slots[Pinv.selected];
             VInvSlot = VInv.Slots[VInv.selected];
 
@@ -95,44 +87,27 @@ public class Vendor : A
                 {
                     IsUsingVendor = false;
                     active = false;
+                    //allow for movement in the player inventory
+                    Sell = true;
                 }
-                if (IM.Button_A() && Pinv.isOpen) //edited by LC for input controls
+                if (IM.Button_A()) //edited by LC for input controls
                 {
                     if (pInvSlot.hasItem && Sell)
                     {
-                        if (pInvSlot.quantity > 1)
-                        {
-                            //Remove item from player inventory in relation with the quantity we have 
-                            Pinv.addItem(Pinv.selected, pInvSlot.quantity, !Sell, !Sell);
-
-                            //Add a item into the vendor inventory 
-                            VInv.addItem(VInv.selected, VInvSlot.quantity, !Sell, Sell);
-
-                        }
-                        else if (pInvSlot.quantity == 1)
-                        {
-                            Pinv.addItem(Pinv.selected, pInvSlot.quantity, Sell, !Sell);
-                            VInv.addItem(VInv.selected, VInvSlot.quantity, !Sell, Sell);
-                        }
+                        //Remove item from player inventory in relation with the quantity we have 
+                        Pinv.addItem(Pinv.selected, pInvSlot.quantity, pInvSlot.quantity <= 1, !Sell);
+                        //Add a item into the vendor inventory 
+                        VInv.addItem(Pinv.selected, VInv.Slots[Pinv.selected].quantity, !Sell, Sell);
                         Pinv.addCoins(pInvSlot.Value);
 
                         audioManager.Play("Sell");
                     }
-                    else if (VInvSlot.hasItem & !Sell)
+                    else if (VInvSlot.hasItem && !Sell)
                     {
                         if (Pinv.getCoins() >= VInvSlot.Value)
                         {
-                            if (VInvSlot.quantity > 1)
-                            {
-                                Pinv.addItem(Pinv.selected, pInvSlot.quantity, Sell, !Sell);
-                                VInv.addItem(VInv.selected, VInvSlot.quantity, Sell, Sell);
-                            }
-                            else if (VInvSlot.quantity == 1)
-                            {
-                                Pinv.addItem(Pinv.selected, pInvSlot.quantity, Sell, !Sell);
-                                VInv.addItem(VInv.selected, VInvSlot.quantity, !Sell, Sell);
-                            }
-
+                            Pinv.addItem(VInv.selected, Pinv.Slots[VInv.selected].quantity, Sell, !Sell);
+                            VInv.addItem(VInv.selected, VInvSlot.quantity, VInvSlot.quantity <= 1, Sell);
                             Pinv.addCoins(-VInvSlot.Value);
                             audioManager.Play("Buy");
                         }
@@ -152,7 +127,10 @@ public class Vendor : A
                 if (DS.FileHasEnded && !happened)
                 {
                     IsUsingVendor = true;
-                    SellOrBuy();
+                    Pinv.open();
+                    Pinv.VendorMode = true;
+                    VInv.open();
+                    VInv.VendorMode = true;
                     happened = !happened;
                 }
             }
@@ -162,7 +140,7 @@ public class Vendor : A
 
     bool exited = true;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         //Resets itself everytime you get into the interactable zone
         if (collision.gameObject.name == "Hero")
@@ -172,44 +150,23 @@ public class Vendor : A
                 exited = false;
                 happened = false;
                 active = true;
-                //Play speech - edited by jonathan to use findoftype
-                int i;
                 //RESET INVENTORY
-                for (i = 0; i < VInv.items.Length; i++)
+                for (int i = 0; i < VInv.items.Length; i++)
                 {
                     VInv.items[i] = false;
                     VInv.Slots[i].hasItem = false;
                     VInv.Slots[i].quantity = 0;
                     VInv.Slots[i].updateIcon();
-                    //VInv.Slots[i].ID = -1;
                 }
                 //FILL INVENTORY
-                for (i = 0; i < itemsBeingSold.Count; i++) VInv.addItem(itemsBeingSold[i], 99, false);
+                itemsSold.ForEach(i => VInv.addItem(i, 99, false));
             }
         }
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Hero")
-        {
-            exited = true;
-        }
+        if (collision.gameObject.name == "Hero") exited = true;
     }
-
-
-    public void SellOrBuy()
-    {
-
-        Pinv.open();
-        Pinv.VendorMode = true;
-        VInv.open();
-        VInv.VendorMode = true;
-
-        IsUsingVendor = true;
-
-    }
-
-
 }

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 public class ZoneTransition : A
 {
     public string destination;
@@ -7,7 +6,7 @@ public class ZoneTransition : A
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-             FindObjectOfType<PlayerZoneTransition>().StartTransition(destination);
+            FindObjectOfType<PlayerMovement>().load(destination.Split(':'));
         }
     }
 }
