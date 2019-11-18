@@ -159,7 +159,7 @@ public class Vendor : A
                     VInv.Slots[i].updateIcon();
                 }
                 //FILL INVENTORY
-                itemsSold.ForEach(i => VInv.addItem(i, 99, false));
+                itemsSold.ForEach(i => VInv.addItem(i, 98, false, true));
             }
         }
 
