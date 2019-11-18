@@ -49,7 +49,6 @@ public class PlayerMovement : A {
         if (countdown > 0) myRigid.velocity = new Vector2(0, 0);
         else myRigid.velocity = (new Vector2(IM.X_Axis(), IM.Y_Axis())).normalized * speed;       
     }
-
     void Update()
     {
         SetRotater();
@@ -78,26 +77,26 @@ public class PlayerMovement : A {
                     aR.GetChild(2).gameObject.SetActive(false);
                      myAnim.SetBool("Attack", false);
 
-                //if (attacking)
-                //{
-                //    aHB.SetActive(false);
-                //    attacking = false;
-                //}
-                //if (dashing)
-                //{
-                //    aR.GetChild(1).gameObject.SetActive(false);
-                //    speed = bS; dashing = false;
-                //}
-                //if (shieldUp)
-                //{
-                //    aR.GetChild(3).gameObject.SetActive(false);
-                //    shieldUp = false;
-                //}
-                //if (Shooting)
-                //{
-                //    aR.GetChild(2).gameObject.SetActive(false);
-                //    Shooting = false;
-                //}
+                if (attacking)
+                {
+                    aHB.SetActive(false);
+                    attacking = false;
+                }
+                if (dashing)
+                {
+                    aR.GetChild(1).gameObject.SetActive(false);
+                    speed = bS; dashing = false;
+                }
+                if (shieldUp)
+                {
+                    aR.GetChild(3).gameObject.SetActive(false);
+                    shieldUp = false;
+                }
+                if (Shooting)
+                {
+                    aR.GetChild(2).gameObject.SetActive(false);
+                    Shooting = false;
+                }
             }
         }
     }
@@ -136,7 +135,7 @@ public class PlayerMovement : A {
                 case (3):
                     countdown = blockTIme;
                     aR.GetChild(3).gameObject.SetActive(true);
-                   // shieldUp = true;
+                   //shieldUp = true;
                     break;
 
                 case -1:
