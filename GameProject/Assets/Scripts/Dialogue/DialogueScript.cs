@@ -1,1 +1,163 @@
-﻿using System.Collections; using UnityEngine; using UnityEngine.UI; using UnityEngine.SceneManagement; public class DialogueScript : A { public bool InCinematic = false; public DialogueFile File; public Text DialName;public Text DialText;int DialStage = 0;bool IsCoRunning;public bool InputPressed;public bool RequireInput = true;public bool FileHasEnded = false;public int TypeWriterCount = 1;public int TypeWriterCharactersToAdvanceBy = 1;Coroutine PauseCo;public Animator AnimToPlay;void Update(){if (RequireInput){ if ((!IsCoRunning) && (InputPressed) && !FileHasEnded){StartCoroutine(TypeWriter(.00005f));}}}public void ChangeFile(DialogueFile Input){if (Input){File = Input;}Reset();}public void DisplayNextLine(){if (DialStage < File.Names.Count){switch (File.Names[DialStage]){case "###":DialName.text = "";DialText.text = "";if (PauseCo == null){PauseCo = StartCoroutine(CinematicLoad(File.Dialogue[DialStage]));}break;case "@@@":if (PauseCo == null){PauseCo = StartCoroutine(PauseDial(3));}break;case "^^^":AnimToPlay.Play(File.Dialogue[DialStage], -1);break;case "***":DialStage = 0;FileHasEnded = true;break;default:DialName.text = File.Names[DialStage];DialText.text = File.Dialogue[DialStage];DialStage++;InputPressed = false;break;}}else{DialName.text = "";DialText.text = "";FileHasEnded = true;}}private IEnumerator TypeWriter(float Delay){IsCoRunning = true;string Sentence = "";if (DialStage < File.Names.Count){if (File.Dialogue[DialStage] != null){Sentence = File.Dialogue[DialStage].ToString().Substring(0, TypeWriterCount);}if (Sentence.Length == File.Dialogue[DialStage].Length){Sentence = File.Dialogue[DialStage].ToString();DialText.text = Sentence;InputPressed = false;DialStage++;TypeWriterCount = 0;}else{DialName.text = File.Names[DialStage];DialText.text = Sentence;if (TypeWriterCount + TypeWriterCharactersToAdvanceBy > File.Dialogue[DialStage].Length) TypeWriterCount = File.Dialogue[DialStage].Length;else TypeWriterCount += TypeWriterCharactersToAdvanceBy;}}else{DialName.text = "";DialText.text = "";FileHasEnded = true;}yield return new WaitForSeconds(Delay);IsCoRunning = false;}public void Input(){if (!InputPressed) { InputPressed = true; }}public void Reset(){if (InputPressed) { InputPressed = false; }if (FileHasEnded) { FileHasEnded = false; }DialStage = 0;}private IEnumerator PauseDial(float Delay){yield return new WaitForSeconds(Delay);++DialStage;}private IEnumerator CinematicFinish(string cinematic){InCinematic = true;Scene s = SceneManager.GetSceneByName(cinematic);yield return new WaitWhile(()=>s.isLoaded);InCinematic = false;DialStage++;PauseCo = null;}private IEnumerator CinematicLoad(string cinematic){SceneManager.LoadSceneAsync(cinematic, LoadSceneMode.Additive);Scene s = SceneManager.GetSceneByName(cinematic);yield return new WaitWhile(()=>!s.isLoaded);PauseCo = StartCoroutine(CinematicFinish(cinematic));}}
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class DialogueScript : A
+{
+    public bool InCinematic = false;
+    public DialogueFile File;
+	public Text DialName;
+	public Text DialText;
+	int DialStage = 0;
+	bool IsCoRunning;
+    public bool InputPressed;
+    public bool RequireInput = true;
+    public bool FileHasEnded = false;
+    public int TypeWriterCount = 1;
+    public int TypeWriterCharactersToAdvanceBy = 1;
+    Coroutine PauseCo;
+    public Animator AnimToPlay;
+
+    void Update()
+    {
+        if (RequireInput)
+        {
+            if ((!IsCoRunning) && (InputPressed) && !FileHasEnded)
+            {
+                StartCoroutine(TypeWriter(.00005f));
+            }
+        }
+    }
+
+    public void ChangeFile(DialogueFile Input)
+    {
+        if (Input)
+        {
+            File = Input;
+        }
+        Reset();
+    }
+
+    public void DisplayNextLine()
+    {
+
+        if (DialStage < File.Names.Count)
+        {
+            switch (File.Names[DialStage])
+            {
+                case "###":
+                    DialName.text = "";
+                    DialText.text = "";
+                    if (PauseCo == null)
+                    {
+                        PauseCo = StartCoroutine(CinematicLoad(File.Dialogue[DialStage]));
+                    }
+                    break;
+                case "@@@":
+                    if (PauseCo == null)
+                    {
+                        PauseCo = StartCoroutine(PauseDial(3));
+                    }
+                    break;
+                case "^^^":
+                    AnimToPlay.Play(File.Dialogue[DialStage], -1);
+                    break;
+                case "***":
+                    DialStage = 0;
+                    FileHasEnded = true;
+                    break;
+                default:
+                    DialName.text = File.Names[DialStage];
+                    DialText.text = File.Dialogue[DialStage];
+                    DialStage++;
+                    InputPressed = false;
+                    break;
+            }
+        }
+        else
+        {
+            DialName.text = "";
+            DialText.text = "";
+            FileHasEnded = true;
+        }
+    }
+
+    private IEnumerator TypeWriter(float Delay)
+    {
+        IsCoRunning = true;
+
+        string Sentence = "";
+
+        if (DialStage < File.Names.Count)
+        {
+            if (File.Dialogue[DialStage] != null)
+            {
+                Sentence = File.Dialogue[DialStage].ToString().Substring(0, TypeWriterCount);
+            }
+
+            if (Sentence.Length == File.Dialogue[DialStage].Length)
+            {
+                Sentence = File.Dialogue[DialStage].ToString();
+                DialText.text = Sentence;
+                InputPressed = false;
+                DialStage++;
+                TypeWriterCount = 0;
+            }
+            else
+            {
+                DialName.text = File.Names[DialStage];
+                DialText.text = Sentence;
+                if (TypeWriterCount + TypeWriterCharactersToAdvanceBy > File.Dialogue[DialStage].Length) TypeWriterCount = File.Dialogue[DialStage].Length;
+                else TypeWriterCount += TypeWriterCharactersToAdvanceBy;
+            }
+        }
+        else
+        {
+            DialName.text = "";
+            DialText.text = "";
+            FileHasEnded = true;
+        }
+
+        yield return new WaitForSeconds(Delay);
+        IsCoRunning = false;
+    }
+
+
+    public void Input()
+    {
+       if (!InputPressed) { InputPressed = true; }
+    }
+
+    public void Reset()
+    {
+        if (InputPressed) { InputPressed = false; }
+        if (FileHasEnded) { FileHasEnded = false; }
+        DialStage = 0;
+    }
+
+
+    private IEnumerator PauseDial(float Delay)
+    {
+        yield return new WaitForSeconds(Delay);
+        ++DialStage;
+    }
+
+    private IEnumerator CinematicFinish(string cinematic)
+    {
+        InCinematic = true;
+        Scene s = SceneManager.GetSceneByName(cinematic);
+        yield return new WaitWhile(()=>s.isLoaded);
+        InCinematic = false;
+        DialStage++;
+        PauseCo = null;
+    }
+
+    private IEnumerator CinematicLoad(string cinematic)
+    {
+        SceneManager.LoadSceneAsync(cinematic, LoadSceneMode.Additive);
+        Scene s = SceneManager.GetSceneByName(cinematic);
+        yield return new WaitWhile(()=>!s.isLoaded);
+        PauseCo = StartCoroutine(CinematicFinish(cinematic));
+    }
+}
