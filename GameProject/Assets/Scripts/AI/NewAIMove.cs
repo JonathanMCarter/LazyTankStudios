@@ -102,7 +102,7 @@ public class NewAIMove : A
         if (collision.gameObject.tag == "Bullet")// && !hit)
             {
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
-                int damage = b.Damage;
+                int damage = b.Dmg;
                 Destroy(collision.gameObject);
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false); //if statement added by LC to avoid potential errors
                 Health -= damage;                  
@@ -117,7 +117,7 @@ public class NewAIMove : A
         if (collision.gameObject.tag == "Sword")// && !hit)
             {
                 Bullet b = collision.gameObject.GetComponent<Bullet>();
-                int damage = b.Damage;
+                int damage = b.Dmg;
                 if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
                 Health -= damage;
                  sp.Play("Take_Damage_3");
