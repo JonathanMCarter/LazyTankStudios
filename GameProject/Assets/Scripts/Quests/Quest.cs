@@ -36,23 +36,41 @@ public class Quest : A
     Quest[] quests;
     Inventory inv;
     static public int currQuest = 0;
+    static GameObject currQuestGO;
+    static Status currQuestStatus;
     GameObject ActiveQuestSign;
     private PlayerMovement HeroRef;
     private DialogueScript ds;
+    private ContactFilter2D contactFilter;
     private void InitialiseQuests(Status StatusToSet)
     {
-        status = ID == HeroRef.QuestActiveID ? StatusToSet : Status.NotAvailable;
-        gameObject.transform.GetComponent<BoxCollider2D>().enabled = status == StatusToSet ? true : false;
-        NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = status == StatusToSet ? true : false;
-        enabled = status == StatusToSet;
-        ActiveQuestSign.SetActive(status == StatusToSet);
 
+        status = ID == currQuest ? StatusToSet : Status.NotAvailable;
+        if (gameObject == GetCurrentQuestGameObject())
+        {
+            gameObject.transform.GetComponent<BoxCollider2D>().enabled = gameObject.transform.GetComponent<BoxCollider2D>().enabled = true;
+            ActiveQuestSign.SetActive(status == StatusToSet);
+
+        }
+        else
+        {
+            gameObject.transform.GetComponent<BoxCollider2D>().enabled = status == StatusToSet ? true : false;
+            NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = status == StatusToSet ? true : false;
+        }
+        enabled = status == StatusToSet;
+    }
+
+    GameObject GetCurrentQuestGameObject()
+    {
+        foreach (Quest q in quests)
+            if (q.ID == currQuest)
+                return q.gameObject;
+        return null;
     }
     void Awake()
     {
         ds = GameObject.FindObjectOfType<DialogueScript>();
         HeroRef = GameObject.FindObjectOfType<PlayerMovement>();
-        HeroRef.QuestActiveID = currQuest;
         ActiveQuestSign = gameObject.transform.parent.GetChild(1).gameObject;
         newItem = Resources.Load<GameObject>("New Item");
         inv = FindObjectOfType<Inventory>();
@@ -62,19 +80,21 @@ public class Quest : A
     }
     private void Start()
     {
-        if (ID != 0)
-            InitialiseQuests(Status.OnGoing);
+        if (currQuestStatus > Status.Completed)
+            InitialiseQuests(currQuestStatus);
     }
     void Update()
     {
+        print(currQuest + " STATUS: " + currQuestStatus);
+
         if (NPCToReturnTo && type.Equals(Type.Return))
         {
-            //if (NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 1
-            //    && status.Equals(Status.ReadyToComplete))
-            //{
-            //    displayQuestCompletedDialogue();
-            //    findNextQuest();
-            //}
+            if (NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, colliders) > 1
+                && status.Equals(Status.ReadyToComplete))
+            {
+                displayQuestCompletedDialogue();
+                findNextQuest();
+            }
         }
         else if (status.Equals(Status.ReadyToComplete))
         {
@@ -88,21 +108,21 @@ public class Quest : A
                 ||
                 DeliverRequest && inv.getCoins() >= DeliverGold)
             {
-                status = Status.ReadyToComplete;
+                status = currQuestStatus = Status.ReadyToComplete;
                 if (type == Type.Return)
                     NPCToReturnTo.transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = true;
             }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (status != Status.ReadyToComplete)
-        { 
+        if (status != Status.ReadyToComplete && ID == currQuest || status != Status.ReadyToComplete && ID <= currQuest && SideQuest)
+        {
             if (collision.gameObject.name == "Hero" && isActiveAndEnabled)
             {
                 GetComponent<TalkScript>().dialogueEnglish = Dialogue;
                 if (DeliverRequest && status == Status.Available)
                     inv.addCoins(DeliverGold);
-                status = Status.OnGoing;
+                status = currQuestStatus = Status.OnGoing;
             }
         }
     }
@@ -147,7 +167,7 @@ public class Quest : A
             GameManagerTalk.talk();
             offerReward(reward);
         }
-        status = Status.Completed;
+        status = currQuestStatus = Status.Completed; currQuest++;
     }
     public void findNextQuest()
     {
@@ -161,11 +181,9 @@ public class Quest : A
                 if (q.gameObject != this.gameObject)
                     gameObject.transform.GetComponent<BoxCollider2D>().enabled = false;
                 lastQuest = false;
-                currQuest++;
-                HeroRef.QuestActiveID = currQuest;
                 q.ActiveQuestSign.SetActive(true);
                 ActiveQuestSign.SetActive(false);
-                q.status = Status.Available;
+                q.status = currQuestStatus = Status.Available;
             }
             else if (SideQuest && currQuest >= q.ID && q.status != Status.Completed)
             {
@@ -187,15 +205,15 @@ public class Quest : A
         switch (typeOfReward)
         {
             case Reward.Items:
-                    throwItems();
-                    break;
+                throwItems();
+                break;
             case Reward.Gold:
                 inv.addCoins(rewardGold);
                 break;
             case Reward.GoldAndItems:
-                    throwItems();
-                    inv.addCoins(rewardGold);
-                    break;
+                throwItems();
+                inv.addCoins(rewardGold);
+                break;
             default:
                 break;
         }
