@@ -8,7 +8,7 @@ public class PlayerMovement : A {
     float bS;
     public Inventory Inv;
     public GameObject Bullet, DeathCanvas, Menu;
-    public ProjectileStats WeaponStats; Rigidbody2D myRigid; Animator myAnim; SpriteRenderer render; InputManager IM;
+    Rigidbody2D myRigid; Animator myAnim; SpriteRenderer render; InputManager IM;
     public bool dmgCD;   HealthUI UI; SoundPlayer audioManager, BossKilled;
     public int health, QuestActiveID; GameObject aHB;
     public Transform aR;
@@ -111,7 +111,7 @@ public class PlayerMovement : A {
                     myAnim.SetBool("Attack", true);
                     countdown = AttackTime;
                     aR.GetChild(0).gameObject.SetActive(true);
-                    aR.GetChild(0).gameObject.GetComponent<Bullet>().SetStats(1, new Vector2(0, 0), -1, ID);
+                    //aR.GetChild(0).gameObject.GetComponent<Bullet>().SetStats(1, new Vector2(0, 0), -1, ID);
                     audioManager.Play("Attacking_1_(Sword)");
                     //attacking = true;
                     break;
@@ -179,7 +179,7 @@ public class PlayerMovement : A {
 
         //};
 
-        Go.GetComponent<Bullet>().SetStats((int)WeaponStats.Damage, (Direc * WeaponStats.Speed), WeaponStats.Lifetime, itemUsed);
+        //Go.GetComponent<Bullet>().SetStats((int)WeaponStats.Damage, (Direc * WeaponStats.Speed), WeaponStats.Lifetime, itemUsed);
 
     }
 
