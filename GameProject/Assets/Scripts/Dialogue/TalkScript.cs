@@ -59,7 +59,6 @@ public class TalkScript : A
 
     public void talk()
     {
-        //Debug.Log("Talk Called");
         panel.alpha = 1;
 
         //Toby: Need this to change the dialogue each time you talk otherwise every NPC will have the same dialogue

@@ -17,7 +17,7 @@ public class InvSlot : A
     public int equipped = 0;
     //[HideInInspector]
     public bool selected = false;
-    public int BuyingValue, SellingValue;
+    public int Value;
     Image img;
     //Set to true if item can level up
     public bool recievesXP = false;

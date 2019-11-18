@@ -13,7 +13,7 @@ public class ItemInfoHandler : A
     public List<string> itemDescriptions = new List<string>();
 
     Text n, d;
-    Inventory i;
+    Inventory i, i2, activeI;
     CanvasGroup cg;
 
     void Start()
@@ -21,17 +21,25 @@ public class ItemInfoHandler : A
         n = transform.GetChild(0).GetComponent<Text>();
         d = transform.GetChild(1).GetComponent<Text>();
         i = GameObject.FindGameObjectWithTag("Inv").GetComponent<Inventory>();
+        i2 = GameObject.Find("VendorInventory").GetComponent<Inventory>();
         cg = GetComponent<CanvasGroup>();
+        activeI = i;
     }
 
     void Update()
     {
+        if (activeI.VendorMode)
+        {
+            activeI = i.active ? i : i2;
+        }
+
         //Check if player has item if not set the text to blank
-        int ID = i.getSelectedID();
-        if (i.hasItem(ID))
+        int ID = activeI.getSelectedID();
+        if (activeI.hasItem(ID))
         {
             //Set text using the lists and the selected ID as the index, set to blank if null which will hide the panel
             n.text = itemNames[ID] != null ? itemNames[ID] : "";
+            if (activeI.VendorMode) n.text += " " + activeI.Slots[ID].Value + "G";
           //  if (i.canItemRecieveXP(ID)) n.text += " Lv." + i.getLevel(ID);
             d.text = itemDescriptions[ID] != null ? itemDescriptions[ID] : "";
         } else
@@ -40,6 +48,6 @@ public class ItemInfoHandler : A
             d.text = "";
         }
         //Hide panel if inventory isn't open or name is blank
-        cg.alpha = i.isOpen ? n.text.Length == 0 ? 0 : 1 : 0;
+        cg.alpha = activeI.isOpen ? n.text.Length == 0 ? 0 : 1 : 0;
     }
 }

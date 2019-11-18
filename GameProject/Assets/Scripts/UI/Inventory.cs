@@ -35,6 +35,8 @@ public class Inventory : A
    // Dictionary<int, InvSlot> slots = new Dictionary<int, InvSlot>();
     public InvSlot[] Slots;
     public bool isOpen;
+    [HideInInspector]
+    public bool active = true;
 
     InputManager IM;
 
@@ -107,59 +109,44 @@ public class Inventory : A
             }
 
 
-
-            //Lock selector in horizontal depending on which row it is (RIGHT END)
-            if (IM.X_Axis() == 1 )
+            if (active)
             {
-                //if (VendorMode)
-                //{
+                //Lock selector in horizontal depending on which row it is (RIGHT END)
+                if (IM.X_Axis() == 1)
+                {
                     if (selected < column - 1) selected++;
-                //} //else
-                //{
-                    //selected++;
-                    //if (selected == items.Length) selected--;
-                //}
-                StartCoroutine(delay());
-            }
+                    StartCoroutine(delay());
+                }
 
-            //Lock selector on horizontal depending on which row it is (LEFT END)
-            else if (IM.X_Axis() == -1 )
-            {
-                //if (VendorMode)
-                //{
+                //Lock selector on horizontal depending on which row it is (LEFT END)
+                else if (IM.X_Axis() == -1)
+                {
                     if (selected > column - 1 - ROWS) selected--;
-                //}
-                //else
-                //{
-                    //selected--;
-                    //if (selected == -1) selected++;
-                //}
-                StartCoroutine(delay());
-            }
-
-            //Lock selector on vertical depending whether it exceeds the limits (LEFT END)
-            if (IM.Y_Axis() == 1 )
-            {
-                if (selected - COLUMN >= 0)
-                {
-                    selected -= COLUMN;
-                    column -= COLUMN;
+                    StartCoroutine(delay());
                 }
-                StartCoroutine(delay());
-            }
 
-            //Lock selector on vertical depending whether it exceeds the limits (RIGHT END )
-            else if (IM.Y_Axis() == -1)
-            {
-                if (selected + COLUMN < items.Length)
+                //Lock selector on vertical depending whether it exceeds the limits (LEFT END)
+                if (IM.Y_Axis() == 1)
                 {
-                    selected += COLUMN;
-                    column+=COLUMN;
+                    if (selected - COLUMN >= 0)
+                    {
+                        selected -= COLUMN;
+                        column -= COLUMN;
+                    }
+                    StartCoroutine(delay());
                 }
-                StartCoroutine(delay());
+
+                //Lock selector on vertical depending whether it exceeds the limits (RIGHT END )
+                else if (IM.Y_Axis() == -1)
+                {
+                    if (selected + COLUMN < items.Length)
+                    {
+                        selected += COLUMN;
+                        column += COLUMN;
+                    }
+                    StartCoroutine(delay());
+                }
             }
-
-
 
             //Emphasize the slot 
             for (int i = 0; i < items.Length; i++)
@@ -170,8 +157,6 @@ public class Inventory : A
                 slot.selected = (i == selected);
 
             }
-
-
         }
     }
 
@@ -250,6 +235,7 @@ public class Inventory : A
         FindObjectOfType<PlayerMovement>().enabled = !isOpen;
         //Andreas edit end--
         selected = 0;
+        column = 4;
     }
 
     //Returns level based on the XP
@@ -280,7 +266,7 @@ public class Inventory : A
 
 
     //Toggles the slots and changes the colour while doing that
-    public IEnumerator ToggleSlots(bool state)
+    /*public IEnumerator ToggleSlots(bool state)
     {
         yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < items.Length; i++)
@@ -290,7 +276,7 @@ public class Inventory : A
             Slots[i].enabled = state;
 
         }
-    }
+    }*/
 
     //Changes position of the inventory panel while in vendor mode
     //public void VendorPanelPosition(int value)
