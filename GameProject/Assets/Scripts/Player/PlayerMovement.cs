@@ -17,11 +17,9 @@ public class PlayerMovement : A {
     public float RangedAttackDuration, dashSpeedMultiplier, DashDuration, blockTIme, AttackTime, SlideSpeed;
     float countdown;
     enum ITEMS { SWORD, BLAZBOOTS, ICEBOW, SHIELDSHARPTON, TELERUNE, ELIXIRLIFE, ELIXIRSTR, ELIXIRHEARTS, WATERSKIN, FURCOAT, FORESTITEM }
-
     public int maxHealth;
     public Image[] hearts;
     public Sprite fullHeart, emptyHeart;
-
     public void ShowHearts()
     {
         for (int i = 0; i < hearts.Length; i++)
@@ -32,8 +30,7 @@ public class PlayerMovement : A {
         }
     }
     private void Start()
-    {
-        
+    {        
              if (DeathCanvas != null) DontDestroyOnLoad(DeathCanvas.gameObject);
             myRigid = GetComponent<Rigidbody2D>();
             myAnim = GetComponent<Animator>();
@@ -50,28 +47,23 @@ public class PlayerMovement : A {
         void FixedUpdate()
     {
         if (countdown > 0) myRigid.velocity = new Vector2(0, 0);
-        else myRigid.velocity = (new Vector2(IM.X_Axis(), IM.Y_Axis())).normalized * speed;
-        
-        
+        else myRigid.velocity = (new Vector2(IM.X_Axis(), IM.Y_Axis())).normalized * speed;       
     }
 
     void Update()
     {
         SetRotater();
-
             myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
             myAnim.SetFloat("SpeedY", IM.Y_Axis());
             if (IM.X_Axis() > 0.1f) F = Dir.Right;
             if (IM.X_Axis() < -0.1f) F = Dir.Left;
             if (IM.Y_Axis() > 0.1f) F = Dir.Up;
-            if (IM.Y_Axis() < -0.1f) F = Dir.Down;
-        
+            if (IM.Y_Axis() < -0.1f) F = Dir.Down;        
         if (IM.Button_Menu())
         {
             Menu.SetActive(true);
             enabled = false;
         }
-
         if (IM.Button_A() && !Inv.isOpen) useItem(Inv.equippedA);
         if (IM.Button_B() && !Inv.isOpen) useItem(Inv.equippedB);
         if (countdown > 0)
@@ -79,7 +71,6 @@ public class PlayerMovement : A {
             countdown -= Time.deltaTime;
             if (countdown <= 0)
             {
-
                     aHB.SetActive(false);
                     aR.GetChild(1).gameObject.SetActive(false);
                     speed = bS;
