@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5366568074194203243}
   - component: {fileID: 5181888656151315788}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NGyre
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -86,6 +86,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7592886192079651103, guid: 4573b4f74e4c5be4d9487ea87a3d8d97,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5746586620119897096, guid: 4573b4f74e4c5be4d9487ea87a3d8d97,
         type: 3}
@@ -163,6 +168,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605661908130710332, guid: 4573b4f74e4c5be4d9487ea87a3d8d97,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010574304678322745, guid: 4573b4f74e4c5be4d9487ea87a3d8d97,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4506710370044067948, guid: 4573b4f74e4c5be4d9487ea87a3d8d97, type: 3}
@@ -260,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NewEnemyAI (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}

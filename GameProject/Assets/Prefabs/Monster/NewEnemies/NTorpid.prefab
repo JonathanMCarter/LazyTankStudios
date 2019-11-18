@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3746700685741366333}
   - component: {fileID: 3746700685741366332}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NTorpid
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -103,6 +103,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7560702775571044455, guid: 736aa0b43dfb14e47914979bdb936a71,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5624328305266838896, guid: 736aa0b43dfb14e47914979bdb936a71,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -173,6 +178,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043890229199366668, guid: 736aa0b43dfb14e47914979bdb936a71,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1937438582044017842, guid: 736aa0b43dfb14e47914979bdb936a71,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4166419493658396298, guid: 736aa0b43dfb14e47914979bdb936a71, type: 3}
@@ -270,6 +285,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NewEnemyAI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}

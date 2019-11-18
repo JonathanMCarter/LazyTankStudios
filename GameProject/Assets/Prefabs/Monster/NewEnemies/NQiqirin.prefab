@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4476287505475842150}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NQiqirin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -92,6 +92,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6068560492472243840, guid: 2d36e85bf2253284eab855f2fe25cdb3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7661148978780707487, guid: 2d36e85bf2253284eab855f2fe25cdb3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -150,6 +155,16 @@ PrefabInstance:
     - target: {fileID: 1289453699, guid: 2d36e85bf2253284eab855f2fe25cdb3, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7518670141365491949, guid: 2d36e85bf2253284eab855f2fe25cdb3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3400789970948853043, guid: 2d36e85bf2253284eab855f2fe25cdb3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7780792459237287634, guid: 2d36e85bf2253284eab855f2fe25cdb3, type: 3}
@@ -247,6 +262,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NewEnemyAI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}

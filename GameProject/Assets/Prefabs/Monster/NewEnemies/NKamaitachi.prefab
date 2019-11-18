@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1667148040515708722}
   - component: {fileID: 1667148040515708721}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NKamaitachi
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -82,16 +82,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1667148040515708722}
     m_Modifications:
-    - target: {fileID: 730050316150766436, guid: 9601121d7bbf12d44b53787dd46a20be,
-        type: 3}
-      propertyPath: m_Name
-      value: Kamaitachi
-      objectReference: {fileID: 0}
-    - target: {fileID: 730050316150766436, guid: 9601121d7bbf12d44b53787dd46a20be,
-        type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     - target: {fileID: 316846052727063278, guid: 9601121d7bbf12d44b53787dd46a20be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -146,6 +136,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 730050316150766436, guid: 9601121d7bbf12d44b53787dd46a20be,
+        type: 3}
+      propertyPath: m_Name
+      value: Kamaitachi
+      objectReference: {fileID: 0}
+    - target: {fileID: 730050316150766436, guid: 9601121d7bbf12d44b53787dd46a20be,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 730050316150766436, guid: 9601121d7bbf12d44b53787dd46a20be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 47173223, guid: 9601121d7bbf12d44b53787dd46a20be, type: 3}
       propertyPath: m_IsTrigger
@@ -185,6 +190,36 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3851702839547318647, guid: 9601121d7bbf12d44b53787dd46a20be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2458725878257625561, guid: 9601121d7bbf12d44b53787dd46a20be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2965579007591092944, guid: 9601121d7bbf12d44b53787dd46a20be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2835459480410026870, guid: 9601121d7bbf12d44b53787dd46a20be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9012325863046903601, guid: 9601121d7bbf12d44b53787dd46a20be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154252286381805677, guid: 9601121d7bbf12d44b53787dd46a20be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9601121d7bbf12d44b53787dd46a20be, type: 3}
 --- !u!1 &2090601145923021412 stripped
@@ -206,11 +241,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1667148040515708722}
     m_Modifications:
-    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: m_Name
-      value: NewEnemyAI
-      objectReference: {fileID: 0}
     - target: {fileID: 4146691664319079307, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -265,6 +295,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Name
+      value: NewEnemyAI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}

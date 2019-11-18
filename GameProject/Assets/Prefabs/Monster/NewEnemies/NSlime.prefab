@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 5813514035140502281}
   - component: {fileID: 5813514035140502282}
   - component: {fileID: 5813514035140502283}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: NewEnemy
   m_TagString: Enemy
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -159,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5813514035298749837}
   - component: {fileID: 5813514035298749839}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NSlime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -220,6 +220,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8557797702141540260, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4278990690624964859, guid: f7d73e9042e8ee64f9676490f30e7211,
+        type: 3}
+    - target: {fileID: 8557797702141540260, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7266312070471349925, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -275,27 +286,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8557797702141540260, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+    - target: {fileID: 821933171660352130, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -4278990690624964859, guid: f7d73e9042e8ee64f9676490f30e7211,
         type: 3}
-    - target: {fileID: 8557797702141540260, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+    - target: {fileID: 821933171660352130, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 821933171660352130, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
+    - target: {fileID: 6009749303298793487, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
         type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -4278990690624964859, guid: f7d73e9042e8ee64f9676490f30e7211,
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6997753432054117924, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
         type: 3}
-    - target: {fileID: 821933171660352130, guid: 6ac7e7853f9886a42a2f7fe6a70596af,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9067695791811741945, guid: 6ac7e7853f9886a42a2f7fe6a70596af, type: 3}
