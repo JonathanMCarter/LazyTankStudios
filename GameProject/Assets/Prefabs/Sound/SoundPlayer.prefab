@@ -1,5 +1,149 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5092413163486482504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4701179218846955903}
+  - component: {fileID: 7923582843024397755}
+  m_Layer: 0
+  m_Name: Boss_Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4701179218846955903
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5092413163486482504}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.3, y: 28.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9072332045456328858}
+  m_RootOrder: 70
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7923582843024397755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5092413163486482504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23970251c2b85e4bb799cf84cdb554b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioName: Boss_Music
+  BeatsPerSecond: 5
+  Volum: 0
+  Pitch: 1
+  MyTune: 0300000006000000030000000000000008000000060000000800000000000000060000000300000006000000000000000a000000030000000a00000000000000
+--- !u!1 &5496257685759881224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8490560122757079294}
+  - component: {fileID: 2611653684525693839}
+  m_Layer: 0
+  m_Name: Desert Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8490560122757079294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5496257685759881224}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.3, y: 28.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9072332045456328858}
+  m_RootOrder: 71
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2611653684525693839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5496257685759881224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23970251c2b85e4bb799cf84cdb554b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioName: Desert_Music
+  BeatsPerSecond: 8
+  Volum: 0
+  Pitch: 1
+  MyTune: 03000000000000000f000000000000000300000000000000000000000000000008000000000000001400000000000000080000000000000000000000000000000a0000000000000016000000000000000a0000000000000000000000000000000500000000000000110000000000000005000000000000000000000000000000
+--- !u!1 &7441813316007507680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6471077885689198313}
+  - component: {fileID: 1223105036646130245}
+  m_Layer: 0
+  m_Name: Forest_Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6471077885689198313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441813316007507680}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.3, y: 28.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9072332045456328858}
+  m_RootOrder: 69
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1223105036646130245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441813316007507680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f23970251c2b85e4bb799cf84cdb554b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AudioName: Forest_Music
+  BeatsPerSecond: 8
+  Volum: 0
+  Pitch: 1
+  MyTune: 03000000000000000f0000000000000014000000120000000f0000000000000001000000000000000d000000000000001400000012000000140000000000000003000000000000000f0000000000000014000000120000000f0000000000000001000000000000000d0000000000000012000000110000000f00000000000000
 --- !u!1 &8993879524022751102
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Town_Music
   BeatsPerSecond: 6
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0a0000000c0000000d000000000000000d000000000000000d000000000000000a0000000d0000000f000000000000000f000000000000000f000000000000000a0000000c0000000d000000000000000d000000000000000d000000000000000a0000000c0000001400000000000000140000000000000014000000000000000a0000000c0000000f000000000000000f000000000000000f000000000000000a000000000000000c000000000000000d000000000000000a0000000c0000000f000000000000000f000000000000000f000000000000000a0000000c0000001100000000000000110000000000000011000000000000000c00000000000000
 --- !u!1 &8993879524772614554
@@ -94,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Snow_Music
   BeatsPerSecond: 6
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 1b0000000000000000000000000000001b000000000000000000000000000000190000000000000000000000000000001900000000000000000000000000000018000000000000000000000000000000180000000000000000000000000000001800000000000000000000000000000019000000000000000000000000000000190000000000000000000000000000001b0000000000000000000000000000001b0000000000000000000000000000001b00000000000000000000000000000019000000000000000000000000000000180000000000000000000000000000001b0000000000000000000000000000001b000000000000000000000000000000
 --- !u!114 &8993879524772614553
@@ -111,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Snow_Music
   BeatsPerSecond: 6
-  Volumn: 0
+  Volum: 0
   Pitch: 0
   MyTune: 16000000000000000000000000000000160000000000000000000000000000001400000000000000000000000000000014000000000000000000000000000000130000000000000000000000000000001300000000000000000000000000000013000000000000000000000000000000140000000000000000000000000000001400000000000000000000000000000016000000000000000000000000000000160000000000000000000000000000001600000000000000000000000000000014000000000000000000000000000000130000000000000000000000000000001600000000000000000000000000000016000000000000000000000000000000
 --- !u!1 &8993879525526286985
@@ -159,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Dungeon_Music
   BeatsPerSecond: 6
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0f000000000000000f0000000f0000000f000000000000000f000000000000000f0000000f0000000f000000000000000d0000000000000000000000000000000f000000000000000f0000000f0000000f000000000000000f000000000000000f0000000f0000000f00000000000000120000000000000000000000000000001100000000000000110000001100000011000000000000001100000000000000110000001100000011000000000000000f00000000000000000000000000000011000000000000001100000011000000110000000000000011000000000000001100000011000000110000000000000012000000000000000000000000000000
 --- !u!1 &9072332045098697445
@@ -207,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Cutscenes_1
   BeatsPerSecond: 20
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 
 --- !u!1 &9072332045106777187
@@ -255,7 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Placement_1
   BeatsPerSecond: 6
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 3b0000003f000000
 --- !u!1 &9072332045175402558
@@ -303,7 +447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Death_4
   BeatsPerSecond: 8
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 3100000000000000330000000000000035000000000000003600000037000000
 --- !u!1 &9072332045185220787
@@ -351,7 +495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Death_2
   BeatsPerSecond: 8
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 32000000320000003300000036000000
 --- !u!1 &9072332045186944194
@@ -527,7 +671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Encounter_1
   BeatsPerSecond: 6
-  Volumn: 1.5
+  Volum: 0
   Pitch: 1
   MyTune: 220000002b0000001f0000002c00000020000000290000001e000000290000001d000000280000001c000000270000001b000000260000001a00000000000000
 --- !u!1 &9072332045200382009
@@ -831,7 +975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: H
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000000f000000
 --- !u!1 &9072332045243208453
@@ -879,7 +1023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Portal_1
   BeatsPerSecond: 60
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 2f00000031000000
 --- !u!1 &9072332045245713075
@@ -1055,7 +1199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: L
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000022000000
 --- !u!1 &9072332045254867383
@@ -1103,7 +1247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Attacking_2
   BeatsPerSecond: 40
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000006000000
 --- !u!1 &9072332045261774043
@@ -1151,7 +1295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: C
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000015000000
 --- !u!1 &9072332045266569446
@@ -1327,7 +1471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Footsteps_(Concrete)
   BeatsPerSecond: 60
-  Volumn: 0.2
+  Volum: 0
   Pitch: 1
   MyTune: 0000000020000000
 --- !u!1 &9072332045275639719
@@ -1503,7 +1647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Healing_1
   BeatsPerSecond: 8
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 2500000025000000250000000000000028000000290000002b000000
 --- !u!1 &9072332045315343045
@@ -1679,7 +1823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: A
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000000a000000
 --- !u!1 &9072332045324587390
@@ -1983,7 +2127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Attacking_1_(Sword)
   BeatsPerSecond: 30
-  Volumn: 0.8
+  Volum: 0
   Pitch: 1
   MyTune: 000000002d000000
 --- !u!1 &9072332045355886671
@@ -2159,7 +2303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: B
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000011000000
 --- !u!1 &9072332045373949615
@@ -2591,7 +2735,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Attacking_2_(Sword)
   BeatsPerSecond: 30
-  Volumn: 0.8
+  Volum: 0
   Pitch: 1
   MyTune: 0000000026000000
 --- !u!1 &9072332045423486174
@@ -2895,7 +3039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: W
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000015000000
 --- !u!1 &9072332045456328857
@@ -2995,6 +3139,9 @@ Transform:
   - {fileID: 8993879525526286990}
   - {fileID: 8993879524022751103}
   - {fileID: 8993879524772614555}
+  - {fileID: 6471077885689198313}
+  - {fileID: 4701179218846955903}
+  - {fileID: 8490560122757079294}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3013,6 +3160,7 @@ MonoBehaviour:
   myClips: []
   volumns: []
   pitch: []
+  DoNotDes: 1
 --- !u!1 &9072332045460964197
 GameObject:
   m_ObjectHideFlags: 0
@@ -3442,7 +3590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: G
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000002d000000
 --- !u!1 &9072332045507613433
@@ -3490,7 +3638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Open_Inventory_1
   BeatsPerSecond: 16
-  Volumn: 0.6
+  Volum: 0
   Pitch: 1
   MyTune: 4900000049000000310000003e000000
 --- !u!1 &9072332045547824814
@@ -3666,7 +3814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Buying_1
   BeatsPerSecond: 16
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 4000000041000000
 --- !u!1 &9072332045616351641
@@ -3714,7 +3862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Player_Take_Damage_1
   BeatsPerSecond: 12
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000000d000000
 --- !u!1 &9072332045636980888
@@ -3890,7 +4038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: T
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000030000000
 --- !u!1 &9072332045655788374
@@ -4066,7 +4214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Pick_Up_Item_1
   BeatsPerSecond: 12
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 320000003d000000
 --- !u!1 &9072332045710699810
@@ -4242,7 +4390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Selecting_1
   BeatsPerSecond: 20
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 280000002e000000
 --- !u!1 &9072332045725660949
@@ -4546,7 +4694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Q
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000020000000
 --- !u!1 &9072332045755664795
@@ -4594,7 +4742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Footsteps_(Grass)
   BeatsPerSecond: 2
-  Volumn: 0.2
+  Volum: 0
   Pitch: 1
   MyTune: 0000000049000000
 --- !u!1 &9072332045786864261
@@ -4642,7 +4790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Attacking_2_(Bow)
   BeatsPerSecond: 18
-  Volumn: 0.8
+  Volum: 0
   Pitch: 1
   MyTune: 000000002800000029000000
 --- !u!1 &9072332045787754067
@@ -4818,7 +4966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: D
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000001f000000
 --- !u!1 &9072332045827049703
@@ -5122,7 +5270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Obstruction_1
   BeatsPerSecond: 20
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 010000000000000001000000000000000100000000000000
 --- !u!1 &9072332045903149282
@@ -5170,7 +5318,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Death_3
   BeatsPerSecond: 20
-  Volumn: 0.6
+  Volum: 0
   Pitch: 1
   MyTune: 0a00000008000000
 --- !u!1 &9072332045906965432
@@ -5346,7 +5494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Death_1
   BeatsPerSecond: 2
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0500000004000000030000000200000001000000
 --- !u!1 &9072332045946789624
@@ -5522,7 +5670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Spawning_1
   BeatsPerSecond: 18
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0c000000490000000d0000000e000000
 --- !u!1 &9072332045947924821
@@ -6082,7 +6230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: J
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000001d000000
 --- !u!1 &9072332046089620753
@@ -6130,7 +6278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Doors_1_(Normal)
   BeatsPerSecond: 4
-  Volumn: 0.5
+  Volum: 0
   Pitch: 2
   MyTune: 4900000000000000490000000000000049000000
 --- !u!1 &9072332046111380940
@@ -6178,7 +6326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: O
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000003000000
 --- !u!1 &9072332046111636422
@@ -6226,7 +6374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: M
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000001e000000
 --- !u!1 &9072332046125976826
@@ -6530,7 +6678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Take_Damage_3
   BeatsPerSecond: 20
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000026000000
 --- !u!1 &9072332046160383526
@@ -7218,7 +7366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: F
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000023000000
 --- !u!1 &9072332046242275998
@@ -7522,7 +7670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Selling_1
   BeatsPerSecond: 16
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 4100000040000000
 --- !u!1 &9072332046284930271
@@ -7570,7 +7718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: I
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000005000000
 --- !u!1 &9072332046286663106
@@ -8002,7 +8150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Footsteps_(Snow)
   BeatsPerSecond: 12
-  Volumn: 0.4
+  Volum: 0
   Pitch: 1
   MyTune: 0000000049000000
 --- !u!1 &9072332046337014372
@@ -8434,7 +8582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Take_Damage_4
   BeatsPerSecond: 20
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000029000000
 --- !u!1 &9072332046376258484
@@ -8482,7 +8630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: K
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000025000000
 --- !u!1 &9072332046383776545
@@ -8914,7 +9062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: U
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000006000000
 --- !u!1 &9072332046463994658
@@ -9474,7 +9622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Victory_1
   BeatsPerSecond: 10
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 31000000320000000000000035000000
 --- !u!1 &9072332046481431797
@@ -9522,7 +9670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: N
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000028000000
 --- !u!1 &9072332046501027921
@@ -9570,7 +9718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Lever_1
   BeatsPerSecond: 60
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 1f0000002a000000
 --- !u!1 &9072332046540436770
@@ -9874,7 +10022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Take_Damage_2
   BeatsPerSecond: 20
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000025000000
 --- !u!1 &9072332046599084540
@@ -10050,7 +10198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Attacking_4
   BeatsPerSecond: 40
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000003000000
 --- !u!1 &9072332046680841890
@@ -10098,7 +10246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Close_Inventory_1
   BeatsPerSecond: 16
-  Volumn: 0.6
+  Volum: 0
   Pitch: 1
   MyTune: 32000000250000004900000049000000
 --- !u!1 &9072332046739707979
@@ -10274,7 +10422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Skip_1
   BeatsPerSecond: 18
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000003e000000
 --- !u!1 &9072332046776966461
@@ -10322,7 +10470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Doors_2_(Cave)
   BeatsPerSecond: 2
-  Volumn: 0.5
+  Volum: 0
   Pitch: 2
   MyTune: 4900000000000000490000000000000049000000
 --- !u!1 &9072332046798226905
@@ -10370,7 +10518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: P
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000014000000
 --- !u!1 &9072332046820517478
@@ -10418,7 +10566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Levelling_1
   BeatsPerSecond: 8
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 310000003200000033000000340000003500000036000000000000003700000038000000390000003a000000000000003c000000
 --- !u!1 &9072332046825130084
@@ -10466,7 +10614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: R
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000000d000000
 --- !u!1 &9072332046835877525
@@ -10642,7 +10790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Attacking_1_(Bow)
   BeatsPerSecond: 18
-  Volumn: 0.8
+  Volum: 0
   Pitch: 1
   MyTune: 000000002500000026000000
 --- !u!1 &9072332046853659805
@@ -10690,7 +10838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Z
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000002e000000
 --- !u!1 &9072332046860423177
@@ -10866,7 +11014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: E
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000001000000
 --- !u!1 &9072332046909082358
@@ -10914,7 +11062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: S
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000001e000000
 --- !u!1 &9072332046919154976
@@ -10962,7 +11110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: V
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000002a000000
 --- !u!1 &9072332046957629250
@@ -11650,7 +11798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Footsteps_(Sand)
   BeatsPerSecond: 6
-  Volumn: 0.2
+  Volum: 0
   Pitch: 1
   MyTune: 0000000049000000
 --- !u!1 &9072332047072578200
@@ -11698,7 +11846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Pause_1
   BeatsPerSecond: 20
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 00000000090000000a000000
 --- !u!1 &9072332047094909222
@@ -11746,7 +11894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Attacking_3
   BeatsPerSecond: 40
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000008000000
 --- !u!1 &9072332047101446968
@@ -11794,7 +11942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: Y
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 0000000012000000
 --- !u!1 &9072332047121813094
@@ -12455,7 +12603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioName: X
   BeatsPerSecond: 30
-  Volumn: 1
+  Volum: 0
   Pitch: 1
   MyTune: 000000002b000000
 --- !u!1 &9072332047231152728
