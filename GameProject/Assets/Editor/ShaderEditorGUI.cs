@@ -160,8 +160,8 @@ public class ShaderEditorGUI : ShaderGUI
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
 
-                Temp = EditorGUILayout.Toggle("Switch Plains/Forest", Temp);
-                Mat.SetFloat("_SwitchPal1", System.Convert.ToInt32(Temp));
+                //Temp = EditorGUILayout.Toggle("Switch Plains/Forest", Temp);
+                Mat.SetFloat("_SwitchPal1", System.Convert.ToInt32(EditorGUILayout.Toggle("Switch Plains/Forest?" ,System.Convert.ToBoolean(Mat.GetFloat("_SwitchPal1")))));
 
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
