@@ -46,7 +46,7 @@ public class PlayerMovement : A {
         }
         void FixedUpdate()
     {
-        if (countdown > 0) myRigid.velocity = new Vector2(0, 0);
+        if (countdown > 0 && speed == bS) myRigid.velocity = new Vector2(0, 0);
         else myRigid.velocity = (new Vector2(IM.X_Axis(), IM.Y_Axis())).normalized * speed;       
     }
     void Update()
