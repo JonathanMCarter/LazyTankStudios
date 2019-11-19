@@ -5,16 +5,24 @@ public class SoundPlayer : A
     public List<AudioClip> myClips;
     public List<float> volumns, pitch;
     AudioSource[] aud;
+    public bool DoNotDes = true;
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (DoNotDes) { DontDestroyOnLoad(gameObject); }
         aud = GetComponentsInChildren<AudioSource>();
     }
     public void AddSoundClip(AudioClip myAud, /*float Volumn,*/ float Pitch)
     {
         myClips.Add(myAud);
-       volumns.Add(1);
+        volumns.Add(1);
         pitch.Add(Pitch);
+    }
+    public void Play(string audioName)
+    {
+        for (int i = 0; i < myClips.Count; i++)
+        {
+            if (myClips[i] != null) if (myClips[i].name == audioName) Playing(i, false);
+        }
     }
     public void Play(string audioName, bool Loop = false)
     {
