@@ -12,7 +12,7 @@ public class NewAIMove: A {
  bool SeenPlayer, Turn, TurnCount, ToggleDirection, hit;
  public SpriteRenderer[] Hearts;
  public int Health;
- public float DamageCD = 0.3 f;
+ public float DamageCD = 0.3f;
  PlayerMovement player;
  Transform PlayerPos;
  static public int currBoss = 0;

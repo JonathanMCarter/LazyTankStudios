@@ -107,7 +107,7 @@ public class SoundCreator: A {
  void OnAudioRead(float[] data) {
   int count = 0;
   while (count < data.Length) {
-   if (frequency_current == 73) data[count] = Mathf.Sign(Mathf.Sin(2 * Mathf.PI * Random.Range(-1 f, 1 f) / samplerate));
+   if (frequency_current == 73) data[count] = Mathf.Sign(Mathf.Sin(2 * Mathf.PI * Random.Range(-1f, 1f) / samplerate));
    else data[count] = Mathf.Sign(Mathf.Sin(2 * Mathf.PI * frequency_current * position / samplerate));
    position++;
    count++;
@@ -133,7 +133,7 @@ public class SoundCreator: A {
  }
  void CalculateFrequencies() {
   for (int i = 0; i < frequency.Length; i++) {
-   if (frequency[i] != 0 && (frequency[i] != 73)) frequency[i] = 65.41 f * Mathf.Pow(1.05946 f, frequency[i]);
+   if (frequency[i] != 0 && (frequency[i] != 73)) frequency[i] = 65.41f * Mathf.Pow(1.05946f, frequency[i]);
   }
  }
 }

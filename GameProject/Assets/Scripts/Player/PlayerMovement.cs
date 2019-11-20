@@ -71,10 +71,10 @@ public class PlayerMovement: A {
   SetRotater();
   myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
   myAnim.SetFloat("SpeedY", IM.Y_Axis());
-  if (IM.X_Axis() > 0.1 f) F = Dir.Right;
-  if (IM.X_Axis() < -0.1 f) F = Dir.Left;
-  if (IM.Y_Axis() > 0.1 f) F = Dir.Up;
-  if (IM.Y_Axis() < -0.1 f) F = Dir.Down;
+  if (IM.X_Axis() > 0.1f) F = Dir.Right;
+  if (IM.X_Axis() < -0.1f) F = Dir.Left;
+  if (IM.Y_Axis() > 0.1f) F = Dir.Up;
+  if (IM.Y_Axis() < -0.1f) F = Dir.Down;
   if (IM.Button_Menu()) {
    Menu.SetActive(true);
    enabled = false;
@@ -111,7 +111,7 @@ public class PlayerMovement: A {
     case (2):
      aR.GetChild(2).gameObject.SetActive(true);
      countdown = RangedAttackDuration;
-     countdown = 0.3 f;
+     countdown = 0.3f;
      FireProjectile(ID);
      audioManager.Play("Attacking_1_(Bow)");
      break;
@@ -127,10 +127,10 @@ public class PlayerMovement: A {
  public void FireProjectile(int itemUsed) {
   GameObject Go = Instantiate(Bullet, aR.GetChild(0).transform.position, aR.rotation * Quaternion.Euler(0, 0, -45));
   Vector2 Direc = new Vector2(0, 0);
-  if (F == 0) Direc.y = 1 f;
-  if ((int) F == 1) Direc.y = -1 f;
-  if ((int) F == 2) Direc.x = -1 f;
-  if ((int) F == 3) Direc.x = 1 f;
+  if (F == 0) Direc.y = 1f;
+  if ((int) F == 1) Direc.y = -1f;
+  if ((int) F == 2) Direc.x = -1f;
+  if ((int) F == 3) Direc.x = 1f;
  }
  void OnDisable() {
   if (myRigid != null) myRigid.velocity = new Vector2(0, 0);
@@ -169,7 +169,7 @@ public class PlayerMovement: A {
   dmgCD = !dmgCD;
   Physics2D.IgnoreLayerCollision(9, 10, true);
   yield
-  return new WaitForSeconds(0.5 f);
+  return new WaitForSeconds(0.5f);
   dmgCD = !dmgCD;
   Physics2D.IgnoreLayerCollision(9, 10, false);
  }

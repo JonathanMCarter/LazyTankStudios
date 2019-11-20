@@ -25,7 +25,7 @@ public class Vendor: A {
  IEnumerator delay() {
   delayed = true;
   yield
-  return new WaitForSeconds(0.2 f);
+  return new WaitForSeconds(0.2f);
   delayed = false;
  }
  void Update() {

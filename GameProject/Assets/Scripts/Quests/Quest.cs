@@ -178,7 +178,7 @@ public class Quest: A {
    GameObject temp = Instantiate(newItem, updatedPosition, Quaternion.identity);
    temp.GetComponent < SpriteRenderer > ().sprite = rewardItems[i];
    temp.GetComponent < SpriteRenderer > ().sortingOrder = 20;
-   temp.transform.localScale = new Vector3(0.5 f, 0.5 f, 0.5 f);
+   temp.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
    if ((int) rewardIdsAndQuantities[i].x >= 0 && (int) rewardIdsAndQuantities[i].x < 12) temp.GetComponent < InventoryItem > ().ID = (int) rewardIdsAndQuantities[i].x;
    if ((int) rewardIdsAndQuantities[i].y > 0) temp.GetComponent < InventoryItem > ().quantity = (int) rewardIdsAndQuantities[i].y;
    temp.AddComponent < Rigidbody2D > ();
@@ -188,7 +188,7 @@ public class Quest: A {
  }
  IEnumerator freezeItemGravity(Rigidbody2D temporaryObject) {
   yield
-  return new WaitForSeconds(0.5 f);
+  return new WaitForSeconds(0.5f);
   temporaryObject.gravityScale = 0;
   temporaryObject.bodyType = RigidbodyType2D.Static;
  }

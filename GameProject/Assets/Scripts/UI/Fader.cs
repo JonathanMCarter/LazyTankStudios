@@ -16,16 +16,16 @@ public class Fader: A {
   for (int i = 0; i < 10; i++) {
    UpdateColor();
    yield
-   return new WaitForSeconds(0.1 f);
+   return new WaitForSeconds(0.1f);
   }
-  Destroy(gameObject, 4.5 f);
+  Destroy(gameObject, 4.5f);
  }
  void UpdateColor() {
   Color c = Img.color;
-  c.a += 0.1 f;
+  c.a += 0.1f;
   Img.color = c;
   c = Txt.color;
-  c.a += 0.1 f;
+  c.a += 0.1f;
   Txt.color = c;
  }
 }

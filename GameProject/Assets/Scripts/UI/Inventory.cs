@@ -151,7 +151,7 @@ public class Inventory: A {
  IEnumerator delay() {
   delayed = true;
   yield
-  return new WaitForSeconds(0.2 f);
+  return new WaitForSeconds(0.2f);
   delayed = false;
  }
 }

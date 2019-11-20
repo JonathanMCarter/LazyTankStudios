@@ -25,6 +25,6 @@ public class InvSlot: A {
   updateIcon();
  }
  void Update() {
-  img.color = selected ? new Color(0, 0, 1) : new Color(0.35 f, 0.35 f, 0.35 f);
+  img.color = selected ? new Color(0, 0, 1) : new Color(0.35f, 0.35f, 0.35f);
  }
 }
