@@ -10,7 +10,7 @@ public class Fader: A {
  void Start() {
   Img = GetComponentInChildren < Image > ();
   Txt = GetComponentInChildren < Text > ();
-  StartCoroutine(Fade());
+  SC(Fade());
  }
  IEnumerator Fade() {
   for (int i = 0; i < 10; i++) {

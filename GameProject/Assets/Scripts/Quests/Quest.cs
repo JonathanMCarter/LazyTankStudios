@@ -52,11 +52,11 @@ public class Quest: A {
  void InitialiseQuests(Status StatusToSet) {
   status = ID == currQuest ? StatusToSet : Status.NotAvailable;
   if (gameObject == GetCurrentQuestGameObject()) {
-   gameObject.transform.GetComponent < BoxCollider2D > ().enabled = gameObject.transform.GetComponent < BoxCollider2D > ().enabled = true;
+   G<BoxCollider2D>().enabled = G<BoxCollider2D>().enabled = true;
    ActiveQuestSign.SetActive(status == StatusToSet);
   } else {
-   gameObject.transform.GetComponent < BoxCollider2D > ().enabled = status == StatusToSet ? true : false;
-   NPCToReturnTo.transform.GetChild(0).GetComponent < BoxCollider2D > ().enabled = status == StatusToSet ? true : false;
+   G<BoxCollider2D>().enabled = status == StatusToSet ? true : false;
+   G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).enabled = status == StatusToSet ? true : false;
   }
   enabled = status == StatusToSet;
  }
@@ -65,22 +65,22 @@ public class Quest: A {
   return null;
  }
  void Awake() {
-  ds = GameObject.FindObjectOfType < DialogueScript > ();
-  HeroRef = GameObject.FindObjectOfType < PlayerMovement > ();
-  ActiveQuestSign = gameObject.transform.parent.GetChild(1).gameObject;
-  newItem = Resources.Load < GameObject > ("New Item");
-  inv = FindObjectOfType < Inventory > ();
-  quests = FindObjectsOfType < Quest > ();
-  GameManagerTalk = GameObject.Find("GameManager").GetComponent < TalkScript > ();
+  ds = F<DialogueScript>();
+  HeroRef = F<PlayerMovement>();
+  ActiveQuestSign = C(gameObject.transform.parent,1).gameObject;
+  newItem = Resources.Load<GameObject>("New Item");
+  inv = F<Inventory>();
+  quests = Fs<Quest>();
+  GameManagerTalk = G<TalkScript>(F("GameManager"));
   InitialiseQuests(Status.Available);
  }
  void Start() {
   if (currQuestStatus > Status.Completed) InitialiseQuests(currQuestStatus);
  }
  void Update() {
-  print(currQuest + " STATUS: " + currQuestStatus);
+  //print(currQuest + " STATUS: " + currQuestStatus);
   if (NPCToReturnTo && type.Equals(Type.Return)) {
-   if (NPCToReturnTo.transform.GetChild(0).GetComponent < BoxCollider2D > ().OverlapCollider(contactFilter, colliders) > 1 && status.Equals(Status.ReadyToComplete)) {
+   if (G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).OverlapCollider(contactFilter, colliders) > 1 && status.Equals(Status.ReadyToComplete)) {
     displayQuestCompletedDialogue();
     findNextQuest();
    }
@@ -91,13 +91,13 @@ public class Quest: A {
   if (status == Status.OnGoing)
    if (checkKilledAllEnemies() && KillRequest || checkItemsCollected() && CollectRequest || DeliverRequest && inv.getCoins() >= DeliverGold) {
     status = currQuestStatus = Status.ReadyToComplete;
-    if (type == Type.Return) NPCToReturnTo.transform.GetChild(0).GetComponent < BoxCollider2D > ().enabled = true;
+    if (type == Type.Return) G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).enabled = true;
    }
  }
  void OnTriggerEnter2D(Collider2D collision) {
   if (status != Status.ReadyToComplete && ID == currQuest || status != Status.ReadyToComplete && ID <= currQuest && SideQuest) {
    if (collision.gameObject.name == "Hero" && isActiveAndEnabled) {
-    GetComponent < TalkScript > ().dialogueEnglish = Dialogue;
+    G<TalkScript>().dialogueEnglish = Dialogue;
     if (DeliverRequest && status == Status.Available) inv.addCoins(DeliverGold);
     status = currQuestStatus = Status.OnGoing;
    }
@@ -105,11 +105,11 @@ public class Quest: A {
  }
  bool checkKilledAllEnemies() {
   bool state = false;
-  if (Kills.Count > 0) foreach(GameObject enemy in Kills) state = enemy.activeInHierarchy ? false : true;
-  else {
-   state = boss[NewAIMove.currBoss] == true;
-   if (state) NewAIMove.currBoss++;
-  }
+        if (Kills.Count > 0) Kills.ForEach(enemy=>state=enemy.activeInHierarchy?false:true);
+        else{
+            state = boss[NewAIMove.currBoss] == true;
+            if (state) NewAIMove.currBoss++;
+        }
   return state;
  }
  bool checkItemsCollected() {
@@ -137,21 +137,21 @@ public class Quest: A {
   bool lastQuest = true;
   foreach(Quest q in quests) {
    if (q.ID == ID + 1 && !SideQuest) {
-    q.enabled = q.gameObject.transform.GetComponent < BoxCollider2D > ().enabled = true;
+    q.enabled = G<BoxCollider2D>(q.gameObject).enabled = true;
     enabled = false;
     if (q.gameObject != this.gameObject) lastQuest = false;
     q.ActiveQuestSign.SetActive(true);
     ActiveQuestSign.SetActive(false);
     q.status = currQuestStatus = Status.Available;
    } else if (SideQuest && currQuest >= q.ID && q.status != Status.Completed) {
-    enabled = gameObject.transform.GetComponent < BoxCollider2D > ().enabled = false;
+    enabled = G<BoxCollider2D>().enabled = false;
     ActiveQuestSign.SetActive(false);
     q.status = Status.Available;
     lastQuest = false;
    }
   }
   if (lastQuest) {
-   enabled = gameObject.transform.GetComponent < BoxCollider2D > ().enabled = NPCToReturnTo.transform.GetChild(0).GetComponent < BoxCollider2D > ().enabled = false;
+   enabled = G<BoxCollider2D>().enabled = G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).enabled = false;
    ActiveQuestSign.SetActive(false);
   }
  }
@@ -173,17 +173,17 @@ public class Quest: A {
   }
  }
  void throwItems() {
-  Vector3 updatedPosition = type == Type.Return ? NPCToReturnTo.transform.position : GameObject.Find("Hero").transform.position;
+  Vector3 updatedPosition = type == Type.Return ? NPCToReturnTo.transform.position : F("Hero").transform.position;
   for (int i = 0; i < rewardItems.Length; i++) {
    GameObject temp = Instantiate(newItem, updatedPosition, Quaternion.identity);
-   temp.GetComponent < SpriteRenderer > ().sprite = rewardItems[i];
-   temp.GetComponent < SpriteRenderer > ().sortingOrder = 20;
+   G<SpriteRenderer>(temp).sprite = rewardItems[i];
+   G<SpriteRenderer>(temp).sortingOrder = 20;
    temp.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-   if ((int) rewardIdsAndQuantities[i].x >= 0 && (int) rewardIdsAndQuantities[i].x < 12) temp.GetComponent < InventoryItem > ().ID = (int) rewardIdsAndQuantities[i].x;
-   if ((int) rewardIdsAndQuantities[i].y > 0) temp.GetComponent < InventoryItem > ().quantity = (int) rewardIdsAndQuantities[i].y;
+   if ((int) rewardIdsAndQuantities[i].x >= 0 && (int) rewardIdsAndQuantities[i].x < 12) G<InventoryItem>(temp).ID = (int) rewardIdsAndQuantities[i].x;
+   if ((int) rewardIdsAndQuantities[i].y > 0) G<InventoryItem>(temp).quantity = (int) rewardIdsAndQuantities[i].y;
    temp.AddComponent < Rigidbody2D > ();
-   temp.GetComponent < Rigidbody2D > ().AddForce(new Vector2(Random.Range(-150, 150), Random.Range(-150, 150)));
-   StartCoroutine(freezeItemGravity(temp.GetComponent < Rigidbody2D > ()));
+   G<Rigidbody2D>(temp).AddForce(new Vector2(Random.Range(-150, 150), Random.Range(-150, 150)));
+   SC(freezeItemGravity(G<Rigidbody2D>(temp)));
   }
  }
  IEnumerator freezeItemGravity(Rigidbody2D temporaryObject) {

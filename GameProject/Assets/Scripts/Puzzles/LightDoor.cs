@@ -6,7 +6,7 @@ public class LightDoor: A {
  public SpriteRenderer me;
  public int LitTiles;
  void Start() {
-  me = GetComponent < SpriteRenderer > ();
+  me = G<SpriteRenderer>();
  }
  void Update() {
   if (LitTiles >= TotalTiles) {

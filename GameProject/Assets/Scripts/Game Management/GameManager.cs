@@ -4,8 +4,8 @@ public class GameManager: A {
  PlayerMovement Player;
  GameObject Menu;
  void Start() {
-  Player = FindObjectOfType < PlayerMovement > ();
-  Menu = GameObject.Find("MainMenu");
+  Player = F<PlayerMovement>();
+  Menu = F("MainMenu");
  }
  public void QuitGame() {
   Application.Quit();
@@ -16,9 +16,9 @@ public class GameManager: A {
  }
  public void ExitToMenu() {
   SceneManager.LoadScene("Main Menu");
-  DoNotDes[] Gos = FindObjectsOfType < DoNotDes > ();
+  DoNotDes[] Gos = Fs<DoNotDes>();
   DoNotDes.Created = false;
-  foreach(DoNotDes go in Gos) if (go.gameObject != gameObject) Destroy(go.gameObject);
+  foreach(DoNotDes go in Gos) if (go.gameObject != gameObject) D(go.gameObject);
  }
  public void TogglePlayerMovement() {
   Player.enabled = !Player.enabled;

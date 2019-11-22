@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+/*
 public class InvSlot: A {
  public bool hasItem = false;
  public int quantity = 0;
@@ -11,7 +12,7 @@ public class InvSlot: A {
  public GameObject i;
  public Text q, e;
  void Start() {
-  img = GetComponent < Image > ();
+  img = G<Image>();
   updateIcon();
   selected = false;
  }
@@ -28,3 +29,4 @@ public class InvSlot: A {
   img.color = selected ? new Color(0, 0, 1) : new Color(0.35f, 0.35f, 0.35f);
  }
 }
+*/

@@ -19,10 +19,10 @@ public class NewAIMove: A {
  SoundPlayer sp;
  void Start() {
   TurnCount = true;
-  MyRigid = GetComponent < Rigidbody2D > ();
+  MyRigid = G<Rigidbody2D>();
   Health = Hearts.Length;
-  PlayerPos = GameObject.FindGameObjectWithTag("Player").transform;
-  sp = FindObjectOfType < SoundPlayer > ();
+  PlayerPos = FT("Player").transform;
+  sp = F<SoundPlayer>();
  }
  void Update() {
   me.transform.position = transform.position + offset;
@@ -79,7 +79,7 @@ public class NewAIMove: A {
   if (ToggleDirection) ToggleDirection = false;
   else ToggleDirection = true;
   if (collision.gameObject.tag == "Bullet") {
-   Destroy(collision.gameObject);
+   D(collision.gameObject);
    if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
    Health -= 1;
    sp.Play("Take_Damage_3");

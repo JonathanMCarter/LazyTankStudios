@@ -8,12 +8,12 @@ public class TalkScript: A {
  DialogueScript ds;
  bool talking = false;
  void Awake() {
-  IM = FindObjectOfType < InputManager > ();
-  panel = GameObject.Find("Dialogue Box").GetComponent < CanvasGroup > ();
-  ds = FindObjectOfType < DialogueScript > ();
+  IM = F<InputManager>();
+    panel = G<CanvasGroup>(F("Dialogue Box"));
+  ds = F<DialogueScript>();
   if (LanguageSelect.isEnglish) ds.ChangeFile(dialogueEnglish);
   else ds.ChangeFile(dialogueGerman);
-  movement = FindObjectOfType < PlayerMovement > ();
+  movement = F<PlayerMovement>();
  }
  public void talk() {
   panel.alpha = 1;

@@ -7,15 +7,15 @@ public class UILanguageController: A {
  }
  public void UpdateLanguage() {
   try {
-   if (FindObjectOfType < PlayerMovement > ().Menu != null) FindObjectOfType < PlayerMovement > ().Menu.SetActive(true);
+   if (F<PlayerMovement>().Menu != null) F<PlayerMovement>().Menu.SetActive(true);
   } catch {}
-  textObjects = FindObjectsOfType < Text > ();
+  textObjects = Fs<Text>();
   foreach(Text text in textObjects) {
    text.enabled = true;
    if ((text.CompareTag("TextEnglish") && !LanguageSelect.isEnglish) || (text.CompareTag("TextGerman") && LanguageSelect.isEnglish)) text.enabled = false;
    try {
-    if (GameObject.FindGameObjectWithTag("Settings") != null) GameObject.FindGameObjectWithTag("Settings").SetActive(false);
-    if (FindObjectOfType < PlayerMovement > ().Menu != null) FindObjectOfType < PlayerMovement > ().Menu.SetActive(false);
+    if (FT("Settings") != null) FT("Settings").SetActive(false);
+    if (F<PlayerMovement>().Menu != null) F<PlayerMovement>().Menu.SetActive(false);
    } catch {}
   }
  }

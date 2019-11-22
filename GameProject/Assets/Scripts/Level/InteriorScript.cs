@@ -9,22 +9,24 @@ public class InteriorScript: A {
  public string SceneName;
  public GameObject destination;
  public bool inside = false;
- void OnTriggerEnter2D(Collider2D collision) {
-  switch (Type) {
-   case Modes.Internal:
-    if (collision.CompareTag("Player") && !inside) {
-     collision.transform.position = destination.transform.position;
-     destination.GetComponent < InteriorScript > ().inside = true;
-    }
-    break;
-   case Modes.Scene:
-    if (SceneName.Length != 0) {
-     SceneManager.LoadScene(SceneName);
-    }
-    break;
-   default:
-    break;
-  }
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.CompareTag("Player")) {
+            switch (Type) {
+                case Modes.Internal:
+                    if (!inside) {
+                        collision.transform.position = destination.transform.position;
+                        G<InteriorScript>(destination).inside = true;
+                    }
+                    break;
+                case Modes.Scene:
+                    if (SceneName.Length != 0) {
+                        SceneManager.LoadScene(SceneName);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
  }
  void OnTriggerExit2D(Collider2D collision) {
   inside = false;

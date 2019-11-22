@@ -2,7 +2,7 @@
  public static bool Created;
  void Awake() {
   if (!Created) DontDestroyOnLoad(this);
-  else Destroy(gameObject);
+  else D(gameObject);
  }
  void Start() {
   Created = true;

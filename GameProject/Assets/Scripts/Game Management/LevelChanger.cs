@@ -17,6 +17,6 @@ public class LevelChanger: A {
   SceneManager.LoadScene(levelToLoad);
  }
  void Start() {
-  IM = FindObjectOfType < InputManager > ();
+  IM = F<InputManager>();
  }
 }

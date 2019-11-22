@@ -36,12 +36,12 @@ public class DialogueScript: A {
      DialName.text = "";
      DialText.text = "";
      if (PauseCo == null) {
-      PauseCo = StartCoroutine(CinematicLoad(File.Dialogue[DialStage]));
+      PauseCo = SC(CinematicLoad(File.Dialogue[DialStage]));
      }
      break;
     case "@@@":
      if (PauseCo == null) {
-      PauseCo = StartCoroutine(PauseDial(3));
+      PauseCo = SC(PauseDial(3));
      }
      break;
     case "^^^":
@@ -78,12 +78,12 @@ public class DialogueScript: A {
   }
   DialStage = 0;
  }
- private IEnumerator PauseDial(float Delay) {
+ IEnumerator PauseDial(float Delay) {
   yield
   return new WaitForSeconds(Delay);
   ++DialStage;
  }
- private IEnumerator CinematicFinish(string cinematic) {
+IEnumerator CinematicFinish(string cinematic) {
   InCinematic = true;
   Scene s = SceneManager.GetSceneByName(cinematic);
   yield
@@ -92,11 +92,11 @@ public class DialogueScript: A {
   DialStage++;
   PauseCo = null;
  }
- private IEnumerator CinematicLoad(string cinematic) {
+IEnumerator CinematicLoad(string cinematic) {
   SceneManager.LoadSceneAsync(cinematic, LoadSceneMode.Additive);
   Scene s = SceneManager.GetSceneByName(cinematic);
   yield
   return new WaitWhile(() => !s.isLoaded);
-  PauseCo = StartCoroutine(CinematicFinish(cinematic));
+  PauseCo = SC(CinematicFinish(cinematic));
  }
 }

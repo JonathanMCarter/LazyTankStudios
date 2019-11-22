@@ -3,7 +3,7 @@ using UnityEngine.UI;
 public class VolumeControl: A {
  Slider slider;
  void Start() {
-  slider = GetComponent < Slider > ();
+  slider = G<Slider> ();
   UpdateVolume();
  }
  public void UpdateVolume() {

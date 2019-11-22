@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Vendor: A {
+/*public class Vendor: A {
  public DialogueFile VendorSpeech;
  Inventory Pinv, VInv;
  InvSlot pInvSlot, VInvSlot;
@@ -94,3 +94,4 @@ public class Vendor: A {
   if (collision.gameObject.name == "Hero") exited = true;
  }
 }
+*/

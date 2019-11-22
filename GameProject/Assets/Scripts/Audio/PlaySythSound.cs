@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-public class PlaySythSound: MonoBehaviour {
+public class PlaySythSound: A {
  public string ClipSound;
  SoundPlayer SP;
  void Start() {
-  SP = GetComponent < SoundPlayer > ();
+  SP = G<SoundPlayer>();
   SP.Play(ClipSound, true);
  }
 }

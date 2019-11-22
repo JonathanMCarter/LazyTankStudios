@@ -2,7 +2,7 @@
 #if !UNITY_ANDROID
 void Start(){HideMobileUI(); }
 #endif
-public void SetX(int i){xAxis = i;}public void SetY( int i){yAxis = i;}void HideMobileUI(){GameObject[] phoneUI = GameObject.FindGameObjectsWithTag("MobileUI");foreach (GameObject GO in phoneUI) GO.gameObject.SetActive(false);}public void Fire1Clicked(){fire1Clicked = true;print("Fire1");StartCoroutine(ClearButtons());}public void Fire2Clicked(){fire2Clicked = true;print("Fire2");StartCoroutine(ClearButtons());}public void Fire3Clicked(){fire3Clicked = true;print("Fire3");StartCoroutine(ClearButtons());}IEnumerator ClearButtons() {yield return new WaitForSeconds(0);fire1Clicked = false;fire2Clicked = false;fire3Clicked = false;}public float X_Axis(){
+public void SetX(int i){xAxis = i;}public void SetY( int i){yAxis = i;}void HideMobileUI(){GameObject[] phoneUI = GameObject.FindGameObjectsWithTag("MobileUI");foreach (GameObject GO in phoneUI) GO.gameObject.SetActive(false);}public void Fire1Clicked(){fire1Clicked = true;print("Fire1");SC(ClearButtons());}public void Fire2Clicked(){fire2Clicked = true;print("Fire2");SC(ClearButtons());}public void Fire3Clicked(){fire3Clicked = true;print("Fire3");SC(ClearButtons());}IEnumerator ClearButtons() {yield return new WaitForSeconds(0);fire1Clicked = false;fire2Clicked = false;fire3Clicked = false;}public float X_Axis(){
 #if UNITY_ANDROID
 return xAxis;
 #endif
