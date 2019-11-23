@@ -3,35 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
-using System;
 
 /// Changes the Shader Editor so it is more user friendly 
 
 /*
     You shouldn't be here.....
     If something throws an error that stops you working then let me know...
-
-
     Shader Editor Extra's
     -=-=-=-=-=-=-=-=-=-=-=-
-
     Made by: Jonathan Carter
     Last Edited By: Jonathan Carter
-    Date Edited Last: 16/11/19 - Made it so the bool runs in the shader rather than in the editor (so editor can be deleted without breaking the colour changer)
-
+    Date Edited Last: 11/11/19 - coded to work with UI...
     Edit History:
-    - 11/11/19 - coded to work with UI...
     - 03/11/19 - Added useage of Perm Palette instead of the stores colours in the shader
     - 03/11/19 - Fixed problem where palette's revert when you select the object in the inspector
     - 28/10/19 - Added option to edit 4th colour in palette as well as instance again so not to effect all versions of the material
     - 27/10/19 - added 4 palette restriction
     - 12/10/19 - added labels for help users understand the tool
     - 6/10/19 - To add this comment bit in (nothing else was changed)
-
     This script adds the colour fields to the material dropdown, so you can edit the colours without needing an image palette
-
     NOTE: The create instance button which is commented out does nothing currently, I haven't figure out how to make instances on demand yet
-
 */
 
 
@@ -63,12 +54,14 @@ public class ShaderEditorGUI : ShaderGUI
 
     /// Holds the material for the gameobject it is on.
     public Material Mat;
-    private bool Temp = false;
 
+    //private Palettes OldPal;
+    private bool Forest;
 
     /// Overrides the default GUI to show the custom inspector, param are passed in by default from the ShaderGUI editor type
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] properties)
     {
+        //OldPal = Pal;
 
         PermColours = (Palette)AssetDatabase.LoadAssetAtPath("Assets/Materials/Palette/Palettes.asset", typeof(Palette));
 
@@ -96,6 +89,25 @@ public class ShaderEditorGUI : ShaderGUI
             PaletteEditor Test = EditorWindow.GetWindow<PaletteEditor>();
             Test.Version = this;
         }
+
+        //if (Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.GetFloat("_IsInstance") == 0)
+        //{
+        //    if (GUILayout.Button("Make Instance"))
+        //    {
+        //        Selection.gameObjects[0].GetComponent<Renderer>().material = Selection.gameObjects[0].GetComponent<Renderer>().material;
+        //        Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 1);
+        //    }
+        //}
+        //else
+        //{
+        //    if (GUILayout.Button("Revert Instance"))
+        //    {
+        //        var Test = new MaterialPropertyBlock();
+        //        Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.name = "ColourChanger_MAT";
+        //        Selection.gameObjects[0].GetComponent<Renderer>().GetPropertyBlock(Test);
+        //        Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 0);
+        //    }
+        //}
 
 
         EditorGUILayout.EndHorizontal();
@@ -130,6 +142,11 @@ public class ShaderEditorGUI : ShaderGUI
 
         Pal = (Palettes)EditorGUILayout.EnumPopup(Pal);
 
+        //if ((Pal != OldPal) && (Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.GetFloat("_IsInstance") == 0))
+        //{
+        //    Selection.gameObjects[0].GetComponent<Renderer>().material = Selection.gameObjects[0].GetComponent<Renderer>().material;
+        //    Selection.gameObjects[0].GetComponent<Renderer>().sharedMaterial.SetFloat("_IsInstance", 1);
+        //}
 
         switch (Pal)
         {
@@ -142,7 +159,11 @@ public class ShaderEditorGUI : ShaderGUI
                 GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
                 GUI.color = PermColours.Pal1[2];
                 GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
-
+                if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                {
+                    GUI.color = Mat.GetColor("_StoreTrans1");
+                    GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                }
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
 
@@ -159,12 +180,39 @@ public class ShaderEditorGUI : ShaderGUI
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
-
-                //Temp = EditorGUILayout.Toggle("Switch Plains/Forest", Temp);
-                Mat.SetFloat("_SwitchPal1", System.Convert.ToInt32(EditorGUILayout.Toggle("Switch Plains/Forest?" ,System.Convert.ToBoolean(Mat.GetFloat("_SwitchPal1")))));
-
+                Forest = EditorGUILayout.Toggle("Switch Plains/Forest?", Forest);
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
+
+                if (Forest)
+                {
+                    Mat.SetColor("_PalCol1", PermColours.Pal1[1]);
+                    Mat.SetColor("_PalCol2", PermColours.Pal1[0]);
+                    Mat.SetColor("_PalCol3", PermColours.Pal1[2]);
+                }
+                else
+                {
+                    Mat.SetColor("_PalCol1", PermColours.Pal1[0]);
+                    Mat.SetColor("_PalCol2", PermColours.Pal1[1]);
+                    Mat.SetColor("_PalCol3", PermColours.Pal1[2]);
+                }
+
+
+
+
+                //if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                //{
+                //    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans1"));
+                //}
+                //else
+                //{
+                //    Mat.SetColor("_PalCol4", Color.clear);
+                //}
+
+                //if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                //{
+                //    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                //}
 
                 break;
             case Palettes.Palette2:
@@ -176,8 +224,11 @@ public class ShaderEditorGUI : ShaderGUI
                 GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
                 GUI.color = PermColours.Pal2[2];
                 GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
-
-
+                if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                {
+                    GUI.color = Mat.GetColor("_StoreTrans2");
+                    GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                }
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
 
@@ -195,6 +246,20 @@ public class ShaderEditorGUI : ShaderGUI
                 Mat.SetColor("_PalCol2", PermColours.Pal2[1]);
                 Mat.SetColor("_PalCol3", PermColours.Pal2[2]);
 
+                //if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                //{
+                //    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans2"));
+                //}
+                //else
+                //{
+                //    Mat.SetColor("_PalCol4", Color.clear);
+                //}
+
+                //if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                //{
+                //    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                //}
+
                 break;
             case Palettes.Palette3:
                 EditorGUILayout.BeginHorizontal();
@@ -205,7 +270,11 @@ public class ShaderEditorGUI : ShaderGUI
                 GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
                 GUI.color = PermColours.Pal3[2];
                 GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
-
+                if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                {
+                    GUI.color = Mat.GetColor("_StoreTrans3");
+                    GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                }
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
 
@@ -224,6 +293,20 @@ public class ShaderEditorGUI : ShaderGUI
                 Mat.SetColor("_PalCol2", PermColours.Pal3[1]);
                 Mat.SetColor("_PalCol3", PermColours.Pal3[2]);
 
+                //if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                //{
+                //    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans3"));
+                //}
+                //else
+                //{
+                //    Mat.SetColor("_PalCol4", Color.clear);
+                //}
+
+                //if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                //{
+                //    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                //}
+
                 break;
             case Palettes.Palette4:
                 EditorGUILayout.BeginHorizontal();
@@ -234,7 +317,11 @@ public class ShaderEditorGUI : ShaderGUI
                 GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
                 GUI.color = PermColours.Pal4[2];
                 GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
-
+                if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                {
+                    GUI.color = Mat.GetColor("_StoreTrans4");
+                    GUILayout.Button(Resources.Load<Texture2D>("CarterGames/Stop"), GUIStyle.none, GUILayout.MaxWidth(50), GUILayout.MaxHeight(50));
+                }
                 GUILayout.FlexibleSpace();
                 EditorGUILayout.EndHorizontal();
 
@@ -253,6 +340,19 @@ public class ShaderEditorGUI : ShaderGUI
                 Mat.SetColor("_PalCol2", PermColours.Pal4[1]);
                 Mat.SetColor("_PalCol3", PermColours.Pal4[2]);
 
+                //if ((Mat.GetFloat("_IsInstance") > 0) && (IsTrans))
+                //{
+                //    Mat.SetColor("_PalCol4", Mat.GetColor("_StoreTrans4"));
+                //}
+                //else
+                //{
+                //    Mat.SetColor("_PalCol4", Color.clear);
+                //}
+
+                //if (Mat.GetFloat("_PaletteSelected") != (int)Pal + 1)
+                //{
+                //    Mat.SetFloat("_PaletteSelected", (int)Pal + 1);
+                //}
 
                 break;
             default:
@@ -261,6 +361,17 @@ public class ShaderEditorGUI : ShaderGUI
 
 
         GUI.color = Color.white;
+
+        if (Mat.GetFloat("_IsInstance") > 0)
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Use 4th Colour?", GUILayout.Width(95));
+            IsTrans = EditorGUILayout.Toggle(IsTrans);
+            EditorGUILayout.EndHorizontal();
+
+            if ((IsTrans) && (Mat.GetFloat("_UseTrans") < 1)) { Mat.SetFloat("_UseTrans", 0); }
+            else { Mat.SetFloat("_UseTrans", 1); }
+        }
 
 
 
