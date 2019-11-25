@@ -4,7 +4,7 @@ public class TileLight: A {
  public LightDoor Door;
  public Sprite On, Off;
  void Start() {
-  Door = G<LightDoor>(FT("Door"));
+  //Door = G<LightDoor>(FT("Door"));
  }
  void OnTriggerEnter2D(Collider2D collision) {
   if (collision.CompareTag("Player")) {
