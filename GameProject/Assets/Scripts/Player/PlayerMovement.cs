@@ -137,7 +137,7 @@ public class PlayerMovement : A
                     C(aR,3).gameObject.SetActive(true);
                     break;
                 case 4:
-                    //USE HEALTH POTION HERE
+                    if (health < maxHealth) { ++health; ShowHearts(); Inv.items.Remove(ID); Inv.change(); }
                     break;
                 case -1:
                     break;
@@ -209,21 +209,25 @@ public class PlayerMovement : A
         {
             render.flipX = false;
             aR.rotation = new Quaternion(0, 0, 0, 0);
+            aR.GetChild(3).rotation = new Quaternion(0, 0, 0, 0);
         }
         if (myRigid.velocity.x < -0.1)
         {
             render.flipX = true;
             aR.rotation = new Quaternion(0, 0, 180, 0);
+            aR.GetChild(3).rotation = new Quaternion(0, 0, 0, 180);
         }
         if (myRigid.velocity.y > 0.1)
         {
             aR.rotation = new Quaternion(0, 0, 0, 0);
             if (aR.rotation != new Quaternion(0, 0, 90, 0)) aR.Rotate(Vector3.forward * 90);
+            aR.GetChild(3).rotation = new Quaternion(0, 0, 0, 90);
         }
         if (myRigid.velocity.y < -0.1)
         {
             aR.rotation = new Quaternion(0, 0, 180, 0);
             if (aR.rotation != new Quaternion(0, 0, -90, 0)) aR.Rotate(Vector3.forward * 90);
+            aR.GetChild(3).rotation = new Quaternion(0, 0, 0, 180);
         }
     }
     public void load(string[] dest)
