@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEditor.Animations;
 public class PlayerMovement : A
 {
     enum Dir
@@ -242,5 +243,13 @@ public class PlayerMovement : A
         return new WaitUntil(() => l.isDone);
         Vector3 newPos = F(dest[1]).transform.position;
         transform.position = new Vector3(newPos.x, newPos.y, transform.position.z);
+    }
+
+    ///<summary>
+    ///Used to switch the animator controller for the costume changing dlc feature
+    ///</summary>
+    public void SwitchAnimator(RuntimeAnimatorController newAC)
+    {
+        myAnim.runtimeAnimatorController=newAC;
     }
 }

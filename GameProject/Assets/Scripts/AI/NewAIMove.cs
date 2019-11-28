@@ -95,7 +95,7 @@ public class NewAIMove: A {
   }
   if (Health <= 0) {
    sp.Play("Death_3");
-   gameObject.SetActive(false);
+   gameObject.transform.parent.gameObject.SetActive(false);
   }
  }
 }
