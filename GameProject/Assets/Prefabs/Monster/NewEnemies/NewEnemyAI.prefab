@@ -87,10 +87,11 @@ MonoBehaviour:
   MoveSpeed: 5
   RotateSpeed: 5
   Direction: 0
+  boss: 0
   me: {fileID: 0}
-  MyRigid: {fileID: 0}
   Paramiers: {x: 0.2, y: 1}
   WaitVarables: {x: 0.2, y: 1}
+  offset: {x: 0, y: 0, z: 0}
   Hearts: []
   Health: 0
   DamageCD: 0.3
@@ -119,6 +120,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1026830375002604824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 324b148a54105d74184e5124bac40944, type: 3}
+  m_Script: {fileID: 11500000, guid: bdcf4390dffe0684ca28d77c8ececf30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  P: {fileID: 0}
+  S: 0
+  _T: 0

@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 5813514035140502281}
   - component: {fileID: 5813514035140502282}
   - component: {fileID: 5813514035140502283}
+  - component: {fileID: 2344888952162290107}
   m_Layer: 10
   m_Name: NewEnemy
   m_TagString: Enemy
@@ -133,6 +134,11 @@ MonoBehaviour:
   - {fileID: 6612929034398358318}
   Health: 2
   DamageCD: 0.3
+  SeenPlayer: 0
+  Turn: 0
+  TurnCount: 0
+  ToggleDirection: 0
+  hit: 0
 --- !u!58 &5813514035140502283
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -149,6 +155,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &2344888952162290107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5813514035140502285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcf4390dffe0684ca28d77c8ececf30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P: {fileID: 8640516215534805940, guid: 46c94c9ce34059d41840acf11e6e12cb, type: 3}
+  _T: 0.2
 --- !u!1 &5813514035298749824
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,11 +327,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9067695791811741945, guid: 6ac7e7853f9886a42a2f7fe6a70596af, type: 3}
-    - {fileID: 9207610998230610106, guid: 6ac7e7853f9886a42a2f7fe6a70596af, type: 3}
-    - {fileID: 814724491229640865, guid: 6ac7e7853f9886a42a2f7fe6a70596af, type: 3}
-    - {fileID: 5258954623845677398, guid: 6ac7e7853f9886a42a2f7fe6a70596af, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ac7e7853f9886a42a2f7fe6a70596af, type: 3}
 --- !u!1 &1340458281146208798 stripped
 GameObject:

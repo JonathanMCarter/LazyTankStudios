@@ -9,7 +9,6 @@ public class NewAIMove: A {
  Rigidbody2D MyRigid;
  public Vector2 Paramiers, WaitVarables;
  public Vector3 offset;
- bool SeenPlayer, Turn, TurnCount, ToggleDirection, hit;
  public SpriteRenderer[] Hearts;
  public int Health;
  public float DamageCD = 0.3f;
@@ -17,7 +16,9 @@ public class NewAIMove: A {
  Transform PlayerPos;
  static public int currBoss = 0;
  SoundPlayer sp;
- void Start() {
+ [HideInInspector]
+ public bool SeenPlayer, Turn, TurnCount, ToggleDirection, hit;
+    void Start() {
   TurnCount = true;
   MyRigid = G<Rigidbody2D>();
   Health = Hearts.Length;
