@@ -1026,7 +1026,7 @@ Animator:
   m_GameObject: {fileID: 9166002442120698622}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 49c0ccc07a96ce64bb8179f669b52aac, type: 2}
+  m_Controller: {fileID: 9100000, guid: dcf5d9affe7e0794ca80f76c5915a68e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1081,8 +1081,10 @@ MonoBehaviour:
   dashSpeedMultiplier: 2
   DashDuration: 0.3
   blockTIme: 1
-  AttackTime: 1
+  AttackTime: 0.5
   SlideSpeed: 100
+  BulletSpeed: 0
+  BulletLifeTime: 0
   maxHealth: 5
   hearts:
   - {fileID: 0}

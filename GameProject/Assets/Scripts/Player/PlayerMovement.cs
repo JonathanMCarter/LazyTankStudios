@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEditor.Animations;
+//Edited by Andreas on 29/11
+//added function to swap animator
+//commented out the sprite renderer variable and flipx calls as I made additional animations for the walking,facing,attacking Left 
 public class PlayerMovement : A
 {
     enum Dir
@@ -19,7 +22,7 @@ public class PlayerMovement : A
     public GameObject Bullet, DeathCanvas, Menu;
     Rigidbody2D myRigid;
     Animator myAnim;
-    SpriteRenderer render;
+    //SpriteRenderer render;
     InputManager IM;
     public bool dmgCD;
     SoundPlayer audioManager, BossKilled;
@@ -59,7 +62,7 @@ public class PlayerMovement : A
         if (DeathCanvas != null) DontDestroyOnLoad(DeathCanvas.gameObject);
         myRigid = G<Rigidbody2D>();
         myAnim = G<Animator>();
-        render = G<SpriteRenderer>();
+        //render = G<SpriteRenderer>();
         IM = F<InputManager>();
         ShowHearts();
         Menu = FT("OptionsMenu");
@@ -78,7 +81,7 @@ public class PlayerMovement : A
     void Update()
     {
         SetRotater();
-        myAnim.SetFloat("SpeedX", Mathf.Abs(IM.X_Axis()));
+        myAnim.SetFloat("SpeedX", IM.X_Axis());
         myAnim.SetFloat("SpeedY", IM.Y_Axis());
         if (IM.X_Axis() > 0.1f) F = Dir.Right;
         if (IM.X_Axis() < -0.1f) F = Dir.Left;
@@ -212,13 +215,13 @@ public class PlayerMovement : A
     {
         if (myRigid.velocity.x > 0.1)
         {
-            render.flipX = false;
+            //render.flipX = false;
             aR.rotation = new Quaternion(0, 0, 0, 0);
             aR.GetChild(3).rotation = new Quaternion(0, 0, 0, 0);
         }
         if (myRigid.velocity.x < -0.1)
         {
-            render.flipX = true;
+            //render.flipX = true;
             aR.rotation = new Quaternion(0, 0, 180, 0);
             aR.GetChild(3).rotation = new Quaternion(0, 0, 0, 180);
         }
@@ -252,7 +255,7 @@ public class PlayerMovement : A
     ///<summary>
     ///Used to switch the animator controller for the costume changing dlc feature
     ///</summary>
-    public void SwitchAnimator(RuntimeAnimatorController newAC)
+    public void SwitchAnimator(AnimatorController newAC)
     {
         myAnim.runtimeAnimatorController=newAC;
     }
