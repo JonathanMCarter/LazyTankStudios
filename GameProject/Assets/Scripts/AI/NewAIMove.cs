@@ -78,23 +78,16 @@ public class NewAIMove: A {
  void OnCollisionEnter2D(Collision2D collision) {
   if (ToggleDirection) ToggleDirection = false;
   else ToggleDirection = true;
-  if (collision.gameObject.tag == "Bullet") {
-   D(collision.gameObject);
-   if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
+  if (collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Sword") {
+ if(collision.gameObject.tag == "Bullet")
+ D(collision.gameObject);
+Hearts[Health - 1].gameObject.SetActive(false);
    Health -= 1;
    sp.Play("Take_Damage_3");
   }
   if (Health <= 0) {
-   if (boss) Quest.boss[currBoss] = true;
-   gameObject.SetActive(false);
-  }
-  if (collision.gameObject.tag == "Sword") {
-   if (Health > 0) Hearts[Health - 1].gameObject.SetActive(false);
-   Health -= 1;
-   sp.Play("Take_Damage_3");
-  }
-  if (Health <= 0) {
-   sp.Play("Death_3");
+if (boss) Quest.boss[currBoss] = true;
+sp.Play("Death_3");
    gameObject.transform.parent.gameObject.SetActive(false);
   }
  }

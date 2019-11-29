@@ -27,7 +27,7 @@ public class PlayerMovement : A
     GameObject aHB;
     public Transform aR;
     bool attacking, dashing, shieldUp, Shooting;
-    public float RangedAttackDuration, dashSpeedMultiplier, DashDuration, blockTIme, AttackTime, SlideSpeed;
+    public float RangedAttackDuration, dashSpeedMultiplier, DashDuration, blockTIme, AttackTime, SlideSpeed, BulletSpeed, BulletLifeTime;
     float countdown;
     enum ITEMS
     {
@@ -50,8 +50,8 @@ public class PlayerMovement : A
     {
         for (int i = 0; i < hearts.Length; i++)
         {
-            hearts[i].enabled = (i < maxHealth);
-            hearts[i].sprite = i < health ? fullHeart : emptyHeart;
+            hearts[i].enabled = (i <= maxHealth);
+            hearts[i].sprite = i <= health ? fullHeart : emptyHeart;
         }
     }
     void Start()
@@ -130,7 +130,7 @@ public class PlayerMovement : A
                     C(aR,2).gameObject.SetActive(true);
                     countdown = RangedAttackDuration;
                     countdown = 0.3f;
-                    FireProjectile();
+                    SC(FireProjectile());
                     audioManager.Play("Attacking_1_(Bow)");
                     break;
                 case 3:
@@ -145,7 +145,7 @@ public class PlayerMovement : A
             }
         }
     }
-    public void FireProjectile()
+    IEnumerator FireProjectile()
     {
         GameObject Go = Instantiate(Bullet, C(aR,0).transform.position, aR.rotation * Quaternion.Euler(0, 0, -45));
         Vector2 Direc = new Vector2(0, 0);
@@ -153,7 +153,9 @@ public class PlayerMovement : A
         if ((int)F == 1) Direc.y = -1f;
         if ((int)F == 2) Direc.x = -1f;
         if ((int)F == 3) Direc.x = 1f;
-        G<Rigidbody2D>(Go).velocity = Direc;
+        G<Rigidbody2D>(Go).velocity = Direc * BulletSpeed;
+        yield return new WaitForSeconds(BulletLifeTime);
+        Go.gameObject.SetActive(false);
     }
     void OnDisable()
     {
@@ -176,14 +178,16 @@ public class PlayerMovement : A
         if (health <= 0)
         {
             audioManager.Play("Death_1");
+            speed = 0;
+            for (int i = 0; i < Inv.items.Capacity; ++i)
+                Inv.items.Remove(i);
             SC(GameReset());
-            enabled = false;
         }
     }
     IEnumerator GameReset()
     {
         if (DeathCanvas != null) DeathCanvas.SetActive(true);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Main Menu");
         DoNotDes[] Gos = Fs<DoNotDes>();
         DoNotDes.Created = false;
