@@ -76,8 +76,7 @@ public class NewAIMove: A {
   }
  }
  void OnCollisionEnter2D(Collision2D collision) {
-  if (ToggleDirection) ToggleDirection = false;
-  else ToggleDirection = true;
+ToggleDirection = !ToggleDirection;
   if (collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "Sword") {
  if(collision.gameObject.tag == "Bullet")
  D(collision.gameObject);
