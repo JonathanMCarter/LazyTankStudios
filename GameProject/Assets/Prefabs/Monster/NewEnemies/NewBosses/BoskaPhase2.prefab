@@ -32,6 +32,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1185527123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330322317290567614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcf4390dffe0684ca28d77c8ececf30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P: {fileID: 8640516215534805940, guid: 46c94c9ce34059d41840acf11e6e12cb, type: 3}
+  _T: 2
 --- !u!1001 &1427907496636698412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -434,6 +448,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewEnemyAI
       objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: Hearts.Array.size
@@ -444,11 +463,6 @@ PrefabInstance:
       propertyPath: me
       value: 
       objectReference: {fileID: 5771876304402049529}
-    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: Health
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: Hearts.Array.data[0]
@@ -524,6 +538,11 @@ PrefabInstance:
       propertyPath: Hearts.Array.data[14]
       value: 
       objectReference: {fileID: 74587955340937011}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Health
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_Offset.y
@@ -534,9 +553,14 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 2.6208334
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
+--- !u!1 &4330322317290567614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+    type: 3}
+  m_PrefabInstance: {fileID: 3627770435381260966}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &852429255653429549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4146691664319079307, guid: 825453733c855bd4fbc594fd4a41d168,
