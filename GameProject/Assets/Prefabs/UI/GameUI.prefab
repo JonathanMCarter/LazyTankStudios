@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 1108131577}
   - component: {fileID: 1108131581}
   - component: {fileID: 1108131580}
-  - component: {fileID: 1108131579}
+  - component: {fileID: 5474357726343629171}
   - component: {fileID: 1108131578}
   m_Layer: 5
   m_Name: VendorInventory
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &1108131579
+--- !u!114 &5474357726343629171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,14 +481,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1108131576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6bd088815abb6140973716f36938f06, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c383bf232bc15d47821e9cd572d154a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current: 0
-  icons: []
-  items: 
-  t: {fileID: 0}
-  i: {fileID: 0}
+  p: {fileID: 272489944134097942, guid: 3589713581ee67b44b8d7cf903bae19d, type: 3}
+  price: 20
 --- !u!225 &1108131578
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9479,11 +9476,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6506117089838784766}
     m_Modifications:
-    - target: {fileID: 4801624218000729514, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
+    - target: {fileID: 4801624218000729518, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
         type: 3}
-      propertyPath: m_Name
-      value: PlayerInventory
-      objectReference: {fileID: 0}
+      propertyPath: t
+      value: 
+      objectReference: {fileID: 7704622312421222001}
     - target: {fileID: 4801624218000729515, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9589,6 +9586,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4801624218000729514, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerInventory
+      objectReference: {fileID: 0}
     - target: {fileID: 4801624218000729516, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
         type: 3}
       propertyPath: m_Sprite
@@ -9600,11 +9602,6 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4801624218000729518, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
-        type: 3}
-      propertyPath: t
-      value: 
-      objectReference: {fileID: 7704622312421222001}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ff01d14cb9ad84ea1f89d42ff83876, type: 3}
 --- !u!224 &1516564038 stripped
