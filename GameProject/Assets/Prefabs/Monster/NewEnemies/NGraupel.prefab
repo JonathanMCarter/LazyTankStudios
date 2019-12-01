@@ -34,7 +34,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4387474}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.0726051
 --- !u!1 &4135761902181795947
@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4135761902181795947}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90.2, y: 63.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1553667956091727747}
@@ -201,12 +201,23 @@ PrefabInstance:
     - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_Offset.y
-      value: -0.4387474
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_Radius
       value: 1.0726051
+      objectReference: {fileID: 0}
+    - target: {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: P
+      value: 
+      objectReference: {fileID: 734253167004393265, guid: 4e5699ba50913c74388970f758c9f56b,
+        type: 3}
+    - target: {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: _T
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
