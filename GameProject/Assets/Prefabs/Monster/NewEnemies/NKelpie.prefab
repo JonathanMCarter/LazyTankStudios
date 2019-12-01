@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 975157359567330871}
   - component: {fileID: 2491717187209285289}
   - component: {fileID: 6640702631227692900}
+  - component: {fileID: 5039352980185816417}
   - component: {fileID: 7172440659452101106}
   m_Layer: 10
   m_Name: NewEnemyAI (1)
@@ -416,6 +417,25 @@ MonoBehaviour:
   - {fileID: 511389837942745062}
   Health: 2
   DamageCD: 0.3
+  SeenPlayer: 0
+  Turn: 0
+  TurnCount: 0
+  ToggleDirection: 0
+  hit: 0
+--- !u!114 &5039352980185816417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834949285559206183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdcf4390dffe0684ca28d77c8ececf30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P: {fileID: 8640516215534805940, guid: 46c94c9ce34059d41840acf11e6e12cb, type: 3}
+  _T: 4
 --- !u!58 &7172440659452101106
 CircleCollider2D:
   m_ObjectHideFlags: 0
