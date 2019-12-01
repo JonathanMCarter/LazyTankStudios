@@ -21,6 +21,7 @@ public class TalkScript: A {
   else ds.ChangeFile(dialogueGerman);
   ds.Input();
   talking = true;
+ movement.stopInput = talking;
   movement.enabled = !talking;
  }
  void Update() {
@@ -30,6 +31,7 @@ public class TalkScript: A {
    }
    talking = !ds.FileHasEnded;
    panel.alpha = talking ? 1 : 0;
+movement.stopInput = talking;
    movement.enabled = !talking;
   }
  }

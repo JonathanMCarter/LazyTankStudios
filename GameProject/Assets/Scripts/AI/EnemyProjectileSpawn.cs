@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyProjectileSpawn : MonoBehaviour
+public class EnemyProjectileSpawn : A
 {
-    NewAIMove SC;
+    NewAIMove AIM;
     public GameObject P;
     public float _T;
     float T;
     bool F;
     void Start()
     {
-        SC = GetComponent<NewAIMove>();
+        AIM = G<NewAIMove>();
         T = _T;
     }
     void Update()
@@ -28,7 +28,7 @@ public class EnemyProjectileSpawn : MonoBehaviour
     }
     void Timer()
     {
-        if (T <= 0 && SC.SeenPlayer)
+        if (T <= 0 && AIM.SeenPlayer)
         {
             F = true;
             T = _T;

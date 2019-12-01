@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class EnemyProjectileMove : MonoBehaviour
+public class EnemyProjectileMove : A
 {
     public float S;
     Rigidbody2D R;
     void Start()
     {
-        R = GetComponent<Rigidbody2D>();
+        R = G<Rigidbody2D>();
     }
     private void FixedUpdate()
     {
