@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEditor.Animations;
 //Edited by Andreas on 29/11
 //added function to swap animator
 //commented out the sprite renderer variable and flipx calls as I made additional animations for the walking,facing,attacking Left 
@@ -255,7 +254,7 @@ public class PlayerMovement : A
     ///<summary>
     ///Used to switch the animator controller for the costume changing dlc feature
     ///</summary>
-    public void SwitchAnimator(AnimatorController newAC)
+    public void SwitchAnimator(RuntimeAnimatorController newAC)
     {
         myAnim.runtimeAnimatorController=newAC;
     }
