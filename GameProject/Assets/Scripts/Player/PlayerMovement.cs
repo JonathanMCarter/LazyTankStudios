@@ -101,6 +101,7 @@ public class PlayerMovement : A
                 C(aR,3).gameObject.SetActive(false);
                 C(aR,2).gameObject.SetActive(false);
                 myAnim.SetBool("Attack", false);
+                stopInput = false;
             }
         }
     }
@@ -116,6 +117,7 @@ public class PlayerMovement : A
                     countdown = AttackTime;
                     C(aR,0).gameObject.SetActive(true);
                     audioManager.Play("Attacking_1_(Sword)");
+                    stopInput = true;
                     break;
                 case 1:
                     C(aR,1).gameObject.SetActive(true);
