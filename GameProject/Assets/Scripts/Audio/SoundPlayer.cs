@@ -9,11 +9,12 @@ public class SoundPlayer: A {
   if (DoNotDes) {
    DontDestroyOnLoad(gameObject);
   }
+        if (FindObjectsOfType<SoundPlayer>().Length > 1) Destroy(this.gameObject);
   aud = GetComponentsInChildren < AudioSource > ();
  }
- public void AddSoundClip(AudioClip myAud, float Pitch) {
+ public void AddSoundClip(AudioClip myAud,float Volumn, float Pitch) {
   myClips.Add(myAud);
-  volumns.Add(1);
+  volumns.Add(Volumn);
   pitch.Add(Pitch);
  }
  public void Play(string audioName) {

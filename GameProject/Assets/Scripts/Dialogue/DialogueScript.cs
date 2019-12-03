@@ -30,7 +30,8 @@ public class DialogueScript: A {
   R();
  }
  public void DNL() {
-  if (DS < File.Names.Count) {
+        if (File == null) FileHasEnded = true;
+        if (DS < File.Names.Count) {
    switch (File.Names[DS]) {
     case "###":
      DialName.text = "";
@@ -55,18 +56,27 @@ public class DialogueScript: A {
      DialName.text = File.Names[DS];
      DialText.text = File.Dialogue[DS];
      DS++;
-     InputPressed = false;
+                    InputPressed = false;
      break;
    }
   } else {
    DialName.text = "";
    DialText.text = "";
    FileHasEnded = true;
+            File = null;
   }
  }
  public void Input() {
-  if (!InputPressed) {
-   InputPressed = true;
+        if (File == null)
+        {
+            FileHasEnded = true;
+            return;
+        }
+        if (!InputPressed) {
+
+            char randomChar = (char)Random.Range('A', 'Z');
+            F<SoundPlayer>().Play(randomChar.ToString());
+            InputPressed = true;
   }
  }
  void R() {

@@ -10,7 +10,7 @@ public class PlayerMovement : A
     public float speed = 100;
     float bS;
     public Inventory Inv;
-    public GameObject Bullet, DeathCanvas, Menu;
+    public GameObject Bullet, DeathCanvas, Menu, Settings;
     Rigidbody2D myRigid;
     Animator myAnim;
     //SpriteRenderer render;
@@ -44,16 +44,16 @@ public class PlayerMovement : A
     public Sprite fullHeart, emptyHeart;
     public void ShowHearts()
     {
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = 0; i < hearts.Length; i++) //took away = from both lines below, as health starts at 1 but i starts at 0. comment added by LC
         {
-            hearts[i].enabled = (i <= maxHealth);
-            hearts[i].sprite = i <= health ? fullHeart : emptyHeart;
+            hearts[i].enabled = (i < maxHealth);
+            hearts[i].sprite = i < health ? fullHeart : emptyHeart;
         }
     }
     void Start()
     {
         stopInput = false;
-        if (DeathCanvas != null) DontDestroyOnLoad(DeathCanvas.gameObject);
+        //xif (DeathCanvas != null) DontDestroyOnLoad(DeathCanvas.gameObject);
         myRigid = G<Rigidbody2D>();
         myAnim = G<Animator>();
         //render = G<SpriteRenderer>();
@@ -66,6 +66,7 @@ public class PlayerMovement : A
         aR.gameObject.SetActive(true);
         aHB.SetActive(false);
         bS = speed;
+        StartCoroutine(Fsteps());
     }
     void FixedUpdate()
     {
@@ -79,7 +80,7 @@ public class PlayerMovement : A
         { SetRotater();
         myAnim.SetFloat("SpeedX", IM.X_Axis());
         myAnim.SetFloat("SpeedY", IM.Y_Axis());
-        if (IM.Button_Menu())
+        if (IM.Button_Menu() && !Settings.activeInHierarchy) //altered by LC to check settings panel is also not open
         {
             Menu.SetActive(true);
             enabled = false;
@@ -136,7 +137,7 @@ public class PlayerMovement : A
                     C(aR,3).gameObject.SetActive(true);
                     break;
                 case 4:
-                    if (health < maxHealth) { ++health; ShowHearts(); Inv.items.Remove(ID); Inv.change(); }
+                    if (health < maxHealth) { ++health; ShowHearts(); Inv.items.Remove(ID); Inv.change(); audioManager.Play("Healing_1"); }
                     break;
                 case -1:
                     break;
@@ -177,7 +178,7 @@ public class PlayerMovement : A
     }
     IEnumerator GameReset()
     {
-        if (DeathCanvas != null) DeathCanvas.SetActive(true);
+         DeathCanvas.SetActive(true);
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Main Menu");
         DoNotDes[] Gos = Fs<DoNotDes>();
@@ -194,7 +195,7 @@ public class PlayerMovement : A
         dmgCD = !dmgCD;
         Physics2D.IgnoreLayerCollision(9, 10, false);
     }
-    public void Heal(int value)
+    public void Heal(int value) //This function is not currently running? comment added by LC
     {
         health = Mathf.Clamp(health + value, 0, maxHealth);
         audioManager.Play("Healing_1");
@@ -247,4 +248,17 @@ public class PlayerMovement : A
     {
         myAnim.runtimeAnimatorController=newAC;
     }
+
+    IEnumerator Fsteps()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.25f);
+            if (myRigid.velocity.magnitude > 0f) audioManager.Play("Footsteps_(Grass)");
+            yield return new WaitForSeconds(0.25f);
+            if (myRigid.velocity.magnitude > 0f) audioManager.Play("Footsteps_(Concrete)");
+           // print("Step");
+        }
+    }
+
 }

@@ -198,6 +198,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a7004e36665f54badfb75a280d57b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &916213052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 916213054}
+  - component: {fileID: 916213053}
+  m_Layer: 0
+  m_Name: MusicLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &916213053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916213052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5615a413ab51ef4f9d8213571fb0d33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newMusic: Town_Music
+--- !u!4 &916213054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916213052}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 91.2679, y: -10.8743725, z: -297.48853}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &993649258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -563,6 +607,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1.4998169
       objectReference: {fileID: 0}
+    - target: {fileID: 381283402, guid: 9de319393d6e41f4496f305eedd3056c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9de319393d6e41f4496f305eedd3056c, type: 3}
 --- !u!1 &1276286549 stripped
@@ -657,6 +705,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Volum
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9072332045098697447, guid: f37ea7d7a3e4c1c48ba95182c6968e22,
+        type: 3}
+      propertyPath: MyTune.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9072332045098697447, guid: f37ea7d7a3e4c1c48ba95182c6968e22,
         type: 3}
@@ -1414,6 +1467,21 @@ PrefabInstance:
       propertyPath: DoNotDes
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7923582843024397755, guid: f37ea7d7a3e4c1c48ba95182c6968e22,
+        type: 3}
+      propertyPath: Volum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611653684525693839, guid: f37ea7d7a3e4c1c48ba95182c6968e22,
+        type: 3}
+      propertyPath: Volum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223105036646130245, guid: f37ea7d7a3e4c1c48ba95182c6968e22,
+        type: 3}
+      propertyPath: Volum
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f37ea7d7a3e4c1c48ba95182c6968e22, type: 3}
 --- !u!114 &1908193205 stripped
@@ -1446,7 +1514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba00dfcd0b0d035458035ba8fb7926e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClipSound: Town_Music
 --- !u!1001 &667996868846671682
 PrefabInstance:
   m_ObjectHideFlags: 0

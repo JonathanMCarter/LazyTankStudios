@@ -27,6 +27,7 @@ public class Quest: A {
  }
  public Reward reward;
  public Sprite[] rewardItems;
+    public GameObject[] rewardItemsNew; //temp add by LC
  GameObject newItem;
  public Vector2[] rewardIdsAndQuantities;
  public int rewardGold;
@@ -172,10 +173,10 @@ public class Quest: A {
     break;
   }
  }
- void throwItems() {
+ void throwItems() { //should change this to spawn prefab of object ratehr than creating new and setting up details of it ect. would work slightly better. Comment added by LC
   Vector3 updatedPosition = type == Type.Return ? NPCToReturnTo.transform.position : F("Hero").transform.position;
   for (int i = 0; i < rewardItems.Length; i++) {
-   GameObject temp = Instantiate(newItem, updatedPosition, Quaternion.identity);
+   GameObject temp = Instantiate(rewardItemsNew[i], updatedPosition, Quaternion.identity); //changed to spawn RewardItemsNew rather than RewardItems to spawn a prefab - temp - LC
    G<SpriteRenderer>(temp).sprite = rewardItems[i];
    G<SpriteRenderer>(temp).sortingOrder = 20;
    temp.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);

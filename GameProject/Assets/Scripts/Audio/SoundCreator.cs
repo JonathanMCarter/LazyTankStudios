@@ -102,7 +102,7 @@ public class SoundCreator: A {
    TheClip = MergeClips(AClip, myClip);
    AClip = TheClip;
   }
-  G<SoundPlayer>(transform.parent.gameObject).AddSoundClip(TheClip, Pitch);
+  G<SoundPlayer>(transform.parent.gameObject).AddSoundClip(TheClip, Volum, Pitch);
  }
  void OnAudioRead(float[] data) {
   int count = 0;
