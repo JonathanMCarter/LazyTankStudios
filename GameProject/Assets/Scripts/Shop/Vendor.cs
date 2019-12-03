@@ -31,8 +31,6 @@ public class Vendor: A {
                 inv.addCoins(-price);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Return))
-            inv.addCoins(50);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

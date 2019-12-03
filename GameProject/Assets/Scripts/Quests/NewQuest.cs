@@ -5,6 +5,7 @@ using System.Linq;
 public class NewQuest : MonoBehaviour
 {
 
+    //static public int BossNumber;
     static public bool[] boss = new bool[8];
     static public int currQuest = 0;
     static float currTime = 0;
@@ -57,7 +58,7 @@ public class NewQuest : MonoBehaviour
     bool startQuest = false;
     ContactFilter2D contactFilter;
     List<NewQuest> NPC_Quests;
-
+    static public bool newSceneLoaded = false;
 
     public static void orderList()
     {
@@ -78,11 +79,26 @@ public class NewQuest : MonoBehaviour
     }
     private void Awake()
     {
+        print("WOKRS");
         ActiveQuestSign = transform.parent.GetChild(1).gameObject;
     }
 
     private void Start()
     {
+        if (newSceneLoaded)
+        {
+            quests.Clear();
+            orderList();
+            quests.ForEach(x => { if (x.ID == currQuest && !x.SideQuest) x.enabled = true; });
+            newSceneLoaded = false;
+        }
+
+        if (status.Equals(Status.Unavailable))
+        {
+            if (!SideQuest)
+                currQuestStatus = status = ID == currQuest ? Status.Available : Status.Unavailable;
+            else currQuestStatus = status = ID <= currQuest ? Status.Available : Status.Unavailable;
+        }
         Trigger1QuestOnly(gameObject);
         GetComponent<BoxCollider2D>().enabled = enabled = status == Status.Available;
     }
@@ -94,6 +110,8 @@ public class NewQuest : MonoBehaviour
                 currQuestStatus = status = ID == currQuest ? Status.Available : Status.Unavailable;
             else currQuestStatus = status = ID <= currQuest ? Status.Available : Status.Unavailable;
         }
+        print(currQuest);
+
         GetComponent<TalkScript>().dialogueEnglish = Dialogue;
         ActiveQuestSign.SetActive(true);
     }
@@ -151,7 +169,7 @@ public class NewQuest : MonoBehaviour
     {
         GetComponent<TalkScript>().dialogueEnglish = null;
         if(NPCToReturnTo.transform.GetChild(0).GetComponent<TalkScript>().dialogueEnglish==QuestCompleted) NPCToReturnTo.transform.GetChild(0).GetComponent<TalkScript>().dialogueEnglish  = null;
-        status = Status.Completed;
+        status = currQuestStatus = Status.Completed;
         if(!SideQuest) currQuest++;
         if(status==Status.Completed) EnableNextQuests();
     }
