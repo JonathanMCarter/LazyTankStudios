@@ -52,6 +52,7 @@ public class PlayerMovement : A
     }
     void Start()
     {
+        NewQuest.orderList();
         stopInput = false;
         //xif (DeathCanvas != null) DontDestroyOnLoad(DeathCanvas.gameObject);
         myRigid = G<Rigidbody2D>();

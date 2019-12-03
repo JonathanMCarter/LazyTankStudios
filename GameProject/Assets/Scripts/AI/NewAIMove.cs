@@ -86,7 +86,7 @@ Hearts[Health - 1].gameObject.SetActive(false);
    sp.Play("Take_Damage_3");
   }
   if (Health <= 0) {
-if (boss) Quest.boss[currBoss] = true;
+//if (boss) Quest.boss[currBoss] = true;
 sp.Play("Death_3");
    gameObject.transform.parent.gameObject.SetActive(false);
   }

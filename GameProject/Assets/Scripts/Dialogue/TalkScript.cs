@@ -11,18 +11,19 @@ public class TalkScript: A {
   IM = F<InputManager>();
     panel = G<CanvasGroup>(F("Dialogue Box"));
   ds = F<DialogueScript>();
-  if (LanguageSelect.isEnglish) ds.ChangeFile(dialogueEnglish);
-  else ds.ChangeFile(dialogueGerman);
   movement = F<PlayerMovement>();
  }
  public void talk() {
-  panel.alpha = 1;
-  if (LanguageSelect.isEnglish) ds.ChangeFile(dialogueEnglish);
-  else ds.ChangeFile(dialogueGerman);
-  ds.Input();
-  talking = true;
- movement.stopInput = talking;
-  movement.enabled = !talking;
+        if(dialogueEnglish||dialogueGerman)
+        {
+            panel.alpha = 1;
+            if (LanguageSelect.isEnglish) ds.ChangeFile(dialogueEnglish);
+            else ds.ChangeFile(dialogueGerman);
+            ds.Input();
+            talking = true;
+            movement.stopInput = talking;
+            movement.enabled = !talking;
+        }
  }
  void Update() {
   if (talking) {
