@@ -52,6 +52,7 @@ public class PlayerMovement : A
     }
     void Start()
     {
+        NewQuest.orderList();
         stopInput = false;
         //xif (DeathCanvas != null) DontDestroyOnLoad(DeathCanvas.gameObject);
         myRigid = G<Rigidbody2D>();
@@ -67,8 +68,6 @@ public class PlayerMovement : A
         aHB.SetActive(false);
         bS = speed;
         StartCoroutine(Fsteps());
-        NewQuest.orderList();
-
     }
     void FixedUpdate()
     {
@@ -233,7 +232,6 @@ public class PlayerMovement : A
     {
         audioManager.Play("Doors_1_(Normal)");
         SC(waitUntilLoaded(dest));
-        NewQuest.newSceneLoaded = true;
     }
     public IEnumerator waitUntilLoaded(string[] dest)
     {
