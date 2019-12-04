@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7720353985687294608}
+  - component: {fileID: 3877887441431148518}
   - component: {fileID: 7720353985687294605}
   - component: {fileID: 7720353985687294606}
   - component: {fileID: 7720353985687294607}
@@ -33,6 +34,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3877887441431148518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7720353985687294609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d047d3433a76347a7c5fa09766069e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 0
+  type: 0
+  NPCToReturnTo: {fileID: 0}
+  Dialogue: {fileID: 0}
+  QuestCompleted: {fileID: 0}
+  KillRequest: 0
+  CollectRequest: 0
+  DeliverRequest: 0
+  Kills: []
+  ItemsToBeCollected: []
+  ItemsQuantities: 
+  DeliverGold: 0
+  reward: 0
+  rewardItems: []
+  rewardIdsAndQuantities: []
+  rewardGold: 0
+  status: 0
 --- !u!61 &7720353985687294605
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -100,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3f2379849ac24499c0102324d4ba53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panel: {fileID: 0}
   dialogueEnglish: {fileID: 0}
   dialogueGerman: {fileID: 0}
   questdialogue: {fileID: 0}
