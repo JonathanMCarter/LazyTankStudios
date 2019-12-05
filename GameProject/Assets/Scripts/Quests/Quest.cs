@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Quest: A {
  static public bool[] boss = new bool[8];
+    public bool[] bosses;
  public int ID;
+    [TextArea]//temp add by LC to help organise inspector
+    public string QuestTag; //temp add by LC to help organise inspector
  public enum Type {
   Return,
   NonReturn
@@ -20,6 +23,7 @@ public class Quest: A {
  public Sprite[] ItemsToBeCollected;
  public int[] ItemsQuantities;
  public int DeliverGold;
+    public bool BossQuest;
  public enum Reward {
   Items,
   Gold,
@@ -38,33 +42,49 @@ public class Quest: A {
   OnGoing,
   ReadyToComplete
  };
- public Status status;
+    public Status status;
  TalkScript GameManagerTalk;
  Collider2D[] colliders = new Collider2D[10];
  Quest[] quests;
  Inventory inv;
- static public int currQuest = 0;
+ public static  int currQuest = 0;
  static GameObject currQuestGO;
  static Status currQuestStatus;
  GameObject ActiveQuestSign;
  PlayerMovement HeroRef;
  DialogueScript ds;
  ContactFilter2D contactFilter;
- void InitialiseQuests(Status StatusToSet) {
-  status = ID == currQuest ? StatusToSet : Status.NotAvailable;
-  if (gameObject == GetCurrentQuestGameObject()) {
-   G<BoxCollider2D>().enabled = G<BoxCollider2D>().enabled = true;
-   ActiveQuestSign.SetActive(status == StatusToSet);
-  } else {
-   G<BoxCollider2D>().enabled = status == StatusToSet ? true : false;
-   G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).enabled = status == StatusToSet ? true : false;
-  }
-  enabled = status == StatusToSet;
+    QuestLog log;
+
+
+    void UpdateLog() //temp added by LC
+    {
+        log.SaveQuest(ID, QuestTag, status);
+    }
+
+ void InitialiseQuests(Status StatusToSet) { //how does this work for side quests?
+        if (status != Status.Completed) status = ID == currQuest ? StatusToSet : Status.NotAvailable;
+        if (SideQuest && status != Status.Completed) status = ID <= currQuest ? StatusToSet : Status.NotAvailable; //check added by LC for side quests
+        if (gameObject == GetCurrentQuestGameObject()) {
+        //G<BoxCollider2D>().enabled = G<BoxCollider2D>().enabled = true;
+            G<BoxCollider2D>().enabled = true; //changed by LC
+            //ActiveQuestSign.SetActive(status == StatusToSet);
+            ActiveQuestSign.SetActive(true); //changed by LC
+        }
+        else {
+            G<BoxCollider2D>().enabled = status == StatusToSet ? true : false;
+            G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).enabled = status == StatusToSet ? true : false;
+        }
+    enabled = (status != Status.NotAvailable && status != Status.Completed);
  }
+
+
  GameObject GetCurrentQuestGameObject() {
   foreach(Quest q in quests) if (q.ID == currQuest) return q.gameObject;
   return null;
  }
+
+
  void Awake() {
   ds = F<DialogueScript>();
   HeroRef = F<PlayerMovement>();
@@ -74,34 +94,65 @@ public class Quest: A {
   quests = Fs<Quest>();
   GameManagerTalk = G<TalkScript>(F("GameManager"));
   InitialiseQuests(Status.Available);
+        log = FindObjectOfType<QuestLog>(); //temp add by LC
  }
  void Start() {
-  if (currQuestStatus > Status.Completed) InitialiseQuests(currQuestStatus);
+
+        StartCoroutine(latestart());
  }
- void Update() {
-  //print(currQuest + " STATUS: " + currQuestStatus);
-  if (NPCToReturnTo && type.Equals(Type.Return)) {
-   if (G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).OverlapCollider(contactFilter, colliders) > 1 && status.Equals(Status.ReadyToComplete)) {
-    displayQuestCompletedDialogue();
-    findNextQuest();
-   }
-  } else if (status.Equals(Status.ReadyToComplete)) {
-   displayQuestCompletedDialogue();
-   findNextQuest();
-  }
+
+    IEnumerator latestart() //temp add by LC
+    {
+        yield return new WaitForSeconds(0);
+        //FindObjectOfType<QuestLog>().SetQuest();
+        if (currQuestStatus > Status.Completed) InitialiseQuests(currQuestStatus); //all quests start as not avaliable - how does this code run
+        //if (SideQuest) InitialiseQuests(currQuestStatus);
+        yield return new WaitForSeconds(0);
+        if (type == Type.Return && status == Status.ReadyToComplete)
+        {
+            G<BoxCollider2D>(C(NPCToReturnTo.transform, 0).gameObject).enabled = true;
+        }
+
+    }
+
+
+
+
+    void Update() { //this should prob not be every frame - may move to an ienumerator and cycle every few seconds - LC
+                    //print(currQuest + " STATUS: " + currQuestStatus);
+        bosses = boss;
+    if (NPCToReturnTo && type.Equals(Type.Return)) {
+            //this allows for everything to collide with the end npc, may be fixed with proper use of layers - LC
+        if (G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).OverlapCollider(contactFilter, colliders) > 1 && status.Equals(Status.ReadyToComplete)) { 
+        displayQuestCompletedDialogue();
+        findNextQuest();
+        }
+    }
+    else if (status.Equals(Status.ReadyToComplete)) {
+            displayQuestCompletedDialogue();
+        findNextQuest();
+    }
+
   if (status == Status.OnGoing)
-   if (checkKilledAllEnemies() && KillRequest || checkItemsCollected() && CollectRequest || DeliverRequest && inv.getCoins() >= DeliverGold) {
+    if (checkKilledAllEnemies() && KillRequest || checkItemsCollected() && CollectRequest || DeliverRequest && inv.getCoins() >= DeliverGold) {
     status = currQuestStatus = Status.ReadyToComplete;
-    if (type == Type.Return) G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).enabled = true;
+                UpdateLog();
+                if (type == Type.Return) {
+                    G<BoxCollider2D>(C(NPCToReturnTo.transform, 0).gameObject).enabled = true;
+                }
    }
  }
  void OnTriggerEnter2D(Collider2D collision) {
-  if (status != Status.ReadyToComplete && ID == currQuest || status != Status.ReadyToComplete && ID <= currQuest && SideQuest) {
-   if (collision.gameObject.name == "Hero" && isActiveAndEnabled) {
-    G<TalkScript>().dialogueEnglish = Dialogue;
+        //if (status != Status.ReadyToComplete && ID == currQuest || status != Status.ReadyToComplete && ID <= currQuest && SideQuest) {
+        if ( ID == currQuest ||  ID <= currQuest && SideQuest){
+            if (collision.gameObject.name == "Hero" && isActiveAndEnabled) {
+    G<TalkScript>().dialogueEnglish = Dialogue; //need to add in german text
     if (DeliverRequest && status == Status.Available) inv.addCoins(DeliverGold);
     status = currQuestStatus = Status.OnGoing;
-   }
+                UpdateLog();
+                //collision.gameObject.GetComponent<PlayerMovement>().myquests.Add(this);//temp add by LC. didnt work as intended
+                //FindObjectOfType<QuestLog>().SaveQuest(ID, QuestTag, status);
+            }
   }
  }
  bool checkKilledAllEnemies() {
@@ -109,7 +160,7 @@ public class Quest: A {
         if (Kills.Count > 0) Kills.ForEach(enemy=>state=enemy.activeInHierarchy?false:true);
         else{
             state = boss[NewAIMove.currBoss] == true;
-            if (state) NewAIMove.currBoss++;
+            //if (state) NewAIMove.currBoss++; //taken out by LC for changing scenes. increases at end of quest
         }
   return state;
  }
@@ -132,24 +183,31 @@ public class Quest: A {
    offerReward(reward);
   }
   status = currQuestStatus = Status.Completed;
-  currQuest++;
+        UpdateLog();
+        if (currQuest == ID && !SideQuest) currQuest++; //check added by LC as skipped a q, and increased with side quests
+        print(currQuest);
+        if (BossQuest) NewAIMove.currBoss++; //temp add by LC
  }
  public void findNextQuest() {
+        FindObjectOfType<QuestLog>().SetQuest();
   bool lastQuest = true;
+        //GetComponent<BoxCollider2D>().enabled = false; //temp added by LC
   foreach(Quest q in quests) {
    if (q.ID == ID + 1 && !SideQuest) {
     q.enabled = G<BoxCollider2D>(q.gameObject).enabled = true;
     enabled = false;
     if (q.gameObject != this.gameObject) lastQuest = false;
-    q.ActiveQuestSign.SetActive(true);
-    ActiveQuestSign.SetActive(false);
+                ActiveQuestSign.SetActive(false); //order swapped by LC
+                q.ActiveQuestSign.SetActive(true);
+    
     q.status = currQuestStatus = Status.Available;
    } else if (SideQuest && currQuest >= q.ID && q.status != Status.Completed) {
     enabled = G<BoxCollider2D>().enabled = false;
     ActiveQuestSign.SetActive(false);
     q.status = Status.Available;
     lastQuest = false;
-   }
+                
+            }
   }
   if (lastQuest) {
    enabled = G<BoxCollider2D>().enabled = G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).enabled = false;

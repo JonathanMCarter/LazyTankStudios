@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,6 +26,7 @@ public class PlayerMovement : A
     public bool stopInput;
     public float RangedAttackDuration, dashSpeedMultiplier, DashDuration, blockTIme, AttackTime, SlideSpeed, BulletSpeed, BulletLifeTime;
     float countdown;
+    public List<Quest> myquests;
     enum ITEMS
     {
         SWORD,
@@ -65,7 +67,8 @@ public class PlayerMovement : A
         aHB = C(aR,0).gameObject;
         aR.gameObject.SetActive(true);
         aHB.SetActive(false);
-        bS = speed;
+        bS = speed * 3;
+        //////////////////////speed *3 set temp for easier testing
         StartCoroutine(Fsteps());
     }
     void FixedUpdate()
