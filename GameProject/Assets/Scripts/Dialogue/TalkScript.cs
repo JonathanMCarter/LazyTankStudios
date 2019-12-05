@@ -7,6 +7,7 @@ public class TalkScript: A {
  InputManager IM;
  DialogueScript ds;
  bool talking = false;
+    public bool Sign;
  void Awake() {
   IM = F<InputManager>();
     panel = G<CanvasGroup>(F("Dialogue Box"));
@@ -21,7 +22,9 @@ public class TalkScript: A {
   else ds.ChangeFile(dialogueGerman);
   ds.Input();
   talking = true;
- movement.stopInput = talking;
+        if (Sign) return;
+        //lines below may not actually be needed cos of Update. comment added by LC
+ movement.stopInput = talking; 
   movement.enabled = !talking;
  }
  void Update() {
@@ -31,10 +34,13 @@ public class TalkScript: A {
    }
    talking = !ds.FileHasEnded;
    panel.alpha = talking ? 1 : 0;
+            if (Sign) return;
 movement.stopInput = talking;
    movement.enabled = !talking;
   }
  }
+
+
  public bool isItTalking() {
   return talking;
  }

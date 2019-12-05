@@ -193,7 +193,8 @@ public class Quest: A {
  public void findNextQuest() {
         FindObjectOfType<QuestLog>().SetQuest();
   bool lastQuest = true;
-        //GetComponent<BoxCollider2D>().enabled = false; //temp added by LC
+        
+       // if (NPCToReturnTo != this.gameObject) GetComponent<BoxCollider2D>().enabled = false; //temp added by LC
   foreach(Quest q in quests) {
    if (q.ID == ID + 1 && !SideQuest) {
     q.enabled = G<BoxCollider2D>(q.gameObject).enabled = true;
@@ -201,6 +202,7 @@ public class Quest: A {
     if (q.gameObject != this.gameObject) lastQuest = false;
                 ActiveQuestSign.SetActive(false); //order swapped by LC
                 q.ActiveQuestSign.SetActive(true);
+                
     
     q.status = currQuestStatus = Status.Available;
    } else if (SideQuest && currQuest >= q.ID && q.status != Status.Completed) {

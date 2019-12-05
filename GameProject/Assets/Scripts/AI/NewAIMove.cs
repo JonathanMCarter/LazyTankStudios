@@ -16,6 +16,7 @@ public class NewAIMove: A {
  Transform PlayerPos;
  static public int currBoss = 0;
  SoundPlayer sp;
+    public int BossNumber;
  [HideInInspector]
  public bool SeenPlayer, Turn, TurnCount, ToggleDirection, hit;
     void Start() {
@@ -86,7 +87,8 @@ Hearts[Health - 1].gameObject.SetActive(false);
    sp.Play("Take_Damage_3");
   }
   if (Health <= 0) {
-if (boss) Quest.boss[currBoss] = true;
+if (boss) Quest.boss[BossNumber] = true; //changed by LC for below reason
+//need to add in check that it is only increasing the right one
 sp.Play("Death_3");
    gameObject.transform.parent.gameObject.SetActive(false);
   }
