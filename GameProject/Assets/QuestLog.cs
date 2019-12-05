@@ -33,11 +33,14 @@ public class QuestLog : MonoBehaviour
        // print(Quest.currQuest);
         for (int i = 0; i < ID.Count; i++)
         {
-            if (ID[i] == Q[i].ID)
+            foreach (Quest q in Q)
             {
-                if (QuestTag[i] == Q[i].QuestTag) //added tags as ID could be the same, not unique
+                if (ID[i] == q.ID)
                 {
-                    Q[i].status = Status[i];
+                    if (QuestTag[i] == q.QuestTag) //added tags as ID could be the same, not unique
+                    {
+                        q.status = Status[i];
+                    }
                 }
             }
 

@@ -160,6 +160,7 @@ public class Quest: A {
         if (Kills.Count > 0) Kills.ForEach(enemy=>state=enemy.activeInHierarchy?false:true);
         else{
             state = boss[NewAIMove.currBoss] == true;
+          
             //if (state) NewAIMove.currBoss++; //taken out by LC for changing scenes. increases at end of quest
         }
   return state;
@@ -186,7 +187,8 @@ public class Quest: A {
         UpdateLog();
         if (currQuest == ID && !SideQuest) currQuest++; //check added by LC as skipped a q, and increased with side quests
         print(currQuest);
-        if (BossQuest) NewAIMove.currBoss++; //temp add by LC
+        if (BossQuest) { NewAIMove.currBoss++; print("Current Boss: " + NewAIMove.currBoss); } //temp add by LC
+
  }
  public void findNextQuest() {
         FindObjectOfType<QuestLog>().SetQuest();
