@@ -14,8 +14,7 @@ public class Quest: A {
  public Type type;
  public bool SideQuest;
  public GameObject NPCToReturnTo;
- public DialogueFile Dialogue;
- public DialogueFile QuestCompleted;
+ public DialogueFile Dialogue, QuestCompleted, GerDial, GerQComp;
  public bool KillRequest;
  public bool CollectRequest;
  public bool DeliverRequest;
@@ -164,6 +163,7 @@ ActiveQuestSign.SetActive(false); //Late add by LC
         if ( ID == currQuest ||  ID <= currQuest && SideQuest){
             if (collision.gameObject.name == "Hero" && isActiveAndEnabled) {
     G<TalkScript>().dialogueEnglish = Dialogue; //need to add in german text
+                G<TalkScript>().dialogueGerman = GerDial;
     if (DeliverRequest && status == Status.Available) inv.addCoins(DeliverGold);
     status = currQuestStatus = Status.OnGoing;
                RAQS.SetActive(true);//late add by LC
@@ -198,12 +198,14 @@ ActiveQuestSign.SetActive(false); //Late add by LC
    if (inv.getCoins() >= DeliverGold) {
     inv.addCoins(-DeliverGold);
     GameManagerTalk.dialogueEnglish = QuestCompleted;
+                GameManagerTalk.dialogueGerman = GerQComp;
     GameManagerTalk.talk();
     offerReward(reward);
    }
-  } else {
+  } else { ///////////////////some repeat code here, could be reduced?
    GameManagerTalk.dialogueEnglish = QuestCompleted;
-   GameManagerTalk.talk();
+            GameManagerTalk.dialogueGerman = GerQComp;
+            GameManagerTalk.talk();
    offerReward(reward);
   }
   status = currQuestStatus = Status.Completed;
