@@ -1073,10 +1073,15 @@ MonoBehaviour:
   Bullet: {fileID: 6827261557022495565, guid: 7ed083c1b15dd144d88161664ab05dc7, type: 3}
   DeathCanvas: {fileID: 0}
   Menu: {fileID: 0}
+  Settings: {fileID: 0}
+  costumes:
+  - {fileID: 9100000, guid: dcf5d9affe7e0794ca80f76c5915a68e, type: 2}
+  - {fileID: 9100000, guid: 49c0ccc07a96ce64bb8179f669b52aac, type: 2}
   dmgCD: 0
   health: 5
   QuestActiveID: 0
   aR: {fileID: 1743666071}
+  stopInput: 0
   RangedAttackDuration: 0.5
   dashSpeedMultiplier: 2
   DashDuration: 0.3
@@ -1085,6 +1090,7 @@ MonoBehaviour:
   SlideSpeed: 100
   BulletSpeed: 0
   BulletLifeTime: 0
+  myquests: []
   maxHealth: 5
   hearts:
   - {fileID: 0}

@@ -1949,6 +1949,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 559961965589955835}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1487450262102447213
@@ -3816,7 +3827,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3376835896732907339}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 559961965589955835}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &3639884770109710650
@@ -4633,7 +4666,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4497120547938619686}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 559961965589955835}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &4562938986922110024
@@ -5889,6 +5944,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 559961965589955835}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &6472939970849563494
@@ -6234,7 +6300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3237954170893677786
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6845,6 +6911,7 @@ MonoBehaviour:
   dialogueGerman: {fileID: 0}
   questdialogue: {fileID: 0}
   movement: {fileID: 0}
+  Sign: 0
 --- !u!1 &7125498260310754123
 GameObject:
   m_ObjectHideFlags: 0
@@ -9242,6 +9309,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2764304477393958792, guid: c13193b940bb8ef4bb17c1910fd223fb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2764304477393958789, guid: c13193b940bb8ef4bb17c1910fd223fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9476,11 +9548,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6506117089838784766}
     m_Modifications:
-    - target: {fileID: 4801624218000729514, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
+    - target: {fileID: 4801624218000729518, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
         type: 3}
-      propertyPath: m_Name
-      value: PlayerInventory
-      objectReference: {fileID: 0}
+      propertyPath: t
+      value: 
+      objectReference: {fileID: 7704622312421222001}
     - target: {fileID: 4801624218000729515, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9586,6 +9658,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4801624218000729514, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerInventory
+      objectReference: {fileID: 0}
     - target: {fileID: 4801624218000729516, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
         type: 3}
       propertyPath: m_Sprite
@@ -9597,11 +9674,6 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4801624218000729518, guid: d9ff01d14cb9ad84ea1f89d42ff83876,
-        type: 3}
-      propertyPath: t
-      value: 
-      objectReference: {fileID: 7704622312421222001}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9ff01d14cb9ad84ea1f89d42ff83876, type: 3}
 --- !u!224 &1516564038 stripped

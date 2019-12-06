@@ -14,6 +14,7 @@ public class PlayerMovement : A
     public GameObject Bullet, DeathCanvas, Menu, Settings;
     Rigidbody2D myRigid;
     Animator myAnim;
+    public RuntimeAnimatorController[] costumes;
     //SpriteRenderer render;
     InputManager IM;
     public bool dmgCD;
@@ -247,9 +248,9 @@ public class PlayerMovement : A
     ///<summary>
     ///Used to switch the animator controller for the costume changing dlc feature
     ///</summary>
-    public void SwitchAnimator(RuntimeAnimatorController newAC)
+    public void SwitchAnimator(int i)
     {
-        myAnim.runtimeAnimatorController=newAC;
+        myAnim.runtimeAnimatorController=costumes[i];
     }
 
     IEnumerator Fsteps()
@@ -262,6 +263,11 @@ public class PlayerMovement : A
             if (myRigid.velocity.magnitude > 0f) audioManager.Play("Footsteps_(Concrete)");
            // print("Step");
         }
+    }
+
+    public void SetInputStopped(bool b)
+    {
+        stopInput=b;
     }
 
 }
