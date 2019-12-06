@@ -66,6 +66,7 @@ public class QuestLog : MonoBehaviour
                     {
                         q.status = Status[i];
                         q.ItemToCollect = Collectables[i];
+                        print(q.ItemToCollect + " " + Collectables[i] + " " + q.gameObject.name);
                         
                     }
                 }
@@ -92,7 +93,7 @@ public class QuestLog : MonoBehaviour
                 if (QuestTag[i] == questtag) //added tags as ID could be the same, not unique
                 {
                     Status[i] = status;
-                    Collectables[i] = collect;
+                    //Collectables[i] = collect;
                     return;
                 }
             }
