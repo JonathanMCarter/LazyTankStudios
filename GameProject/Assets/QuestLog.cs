@@ -26,7 +26,26 @@ public class QuestLog : MonoBehaviour
 
     //    }
     //}
+    public bool Check(int QId, string Qtag)
+    {
+        for (int i = 0; i < ID.Count; i++)
+        {
+            {
+                if (ID[i] == QId)
+                {
+                    if (QuestTag[i] == Qtag) //added tags as ID could be the same, not unique
+                    {
+                        if (Status[i] == Quest.Status.Completed)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
 
+        }
+        return false;
+    }
         public bool Collect(int QId, string Qtag)
     {
 
