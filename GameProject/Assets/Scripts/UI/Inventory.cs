@@ -23,4 +23,6 @@ public class Inventory : A
         Coins += coins;
         t.text = Coins + "";
     }
+
+
 }
