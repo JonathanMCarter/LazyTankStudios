@@ -189,6 +189,11 @@ ActiveQuestSign.SetActive(false); //Late add by LC
   return state;
  }
  void displayQuestCompletedDialogue() {
+
+        ActiveQuestSign.SetActive(false);//late add by LC
+        RAQS.SetActive(false);
+
+
   if (DeliverRequest) {
    if (inv.getCoins() >= DeliverGold) {
     inv.addCoins(-DeliverGold);
@@ -211,33 +216,42 @@ ActiveQuestSign.SetActive(false); //Late add by LC
  public void findNextQuest() {
         FindObjectOfType<QuestLog>().SetQuest();
   bool lastQuest = true;
-        ActiveQuestSign.SetActive(false);//late add by LC
-       // if (NPCToReturnTo != this.gameObject) GetComponent<BoxCollider2D>().enabled = false; //temp added by LC
-  foreach(Quest q in quests) {
+        if (SideQuest) enabled = G<BoxCollider2D>().enabled = G<BoxCollider2D>(C(NPCToReturnTo.transform, 0).gameObject).enabled = false;
+        // if (NPCToReturnTo != this.gameObject) GetComponent<BoxCollider2D>().enabled = false; //temp added by LC
+        if (!SideQuest)
+        {
+            foreach (Quest q in quests)
+            {
 
-   if (q.ID == ID + 1 && !SideQuest) {
-                 
-    q.enabled = G<BoxCollider2D>(q.gameObject).enabled = true;
-                q.ActiveQuestSign.SetActive(true);
-    enabled = false;
-    if (q.gameObject != this.gameObject) lastQuest = false;
-                //ActiveQuestSign.SetActive(false); //order swapped by LC
-                //q.ActiveQuestSign.SetActive(true);
-                
-    
-    q.status = currQuestStatus = Status.Available;
-   } else if (SideQuest && currQuest >= q.ID && q.status != Status.Completed) {
-    enabled = G<BoxCollider2D>().enabled = false;
-    ActiveQuestSign.SetActive(true);
-    q.status = Status.Available;
-    lastQuest = false;
-                
+                if (q.ID == ID + 1 && !q.SideQuest)
+                {
+
+                    q.enabled = G<BoxCollider2D>(q.gameObject).enabled = true;
+                    q.ActiveQuestSign.SetActive(true);
+                    enabled = false;
+                    if (q.gameObject != this.gameObject) lastQuest = false;
+                    //ActiveQuestSign.SetActive(false); //order swapped by LC
+                    //q.ActiveQuestSign.SetActive(true);
+
+
+                    q.status = currQuestStatus = Status.Available;
+                }
+                else if (q.SideQuest && currQuest >= q.ID && q.status != Status.Completed)
+                { //edited late by LC
+                    q.enabled = G<BoxCollider2D>().enabled = true;
+                    q.ActiveQuestSign.SetActive(true);
+                    q.status = Status.Available;
+
+                    //lastQuest = false;
+
+                }
             }
-  }
-  if (lastQuest) {
-   enabled = G<BoxCollider2D>().enabled = G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).enabled = false;
-   ActiveQuestSign.SetActive(false);
-  }
+            if (lastQuest)
+            {
+                enabled = G<BoxCollider2D>().enabled = G<BoxCollider2D>(C(NPCToReturnTo.transform, 0).gameObject).enabled = false;
+                ActiveQuestSign.SetActive(false);
+            }
+        }
  }
  public void offerReward(Quest.Reward typeOfReward) {
   Random.InitState(Random.Range(0, 100));
