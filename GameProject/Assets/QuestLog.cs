@@ -26,7 +26,26 @@ public class QuestLog : MonoBehaviour
 
     //    }
     //}
+    public bool Check(int QId, string Qtag)
+    {
+        for (int i = 0; i < ID.Count; i++)
+        {
+            {
+                if (ID[i] == QId)
+                {
+                    if (QuestTag[i] == Qtag) //added tags as ID could be the same, not unique
+                    {
+                        if (Status[i] == Quest.Status.Completed)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
 
+        }
+        return false;
+    }
         public bool Collect(int QId, string Qtag)
     {
 
@@ -66,6 +85,7 @@ public class QuestLog : MonoBehaviour
                     {
                         q.status = Status[i];
                         q.ItemToCollect = Collectables[i];
+                        print(q.ItemToCollect + " " + Collectables[i] + " " + q.gameObject.name);
                         
                     }
                 }
@@ -92,7 +112,7 @@ public class QuestLog : MonoBehaviour
                 if (QuestTag[i] == questtag) //added tags as ID could be the same, not unique
                 {
                     Status[i] = status;
-                    Collectables[i] = collect;
+                    //Collectables[i] = collect;
                     return;
                 }
             }

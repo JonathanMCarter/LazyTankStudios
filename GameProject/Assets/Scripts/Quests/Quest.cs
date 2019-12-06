@@ -53,8 +53,9 @@ public class Quest: A {
  GameObject ActiveQuestSign;
  PlayerMovement HeroRef;
  DialogueScript ds;
- ContactFilter2D contactFilter;
+ public ContactFilter2D contactFilter;
     GameObject RAQS; // Return Active Quest Sign
+    BoxCollider2D RBC; //Return Box Collider
     QuestLog log;
 
 
@@ -91,7 +92,7 @@ public class Quest: A {
   HeroRef = F<PlayerMovement>();
   ActiveQuestSign = C(gameObject.transform.parent,1).gameObject;
         RAQS = NPCToReturnTo.transform.GetChild(1).gameObject; //late add by LC
-
+        RBC = G<BoxCollider2D>(C(NPCToReturnTo.transform, 0).gameObject); //late add by LC
 ActiveQuestSign.SetActive(false); //Late add by LC
 
 
@@ -138,7 +139,7 @@ ActiveQuestSign.SetActive(false); //Late add by LC
         bosses = boss;
     if (NPCToReturnTo && type.Equals(Type.Return)) {
             //this allows for everything to collide with the end npc, may be fixed with proper use of layers - LC
-        if (G<BoxCollider2D>(C(NPCToReturnTo.transform,0).gameObject).OverlapCollider(contactFilter, colliders) > 1 && status.Equals(Status.ReadyToComplete)) { 
+        if (RBC.OverlapCollider(contactFilter, colliders) > 1 && status.Equals(Status.ReadyToComplete)) { 
         displayQuestCompletedDialogue();
         findNextQuest();
         }
