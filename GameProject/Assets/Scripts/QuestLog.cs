@@ -85,7 +85,7 @@ public class QuestLog : MonoBehaviour
                     {
                         q.status = Status[i];
                         q.ItemToCollect = Collectables[i];
-                        print(q.ItemToCollect + " " + Collectables[i] + " " + q.gameObject.name);
+                        //print(q.ItemToCollect + " " + Collectables[i] + " " + q.gameObject.name);
                         
                     }
                 }

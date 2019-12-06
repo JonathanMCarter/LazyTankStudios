@@ -12,4 +12,5 @@ public class SaveFile
    // public List<Sprite> icons;
     public List<int> items;
     public int Coins;
+    public int Pots;
 }

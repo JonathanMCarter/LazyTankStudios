@@ -8,7 +8,7 @@ public class SaveSys : MonoBehaviour
 {
     QuestLog QLog;
     Inventory inv;
-    public Sprite[] itemsprites;
+    //public Sprite[] itemsprites;
     string FilePath;
     // Start is called before the first frame update
 
@@ -29,8 +29,9 @@ public class SaveSys : MonoBehaviour
             Status = QLog.Status,
             Collectables = QLog.Collectables,
             items = inv.items,
-           // icons = inv.icons,
-            Coins = inv.getCoins()
+            // icons = inv.icons,
+            Coins = inv.getCoins(),
+            Pots = inv.pots
             
         };
 
@@ -39,10 +40,10 @@ public class SaveSys : MonoBehaviour
         using (var filestream = File.Create(FilePath))
         {
             bF.Serialize(filestream, save);
-            print("Has it saved");
+          //  print("Has it saved");
         }
 
-        print("File saved");
+       // print("File saved");
 
     }
 
@@ -61,7 +62,7 @@ public class SaveSys : MonoBehaviour
             using (var fileStream = File.Open(FilePath, FileMode.Open))
             {
                 save = (SaveFile)bF.Deserialize(fileStream);
-                print("File Opened");
+              //  print("File Opened");
             }
 
 
@@ -71,23 +72,24 @@ public class SaveSys : MonoBehaviour
             QLog.Collectables = save.Collectables;
             inv.addCoins(save.Coins);
             inv.items = save.items;
-            InvIcon();
+            inv.pots = save.Pots;
+            //InvIcon();
             //inv.icons = save.icons;
-            print("Loaded");
+           // print("Loaded");
 
         }
-        else print("File not found");
+       // else print("File not found");
 
 
 
     }
 
-    void InvIcon()
-    {
+    //void InvIcon()
+    //{
         
-        for (int i = 0; i < inv.items.Count; i++)
-        {
-            inv.icons.Add(itemsprites[inv.items[i]]);
-        }
-    }
+    //    for (int i = 0; i < inv.items.Count; i++)
+    //    {
+    //        inv.icons.Add(itemsprites[inv.items[i]]);
+    //    }
+    //}
 }

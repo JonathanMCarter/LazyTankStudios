@@ -141,7 +141,7 @@ public class PlayerMovement : A
                     C(aR,3).gameObject.SetActive(true);
                     break;
                 case 4:
-                    if (health < maxHealth) { ++health; ShowHearts(); Inv.items.Remove(ID); Inv.change(); audioManager.Play("Healing_1"); }
+                    if (health < maxHealth) { ++health; ShowHearts(); Inv.UsePotion(); audioManager.Play("Healing_1"); }
                     break;
                 case -1:
                     break;
