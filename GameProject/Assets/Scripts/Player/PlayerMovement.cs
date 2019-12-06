@@ -125,7 +125,8 @@ public class PlayerMovement : A
                     stopInput = true;
                     break;
                 case 1:
-                    C(aR,1).gameObject.SetActive(true);
+                    //C(aR,1).gameObject.SetActive(true);
+                    audioManager.Play("Dash_1");
                     speed *= dashSpeedMultiplier;
                     countdown = DashDuration;
                     break;
