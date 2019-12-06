@@ -54,6 +54,7 @@ public class Quest: A {
  PlayerMovement HeroRef;
  DialogueScript ds;
  ContactFilter2D contactFilter;
+    GameObject RAQS; // Return Active Quest Sign
     QuestLog log;
 
 
@@ -69,7 +70,7 @@ public class Quest: A {
         //G<BoxCollider2D>().enabled = G<BoxCollider2D>().enabled = true;
             G<BoxCollider2D>().enabled = true; //changed by LC
             //ActiveQuestSign.SetActive(status == StatusToSet);
-            ActiveQuestSign.SetActive(true); //changed by LC
+            //ActiveQuestSign.SetActive(true); //changed by LC
         }
         else {
             G<BoxCollider2D>().enabled = status == StatusToSet ? true : false;
@@ -89,6 +90,11 @@ public class Quest: A {
   ds = F<DialogueScript>();
   HeroRef = F<PlayerMovement>();
   ActiveQuestSign = C(gameObject.transform.parent,1).gameObject;
+        RAQS = NPCToReturnTo.transform.GetChild(1).gameObject; //late add by LC
+
+ActiveQuestSign.SetActive(false); //Late add by LC
+
+
   newItem = Resources.Load<GameObject>("New Item");
   inv = F<Inventory>();
   quests = Fs<Quest>();
@@ -97,8 +103,9 @@ public class Quest: A {
         log = FindObjectOfType<QuestLog>(); //temp add by LC
  }
  void Start() {
-
+ 
         StartCoroutine(latestart());
+       
  }
 
     IEnumerator latestart() //temp add by LC
@@ -112,6 +119,14 @@ public class Quest: A {
         {
             G<BoxCollider2D>(C(NPCToReturnTo.transform, 0).gameObject).enabled = true;
         }
+
+        if (status != Status.Completed && status != Status.NotAvailable)
+        {
+           // print(transform.parent.gameObject.name);
+            ActiveQuestSign.SetActive(true);
+            if (status != Status.Available) RAQS.SetActive(true); //late add by LC 
+            //NPCToReturnTo.transform.GetChild(1).gameObject.SetActive(true);//late add by LC
+        }//late add by LC
 
     }
 
@@ -151,6 +166,7 @@ public class Quest: A {
     G<TalkScript>().dialogueEnglish = Dialogue; //need to add in german text
     if (DeliverRequest && status == Status.Available) inv.addCoins(DeliverGold);
     status = currQuestStatus = Status.OnGoing;
+               RAQS.SetActive(true);//late add by LC
                 UpdateLog();
                 //collision.gameObject.GetComponent<PlayerMovement>().myquests.Add(this);//temp add by LC. didnt work as intended
                 //FindObjectOfType<QuestLog>().SaveQuest(ID, QuestTag, status);
@@ -195,21 +211,24 @@ public class Quest: A {
  public void findNextQuest() {
         FindObjectOfType<QuestLog>().SetQuest();
   bool lastQuest = true;
-        
+        ActiveQuestSign.SetActive(false);//late add by LC
        // if (NPCToReturnTo != this.gameObject) GetComponent<BoxCollider2D>().enabled = false; //temp added by LC
   foreach(Quest q in quests) {
+
    if (q.ID == ID + 1 && !SideQuest) {
+                 
     q.enabled = G<BoxCollider2D>(q.gameObject).enabled = true;
+                q.ActiveQuestSign.SetActive(true);
     enabled = false;
     if (q.gameObject != this.gameObject) lastQuest = false;
-                ActiveQuestSign.SetActive(false); //order swapped by LC
-                q.ActiveQuestSign.SetActive(true);
+                //ActiveQuestSign.SetActive(false); //order swapped by LC
+                //q.ActiveQuestSign.SetActive(true);
                 
     
     q.status = currQuestStatus = Status.Available;
    } else if (SideQuest && currQuest >= q.ID && q.status != Status.Completed) {
     enabled = G<BoxCollider2D>().enabled = false;
-    ActiveQuestSign.SetActive(false);
+    ActiveQuestSign.SetActive(true);
     q.status = Status.Available;
     lastQuest = false;
                 
