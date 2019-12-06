@@ -141,6 +141,8 @@ public class Quest: A {
                     G<BoxCollider2D>(C(NPCToReturnTo.transform, 0).gameObject).enabled = true;
                 }
    }
+
+        if (status == Status.Completed && enabled && SideQuest) findNextQuest(); //added by LC to stop side quests repeating
  }
  void OnTriggerEnter2D(Collider2D collision) {
         //if (status != Status.ReadyToComplete && ID == currQuest || status != Status.ReadyToComplete && ID <= currQuest && SideQuest) {
