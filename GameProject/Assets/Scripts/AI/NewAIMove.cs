@@ -16,6 +16,7 @@ public class NewAIMove: A {
  Transform PlayerPos;
  static public int currBoss = 0;
  SoundPlayer sp;
+public Animator myAnim;
     public int BossNumber;
  [HideInInspector]
  public bool SeenPlayer, Turn, TurnCount, ToggleDirection, hit;
@@ -25,9 +26,12 @@ public class NewAIMove: A {
   Health = Hearts.Length;
   PlayerPos = FT("Player").transform;
   sp = F<SoundPlayer>();
+  myAnim=me.GetComponent<Animator>();
  }
  void Update() {
   me.transform.position = transform.position + offset;
+  myAnim.SetFloat("SpeedX",MyRigid.velocity.x);
+  myAnim.SetFloat("SpeedY",MyRigid.velocity.y);
   if (SeenPlayer) RunToPlayer();
   else RandomWander();
  }

@@ -23,6 +23,7 @@ public class EnemyProjectileSpawn : A
         if(F)
         {
             Instantiate(P, transform.position , transform.rotation);
+            AIM.myAnim.SetTrigger("Attack");
             F = false;
         }
     }
