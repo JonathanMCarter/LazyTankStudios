@@ -20,6 +20,7 @@ public class Quest: A {
  public bool DeliverRequest;
  public List < GameObject > Kills = new List < GameObject > ();
  public Sprite[] ItemsToBeCollected;
+    public int ItemToCollect;
  public int[] ItemsQuantities;
  public int DeliverGold;
     public bool BossQuest;
@@ -59,7 +60,7 @@ public class Quest: A {
 
     void UpdateLog() //temp added by LC
     {
-        log.SaveQuest(ID, QuestTag, status);
+        log.SaveQuest(ID, QuestTag, status, ItemToCollect);
     }
 
  void InitialiseQuests(Status StatusToSet) { //how does this work for side quests?
@@ -184,9 +185,10 @@ ActiveQuestSign.SetActive(false); //Late add by LC
   return state;
  }
  bool checkItemsCollected() {
-  bool state = false;
-  foreach(int elementQuantity in ItemsQuantities) state = elementQuantity == 0 ? true : false;
-  return state;
+        //bool state = false;
+        //foreach(int elementQuantity in ItemsQuantities) state = elementQuantity == 0 ? true : false;
+        //return state;
+        return (ItemToCollect <= 0);
  }
  void displayQuestCompletedDialogue() {
 

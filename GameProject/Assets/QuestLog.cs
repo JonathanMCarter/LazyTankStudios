@@ -8,6 +8,7 @@ public class QuestLog : MonoBehaviour
     public List<int> ID;
     public List<string> QuestTag;
     public List<Quest.Status> Status;
+    public List<int> Collectables;
     // Start is called before the first frame update
 
 
@@ -26,6 +27,30 @@ public class QuestLog : MonoBehaviour
     //    }
     //}
 
+        public bool Collect(int QId, string Qtag)
+    {
+
+        for (int i = 0; i < ID.Count; i++)
+        {
+            {
+                if (ID[i] == QId)
+                {
+                    if (QuestTag[i] == Qtag) //added tags as ID could be the same, not unique
+                    {
+                        if (Collectables[i] > 0)
+                        {
+                            Collectables[i]--;
+                            SetQuest();
+                            return true;
+                        }
+                    }
+                }
+            }
+
+        }
+            return false;
+    }
+
     public void SetQuest()
     {
         Quest[] Q = FindObjectsOfType<Quest>();
@@ -40,6 +65,8 @@ public class QuestLog : MonoBehaviour
                     if (QuestTag[i] == q.QuestTag) //added tags as ID could be the same, not unique
                     {
                         q.status = Status[i];
+                        q.ItemToCollect = Collectables[i];
+                        
                     }
                 }
             }
@@ -56,7 +83,7 @@ public class QuestLog : MonoBehaviour
         // }
     }
 
-    public void SaveQuest(int id, string questtag, Quest.Status status)
+    public void SaveQuest(int id, string questtag, Quest.Status status, int collect)
     {
         for (int i = 0; i < ID.Count; i++)
         {
@@ -65,6 +92,7 @@ public class QuestLog : MonoBehaviour
                 if (QuestTag[i] == questtag) //added tags as ID could be the same, not unique
                 {
                     Status[i] = status;
+                    Collectables[i] = collect;
                     return;
                 }
             }
@@ -74,6 +102,7 @@ public class QuestLog : MonoBehaviour
         ID.Add(id);
         QuestTag.Add(questtag);
         Status.Add(status);
+        Collectables.Add(collect);
     }
 
     //int Search(int id, string qt)

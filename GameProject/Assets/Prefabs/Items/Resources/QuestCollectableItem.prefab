@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 391997191116864900}
   - component: {fileID: 1364889372846328621}
   - component: {fileID: 3637800614894509876}
+  - component: {fileID: 4396928970124093701}
   m_Layer: 0
   m_Name: QuestCollectableItem
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7278474383829092002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 52.239704, y: -14.29, z: -1}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1.09415, y: 1.09415, z: 1.09415}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -50,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b8ce1703db0b34d48a85a7ca994fd708, type: 2}
+  - {fileID: 2100000, guid: 010395b9e4cc0b14e86bbc68e438d21b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70,15 +71,16 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7092858866822212849, guid: f7d73e9042e8ee64f9676490f30e7211,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &1364889372846328621
@@ -96,7 +98,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.2364483
+  m_Radius: 0.69
 --- !u!114 &3637800614894509876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +111,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a49121bbd2227f4dbf4a13670e8236b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemName: 
+  QId: 0
+  QTag: 
+--- !u!114 &4396928970124093701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7278474383829092002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edd88efa93e21734a9d4485838af0ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enabled: 1
+  interact:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3637800614894509876}
+        m_MethodName: Collect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
