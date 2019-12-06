@@ -18,6 +18,7 @@ public class InventoryItem : A
         F<SoundPlayer>().Play("Pick_Up_Item_1");
         Inventory inv = G<Inventory>(FT("Inv"));
         if (ID == 1024) inv.addCoins(quantity);
+        else if (ID == 4) inv.AddPotion();
         else
         {
             if (!Unique) inv.items.Add(ID);

@@ -26,8 +26,9 @@ public class Vendor: A {
         G<PlayerMovement>(F("Hero")).enabled = cg.alpha == 1 ? false : true;
         if (IM.Button_A() && cg.alpha == 1 && inv.getCoins() >= price)
         {
-           // p.GetComponent<InventoryItem>().pickup();
-            inv.items.Add(p.GetComponent<InventoryItem>().ID);
+            // p.GetComponent<InventoryItem>().pickup();
+            if (p.GetComponent<InventoryItem>().ID == 4) inv.AddPotion();
+            else inv.items.Add(p.GetComponent<InventoryItem>().ID);
             F<SoundPlayer>().Play("Pick_Up_Item_1");
             inv.addCoins(-price);
         }

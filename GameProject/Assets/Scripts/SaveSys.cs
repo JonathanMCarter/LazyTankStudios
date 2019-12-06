@@ -29,8 +29,9 @@ public class SaveSys : MonoBehaviour
             Status = QLog.Status,
             Collectables = QLog.Collectables,
             items = inv.items,
-           // icons = inv.icons,
-            Coins = inv.getCoins()
+            // icons = inv.icons,
+            Coins = inv.getCoins(),
+            Pots = inv.pots
             
         };
 
@@ -71,6 +72,7 @@ public class SaveSys : MonoBehaviour
             QLog.Collectables = save.Collectables;
             inv.addCoins(save.Coins);
             inv.items = save.items;
+            inv.pots = save.Pots;
             //InvIcon();
             //inv.icons = save.icons;
            // print("Loaded");
