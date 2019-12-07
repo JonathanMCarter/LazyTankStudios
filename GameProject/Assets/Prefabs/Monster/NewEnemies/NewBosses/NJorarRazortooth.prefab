@@ -39,10 +39,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1175992625948065188}
     m_Modifications:
-    - target: {fileID: 8804490145772601176, guid: 1f2a5009750a7f64481914fe02ffe397,
+    - target: {fileID: 3452434317747743178, guid: 1f2a5009750a7f64481914fe02ffe397,
         type: 3}
-      propertyPath: m_Name
-      value: JorarRazortooth
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6687694768296815183, guid: 1f2a5009750a7f64481914fe02ffe397,
         type: 3}
@@ -99,10 +99,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3452434317747743178, guid: 1f2a5009750a7f64481914fe02ffe397,
+    - target: {fileID: 8804490145772601176, guid: 1f2a5009750a7f64481914fe02ffe397,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+      propertyPath: m_Name
+      value: JorarRazortooth
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f2a5009750a7f64481914fe02ffe397, type: 3}
@@ -277,7 +277,7 @@ PrefabInstance:
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: MoveSpeed
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
@@ -369,10 +369,10 @@ PrefabInstance:
       propertyPath: Hearts.Array.data[14]
       value: 
       objectReference: {fileID: 243699413651549512}
-    - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
-      propertyPath: m_Radius
-      value: 1.0699577
+      propertyPath: Health
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
@@ -384,6 +384,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _T
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1.0699577
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}

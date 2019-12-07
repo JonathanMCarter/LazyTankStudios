@@ -354,10 +354,15 @@ PrefabInstance:
       propertyPath: Hearts.Array.data[14]
       value: 
       objectReference: {fileID: 504777380442878628}
-    - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
-      propertyPath: m_Radius
-      value: 0.8
+      propertyPath: MoveSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: Health
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
@@ -369,6 +374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _T
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}

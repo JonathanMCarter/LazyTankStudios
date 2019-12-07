@@ -77,7 +77,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3917529325670913630
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6895107349234991644
@@ -273,8 +273,6 @@ GameObject:
   - component: {fileID: 4323998969259161053}
   - component: {fileID: 6443545592666846018}
   - component: {fileID: 935761548658820128}
-  - component: {fileID: 469203920169491735}
-  - component: {fileID: 5365612465803691243}
   m_Layer: 0
   m_Name: Vim
   m_TagString: Untagged
@@ -419,40 +417,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &469203920169491735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6895107349795067566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0413618494a69f148928d53991debb1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrollingRange: {x: 4, y: 4}
-  showGizmos: 1
-  movementSpeed: 2
-  maxIdleTime: 2
-  maxChasingArea: {x: 4, y: 4}
-  Hearts:
-  - {fileID: 3945703916460981486}
-  - {fileID: 7862431914611861986}
-  Health: 2
-  playerInRange: 0
---- !u!114 &5365612465803691243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6895107349795067566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9753330a5b58de49addc5f21a4473ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CastTime: 0
-  JumpLength: 3
-  JumpSpeed: 2
