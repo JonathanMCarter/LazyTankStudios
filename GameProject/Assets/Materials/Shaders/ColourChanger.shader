@@ -141,16 +141,9 @@ Shader "Custom/ColourChanger"
 				c.a >= _TestCol1.a - 0.001 && c.a <= _TestCol1.a + 0.001
 			)
 			{
-				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol1.a) == 0)
-				{
-					// essentially gets rid of the pixels entirely if they are meant to be transparent
-					discard;
-				}
-				else
-				{
-					// If there is no transparency on this sprite then the 4th colour will be used instead
+
 					return Pal1;
-				}
+
 			}
 
 			if
@@ -161,16 +154,9 @@ Shader "Custom/ColourChanger"
 				c.a >= _TestCol2.a - 0.001 && c.a <= _TestCol2.a + 0.001
 			)
 			{
-				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol2.a) == 0)
-				{
-					// essentially gets rid of the pixels entirely if they are meant to be transparent
-					discard;
-				}
-				else
-				{
-					// If there is no transparency on this sprite then the 4th colour will be used instead
+
 					return Pal2;
-				}
+
 			}
 
 			if
@@ -181,16 +167,7 @@ Shader "Custom/ColourChanger"
 				c.a >= _TestCol3.a - 0.001 && c.a <= _TestCol3.a + 0.001
 			)
 			{
-				if (UNITY_ACCESS_INSTANCED_PROP(Props, _PalCol3.a) == 0)
-				{
-					// essentially gets rid of the pixels entirely if they are meant to be transparent
-					discard;
-				}
-				else
-				{
-					// If there is no transparency on this sprite then the 4th colour will be used instead
 					return Pal3;
-				}
 			}
 
 			if
@@ -206,11 +183,7 @@ Shader "Custom/ColourChanger"
 					// essentially gets rid of the pixels entirely if they are meant to be transparent
 					discard;
 				}
-				else
-				{
-					// If there is no transparency on this sprite then the 4th colour will be used instead
-					return Pal4;
-				}
+
 			}
 
 			return c;
