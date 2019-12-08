@@ -30,10 +30,13 @@ public Animator myAnim;
  }
  void Update() {
   me.transform.position = transform.position + offset;
-  myAnim.SetFloat("SpeedX",MyRigid.velocity.x);
-  myAnim.SetFloat("SpeedY",MyRigid.velocity.y);
   if (SeenPlayer) RunToPlayer();
   else RandomWander();
+   if(Mathf.Abs(MyRigid.velocity.x)>0.1)myAnim.SetFloat("SpeedX",Mathf.Abs(MyRigid.velocity.x));
+   else myAnim.SetFloat("SpeedX",0);
+  if(Mathf.Abs(MyRigid.velocity.y)>0.1)myAnim.SetFloat("SpeedY",MyRigid.velocity.y);
+  else myAnim.SetFloat("SpeedY",0);
+  me.localScale=MyRigid.velocity.x>0?new Vector3(1,1,1):new Vector3(-1,1,1);
  }
  void FixedUpdate() {
   if (ToggleDirection || SeenPlayer) {
@@ -45,6 +48,7 @@ public Animator myAnim;
    if (Direction < 50) transform.Rotate(0, 0, RotateSpeed);
    else if (Direction >= 50) transform.Rotate(0, 0, -RotateSpeed);
   }
+  
  }
  void RandomWander() {
   if (TurnCount) {
