@@ -68,7 +68,7 @@ public class PlayerMovement : A
         aHB = C(aR,0).gameObject;
         aR.gameObject.SetActive(true);
         aHB.SetActive(false);
-        bS = speed * 3;
+        bS = speed;
         //////////////////////speed *3 set temp for easier testing
         StartCoroutine(Fsteps());
     }
