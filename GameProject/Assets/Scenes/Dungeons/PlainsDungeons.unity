@@ -87564,16 +87564,16 @@ PrefabInstance:
       propertyPath: Open
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 784945105439509613, guid: 713449c197215f04ca8e693f7b1e65b9,
-        type: 3}
-      propertyPath: Door
-      value: 
-      objectReference: {fileID: 123411740}
     - target: {fileID: 784945105439509611, guid: 713449c197215f04ca8e693f7b1e65b9,
         type: 3}
       propertyPath: m_Name
       value: LightTile1
       objectReference: {fileID: 0}
+    - target: {fileID: 784945105439509613, guid: 713449c197215f04ca8e693f7b1e65b9,
+        type: 3}
+      propertyPath: Door
+      value: 
+      objectReference: {fileID: 123411740}
     - target: {fileID: 784945105950626126, guid: 713449c197215f04ca8e693f7b1e65b9,
         type: 3}
       propertyPath: m_Name
@@ -88852,31 +88852,6 @@ PrefabInstance:
     - target: {fileID: 862026667314952949, guid: 10f2735c227a01648989e8a3592d8d41,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7695064992488997487, guid: 10f2735c227a01648989e8a3592d8d41,
-        type: 3}
-      propertyPath: MoveSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6087875806854619251, guid: 10f2735c227a01648989e8a3592d8d41,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6087875806854619251, guid: 10f2735c227a01648989e8a3592d8d41,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6087875806854619251, guid: 10f2735c227a01648989e8a3592d8d41,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3259845728063811802, guid: 10f2735c227a01648989e8a3592d8d41,
-        type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -119148,43 +119123,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
-        type: 3}
-      propertyPath: healthUI
-      value: 
-      objectReference: {fileID: 1128882005}
-    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
-        type: 3}
-      propertyPath: DamageBulletThingy
-      value: 
-      objectReference: {fileID: 6827261557022495565, guid: 7ed083c1b15dd144d88161664ab05dc7,
-        type: 3}
-    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
-        type: 3}
-      propertyPath: WeaponStats
-      value: 
-      objectReference: {fileID: 11400000, guid: abcf959d57f979a4ba61b54708402f0d,
-        type: 2}
-    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
-        type: 3}
-      propertyPath: i
-      value: 
-      objectReference: {fileID: 659048012}
-    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
-        type: 3}
-      propertyPath: speed
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
-        type: 3}
-      propertyPath: attackRotater
-      value: 
-      objectReference: {fileID: 1559001258}
-    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
-        type: 3}
-      propertyPath: myInventory
-      value: 
-      objectReference: {fileID: 659048012}
     - target: {fileID: 9166002442120698620, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -119260,6 +119198,43 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
+        type: 3}
+      propertyPath: healthUI
+      value: 
+      objectReference: {fileID: 1128882005}
+    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
+        type: 3}
+      propertyPath: DamageBulletThingy
+      value: 
+      objectReference: {fileID: 6827261557022495565, guid: 7ed083c1b15dd144d88161664ab05dc7,
+        type: 3}
+    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
+        type: 3}
+      propertyPath: WeaponStats
+      value: 
+      objectReference: {fileID: 11400000, guid: abcf959d57f979a4ba61b54708402f0d,
+        type: 2}
+    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
+        type: 3}
+      propertyPath: i
+      value: 
+      objectReference: {fileID: 659048012}
+    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
+        type: 3}
+      propertyPath: speed
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
+        type: 3}
+      propertyPath: attackRotater
+      value: 
+      objectReference: {fileID: 1559001258}
+    - target: {fileID: 8285090126079130940, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da,
+        type: 3}
+      propertyPath: myInventory
+      value: 
+      objectReference: {fileID: 659048012}
     - target: {fileID: 1743666071, guid: 4ec06fe30ab3ffb4f8e6a98e715d16da, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -120856,16 +120831,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1307982546878330269, guid: 3a4a13629c8ac1c4ba7dd52444d0fb4e,
         type: 3}
-    - target: {fileID: 784945105439509613, guid: 713449c197215f04ca8e693f7b1e65b9,
-        type: 3}
-      propertyPath: Door
-      value: 
-      objectReference: {fileID: 1949065420}
     - target: {fileID: 784945105439509611, guid: 713449c197215f04ca8e693f7b1e65b9,
         type: 3}
       propertyPath: m_Name
       value: LightTile2
       objectReference: {fileID: 0}
+    - target: {fileID: 784945105439509613, guid: 713449c197215f04ca8e693f7b1e65b9,
+        type: 3}
+      propertyPath: Door
+      value: 
+      objectReference: {fileID: 1949065420}
     - target: {fileID: 784945105950626126, guid: 713449c197215f04ca8e693f7b1e65b9,
         type: 3}
       propertyPath: m_Name
