@@ -82,17 +82,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3746700685741366333}
     m_Modifications:
-    - target: {fileID: 2746953000878250006, guid: 736aa0b43dfb14e47914979bdb936a71,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -4278990690624964859, guid: f7d73e9042e8ee64f9676490f30e7211,
-        type: 3}
-    - target: {fileID: 2746953000878250006, guid: 736aa0b43dfb14e47914979bdb936a71,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7560702775571044455, guid: 736aa0b43dfb14e47914979bdb936a71,
         type: 3}
       propertyPath: m_Name
@@ -168,6 +157,27 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1937438582044017842, guid: 736aa0b43dfb14e47914979bdb936a71,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5043890229199366668, guid: 736aa0b43dfb14e47914979bdb936a71,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746953000878250006, guid: 736aa0b43dfb14e47914979bdb936a71,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4278990690624964859, guid: f7d73e9042e8ee64f9676490f30e7211,
+        type: 3}
+    - target: {fileID: 2746953000878250006, guid: 736aa0b43dfb14e47914979bdb936a71,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7550389231351227807, guid: 736aa0b43dfb14e47914979bdb936a71,
         type: 3}
       propertyPath: m_Sprite
@@ -178,16 +188,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5043890229199366668, guid: 736aa0b43dfb14e47914979bdb936a71,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1937438582044017842, guid: 736aa0b43dfb14e47914979bdb936a71,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4166419493658396298, guid: 736aa0b43dfb14e47914979bdb936a71, type: 3}
@@ -319,7 +319,7 @@ PrefabInstance:
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: MoveSpeed
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
