@@ -1772,7 +1772,7 @@ PrefabInstance:
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: MoveSpeed
-      value: 1
+      value: 2.3
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
@@ -1859,13 +1859,23 @@ PrefabInstance:
       propertyPath: Hearts.Array.data[14]
       value: 
       objectReference: {fileID: 165512410314103653}
+    - target: {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: _T
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: P
+      value: 
+      objectReference: {fileID: 3224860640930260589, guid: a65fa49e9ab842946bf530a99acdab2c,
+        type: 3}
     - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_Radius
       value: 0.8
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
 --- !u!4 &4587316397909180367 stripped
 Transform:
