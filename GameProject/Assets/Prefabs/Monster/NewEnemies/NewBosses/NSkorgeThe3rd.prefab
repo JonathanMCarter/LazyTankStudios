@@ -39,20 +39,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7698684986870392556}
     m_Modifications:
-    - target: {fileID: 2913959039138629975, guid: f17ca2e08c998c349ac43d2784bed43b,
+    - target: {fileID: 8911554477583584014, guid: f17ca2e08c998c349ac43d2784bed43b,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5271ed683d9399347b4aac04182c8df8, type: 2}
-    - target: {fileID: 2996983871662735602, guid: f17ca2e08c998c349ac43d2784bed43b,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 5271ed683d9399347b4aac04182c8df8, type: 2}
-    - target: {fileID: 3344595689003965852, guid: f17ca2e08c998c349ac43d2784bed43b,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
+      propertyPath: m_Name
+      value: SkorgeThe3rd
       objectReference: {fileID: 0}
     - target: {fileID: 6722906957458136601, guid: f17ca2e08c998c349ac43d2784bed43b,
         type: 3}
@@ -109,6 +99,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3344595689003965852, guid: f17ca2e08c998c349ac43d2784bed43b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913959039138629975, guid: f17ca2e08c998c349ac43d2784bed43b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5271ed683d9399347b4aac04182c8df8, type: 2}
+    - target: {fileID: 2996983871662735602, guid: f17ca2e08c998c349ac43d2784bed43b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5271ed683d9399347b4aac04182c8df8, type: 2}
     - target: {fileID: 7923834812002320390, guid: f17ca2e08c998c349ac43d2784bed43b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -119,11 +124,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5271ed683d9399347b4aac04182c8df8, type: 2}
-    - target: {fileID: 8911554477583584014, guid: f17ca2e08c998c349ac43d2784bed43b,
-        type: 3}
-      propertyPath: m_Name
-      value: SkorgeThe3rd
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f17ca2e08c998c349ac43d2784bed43b, type: 3}
 --- !u!4 &6023494448607964186 stripped
@@ -296,6 +296,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
+      propertyPath: MoveSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
       propertyPath: boss
       value: 1
       objectReference: {fileID: 0}
@@ -381,13 +386,13 @@ PrefabInstance:
       objectReference: {fileID: 1070537348432382566}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
-      propertyPath: MoveSpeed
-      value: 2
+      propertyPath: Health
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
-      propertyPath: Health
-      value: 15
+      propertyPath: BossNumber
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}

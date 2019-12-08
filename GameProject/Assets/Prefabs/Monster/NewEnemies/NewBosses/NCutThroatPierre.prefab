@@ -271,14 +271,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
-      propertyPath: me
-      value: 
-      objectReference: {fileID: 3685064767183838675}
+      propertyPath: MoveSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: boss
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: me
+      value: 
+      objectReference: {fileID: 3685064767183838675}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: Hearts.Array.data[0]
@@ -356,13 +361,13 @@ PrefabInstance:
       objectReference: {fileID: 504777380442878628}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
-      propertyPath: MoveSpeed
-      value: 3.5
+      propertyPath: Health
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
-      propertyPath: Health
-      value: 15
+      propertyPath: BossNumber
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
