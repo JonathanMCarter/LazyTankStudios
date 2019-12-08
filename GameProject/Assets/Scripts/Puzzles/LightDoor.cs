@@ -2,19 +2,34 @@
 public class LightDoor: A {
  public int TotalTiles;
  public BoxCollider2D Door;
+ public GameObject SpriteHolder;
  public Sprite Open, Closed;
- public SpriteRenderer me;
+ Sprite[] ClosedSprites;
+ //public SpriteRenderer me;
  public int LitTiles;
  void Start() {
-  me = G<SpriteRenderer>();
+  //me = G<SpriteRenderer>();
+  ClosedSprites = new Sprite[SpriteHolder.transform.childCount];
+  for (int i = 0; i < SpriteHolder.transform.childCount; i++)
+        {
+            ClosedSprites[i] = SpriteHolder.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite;
+        };
  }
  void Update() {
   if (LitTiles >= TotalTiles) {
    Door.enabled = false;
-   me.sprite = Open;
+   for (int i = 0; i < SpriteHolder.transform.childCount; i++)
+   {
+       SpriteHolder.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = Open;
+   };
+   //me.sprite = Open;
   } else {
    Door.enabled = true;
-   me.sprite = Closed;
+   for (int i = 0; i < SpriteHolder.transform.childCount; i++)
+   {
+       SpriteHolder.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().sprite = ClosedSprites[i];
+   };
+   //me.sprite = Closed;
   }
  }
 }
