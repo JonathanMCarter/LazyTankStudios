@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Inventory : A
 {
     public int current;
-    static int Coins = 0;
+    public static int Coins = 0;
     public List<Sprite> icons;
     public List<int> items;
     public Text t;
@@ -24,6 +24,8 @@ public class Inventory : A
     public void change(){
         current = current < items.Count-1 ? current + 1 : 0;
         i.sprite = icons[items[current]];
+        if(!i.sprite)
+            change();
         if (items[current] == 4) p.enabled = true;
         else p.enabled = false;
     }
