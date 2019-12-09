@@ -175,7 +175,7 @@ Animator:
   m_GameObject: {fileID: 3783753066852401716}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8f59acc973ff55e45a55c117eba3cc77, type: 2}
+  m_Controller: {fileID: 9100000, guid: 23d9b62636b987b4db717d427964d57d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -442,6 +442,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7724448275127462086}
     m_Modifications:
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Name
+      value: NewEnemyAI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000,
+        type: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4146691664319079307, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -497,27 +518,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: m_Name
-      value: NewEnemyAI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000,
-        type: 0}
-    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1026830375002604824, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7006708735355352164, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: Hearts.Array.size
@@ -553,12 +553,6 @@ PrefabInstance:
       propertyPath: RotateSpeed
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168,
-        type: 3}
-      propertyPath: P
-      value: 
-      objectReference: {fileID: 734253167004393265, guid: 4e5699ba50913c74388970f758c9f56b,
-        type: 3}
     - target: {fileID: 1353393902769897665, guid: 825453733c855bd4fbc594fd4a41d168,
         type: 3}
       propertyPath: m_Offset.y
@@ -569,6 +563,12 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.6933975
       objectReference: {fileID: 0}
+    - target: {fileID: 78552578737952727, guid: 825453733c855bd4fbc594fd4a41d168,
+        type: 3}
+      propertyPath: P
+      value: 
+      objectReference: {fileID: 734253167004393265, guid: 4e5699ba50913c74388970f758c9f56b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 825453733c855bd4fbc594fd4a41d168, type: 3}
 --- !u!4 &5962417217887863476 stripped
