@@ -38,6 +38,6 @@ public class Vendor: A {
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        happened = false;
+        if(collision.CompareTag("Player"))happened = false;
     }
 }
