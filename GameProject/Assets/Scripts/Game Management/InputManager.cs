@@ -6,45 +6,35 @@ public void SetX(int i){xAxis = i;}public void SetY( int i){yAxis = i;}void Hide
 #if UNITY_ANDROID
 return xAxis;
 #endif
-
 #if UNITY_WEBGL || UNITY_STANDALONE_WIN
 float x = Input.GetAxisRaw("Horizontal");
 if (x < 0.6f && x > -0.6f) return 0;
 return Input.GetAxisRaw("Horizontal");
 #endif
-}
-public float Y_Axis()
-{
+}public float Y_Axis(){
 #if UNITY_ANDROID
 return yAxis;
 #endif
 #if UNITY_WEBGL || UNITY_STANDALONE_WIN
 float x = Input.GetAxisRaw("Vertical");
-        if (x < 0.6f && x > -0.6f) return 0;return Input.GetAxisRaw("Vertical");
-        #endif
-}
-public bool Button_A()
-{
+if (x < 0.6f && x > -0.6f) return 0;return Input.GetAxisRaw("Vertical");
+#endif
+}public bool Button_A(){
 #if UNITY_ANDROID
 return fire1Clicked;
 #else
 return Input.GetButtonDown("Fire1");
 #endif
-}
-public bool Button_B()
-{
+}public bool Button_B(){
 #if UNITY_ANDROID
 return fire2Clicked;
 #else
 return Input.GetButtonDown("Fire2");
 #endif
-}
-public bool Button_Menu()
-{
+}public bool Button_Menu(){
 #if UNITY_ANDROID
 return fire3Clicked;
 #else
 return Input.GetButtonDown("Fire3");
 #endif
-}
-}
+}}
