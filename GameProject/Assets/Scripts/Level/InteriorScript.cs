@@ -21,6 +21,7 @@ public class InteriorScript: A {
                 case Modes.Scene:
                     if (SceneName.Length != 0) {
                         SceneManager.LoadScene(SceneName);
+                        GameObject.FindObjectOfType<SaveSys>().Save();
                     }
                     break;
                 default:
