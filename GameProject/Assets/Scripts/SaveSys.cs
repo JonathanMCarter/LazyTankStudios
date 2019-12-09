@@ -70,7 +70,9 @@ public class SaveSys : MonoBehaviour
             QLog.QuestTag = save.QuestTag;
             QLog.Status = save.Status;
             QLog.Collectables = save.Collectables;
-            inv.addCoins(save.Coins);
+            Inventory.Coins = save.Coins;
+            inv.addCoins(0);
+
             inv.items = save.items;
             inv.pots = save.Pots;
             //InvIcon();

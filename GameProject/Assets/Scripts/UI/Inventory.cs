@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Inventory : A
 {
     public int current;
-    static int Coins = 0;
+    public static int Coins = 0;
     public List<Sprite> icons;
     public List<int> items;
     public Text t;
