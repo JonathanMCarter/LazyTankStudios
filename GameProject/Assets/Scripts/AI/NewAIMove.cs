@@ -4,6 +4,10 @@ public class NewAIMove: A {
  public float MoveSpeed, RotateSpeed, Direction;
  float WaitTime, TurnTime;
  public bool boss;
+    public bool Killreq;
+    public int QId;
+    public string QTag;
+    bool dead;
  public Transform me;
  Transform Player;
  Rigidbody2D MyRigid;
@@ -94,9 +98,12 @@ Hearts[Health - 1].gameObject.SetActive(false);
    Health -= 1;
    sp.Play("Take_Damage_3");
   }
-  if (Health <= 0) {
+  if (Health <= 0 && !dead) {
+            dead = true;
 if (boss) Quest.boss[BossNumber] = true; //changed by LC for below reason
-//need to add in check that it is only increasing the right one
+                                         //need to add in check that it is only increasing the right one
+            if (Killreq) FindObjectOfType<QuestLog>().Collect(QId, QTag);
+
 sp.Play("Death_3");
    gameObject.transform.parent.gameObject.SetActive(false);
   }

@@ -70,6 +70,7 @@ public class QuestLog : MonoBehaviour
             return false;
     }
 
+
     public void SetQuest()
     {
         Quest[] Q = FindObjectsOfType<Quest>();
@@ -85,6 +86,7 @@ public class QuestLog : MonoBehaviour
                     {
                         q.status = Status[i];
                         q.ItemToCollect = Collectables[i];
+                        q.killsNeeded = Collectables[i];
                         //print(q.ItemToCollect + " " + Collectables[i] + " " + q.gameObject.name);
                         
                     }
@@ -103,7 +105,7 @@ public class QuestLog : MonoBehaviour
         // }
     }
 
-    public void SaveQuest(int id, string questtag, Quest.Status status, int collect)
+    public void SaveQuest(int id, string questtag, Quest.Status status, int collect, int kills)
     {
         for (int i = 0; i < ID.Count; i++)
         {
@@ -125,7 +127,7 @@ public class QuestLog : MonoBehaviour
         ID.Add(id);
         QuestTag.Add(questtag);
         Status.Add(status);
-        Collectables.Add(collect);
+        if (collect > 0) Collectables.Add(collect); else Collectables.Add(kills);
         GetComponent<SaveSys>().Save();
     }
 

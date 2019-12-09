@@ -18,7 +18,7 @@ public class Quest: A {
  public bool KillRequest;
  public bool CollectRequest;
  public bool DeliverRequest;
- public List < GameObject > Kills = new List < GameObject > ();
+    public int killsNeeded;
  public Sprite[] ItemsToBeCollected;
     public int ItemToCollect;
  public int[] ItemsQuantities;
@@ -61,7 +61,7 @@ public class Quest: A {
 
     void UpdateLog() //temp added by LC
     {
-        log.SaveQuest(ID, QuestTag, status, ItemToCollect);
+        log.SaveQuest(ID, QuestTag, status, ItemToCollect, killsNeeded);
     }
 
  void InitialiseQuests(Status StatusToSet) { //how does this work for side quests?
@@ -177,10 +177,10 @@ ActiveQuestSign.SetActive(false); //Late add by LC
  }
  bool checkKilledAllEnemies() {
   bool state = false;
-        if (Kills.Count > 0) Kills.ForEach(enemy=>state=enemy.activeInHierarchy?false:true);
+        if (BossQuest)state = boss[NewAIMove.currBoss] == true;
         else{
-            state = boss[NewAIMove.currBoss] == true;
-          
+
+            state = (killsNeeded <= 0);
             //if (state) NewAIMove.currBoss++; //taken out by LC for changing scenes. increases at end of quest
         }
   return state;
