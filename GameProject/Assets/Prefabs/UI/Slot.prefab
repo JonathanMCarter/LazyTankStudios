@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2077270977168502006}
   m_Layer: 5
   m_Name: Quantity
-  m_TagString: Untagged
+  m_TagString: TextConstant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b8ce1703db0b34d48a85a7ca994fd708, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 2077270978218587396}
   m_Layer: 5
   m_Name: Equipped
-  m_TagString: Untagged
+  m_TagString: TextConstant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: b8ce1703db0b34d48a85a7ca994fd708, type: 2}
   m_Color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -327,3 +327,6 @@ MonoBehaviour:
   quantity: 0
   equipped: 0
   selected: 0
+  BuyingValue: 0
+  SellingValue: 0
+  recievesXP: 0

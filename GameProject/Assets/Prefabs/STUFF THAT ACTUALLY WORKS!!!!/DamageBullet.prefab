@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7737467635452963851}
   - component: {fileID: 2282651152341740740}
   - component: {fileID: 7672950358498464706}
-  - component: {fileID: 3170101555825615316}
+  - component: {fileID: 5578982322115566902}
   m_Layer: 9
   m_Name: DamageBullet
   m_TagString: Bullet
@@ -71,13 +71,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3697401056560208507, guid: 6b3c80e9b07556e4ba772ef37f38ea99,
+  m_Sprite: {fileID: -1732222037790204621, guid: f7d73e9042e8ee64f9676490f30e7211,
     type: 3}
   m_Color: {r: 0.95129585, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -114,13 +114,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
---- !u!114 &3170101555825615316
+  m_Radius: 0.27
+--- !u!114 &5578982322115566902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,9 +129,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6827261557022495565}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4625a95c20288458e58e249e75c7c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9357c073960d4a448ba453cdb44f8d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  Speed: {x: 0, y: 0}
-  Lifespan: 0
+  S: 0

@@ -102,7 +102,7 @@ public class DialogueEditor : Editor
         GUILayout.Space(10f);
 
         EditorGUILayout.BeginHorizontal();
-        Script.DisplayStyle = (Styles)EditorGUILayout.EnumPopup("Display Mode: ", Script.DisplayStyle);
+        //Script.DisplayStyle = (Styles)EditorGUILayout.EnumPopup("Display Mode: ", Script.DisplayStyle);
         EditorGUILayout.EndHorizontal();
 
 
